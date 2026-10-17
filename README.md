@@ -49,7 +49,7 @@ line or block buffering in on-chip memory.
   [gf180-sram](https://github.com/2AMLogic/gf180-sram) macro or are
   standard-cell RAM, decided by adopt-or-record in `spec/`.
 
-## Target specification (DRAFT — engineering to ratify, see issue #1)
+## Target specification (DRAFT — engineering to ratify, see issue #3)
 
 | Parameter | Target | Fallback | Stretch |
 |---|---|---|---|
@@ -75,6 +75,22 @@ verification/  golden encoder, reference image set, cocotb testbenches
 layout/        GDS + DRC/LVS reports + STA reports (klayout-tools driven)
 measurements/  silicon characterization (empty until tape-out)
 ```
+
+## Reproducing results
+
+Progress toward the first maturity tier is tracked in
+[#4](https://github.com/2AMLogic/gf180-jpeg-codec/issues/4), and graded
+mechanically by `manifests/` (see [manifests/README.md](manifests/README.md)).
+
+```console
+bash .github/scripts/lint.sh            # PDK-free lint, same as CI
+pip install klayout-tools==0.7.0        # then regenerate the tier verdict:
+klt signoff --manifest manifests/gf180-jpeg-codec.json \
+            --tiers-doc manifests/design-evidence-tiers.md \
+            --format json > manifests/gf180-jpeg-codec.signoff.json
+```
+
+Each evidence directory adds its own cold-start command here as it lands.
 
 ## License
 
