@@ -3,6 +3,7 @@
 #
 #   bash .github/scripts/lint.sh
 #
+# Vendored-and-adapted from 2AMLogic/gf180-polysynth (PDK-free legs only).
 # Needs python3 and (for step 4) verilator. Needs no PDK and no klt.
 set -uo pipefail
 cd "$(dirname "$0")/../.."
@@ -13,9 +14,7 @@ bad()  { echo "FAIL: $*" >&2; fail=1; }
 
 step "1. Python sources compile"
 python3 -m compileall -q \
-  tb/run_tb.py rtl/gen_tables.py bench/render.py \
-  spec/reference/synth_ref.py spec/reference/test_synth_ref.py \
-  spec/reference/render_wav.py || bad "python compile"
+  verification/common/run_tb.py verification/tb/test_smoke.py || bad "python compile"
 
 step "2. Every JSON document is well-formed"
 while IFS= read -r f; do
@@ -30,34 +29,13 @@ done < <(git ls-files '*.sh')
 
 step "4. RTL is Verilator -Wall lint-clean"
 if command -v verilator > /dev/null; then
-  verilator --lint-only -Wall -Irtl --top-module synth_core \
-    rtl/uart_rx.v rtl/synth_voice.v rtl/synth_core.v || bad "verilator lint"
-  # fpga/i2s_tx.v too: it is outside the cocotb bench's boundary, so it gets
-  # what coverage it can. fpga/top.v and fpga/pll.v are NOT lintable here --
-  # pll.v instantiates the ECP5 primitive EHXPLLL, which Verilator cannot
-  # resolve without Lattice's cell library. They are covered by the ECP5
-  # build instead.
-  verilator --lint-only -Wall --top-module i2s_tx fpga/i2s_tx.v \
-    || bad "verilator lint (fpga/i2s_tx.v)"
+  verilator --lint-only -Wall -Irtl --top-module smoke_placeholder \
+    rtl/smoke_placeholder.v || bad "verilator lint"
 else
   echo "skipped: no verilator on PATH"
 fi
 
-step "5. Generated ROMs match the frozen contract tables"
-# rtl/*.vh are generated from spec/reference/synth_ref.py. Regenerating must
-# be a no-op, and each file's embedded sha256 must still be the one printed in
-# the contract's Appendix A / B -- that is what stops the RTL's tables and the
-# reference model's tables from silently diverging.
-python3 rtl/gen_tables.py > /dev/null || bad "gen_tables.py"
-git diff --quiet -- rtl/note_inc_rom.vh rtl/sine_q_rom.vh \
-  || bad "rtl/*.vh differ after regeneration -- the committed ROMs are stale"
-for h in e771e6b7b39d3941c471b772bfb5cdca398b78ee7fa964c3c90388d2cc888ba4 \
-         72e3ab187d9c5e27be2a1dfbf209610aca3bf553eea8d15b0db53e05b240ef4f; do
-  grep -q "$h" spec/NUMERIC-CONTRACT.md || bad "contract no longer states hash $h"
-  grep -rq "$h" rtl/ || bad "no generated ROM carries hash $h"
-done
-
-step "6. No absolute host paths leaked into committed sources"
+step "5. No absolute host paths leaked into committed sources"
 # The prototype this repo came from had host-bound absolute paths in three
 # scripts; this is the check that stops them coming back.
 #
@@ -66,13 +44,13 @@ step "6. No absolute host paths leaked into committed sources"
 # since the pattern and the failure message both contain the prefix
 # literally. A real leak is always a prefix followed by a user name.
 #
-# `.loom/` and `.claude/` are vendored third-party agent tooling, not sources
+# `.loom/`, `.claude/` and `.agents/` are vendored third-party agent tooling, not sources
 # of this block: their docs and example configs legitimately show host paths,
 # and we do not edit them. Excluding them keeps this check pointed at what it
 # is for. If the exclusion ever hides a real leak, it will be in a file we did
 # not write, and `git ls-files` still lists it.
 if git ls-files \
-   | grep -vE '^\.(loom|claude)/' \
+   | grep -vE '^\.(loom|claude|agents)/' \
    | xargs grep -lIE '/Users/[a-z]|/home/[a-z]+/dev' 2>/dev/null | grep . ; then
   bad "the files above contain an absolute host path"
 fi

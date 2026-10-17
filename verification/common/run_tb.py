@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """PDK-free runner for the cocotb testbench.
 
-`klt functional-verification` (the requests under `tb/runs/`) is the primary,
-evidence-producing way to run this suite -- it is what `sim/` records cite.
-This script is the *same* testbench driven straight through cocotb's own
-runner, so CI and a cold-start contributor need only `iverilog` / `verilator`
-and `pip install cocotb`, with no klayout-tools install and no PDK.
+Drives the cocotb testbench straight through cocotb's own runner, so CI and a
+cold-start contributor need only `iverilog` / `verilator` and `pip install
+cocotb`, with no klayout-tools install and no PDK.
 
-    python3 tb/run_tb.py                      # icarus
-    python3 tb/run_tb.py --sim verilator
-    python3 tb/run_tb.py --sim icarus --define INJECT_BUG_ENV=1   # expect FAIL
+    python3 verification/common/run_tb.py                      # icarus
+    python3 verification/common/run_tb.py --sim verilator
+    python3 verification/common/run_tb.py --sim icarus --define INJECT_BUG_ENV=1   # expect exit 1
+
+Vendored from 2AMLogic/gf180-polysynth tb/run_tb.py (see reuse.lock.json and
+spec/decision-records/0001-harness-divergence.md for what differs).
 
 Exit status is the test verdict, and the two failure codes are not
 interchangeable:
@@ -30,13 +31,14 @@ import os
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 RTL = ROOT / "rtl"
-TB = ROOT / "tb"
+TB = ROOT / "verification" / "tb"
 REFERENCE = ROOT / "spec" / "reference"
 
-SOURCES = [RTL / "uart_rx.v", RTL / "synth_voice.v", RTL / "synth_core.v"]
-TOPLEVEL = "synth_core"
+SOURCES = [RTL / "smoke_placeholder.v"]
+TOPLEVEL = "smoke_placeholder"
+TEST_MODULE = "test_smoke"
 TIMESCALE = ("1ns", "1ps")
 
 EXIT_OK = 0
@@ -48,14 +50,6 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--sim", default="icarus", choices=["icarus", "verilator"])
     ap.add_argument("--seed", type=int, default=1)
-    ap.add_argument(
-        "--nv",
-        type=int,
-        default=None,
-        help="override synth_core's NV (voices instantiated); the testbench is told "
-             "the same number via $SYNTH_NV so it never addresses a voice that is "
-             "not there. Default: the RTL's own parameter default.",
-)
     ap.add_argument(
         "--define",
         action="append",
@@ -75,12 +69,6 @@ def main(argv: list[str] | None = None) -> int:
         name, _, value = item.partition("=")
         defines[name] = value or 1
 
-    parameters: dict[str, object] = {}
-    env_nv: dict[str, str] = {}
-    if args.nv is not None:
-        parameters["NV"] = args.nv
-        env_nv["SYNTH_NV"] = str(args.nv)
-
     build_dir = TB / "sim_build" / args.sim
     runner = get_runner(args.sim)
     try:
@@ -89,7 +77,6 @@ def main(argv: list[str] | None = None) -> int:
             includes=[RTL],
             defines=defines,
             hdl_toplevel=TOPLEVEL,
-            parameters=parameters,
             build_dir=build_dir,
             timescale=TIMESCALE,
             waves=args.waves,
@@ -101,8 +88,8 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{args.sim}: the design did not build: {exc}", file=sys.stderr)
         return EXIT_DID_NOT_RUN
 
-    # synth_ref.py is the frozen reference model the testbench compares against
-    # sample for sample; it lives with the contract it implements, in spec/.
+    # The golden model (a later issue) will live under spec/reference/ and be
+    # imported by the testbench; both directories go on the path now.
     #
     # These go on *this* process's sys.path, not just into extra_env, because
     # cocotb's runner overwrites PYTHONPATH rather than extending it:
@@ -117,7 +104,7 @@ def main(argv: list[str] | None = None) -> int:
     # future cocotb merges instead of overwriting.
     #
     # Without this the suite does not fail -- it does not RUN, dying at
-    # `import synth_ref` before a single test executes. That is a far more
+    # `import` of the golden model before a single test executes. That is a far more
     # dangerous mode than a red test (see the injected-bug job's comment).
     for path in (REFERENCE, TB):
         if str(path) not in sys.path:
@@ -130,15 +117,14 @@ def main(argv: list[str] | None = None) -> int:
     try:
         results_xml = runner.test(
             hdl_toplevel=TOPLEVEL,
-            test_module="test_synth_core",
+            test_module=TEST_MODULE,
             test_dir=TB,
             build_dir=build_dir,
             seed=args.seed,
             timescale=TIMESCALE,
             testcase=args.testcase,
             waves=args.waves,
-            parameters=parameters or None,
-            extra_env={"PYTHONPATH": pythonpath, "PYTHONDONTWRITEBYTECODE": "1", **env_nv},
+            extra_env={"PYTHONPATH": pythonpath, "PYTHONDONTWRITEBYTECODE": "1"},
             results_xml=str(build_dir / "results.xml"),
         )
     except Exception as exc:                      # simulator could not be launched
