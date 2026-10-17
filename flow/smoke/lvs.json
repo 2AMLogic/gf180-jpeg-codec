@@ -1,0 +1,11 @@
+{
+  "schema": "klt.lvs.request/1",
+  "engine": "klayout",
+  "layout": { "netlist": "smoke_counter.gate.spice", "top": "smoke_counter" },
+  "reference": {
+    "netlist": ".klt/place-and-route/smoke_counter.v",
+    "top": "smoke_counter",
+    "form": "gate-level-verilog",
+    "library": "gf180mcu_fd_sc_mcu9t5v0"
+  }
+}
