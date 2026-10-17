@@ -6,7 +6,7 @@ by AI agents driving
 [klayout-tools](https://github.com/2AMLogic/klayout-tools) and the
 open-source cocotb + Icarus, Yosys and OpenROAD flow.
 
-**Status: just opened, specification phase.** Nothing is designed yet.
+**Status: specification ratified.** The golden model, RTL and layout are not started.
 
 **Built agent-native.** Every specification, decision record, testbench, and
 line of documentation here is produced by AI agents working from a ratified
@@ -49,22 +49,29 @@ line or block buffering in on-chip memory.
   [gf180-sram](https://github.com/2AMLogic/gf180-sram) macro or are
   standard-cell RAM, decided by adopt-or-record in `spec/`.
 
-## Target specification (DRAFT — engineering to ratify, see issue #1)
+## Target specification (ratified 2026-10-17 — [spec/codec.md](spec/codec.md), issue #3)
 
 | Parameter | Target | Fallback | Stretch |
 |---|---|---|---|
-| JPEG mode | baseline encoder, YCbCr 4:2:0, 8-bit | baseline encoder, greyscale | + baseline decoder |
-| Lossless path | QOI encoder | — | + QOI decoder |
-| Resolution / rate | 640 x 480 at 30 frames/s | 320 x 240 at 15 frames/s | 1280 x 720 at 30 frames/s |
-| Tables | runtime-loadable quantization and Huffman tables | fixed standard tables | — |
-| Signoff clock (post-route STA, slow corner) | 50 MHz | 25 MHz | 100 MHz |
-| Correctness | byte-exact against the software golden encoder | — | — |
-| Signoff | DRC + LVS clean, STA closed at every ratified corner | — | — |
+| JPEG mode | baseline encoder, YCbCr 4:2:0, 8-bit, RGB in, full JFIF file out | baseline encoder, greyscale | + baseline decoder (deferred) |
+| Lossless path | QOI encoder, RGB, raster input | — | + QOI decoder (deferred) |
+| Resolution / rate | 640 x 480 at 30 frames/s: 3.617 cycles/sample at 50 MHz | 320 x 240 at 15 frames/s: 21.70 cycles/sample at 25 MHz | 1280 x 720 at 30 frames/s: 2.411 cycles/sample at 100 MHz |
+| Input order | block-ordered: 16 x 16 macroblocks, one double-buffered (768 B) | 8 x 8 blocks | — |
+| Tables | runtime-loadable quantization and Huffman tables (DQT/DHT payloads) | fixed standard (Annex K) tables | — |
+| Arithmetic | libjpeg "islow" DCT, 13-bit constants; integer colour conversion; bit for bit in `spec/codec.md` | same | — |
+| Library, supply | `gf180mcu_fd_sc_mcu9t5v0`, 3.3 V | same | same |
+| Signoff clock (post-route STA, slow corner `ss_125C_3v00`) | 50 MHz | 25 MHz | 100 MHz |
+| Memory | 3 x `gf180-sram` 256 x 32 macros (740 words) | same | — |
+| Correctness | byte-exact against the committed software golden encoder | — | — |
+| Signoff | DRC + LVS clean, STA closed at the five library views of `spec/codec.md` §10 | — | — |
+
+Every row is ratified or deferred, with owner, in [spec/codec.md](spec/codec.md);
+the decisions are in [spec/decision-records](spec/decision-records).
 
 Maturity ladder: spec ratified → golden model committed → RTL byte-exact on
 the reference image set → synthesized with timing met → placed and routed,
 DRC/LVS-clean → post-route multi-corner STA closed → shuttle seat →
-measured silicon. **Current position: pre-spec.**
+measured silicon. **Current position: spec ratified; golden model next.**
 
 ## Repo layout
 
