@@ -1,0 +1,4432 @@
+{
+  "schema_version": 2,
+  "file": ".klt/place-and-route/smoke_counter.gds",
+  "deck": "gf180mcu",
+  "dbu_um": 0.0005,
+  "status": "violations",
+  "violation_count": 206,
+  "rule_counts": {
+    "metal2.ongrid.1": 44,
+    "metal3.ongrid.1": 44,
+    "metal4.ongrid.1": 8,
+    "via2.ongrid.1": 44,
+    "via2.width.1": 11,
+    "via3.ongrid.1": 44,
+    "via3.width.1": 11
+  },
+  "metrics": {
+    "drc__error__count": 206
+  },
+  "violations": [
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 46920,
+        "bottom": 8932,
+        "right": 46920,
+        "top": 8932
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__fill_4",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__fill_4"
+      ],
+      "bbox": {
+        "left": 46920,
+        "bottom": 11228,
+        "right": 46920,
+        "top": 11228
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__fill_2",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__fill_2"
+      ],
+      "bbox": {
+        "left": 46920,
+        "bottom": 29092,
+        "right": 46920,
+        "top": 29092
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1"
+      ],
+      "bbox": {
+        "left": 46920,
+        "bottom": 31388,
+        "right": 46920,
+        "top": 31388
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1"
+      ],
+      "bbox": {
+        "left": 46920,
+        "bottom": 49252,
+        "right": 46920,
+        "top": 49252
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__fill_2",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__fill_2"
+      ],
+      "bbox": {
+        "left": 46920,
+        "bottom": 51548,
+        "right": 46920,
+        "top": 51548
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__fill_8",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__fill_8"
+      ],
+      "bbox": {
+        "left": 46920,
+        "bottom": 69412,
+        "right": 46920,
+        "top": 69412
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__buf_4",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__buf_4"
+      ],
+      "bbox": {
+        "left": 46920,
+        "bottom": 71708,
+        "right": 46920,
+        "top": 71708
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__and4_1",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__and4_1"
+      ],
+      "bbox": {
+        "left": 46920,
+        "bottom": 89572,
+        "right": 46920,
+        "top": 89572
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__buf_4",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__buf_4"
+      ],
+      "bbox": {
+        "left": 46920,
+        "bottom": 91868,
+        "right": 46920,
+        "top": 91868
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1"
+      ],
+      "bbox": {
+        "left": 46920,
+        "bottom": 109732,
+        "right": 46920,
+        "top": 109732
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 46920,
+        "bottom": 112028,
+        "right": 46920,
+        "top": 112028
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 51640,
+        "bottom": 8932,
+        "right": 51640,
+        "top": 8932
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__xnor2_1",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__xnor2_1"
+      ],
+      "bbox": {
+        "left": 51640,
+        "bottom": 11228,
+        "right": 51640,
+        "top": 11228
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__buf_4",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__buf_4"
+      ],
+      "bbox": {
+        "left": 51640,
+        "bottom": 29092,
+        "right": 51640,
+        "top": 29092
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1"
+      ],
+      "bbox": {
+        "left": 51640,
+        "bottom": 31388,
+        "right": 51640,
+        "top": 31388
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1"
+      ],
+      "bbox": {
+        "left": 51640,
+        "bottom": 49252,
+        "right": 51640,
+        "top": 49252
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__xor2_1",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__xor2_1"
+      ],
+      "bbox": {
+        "left": 51640,
+        "bottom": 51548,
+        "right": 51640,
+        "top": 51548
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1"
+      ],
+      "bbox": {
+        "left": 51640,
+        "bottom": 69412,
+        "right": 51640,
+        "top": 69412
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__buf_4",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__buf_4"
+      ],
+      "bbox": {
+        "left": 51640,
+        "bottom": 71708,
+        "right": 51640,
+        "top": 71708
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__and4_1",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__and4_1"
+      ],
+      "bbox": {
+        "left": 51640,
+        "bottom": 89572,
+        "right": 51640,
+        "top": 89572
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__buf_4",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__buf_4"
+      ],
+      "bbox": {
+        "left": 51640,
+        "bottom": 91868,
+        "right": 51640,
+        "top": 91868
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1"
+      ],
+      "bbox": {
+        "left": 51640,
+        "bottom": 109732,
+        "right": 51640,
+        "top": 109732
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 51640,
+        "bottom": 112028,
+        "right": 51640,
+        "top": 112028
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__xnor2_1",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__xnor2_1"
+      ],
+      "bbox": {
+        "left": 57000,
+        "bottom": 19012,
+        "right": 57000,
+        "top": 19012
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__buf_4",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__buf_4"
+      ],
+      "bbox": {
+        "left": 57000,
+        "bottom": 21308,
+        "right": 57000,
+        "top": 21308
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1"
+      ],
+      "bbox": {
+        "left": 57000,
+        "bottom": 39172,
+        "right": 57000,
+        "top": 39172
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__nand2_1",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__nand2_1"
+      ],
+      "bbox": {
+        "left": 57000,
+        "bottom": 41468,
+        "right": 57000,
+        "top": 41468
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via4_5_8960_8960_4_4_1240_1240",
+      "source_path": [
+        "VIA_via4_5_8960_8960_4_4_1240_1240"
+      ],
+      "bbox": {
+        "left": 57000,
+        "bottom": 59332,
+        "right": 57000,
+        "top": 59332
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via4_5_8960_8960_4_4_1240_1240",
+      "source_path": [
+        "VIA_via4_5_8960_8960_4_4_1240_1240"
+      ],
+      "bbox": {
+        "left": 57000,
+        "bottom": 61628,
+        "right": 57000,
+        "top": 61628
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__buf_4",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__buf_4"
+      ],
+      "bbox": {
+        "left": 57000,
+        "bottom": 79492,
+        "right": 57000,
+        "top": 79492
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__fill_8",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__fill_8"
+      ],
+      "bbox": {
+        "left": 57000,
+        "bottom": 81788,
+        "right": 57000,
+        "top": 81788
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__buf_4",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__buf_4"
+      ],
+      "bbox": {
+        "left": 57000,
+        "bottom": 99652,
+        "right": 57000,
+        "top": 99652
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__fill_16",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__fill_16"
+      ],
+      "bbox": {
+        "left": 57000,
+        "bottom": 101948,
+        "right": 57000,
+        "top": 101948
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__fill_32",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__fill_32"
+      ],
+      "bbox": {
+        "left": 61720,
+        "bottom": 19012,
+        "right": 61720,
+        "top": 19012
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__buf_4",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__buf_4"
+      ],
+      "bbox": {
+        "left": 61720,
+        "bottom": 21308,
+        "right": 61720,
+        "top": 21308
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1"
+      ],
+      "bbox": {
+        "left": 61720,
+        "bottom": 39172,
+        "right": 61720,
+        "top": 39172
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__fill_4",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__fill_4"
+      ],
+      "bbox": {
+        "left": 61720,
+        "bottom": 41468,
+        "right": 61720,
+        "top": 41468
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via4_5_8960_8960_4_4_1240_1240",
+      "source_path": [
+        "VIA_via4_5_8960_8960_4_4_1240_1240"
+      ],
+      "bbox": {
+        "left": 61720,
+        "bottom": 59332,
+        "right": 61720,
+        "top": 59332
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via4_5_8960_8960_4_4_1240_1240",
+      "source_path": [
+        "VIA_via4_5_8960_8960_4_4_1240_1240"
+      ],
+      "bbox": {
+        "left": 61720,
+        "bottom": 61628,
+        "right": 61720,
+        "top": 61628
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__fill_8",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__fill_8"
+      ],
+      "bbox": {
+        "left": 61720,
+        "bottom": 79492,
+        "right": 61720,
+        "top": 79492
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__fill_4",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__fill_4"
+      ],
+      "bbox": {
+        "left": 61720,
+        "bottom": 81788,
+        "right": 61720,
+        "top": 81788
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__fill_8",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__fill_8"
+      ],
+      "bbox": {
+        "left": 61720,
+        "bottom": 99652,
+        "right": 61720,
+        "top": 99652
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal2.ongrid.1",
+      "description": "metal2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal2",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__fill_16",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__fill_16"
+      ],
+      "bbox": {
+        "left": 61720,
+        "bottom": 101948,
+        "right": 61720,
+        "top": 101948
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48388,
+        "bottom": 9032,
+        "right": 48388,
+        "top": 9032
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48388,
+        "bottom": 11128,
+        "right": 48388,
+        "top": 11128
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48388,
+        "bottom": 29192,
+        "right": 48388,
+        "top": 29192
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48388,
+        "bottom": 31288,
+        "right": 48388,
+        "top": 31288
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48388,
+        "bottom": 49352,
+        "right": 48388,
+        "top": 49352
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48388,
+        "bottom": 51448,
+        "right": 48388,
+        "top": 51448
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48388,
+        "bottom": 69512,
+        "right": 48388,
+        "top": 69512
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48388,
+        "bottom": 71608,
+        "right": 48388,
+        "top": 71608
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48388,
+        "bottom": 89672,
+        "right": 48388,
+        "top": 89672
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48388,
+        "bottom": 91768,
+        "right": 48388,
+        "top": 91768
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48388,
+        "bottom": 109832,
+        "right": 48388,
+        "top": 109832
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48388,
+        "bottom": 111928,
+        "right": 48388,
+        "top": 111928
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50172,
+        "bottom": 9032,
+        "right": 50172,
+        "top": 9032
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50172,
+        "bottom": 11128,
+        "right": 50172,
+        "top": 11128
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50172,
+        "bottom": 29192,
+        "right": 50172,
+        "top": 29192
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50172,
+        "bottom": 31288,
+        "right": 50172,
+        "top": 31288
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50172,
+        "bottom": 49352,
+        "right": 50172,
+        "top": 49352
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50172,
+        "bottom": 51448,
+        "right": 50172,
+        "top": 51448
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50172,
+        "bottom": 69512,
+        "right": 50172,
+        "top": 69512
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50172,
+        "bottom": 71608,
+        "right": 50172,
+        "top": 71608
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50172,
+        "bottom": 89672,
+        "right": 50172,
+        "top": 89672
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50172,
+        "bottom": 91768,
+        "right": 50172,
+        "top": 91768
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50172,
+        "bottom": 109832,
+        "right": 50172,
+        "top": 109832
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50172,
+        "bottom": 111928,
+        "right": 50172,
+        "top": 111928
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58468,
+        "bottom": 19112,
+        "right": 58468,
+        "top": 19112
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58468,
+        "bottom": 21208,
+        "right": 58468,
+        "top": 21208
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58468,
+        "bottom": 39272,
+        "right": 58468,
+        "top": 39272
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58468,
+        "bottom": 41368,
+        "right": 58468,
+        "top": 41368
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58468,
+        "bottom": 59432,
+        "right": 58468,
+        "top": 59432
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58468,
+        "bottom": 61528,
+        "right": 58468,
+        "top": 61528
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58468,
+        "bottom": 79592,
+        "right": 58468,
+        "top": 79592
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58468,
+        "bottom": 81688,
+        "right": 58468,
+        "top": 81688
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58468,
+        "bottom": 99752,
+        "right": 58468,
+        "top": 99752
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58468,
+        "bottom": 101848,
+        "right": 58468,
+        "top": 101848
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60252,
+        "bottom": 19112,
+        "right": 60252,
+        "top": 19112
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60252,
+        "bottom": 21208,
+        "right": 60252,
+        "top": 21208
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60252,
+        "bottom": 39272,
+        "right": 60252,
+        "top": 39272
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60252,
+        "bottom": 41368,
+        "right": 60252,
+        "top": 41368
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60252,
+        "bottom": 59432,
+        "right": 60252,
+        "top": 59432
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60252,
+        "bottom": 61528,
+        "right": 60252,
+        "top": 61528
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60252,
+        "bottom": 79592,
+        "right": 60252,
+        "top": 79592
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60252,
+        "bottom": 81688,
+        "right": 60252,
+        "top": 81688
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60252,
+        "bottom": 99752,
+        "right": 60252,
+        "top": 99752
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal3.ongrid.1",
+      "description": "metal3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60252,
+        "bottom": 101848,
+        "right": 60252,
+        "top": 101848
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal4.ongrid.1",
+      "description": "metal4 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal4",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 44800,
+        "bottom": 8932,
+        "right": 44800,
+        "top": 8932
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal4.ongrid.1",
+      "description": "metal4 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal4",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 44800,
+        "bottom": 112028,
+        "right": 44800,
+        "top": 112028
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal4.ongrid.1",
+      "description": "metal4 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal4",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 53760,
+        "bottom": 8932,
+        "right": 53760,
+        "top": 8932
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal4.ongrid.1",
+      "description": "metal4 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal4",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 53760,
+        "bottom": 112028,
+        "right": 53760,
+        "top": 112028
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal4.ongrid.1",
+      "description": "metal4 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal4",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__xnor2_1",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__xnor2_1"
+      ],
+      "bbox": {
+        "left": 54880,
+        "bottom": 19012,
+        "right": 54880,
+        "top": 19012
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal4.ongrid.1",
+      "description": "metal4 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal4",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__fill_16",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__fill_16"
+      ],
+      "bbox": {
+        "left": 54880,
+        "bottom": 101948,
+        "right": 54880,
+        "top": 101948
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal4.ongrid.1",
+      "description": "metal4 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal4",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__fill_32",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__fill_32"
+      ],
+      "bbox": {
+        "left": 63840,
+        "bottom": 19012,
+        "right": 63840,
+        "top": 19012
+      },
+      "polygon": null
+    },
+    {
+      "rule": "metal4.ongrid.1",
+      "description": "metal4 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Metal4",
+      "cell": "smoke_counter",
+      "source_cell": "gf180mcu_fd_sc_mcu9t5v0__fill_16",
+      "source_path": [
+        "gf180mcu_fd_sc_mcu9t5v0__fill_16"
+      ],
+      "bbox": {
+        "left": 63840,
+        "bottom": 101948,
+        "right": 63840,
+        "top": 101948
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 9052,
+        "right": 48508,
+        "top": 9052
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 11108,
+        "right": 48508,
+        "top": 11108
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 29212,
+        "right": 48508,
+        "top": 29212
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 31268,
+        "right": 48508,
+        "top": 31268
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 49372,
+        "right": 48508,
+        "top": 49372
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 51428,
+        "right": 48508,
+        "top": 51428
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 69532,
+        "right": 48508,
+        "top": 69532
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 71588,
+        "right": 48508,
+        "top": 71588
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 89692,
+        "right": 48508,
+        "top": 89692
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 91748,
+        "right": 48508,
+        "top": 91748
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 109852,
+        "right": 48508,
+        "top": 109852
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 111908,
+        "right": 48508,
+        "top": 111908
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 9052,
+        "right": 50052,
+        "top": 9052
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 11108,
+        "right": 50052,
+        "top": 11108
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 29212,
+        "right": 50052,
+        "top": 29212
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 31268,
+        "right": 50052,
+        "top": 31268
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 49372,
+        "right": 50052,
+        "top": 49372
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 51428,
+        "right": 50052,
+        "top": 51428
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 69532,
+        "right": 50052,
+        "top": 69532
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 71588,
+        "right": 50052,
+        "top": 71588
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 89692,
+        "right": 50052,
+        "top": 89692
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 91748,
+        "right": 50052,
+        "top": 91748
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 109852,
+        "right": 50052,
+        "top": 109852
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 111908,
+        "right": 50052,
+        "top": 111908
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 19132,
+        "right": 58588,
+        "top": 19132
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 21188,
+        "right": 58588,
+        "top": 21188
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 39292,
+        "right": 58588,
+        "top": 39292
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 41348,
+        "right": 58588,
+        "top": 41348
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 59452,
+        "right": 58588,
+        "top": 59452
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 61508,
+        "right": 58588,
+        "top": 61508
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 79612,
+        "right": 58588,
+        "top": 79612
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 81668,
+        "right": 58588,
+        "top": 81668
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 99772,
+        "right": 58588,
+        "top": 99772
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 101828,
+        "right": 58588,
+        "top": 101828
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 19132,
+        "right": 60132,
+        "top": 19132
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 21188,
+        "right": 60132,
+        "top": 21188
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 39292,
+        "right": 60132,
+        "top": 39292
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 41348,
+        "right": 60132,
+        "top": 41348
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 59452,
+        "right": 60132,
+        "top": 59452
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 61508,
+        "right": 60132,
+        "top": 61508
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 79612,
+        "right": 60132,
+        "top": 79612
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 81668,
+        "right": 60132,
+        "top": 81668
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 99772,
+        "right": 60132,
+        "top": 99772
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.ongrid.1",
+      "description": "via2 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 101828,
+        "right": 60132,
+        "top": 101828
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via2.width.1",
+      "description": "min/max via2 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 48508,
+        "bottom": 9052,
+        "right": 50052,
+        "top": 11108
+      },
+      "polygon": [
+        [
+          48508,
+          9052
+        ],
+        [
+          48508,
+          11108
+        ],
+        [
+          50052,
+          11108
+        ],
+        [
+          50052,
+          9052
+        ]
+      ]
+    },
+    {
+      "rule": "via2.width.1",
+      "description": "min/max via2 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 48508,
+        "bottom": 29212,
+        "right": 50052,
+        "top": 31268
+      },
+      "polygon": [
+        [
+          48508,
+          29212
+        ],
+        [
+          48508,
+          31268
+        ],
+        [
+          50052,
+          31268
+        ],
+        [
+          50052,
+          29212
+        ]
+      ]
+    },
+    {
+      "rule": "via2.width.1",
+      "description": "min/max via2 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 48508,
+        "bottom": 49372,
+        "right": 50052,
+        "top": 51428
+      },
+      "polygon": [
+        [
+          48508,
+          49372
+        ],
+        [
+          48508,
+          51428
+        ],
+        [
+          50052,
+          51428
+        ],
+        [
+          50052,
+          49372
+        ]
+      ]
+    },
+    {
+      "rule": "via2.width.1",
+      "description": "min/max via2 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 48508,
+        "bottom": 69532,
+        "right": 50052,
+        "top": 71588
+      },
+      "polygon": [
+        [
+          48508,
+          69532
+        ],
+        [
+          48508,
+          71588
+        ],
+        [
+          50052,
+          71588
+        ],
+        [
+          50052,
+          69532
+        ]
+      ]
+    },
+    {
+      "rule": "via2.width.1",
+      "description": "min/max via2 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 48508,
+        "bottom": 89692,
+        "right": 50052,
+        "top": 91748
+      },
+      "polygon": [
+        [
+          48508,
+          89692
+        ],
+        [
+          48508,
+          91748
+        ],
+        [
+          50052,
+          91748
+        ],
+        [
+          50052,
+          89692
+        ]
+      ]
+    },
+    {
+      "rule": "via2.width.1",
+      "description": "min/max via2 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 48508,
+        "bottom": 109852,
+        "right": 50052,
+        "top": 111908
+      },
+      "polygon": [
+        [
+          48508,
+          109852
+        ],
+        [
+          48508,
+          111908
+        ],
+        [
+          50052,
+          111908
+        ],
+        [
+          50052,
+          109852
+        ]
+      ]
+    },
+    {
+      "rule": "via2.width.1",
+      "description": "min/max via2 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 58588,
+        "bottom": 19132,
+        "right": 60132,
+        "top": 21188
+      },
+      "polygon": [
+        [
+          58588,
+          19132
+        ],
+        [
+          58588,
+          21188
+        ],
+        [
+          60132,
+          21188
+        ],
+        [
+          60132,
+          19132
+        ]
+      ]
+    },
+    {
+      "rule": "via2.width.1",
+      "description": "min/max via2 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 58588,
+        "bottom": 39292,
+        "right": 60132,
+        "top": 41348
+      },
+      "polygon": [
+        [
+          58588,
+          39292
+        ],
+        [
+          58588,
+          41348
+        ],
+        [
+          60132,
+          41348
+        ],
+        [
+          60132,
+          39292
+        ]
+      ]
+    },
+    {
+      "rule": "via2.width.1",
+      "description": "min/max via2 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via4_5_8960_8960_4_4_1240_1240",
+      "source_path": [
+        "VIA_via4_5_8960_8960_4_4_1240_1240"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 59452,
+        "right": 60132,
+        "top": 61508
+      },
+      "polygon": [
+        [
+          58588,
+          59452
+        ],
+        [
+          58588,
+          61508
+        ],
+        [
+          60132,
+          61508
+        ],
+        [
+          60132,
+          59452
+        ]
+      ]
+    },
+    {
+      "rule": "via2.width.1",
+      "description": "min/max via2 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 58588,
+        "bottom": 79612,
+        "right": 60132,
+        "top": 81668
+      },
+      "polygon": [
+        [
+          58588,
+          79612
+        ],
+        [
+          58588,
+          81668
+        ],
+        [
+          60132,
+          81668
+        ],
+        [
+          60132,
+          79612
+        ]
+      ]
+    },
+    {
+      "rule": "via2.width.1",
+      "description": "min/max via2 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via2",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 58588,
+        "bottom": 99772,
+        "right": 60132,
+        "top": 101828
+      },
+      "polygon": [
+        [
+          58588,
+          99772
+        ],
+        [
+          58588,
+          101828
+        ],
+        [
+          60132,
+          101828
+        ],
+        [
+          60132,
+          99772
+        ]
+      ]
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 9052,
+        "right": 48508,
+        "top": 9052
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 11108,
+        "right": 48508,
+        "top": 11108
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 29212,
+        "right": 48508,
+        "top": 29212
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 31268,
+        "right": 48508,
+        "top": 31268
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 49372,
+        "right": 48508,
+        "top": 49372
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 51428,
+        "right": 48508,
+        "top": 51428
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 69532,
+        "right": 48508,
+        "top": 69532
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 71588,
+        "right": 48508,
+        "top": 71588
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 89692,
+        "right": 48508,
+        "top": 89692
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 91748,
+        "right": 48508,
+        "top": 91748
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 109852,
+        "right": 48508,
+        "top": 109852
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 48508,
+        "bottom": 111908,
+        "right": 48508,
+        "top": 111908
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 9052,
+        "right": 50052,
+        "top": 9052
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 11108,
+        "right": 50052,
+        "top": 11108
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 29212,
+        "right": 50052,
+        "top": 29212
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 31268,
+        "right": 50052,
+        "top": 31268
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 49372,
+        "right": 50052,
+        "top": 49372
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 51428,
+        "right": 50052,
+        "top": 51428
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 69532,
+        "right": 50052,
+        "top": 69532
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 71588,
+        "right": 50052,
+        "top": 71588
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 89692,
+        "right": 50052,
+        "top": 89692
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 91748,
+        "right": 50052,
+        "top": 91748
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 109852,
+        "right": 50052,
+        "top": 109852
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 50052,
+        "bottom": 111908,
+        "right": 50052,
+        "top": 111908
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 19132,
+        "right": 58588,
+        "top": 19132
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 21188,
+        "right": 58588,
+        "top": 21188
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 39292,
+        "right": 58588,
+        "top": 39292
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 41348,
+        "right": 58588,
+        "top": 41348
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 59452,
+        "right": 58588,
+        "top": 59452
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 61508,
+        "right": 58588,
+        "top": 61508
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 79612,
+        "right": 58588,
+        "top": 79612
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 81668,
+        "right": 58588,
+        "top": 81668
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 99772,
+        "right": 58588,
+        "top": 99772
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 101828,
+        "right": 58588,
+        "top": 101828
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 19132,
+        "right": 60132,
+        "top": 19132
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 21188,
+        "right": 60132,
+        "top": 21188
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 39292,
+        "right": 60132,
+        "top": 39292
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 41348,
+        "right": 60132,
+        "top": 41348
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 59452,
+        "right": 60132,
+        "top": 59452
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 61508,
+        "right": 60132,
+        "top": 61508
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 79612,
+        "right": 60132,
+        "top": 79612
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 81668,
+        "right": 60132,
+        "top": 81668
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 99772,
+        "right": 60132,
+        "top": 99772
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.ongrid.1",
+      "description": "via3 vertices must be on the 0.005um manufacturing grid",
+      "check": "ongrid",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via2_3_8960_1800_1_1_256_256",
+      "source_path": [
+        "VIA_via2_3_8960_1800_1_1_256_256"
+      ],
+      "bbox": {
+        "left": 60132,
+        "bottom": 101828,
+        "right": 60132,
+        "top": 101828
+      },
+      "polygon": null
+    },
+    {
+      "rule": "via3.width.1",
+      "description": "min/max via3 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 48508,
+        "bottom": 9052,
+        "right": 50052,
+        "top": 11108
+      },
+      "polygon": [
+        [
+          48508,
+          9052
+        ],
+        [
+          48508,
+          11108
+        ],
+        [
+          50052,
+          11108
+        ],
+        [
+          50052,
+          9052
+        ]
+      ]
+    },
+    {
+      "rule": "via3.width.1",
+      "description": "min/max via3 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 48508,
+        "bottom": 29212,
+        "right": 50052,
+        "top": 31268
+      },
+      "polygon": [
+        [
+          48508,
+          29212
+        ],
+        [
+          48508,
+          31268
+        ],
+        [
+          50052,
+          31268
+        ],
+        [
+          50052,
+          29212
+        ]
+      ]
+    },
+    {
+      "rule": "via3.width.1",
+      "description": "min/max via3 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 48508,
+        "bottom": 49372,
+        "right": 50052,
+        "top": 51428
+      },
+      "polygon": [
+        [
+          48508,
+          49372
+        ],
+        [
+          48508,
+          51428
+        ],
+        [
+          50052,
+          51428
+        ],
+        [
+          50052,
+          49372
+        ]
+      ]
+    },
+    {
+      "rule": "via3.width.1",
+      "description": "min/max via3 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 48508,
+        "bottom": 69532,
+        "right": 50052,
+        "top": 71588
+      },
+      "polygon": [
+        [
+          48508,
+          69532
+        ],
+        [
+          48508,
+          71588
+        ],
+        [
+          50052,
+          71588
+        ],
+        [
+          50052,
+          69532
+        ]
+      ]
+    },
+    {
+      "rule": "via3.width.1",
+      "description": "min/max via3 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 48508,
+        "bottom": 89692,
+        "right": 50052,
+        "top": 91748
+      },
+      "polygon": [
+        [
+          48508,
+          89692
+        ],
+        [
+          48508,
+          91748
+        ],
+        [
+          50052,
+          91748
+        ],
+        [
+          50052,
+          89692
+        ]
+      ]
+    },
+    {
+      "rule": "via3.width.1",
+      "description": "min/max via3 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 48508,
+        "bottom": 109852,
+        "right": 50052,
+        "top": 111908
+      },
+      "polygon": [
+        [
+          48508,
+          109852
+        ],
+        [
+          48508,
+          111908
+        ],
+        [
+          50052,
+          111908
+        ],
+        [
+          50052,
+          109852
+        ]
+      ]
+    },
+    {
+      "rule": "via3.width.1",
+      "description": "min/max via3 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 58588,
+        "bottom": 19132,
+        "right": 60132,
+        "top": 21188
+      },
+      "polygon": [
+        [
+          58588,
+          19132
+        ],
+        [
+          58588,
+          21188
+        ],
+        [
+          60132,
+          21188
+        ],
+        [
+          60132,
+          19132
+        ]
+      ]
+    },
+    {
+      "rule": "via3.width.1",
+      "description": "min/max via3 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 58588,
+        "bottom": 39292,
+        "right": 60132,
+        "top": 41348
+      },
+      "polygon": [
+        [
+          58588,
+          39292
+        ],
+        [
+          58588,
+          41348
+        ],
+        [
+          60132,
+          41348
+        ],
+        [
+          60132,
+          39292
+        ]
+      ]
+    },
+    {
+      "rule": "via3.width.1",
+      "description": "min/max via3 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": "VIA_via4_5_8960_8960_4_4_1240_1240",
+      "source_path": [
+        "VIA_via4_5_8960_8960_4_4_1240_1240"
+      ],
+      "bbox": {
+        "left": 58588,
+        "bottom": 59452,
+        "right": 60132,
+        "top": 61508
+      },
+      "polygon": [
+        [
+          58588,
+          59452
+        ],
+        [
+          58588,
+          61508
+        ],
+        [
+          60132,
+          61508
+        ],
+        [
+          60132,
+          59452
+        ]
+      ]
+    },
+    {
+      "rule": "via3.width.1",
+      "description": "min/max via3 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 58588,
+        "bottom": 79612,
+        "right": 60132,
+        "top": 81668
+      },
+      "polygon": [
+        [
+          58588,
+          79612
+        ],
+        [
+          58588,
+          81668
+        ],
+        [
+          60132,
+          81668
+        ],
+        [
+          60132,
+          79612
+        ]
+      ]
+    },
+    {
+      "rule": "via3.width.1",
+      "description": "min/max via3 size (fixed 0.26 x 0.26 um square)",
+      "check": "width",
+      "layer": "Via3",
+      "cell": "smoke_counter",
+      "source_cell": null,
+      "source_path": null,
+      "bbox": {
+        "left": 58588,
+        "bottom": 99772,
+        "right": 60132,
+        "top": 101828
+      },
+      "polygon": [
+        [
+          58588,
+          99772
+        ],
+        [
+          58588,
+          101828
+        ],
+        [
+          60132,
+          101828
+        ],
+        [
+          60132,
+          99772
+        ]
+      ]
+    }
+  ],
+  "coverage": {
+    "deck_layers": [
+      "12/0",
+      "21/0",
+      "22/0",
+      "30/0",
+      "31/0",
+      "32/0",
+      "33/0",
+      "34/0",
+      "35/0",
+      "36/0",
+      "37/0",
+      "38/0",
+      "40/0",
+      "41/0",
+      "42/0",
+      "46/0",
+      "49/0",
+      "53/0",
+      "55/0",
+      "62/0",
+      "75/0",
+      "80/5",
+      "81/0",
+      "110/5",
+      "112/1",
+      "115/5",
+      "117/5",
+      "117/10",
+      "125/5",
+      "127/5",
+      "204/0",
+      "241/0"
+    ],
+    "layers_checked": [
+      "21/0",
+      "22/0",
+      "30/0",
+      "31/0",
+      "32/0",
+      "33/0",
+      "34/0",
+      "35/0",
+      "36/0",
+      "38/0",
+      "40/0",
+      "41/0",
+      "42/0",
+      "46/0",
+      "55/0",
+      "81/0",
+      "112/1",
+      "204/0"
+    ],
+    "layers_in_stream_without_rules": [
+      "0/0",
+      "21/10",
+      "34/10",
+      "46/10",
+      "63/63",
+      "81/10",
+      "204/10"
+    ],
+    "rules_checked": [
+      "comp.coverage.1",
+      "comp.enclosing.contact.1",
+      "comp.ongrid.1",
+      "comp.space.1",
+      "comp.space.mv.1",
+      "comp.width.1",
+      "comp.width.mv.1",
+      "contact.ongrid.1",
+      "contact.space.1",
+      "contact.width.1",
+      "dualgate.ongrid.1",
+      "metal1.enclosing.contact.1",
+      "metal1.enclosing.via1.1",
+      "metal1.ongrid.1",
+      "metal1.space.1",
+      "metal1.width.1",
+      "metal2.enclosing.via1.1",
+      "metal2.enclosing.via2.1",
+      "metal2.ongrid.1",
+      "metal2.space.1",
+      "metal2.width.1",
+      "metal3.enclosing.via2.1",
+      "metal3.enclosing.via3.1",
+      "metal3.ongrid.1",
+      "metal3.space.1",
+      "metal3.width.1",
+      "metal4.enclosing.via3.1",
+      "metal4.enclosing.via4.1",
+      "metal4.ongrid.1",
+      "metal4.space.1",
+      "metal4.width.1",
+      "metal5.enclosing.via4.1",
+      "metal5.ongrid.1",
+      "metal5.space.1",
+      "metal5.width.1",
+      "nplus.enclosing.comp.1",
+      "nplus.enclosing.poly2.1",
+      "nplus.ongrid.1",
+      "nplus.space.1",
+      "nplus.space.pcomp.1",
+      "nplus.space.pcomp.far.1",
+      "nplus.width.1",
+      "nwell.enclosing.comp.1",
+      "nwell.ongrid.1",
+      "nwell.space.1",
+      "poly2.enclosing.contact.1",
+      "poly2.ongrid.1",
+      "poly2.space.1",
+      "poly2.width.1",
+      "pplus.enclosing.comp.1",
+      "pplus.enclosing.comp.far.1",
+      "pplus.enclosing.poly2.1",
+      "pplus.ongrid.1",
+      "pplus.space.1",
+      "pplus.space.ncomp.1",
+      "pplus.width.1",
+      "via1.ongrid.1",
+      "via1.space.1",
+      "via1.width.1",
+      "via2.ongrid.1",
+      "via2.space.1",
+      "via2.width.1",
+      "via3.ongrid.1",
+      "via3.space.1",
+      "via3.width.1",
+      "via4.ongrid.1",
+      "via4.space.1",
+      "via4.width.1"
+    ],
+    "rules_skipped": [
+      "bjt.separation.comp.1",
+      "cap_mk.ongrid.1",
+      "comp.tap_distance.nwell.lv.1",
+      "comp.tap_distance.psub.lv.1",
+      "diode_mk.ongrid.1",
+      "dnwell.ongrid.1",
+      "drc_bjt.ongrid.1",
+      "efuse_mk.ongrid.1",
+      "fusetop.ongrid.1",
+      "metaltop.ongrid.1",
+      "metaltop.space.1",
+      "metaltop.width.1",
+      "mim.enclosing.fusetop.1",
+      "mim.enclosing.via4.1",
+      "mim.space.1",
+      "mim_l_mk.ongrid.1",
+      "pad.enclosing.metal5.1",
+      "pad.ongrid.1",
+      "plfuse.ongrid.1",
+      "poly2.enclosing.sab.1",
+      "res_mk.ongrid.1",
+      "resistor.ongrid.1",
+      "sab.ongrid.1",
+      "sab.separation.contact.1",
+      "sab.space.1",
+      "sab.width.1"
+    ],
+    "voltage_domain_warnings": [
+      {
+        "marker": "55/0",
+        "description": "Dualgate (55/0) marks gf180mcu's 5V/6V thick-oxide voltage domain. This curated deck models it for the DF.1a/DF.3a COMP width/space rules and (issue #1111) MOS device recognition/model binding (nfet_06v0/pfet_06v0 under --pdk) only; every other DRC rule still applies the 3.3V/_LV thresholds regardless of Dualgate's presence (e.g. DF.6 COMP extend beyond gate 0.24 vs. 0.40, PL.5a/PL.5b field poly to COMP 0.10 vs. 0.30 -- all in um, and neither transcribed in this deck yet)."
+      }
+    ],
+    "unchecked_rules": [],
+    "deck_scope": [
+      "10.4.2 MIM Option B",
+      "10.7 DRC_BJT Mark Layer",
+      "7.12 Contact",
+      "7.13 Metaln",
+      "7.14 Vian",
+      "7.15 MetalTop",
+      "7.4 Nwell",
+      "7.5 Comp",
+      "7.7 Poly2",
+      "7.8 Nplus",
+      "7.9 Pplus",
+      "9.1 Bond Pad",
+      "OFFGRID",
+      "SB"
+    ],
+    "unmodeled_rules": [],
+    "schema_version": 1,
+    "known": true,
+    "checked": [
+      "comp.coverage.1",
+      "comp.enclosing.contact.1",
+      "comp.ongrid.1",
+      "comp.space.1",
+      "comp.space.mv.1",
+      "comp.width.1",
+      "comp.width.mv.1",
+      "contact.ongrid.1",
+      "contact.space.1",
+      "contact.width.1",
+      "dualgate.ongrid.1",
+      "metal1.enclosing.contact.1",
+      "metal1.enclosing.via1.1",
+      "metal1.ongrid.1",
+      "metal1.space.1",
+      "metal1.width.1",
+      "metal2.enclosing.via1.1",
+      "metal2.enclosing.via2.1",
+      "metal2.ongrid.1",
+      "metal2.space.1",
+      "metal2.width.1",
+      "metal3.enclosing.via2.1",
+      "metal3.enclosing.via3.1",
+      "metal3.ongrid.1",
+      "metal3.space.1",
+      "metal3.width.1",
+      "metal4.enclosing.via3.1",
+      "metal4.enclosing.via4.1",
+      "metal4.ongrid.1",
+      "metal4.space.1",
+      "metal4.width.1",
+      "metal5.enclosing.via4.1",
+      "metal5.ongrid.1",
+      "metal5.space.1",
+      "metal5.width.1",
+      "nplus.enclosing.comp.1",
+      "nplus.enclosing.poly2.1",
+      "nplus.ongrid.1",
+      "nplus.space.1",
+      "nplus.space.pcomp.1",
+      "nplus.space.pcomp.far.1",
+      "nplus.width.1",
+      "nwell.enclosing.comp.1",
+      "nwell.ongrid.1",
+      "nwell.space.1",
+      "poly2.enclosing.contact.1",
+      "poly2.ongrid.1",
+      "poly2.space.1",
+      "poly2.width.1",
+      "pplus.enclosing.comp.1",
+      "pplus.enclosing.comp.far.1",
+      "pplus.enclosing.poly2.1",
+      "pplus.ongrid.1",
+      "pplus.space.1",
+      "pplus.space.ncomp.1",
+      "pplus.width.1",
+      "via1.ongrid.1",
+      "via1.space.1",
+      "via1.width.1",
+      "via2.ongrid.1",
+      "via2.space.1",
+      "via2.width.1",
+      "via3.ongrid.1",
+      "via3.space.1",
+      "via3.width.1",
+      "via4.ongrid.1",
+      "via4.space.1",
+      "via4.width.1"
+    ],
+    "skipped": [],
+    "inapplicable": [
+      {
+        "id": "bjt.separation.comp.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "cap_mk.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "comp.tap_distance.nwell.lv.1",
+        "reason": "inapplicable_empty_checked_region"
+      },
+      {
+        "id": "comp.tap_distance.psub.lv.1",
+        "reason": "inapplicable_empty_checked_region"
+      },
+      {
+        "id": "diode_mk.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "dnwell.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "drc_bjt.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "efuse_mk.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "fusetop.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "metaltop.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "metaltop.space.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "metaltop.width.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "mim.enclosing.fusetop.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "mim.enclosing.via4.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "mim.space.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "mim_l_mk.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "pad.enclosing.metal5.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "pad.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "plfuse.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "poly2.enclosing.sab.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "res_mk.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "resistor.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "sab.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "sab.separation.contact.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "sab.space.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "sab.width.1",
+        "reason": "no_applicable_geometry"
+      }
+    ],
+    "unknown": [],
+    "nothing_checked": false,
+    "nothing_checked_reasons": []
+  },
+  "provenance": {
+    "klt_version": "0.7.1.dev1765+gb61f753d0369",
+    "klayout_version": "0.30.12",
+    "pdk": null,
+    "deck": {
+      "name": "gf180mcu",
+      "content_hash": "sha256:612a48b497a015b1e92d6eb93c98a4dc35e00c954dd7ba93a924d8ea6c49d1e7",
+      "released": false
+    },
+    "input": {
+      "content_hash": "sha256:3884745b7e91eddd9d8a540fbb25dc58ebfdec9171aad61edc4c942146f280d4",
+      "role": "layout"
+    },
+    "klayout_version_mismatch": false
+  }
+}

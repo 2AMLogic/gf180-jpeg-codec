@@ -1,0 +1,13 @@
+{
+  "schema": "klt.sta.request/1",
+  "def": ".klt/place-and-route/smoke_counter.def",
+  "hdl_toplevel": "smoke_counter",
+  "pdk": { "cell_library": "gf180mcu_fd_sc_mcu9t5v0", "corner": "tt_025C_5v00" },
+  "constraints": {
+    "clock_port": "clk",
+    "clock_period_ns": 20.0,
+    "input_delay_ns": 2.0,
+    "output_delay_ns": 2.0
+  },
+  "geometry_source": "routed"
+}

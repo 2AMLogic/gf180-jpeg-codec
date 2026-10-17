@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "engine": "openroad",
+  "engine_version": "26Q3-1510-g6cb3f2b704",
+  "hdl_toplevel": "smoke_counter",
+  "status": "ok",
+  "def_path": {
+    "path": "flow/smoke/.klt/place-and-route/smoke_counter.def",
+    "scope": "repo"
+  },
+  "verilog_path": null,
+  "geometry_source": "routed",
+  "wire_load_model": null,
+  "wire_load_mode": null,
+  "clock_mode": "ideal",
+  "spef_path": null,
+  "worst_slack_ns": 16.3153,
+  "total_negative_slack_ns": 0,
+  "worst_hold_slack_ns": 0.69792,
+  "total_negative_hold_slack_ns": 0,
+  "fmax_mhz": 271.392,
+  "timing_status": "constrained",
+  "constraint_completeness": {
+    "status": "complete",
+    "unconstrained_endpoints": {
+      "status": "ok",
+      "count": 0,
+      "sample": [],
+      "truncated": false,
+      "reason": null
+    },
+    "unclocked_registers": {
+      "status": "ok",
+      "count": 0,
+      "sample": [],
+      "truncated": false,
+      "reason": null
+    },
+    "sample_limit": 20
+  },
+  "setup_violation_count": 0,
+  "hold_violation_count": 0,
+  "worst_setup_path": {
+    "status": "ok",
+    "check_type": "setup",
+    "engine_check_role": "setup",
+    "startpoint": "en",
+    "endpoint": "_39_/D",
+    "slack_ns": 16.3153,
+    "consistent_with_aggregate": true,
+    "reason": null
+  },
+  "worst_hold_path": {
+    "status": "ok",
+    "check_type": "hold",
+    "engine_check_role": "hold",
+    "startpoint": "_39_/Q",
+    "endpoint": "_39_/D",
+    "slack_ns": 0.69792,
+    "consistent_with_aggregate": true,
+    "reason": null
+  },
+  "clock_skew_ns": 0,
+  "estimated_power_mw": 1.0667,
+  "provenance": {
+    "klt_version": "0.7.1.dev1765+gb61f753d0369",
+    "klayout_version": "0.30.12",
+    "pdk": {
+      "name": "gf180mcuD",
+      "source": "PDK_ROOT environment variable",
+      "version": "open_pdks f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7",
+      "ambiguous_sources": [
+        "search root: ~/.volare"
+      ]
+    },
+    "deck": {
+      "name": "gf180mcu_fd_sc_mcu9t5v0__tt_025C_5v00",
+      "content_hash": "sha256:84a68abb02893c4a03624466e4f55cba284ad9db0326255bb667fece652d8c60",
+      "released": false
+    },
+    "input": {
+      "content_hash": "sha256:fb632fedc0a217ddd7bb45236b5aab535167edd68e440200020c482f1a293931",
+      "role": "layout"
+    }
+  },
+  "spef_annotation": null,
+  "clock_propagation": null,
+  "sdf": null,
+  "electrical_checks": {
+    "parasitics_source": "none",
+    "max_transition": {
+      "coverage": "checked",
+      "limit_source": "liberty",
+      "unit": "ns",
+      "violation_count": 0,
+      "net_count": 0,
+      "worst_excess": null,
+      "worst_pin": null
+    },
+    "max_capacitance": {
+      "coverage": "checked",
+      "limit_source": "liberty",
+      "unit": "pF",
+      "violation_count": 0,
+      "net_count": 0,
+      "worst_excess": null,
+      "worst_pin": null
+    }
+  },
+  "engine_log": {
+    "invocation_id": "5f76d93c2f264bd8ab9b3c913f32859f",
+    "script_name": "sta_smoke_counter.tcl",
+    "script_path": {
+      "path": "flow/smoke/.klt/sta/sta_smoke_counter.tcl",
+      "scope": "repo"
+    },
+    "script_sha256": "4e74e9ca2a280e24f261292383463baab82497a1ce301538283043d6a815af5a",
+    "metrics_path": {
+      "path": "flow/smoke/.klt/sta/smoke_counter_metrics.json",
+      "scope": "repo"
+    },
+    "outcome": "exited",
+    "returncode": 0,
+    "directory": {
+      "path": "flow/smoke/.klt/sta/openroad-logs/5f76d93c2f264bd8ab9b3c913f32859f",
+      "scope": "repo"
+    },
+    "stdout_path": {
+      "path": "flow/smoke/.klt/sta/openroad-logs/5f76d93c2f264bd8ab9b3c913f32859f/stdout.log",
+      "scope": "repo"
+    },
+    "stderr_path": {
+      "path": "flow/smoke/.klt/sta/openroad-logs/5f76d93c2f264bd8ab9b3c913f32859f/stderr.log",
+      "scope": "repo"
+    },
+    "metadata_path": {
+      "path": "flow/smoke/.klt/sta/openroad-logs/5f76d93c2f264bd8ab9b3c913f32859f/invocation.json",
+      "scope": "repo"
+    },
+    "retention_errors": []
+  }
+}

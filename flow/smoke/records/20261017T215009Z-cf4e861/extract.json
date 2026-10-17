@@ -1,0 +1,1900 @@
+{
+  "schema_version": 3,
+  "file": ".klt/place-and-route/smoke_counter.gds",
+  "deck": "gf180mcu",
+  "top": "smoke_counter",
+  "dbu_um": 0.0005,
+  "netlist_path": "smoke_counter.gate.spice",
+  "netlist_sha256": "41d6c8c5e04071764fb1c049c28fa193db030b8cfba84872d724565e14984a69",
+  "netlist_normalized_sha256": "1e769b97d1589aa3f0ce6f64a7b4f5768370450d4c406c8132efd6f415886748",
+  "status": "extracted",
+  "device_count": 0,
+  "net_count": 32,
+  "pin_count": 32,
+  "device_counts": {},
+  "dummy_devices_dropped": 0,
+  "ignored_layers": [
+    {
+      "layer": 0,
+      "datatype": 0,
+      "shapes": 18
+    },
+    {
+      "layer": 21,
+      "datatype": 10,
+      "shapes": 16
+    },
+    {
+      "layer": 63,
+      "datatype": 63,
+      "shapes": 68
+    },
+    {
+      "layer": 112,
+      "datatype": 1,
+      "shapes": 17
+    },
+    {
+      "layer": 204,
+      "datatype": 0,
+      "shapes": 17
+    },
+    {
+      "layer": 204,
+      "datatype": 10,
+      "shapes": 16
+    }
+  ],
+  "device_recognition_only_layers": [
+    {
+      "layer": 55,
+      "datatype": 0,
+      "shapes": 17
+    }
+  ],
+  "device_classes": [
+    "nfet",
+    "pfet",
+    "bjt",
+    "cap_mim_2f0_m4m5_noshield",
+    "resistor",
+    "diode_nd2ps_06v0",
+    "diode_pd2nw_06v0"
+  ],
+  "devices": [],
+  "nets": [
+    {
+      "name": "VDD",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 7,
+      "pin_index": 0,
+      "label_positions_um": [
+        {
+          "text": "VDD",
+          "x_um": 29.4,
+          "y_um": 29.68
+        }
+      ]
+    },
+    {
+      "name": "VSS",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 1,
+      "pin_index": 1,
+      "label_positions_um": [
+        {
+          "text": "VSS",
+          "x_um": 29.4,
+          "y_um": 7.28
+        }
+      ]
+    },
+    {
+      "name": "_00_",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 103,
+      "pin_index": 2,
+      "label_positions_um": []
+    },
+    {
+      "name": "_01_",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 10,
+      "pin_index": 3,
+      "label_positions_um": []
+    },
+    {
+      "name": "_02_",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 6,
+      "pin_index": 4,
+      "label_positions_um": []
+    },
+    {
+      "name": "_03_",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 51,
+      "pin_index": 5,
+      "label_positions_um": []
+    },
+    {
+      "name": "_04_",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 40,
+      "pin_index": 6,
+      "label_positions_um": []
+    },
+    {
+      "name": "_05_",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 14,
+      "pin_index": 7,
+      "label_positions_um": []
+    },
+    {
+      "name": "_06_",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 49,
+      "pin_index": 8,
+      "label_positions_um": []
+    },
+    {
+      "name": "_07_",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 47,
+      "pin_index": 9,
+      "label_positions_um": []
+    },
+    {
+      "name": "_08_",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 42,
+      "pin_index": 10,
+      "label_positions_um": []
+    },
+    {
+      "name": "_09_",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 107,
+      "pin_index": 11,
+      "label_positions_um": []
+    },
+    {
+      "name": "_10_",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 11,
+      "pin_index": 12,
+      "label_positions_um": []
+    },
+    {
+      "name": "_11_",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 3,
+      "pin_index": 13,
+      "label_positions_um": []
+    },
+    {
+      "name": "_12_",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 68,
+      "pin_index": 14,
+      "label_positions_um": []
+    },
+    {
+      "name": "_13_",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 16,
+      "pin_index": 15,
+      "label_positions_um": []
+    },
+    {
+      "name": "_14_",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 108,
+      "pin_index": 16,
+      "label_positions_um": []
+    },
+    {
+      "name": "_15_",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 44,
+      "pin_index": 17,
+      "label_positions_um": []
+    },
+    {
+      "name": "clk",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 101,
+      "pin_index": 18,
+      "label_positions_um": [
+        {
+          "text": "clk",
+          "x_um": 35.28,
+          "y_um": 58.655
+        }
+      ]
+    },
+    {
+      "name": "clknet_0_clk",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 12,
+      "pin_index": 19,
+      "label_positions_um": []
+    },
+    {
+      "name": "clknet_1_0__leaf_clk",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 20,
+      "pin_index": 20,
+      "label_positions_um": []
+    },
+    {
+      "name": "clknet_1_1__leaf_clk",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 102,
+      "pin_index": 21,
+      "label_positions_um": []
+    },
+    {
+      "name": "count[0]",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 60,
+      "pin_index": 22,
+      "label_positions_um": [
+        {
+          "text": "count[0]",
+          "x_um": 26.32,
+          "y_um": 58.655
+        }
+      ]
+    },
+    {
+      "name": "count[1]",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 17,
+      "pin_index": 23,
+      "label_positions_um": [
+        {
+          "text": "count[1]",
+          "x_um": 24.08,
+          "y_um": 58.655
+        }
+      ]
+    },
+    {
+      "name": "count[2]",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 77,
+      "pin_index": 24,
+      "label_positions_um": [
+        {
+          "text": "count[2]",
+          "x_um": 28.56,
+          "y_um": 58.655
+        }
+      ]
+    },
+    {
+      "name": "count[3]",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 43,
+      "pin_index": 25,
+      "label_positions_um": [
+        {
+          "text": "count[3]",
+          "x_um": 30.8,
+          "y_um": 58.655
+        }
+      ]
+    },
+    {
+      "name": "count[4]",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 4,
+      "pin_index": 26,
+      "label_positions_um": [
+        {
+          "text": "count[4]",
+          "x_um": 27.44,
+          "y_um": 58.655
+        }
+      ]
+    },
+    {
+      "name": "count[5]",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 52,
+      "pin_index": 27,
+      "label_positions_um": [
+        {
+          "text": "count[5]",
+          "x_um": 33.04,
+          "y_um": 58.655
+        }
+      ]
+    },
+    {
+      "name": "count[6]",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 131,
+      "pin_index": 28,
+      "label_positions_um": [
+        {
+          "text": "count[6]",
+          "x_um": 25.2,
+          "y_um": 58.655
+        }
+      ]
+    },
+    {
+      "name": "count[7]",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 46,
+      "pin_index": 29,
+      "label_positions_um": [
+        {
+          "text": "count[7]",
+          "x_um": 29.68,
+          "y_um": 58.655
+        }
+      ]
+    },
+    {
+      "name": "en",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 59,
+      "pin_index": 30,
+      "label_positions_um": [
+        {
+          "text": "en",
+          "x_um": 34.16,
+          "y_um": 58.655
+        }
+      ]
+    },
+    {
+      "name": "rst_n",
+      "pin": true,
+      "device_count": 0,
+      "net_id": 80,
+      "pin_index": 31,
+      "label_positions_um": [
+        {
+          "text": "rst_n",
+          "x_um": 31.92,
+          "y_um": 58.655
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    "--abstract-cells cell type 'gf180mcu_fd_sc_mcu9t5v0__and4_1' (1 instance(s)): 1 port(s) resolve only through the deck's synthesized global net 'vsubs' -- the cell draws a substrate-formed device body (an untapped NMOS) with no substrate tie of its own, so no in-cell well_label/poly_label/metal_labels text and no --abstract-cell-lef PORT can name that terminal. It is dropped from the black box's pin list (7 pin(s) resolved), so the abstracted instance carries no connection for that net. Draw and label a substrate tie in the cell, or declare the port via --abstract-cell-lef, if a downstream `klt lvs` compare needs it",
+    "--abstract-cells cell type 'gf180mcu_fd_sc_mcu9t5v0__buf_4' (3 instance(s)): 1 port(s) resolve only through the deck's synthesized global net 'vsubs' -- the cell draws a substrate-formed device body (an untapped NMOS) with no substrate tie of its own, so no in-cell well_label/poly_label/metal_labels text and no --abstract-cell-lef PORT can name that terminal. It is dropped from the black box's pin list (4 pin(s) resolved), so the abstracted instance carries no connection for that net. Draw and label a substrate tie in the cell, or declare the port via --abstract-cell-lef, if a downstream `klt lvs` compare needs it",
+    "--abstract-cells cell type 'gf180mcu_fd_sc_mcu9t5v0__clkinv_1' (1 instance(s)): 1 port(s) resolve only through the deck's synthesized global net 'vsubs' -- the cell draws a substrate-formed device body (an untapped NMOS) with no substrate tie of its own, so no in-cell well_label/poly_label/metal_labels text and no --abstract-cell-lef PORT can name that terminal. It is dropped from the black box's pin list (4 pin(s) resolved), so the abstracted instance carries no connection for that net. Draw and label a substrate tie in the cell, or declare the port via --abstract-cell-lef, if a downstream `klt lvs` compare needs it",
+    "--abstract-cells cell type 'gf180mcu_fd_sc_mcu9t5v0__dffrnq_1' (8 instance(s)): 1 port(s) resolve only through the deck's synthesized global net 'vsubs' -- the cell draws a substrate-formed device body (an untapped NMOS) with no substrate tie of its own, so no in-cell well_label/poly_label/metal_labels text and no --abstract-cell-lef PORT can name that terminal. It is dropped from the black box's pin list (6 pin(s) resolved), so the abstracted instance carries no connection for that net. Draw and label a substrate tie in the cell, or declare the port via --abstract-cell-lef, if a downstream `klt lvs` compare needs it",
+    "--abstract-cells cell type 'gf180mcu_fd_sc_mcu9t5v0__nand2_1' (2 instance(s)): 1 port(s) resolve only through the deck's synthesized global net 'vsubs' -- the cell draws a substrate-formed device body (an untapped NMOS) with no substrate tie of its own, so no in-cell well_label/poly_label/metal_labels text and no --abstract-cell-lef PORT can name that terminal. It is dropped from the black box's pin list (5 pin(s) resolved), so the abstracted instance carries no connection for that net. Draw and label a substrate tie in the cell, or declare the port via --abstract-cell-lef, if a downstream `klt lvs` compare needs it",
+    "--abstract-cells cell type 'gf180mcu_fd_sc_mcu9t5v0__nand3_1' (2 instance(s)): 1 port(s) resolve only through the deck's synthesized global net 'vsubs' -- the cell draws a substrate-formed device body (an untapped NMOS) with no substrate tie of its own, so no in-cell well_label/poly_label/metal_labels text and no --abstract-cell-lef PORT can name that terminal. It is dropped from the black box's pin list (6 pin(s) resolved), so the abstracted instance carries no connection for that net. Draw and label a substrate tie in the cell, or declare the port via --abstract-cell-lef, if a downstream `klt lvs` compare needs it",
+    "--abstract-cells cell type 'gf180mcu_fd_sc_mcu9t5v0__nand4_1' (1 instance(s)): 1 port(s) resolve only through the deck's synthesized global net 'vsubs' -- the cell draws a substrate-formed device body (an untapped NMOS) with no substrate tie of its own, so no in-cell well_label/poly_label/metal_labels text and no --abstract-cell-lef PORT can name that terminal. It is dropped from the black box's pin list (7 pin(s) resolved), so the abstracted instance carries no connection for that net. Draw and label a substrate tie in the cell, or declare the port via --abstract-cell-lef, if a downstream `klt lvs` compare needs it",
+    "--abstract-cells cell type 'gf180mcu_fd_sc_mcu9t5v0__nor2_1' (1 instance(s)): 1 port(s) resolve only through the deck's synthesized global net 'vsubs' -- the cell draws a substrate-formed device body (an untapped NMOS) with no substrate tie of its own, so no in-cell well_label/poly_label/metal_labels text and no --abstract-cell-lef PORT can name that terminal. It is dropped from the black box's pin list (5 pin(s) resolved), so the abstracted instance carries no connection for that net. Draw and label a substrate tie in the cell, or declare the port via --abstract-cell-lef, if a downstream `klt lvs` compare needs it",
+    "--abstract-cells cell type 'gf180mcu_fd_sc_mcu9t5v0__xnor2_1' (5 instance(s)): 1 port(s) resolve only through the deck's synthesized global net 'vsubs' -- the cell draws a substrate-formed device body (an untapped NMOS) with no substrate tie of its own, so no in-cell well_label/poly_label/metal_labels text and no --abstract-cell-lef PORT can name that terminal. It is dropped from the black box's pin list (5 pin(s) resolved), so the abstracted instance carries no connection for that net. Draw and label a substrate tie in the cell, or declare the port via --abstract-cell-lef, if a downstream `klt lvs` compare needs it",
+    "--abstract-cells cell type 'gf180mcu_fd_sc_mcu9t5v0__xor2_1' (3 instance(s)): 1 port(s) resolve only through the deck's synthesized global net 'vsubs' -- the cell draws a substrate-formed device body (an untapped NMOS) with no substrate tie of its own, so no in-cell well_label/poly_label/metal_labels text and no --abstract-cell-lef PORT can name that terminal. It is dropped from the black box's pin list (5 pin(s) resolved), so the abstracted instance carries no connection for that net. Draw and label a substrate tie in the cell, or declare the port via --abstract-cell-lef, if a downstream `klt lvs` compare needs it",
+    "100 routing-stack clusters (100 shapes on 34/0) join no extracted net -- no via lands on this geometry and no same-layer wiring touches it, so it is invisible to the extracted netlist and to every downstream `klt lvs`/`klt sim` view; deliberate dead metal (artwork, fill) is expected here, unexplained dead metal usually means the connection you intended is missing -- see dead_metal[] for the per-cluster layer/bbox/shape count.",
+    "6 layers (0/0, 21/10, 63/63, 112/1, 204/0, 204/10) carrying 152 shapes are outside 'gf180mcu' deck's connectivity graph -- this geometry is invisible to extraction, so a net routed only through it extracts as multiple disconnected nets instead of one, which will silently mismatch a downstream `klt lvs` reference netlist -- see ignored_layers[] for the full per-layer shape counts. See docs/cli/extract.md's 'ignored_layers' field documentation."
+  ],
+  "black_box_regions": [],
+  "abstracted_cells": [
+    {
+      "cell": "gf180mcu_fd_sc_mcu9t5v0__and4_1",
+      "instance_count": 1,
+      "pin_count": 7,
+      "resolution_source": "in_cell_labels",
+      "lef_path": null
+    },
+    {
+      "cell": "gf180mcu_fd_sc_mcu9t5v0__buf_4",
+      "instance_count": 3,
+      "pin_count": 4,
+      "resolution_source": "in_cell_labels",
+      "lef_path": null
+    },
+    {
+      "cell": "gf180mcu_fd_sc_mcu9t5v0__clkinv_1",
+      "instance_count": 1,
+      "pin_count": 4,
+      "resolution_source": "in_cell_labels",
+      "lef_path": null
+    },
+    {
+      "cell": "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1",
+      "instance_count": 8,
+      "pin_count": 6,
+      "resolution_source": "in_cell_labels",
+      "lef_path": null
+    },
+    {
+      "cell": "gf180mcu_fd_sc_mcu9t5v0__endcap",
+      "instance_count": 20,
+      "pin_count": 2,
+      "resolution_source": "in_cell_labels",
+      "lef_path": null
+    },
+    {
+      "cell": "gf180mcu_fd_sc_mcu9t5v0__fill_1",
+      "instance_count": 20,
+      "pin_count": 2,
+      "resolution_source": "in_cell_labels",
+      "lef_path": null
+    },
+    {
+      "cell": "gf180mcu_fd_sc_mcu9t5v0__fill_16",
+      "instance_count": 10,
+      "pin_count": 2,
+      "resolution_source": "in_cell_labels",
+      "lef_path": null
+    },
+    {
+      "cell": "gf180mcu_fd_sc_mcu9t5v0__fill_2",
+      "instance_count": 19,
+      "pin_count": 2,
+      "resolution_source": "in_cell_labels",
+      "lef_path": null
+    },
+    {
+      "cell": "gf180mcu_fd_sc_mcu9t5v0__fill_32",
+      "instance_count": 3,
+      "pin_count": 2,
+      "resolution_source": "in_cell_labels",
+      "lef_path": null
+    },
+    {
+      "cell": "gf180mcu_fd_sc_mcu9t5v0__fill_4",
+      "instance_count": 18,
+      "pin_count": 2,
+      "resolution_source": "in_cell_labels",
+      "lef_path": null
+    },
+    {
+      "cell": "gf180mcu_fd_sc_mcu9t5v0__fill_8",
+      "instance_count": 12,
+      "pin_count": 2,
+      "resolution_source": "in_cell_labels",
+      "lef_path": null
+    },
+    {
+      "cell": "gf180mcu_fd_sc_mcu9t5v0__nand2_1",
+      "instance_count": 2,
+      "pin_count": 5,
+      "resolution_source": "in_cell_labels",
+      "lef_path": null
+    },
+    {
+      "cell": "gf180mcu_fd_sc_mcu9t5v0__nand3_1",
+      "instance_count": 2,
+      "pin_count": 6,
+      "resolution_source": "in_cell_labels",
+      "lef_path": null
+    },
+    {
+      "cell": "gf180mcu_fd_sc_mcu9t5v0__nand4_1",
+      "instance_count": 1,
+      "pin_count": 7,
+      "resolution_source": "in_cell_labels",
+      "lef_path": null
+    },
+    {
+      "cell": "gf180mcu_fd_sc_mcu9t5v0__nor2_1",
+      "instance_count": 1,
+      "pin_count": 5,
+      "resolution_source": "in_cell_labels",
+      "lef_path": null
+    },
+    {
+      "cell": "gf180mcu_fd_sc_mcu9t5v0__xnor2_1",
+      "instance_count": 5,
+      "pin_count": 5,
+      "resolution_source": "in_cell_labels",
+      "lef_path": null
+    },
+    {
+      "cell": "gf180mcu_fd_sc_mcu9t5v0__xor2_1",
+      "instance_count": 3,
+      "pin_count": 5,
+      "resolution_source": "in_cell_labels",
+      "lef_path": null
+    }
+  ],
+  "unmodelled_poly": [],
+  "merged_net_labels": [],
+  "voltage_domain_warnings": [],
+  "missing_flavour_markers": [],
+  "unsupported_devices": [],
+  "unbiased_pmos_body_nets": [],
+  "single_terminal_nets": [],
+  "dead_metal": [
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 4.69,
+        "bottom": 36.65,
+        "right": 6.49,
+        "top": 38.965
+      },
+      "shapes": 1,
+      "area_um2": 1.178375
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 6.785,
+        "bottom": 36.595,
+        "right": 9.47,
+        "top": 39.64
+      },
+      "shapes": 1,
+      "area_um2": 1.702
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 8.61,
+        "bottom": 51.755,
+        "right": 10.41,
+        "top": 54.07
+      },
+      "shapes": 1,
+      "area_um2": 1.178375
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 8.745,
+        "bottom": 36.48,
+        "right": 9.055,
+        "top": 39.065
+      },
+      "shapes": 1,
+      "area_um2": 0.80135
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 9.73,
+        "bottom": 21.515,
+        "right": 11.53,
+        "top": 23.83
+      },
+      "shapes": 1,
+      "area_um2": 1.178375
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 9.765,
+        "bottom": 36.48,
+        "right": 14.27,
+        "top": 39.065
+      },
+      "shapes": 1,
+      "area_um2": 1.644725
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 10.33,
+        "bottom": 26.01,
+        "right": 13.52,
+        "top": 28.94
+      },
+      "shapes": 1,
+      "area_um2": 1.5502
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 10.33,
+        "bottom": 36.02,
+        "right": 16.31,
+        "top": 38.265
+      },
+      "shapes": 1,
+      "area_um2": 2.531725
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 10.365,
+        "bottom": 16.135,
+        "right": 13.36,
+        "top": 19.43
+      },
+      "shapes": 1,
+      "area_um2": 1.74685
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 10.705,
+        "bottom": 51.08,
+        "right": 13.39,
+        "top": 54.125
+      },
+      "shapes": 1,
+      "area_um2": 1.702
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 10.785,
+        "bottom": 38.425,
+        "right": 13.055,
+        "top": 39.235
+      },
+      "shapes": 1,
+      "area_um2": 0.7889
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 11.31,
+        "bottom": 36.48,
+        "right": 14.795,
+        "top": 39.25
+      },
+      "shapes": 1,
+      "area_um2": 1.3841
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 11.825,
+        "bottom": 20.84,
+        "right": 14.51,
+        "top": 23.885
+      },
+      "shapes": 1,
+      "area_um2": 1.702
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 12.665,
+        "bottom": 51.655,
+        "right": 12.975,
+        "top": 54.24
+      },
+      "shapes": 1,
+      "area_um2": 0.80135
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 13.165,
+        "bottom": 30.97,
+        "right": 16.16,
+        "top": 34.265
+      },
+      "shapes": 1,
+      "area_um2": 1.74685
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 13.685,
+        "bottom": 51.655,
+        "right": 18.19,
+        "top": 54.24
+      },
+      "shapes": 1,
+      "area_um2": 1.644725
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 13.705,
+        "bottom": 15.8,
+        "right": 16.23,
+        "top": 16.775
+      },
+      "shapes": 1,
+      "area_um2": 0.7521
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 13.785,
+        "bottom": 21.415,
+        "right": 14.095,
+        "top": 24.0
+      },
+      "shapes": 1,
+      "area_um2": 0.80135
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 13.865,
+        "bottom": 28.6,
+        "right": 16.135,
+        "top": 29.56
+      },
+      "shapes": 1,
+      "area_um2": 0.8579
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 14.25,
+        "bottom": 52.455,
+        "right": 20.23,
+        "top": 54.7
+      },
+      "shapes": 1,
+      "area_um2": 2.531725
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 14.705,
+        "bottom": 51.485,
+        "right": 16.975,
+        "top": 52.295
+      },
+      "shapes": 1,
+      "area_um2": 0.7889
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 14.805,
+        "bottom": 21.415,
+        "right": 19.31,
+        "top": 24.0
+      },
+      "shapes": 1,
+      "area_um2": 1.644725
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 15.23,
+        "bottom": 51.47,
+        "right": 18.715,
+        "top": 54.24
+      },
+      "shapes": 1,
+      "area_um2": 1.3841
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 15.37,
+        "bottom": 22.215,
+        "right": 21.35,
+        "top": 24.46
+      },
+      "shapes": 1,
+      "area_um2": 2.531725
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 15.425,
+        "bottom": 36.48,
+        "right": 19.775,
+        "top": 39.25
+      },
+      "shapes": 1,
+      "area_um2": 1.9144
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 15.825,
+        "bottom": 21.245,
+        "right": 18.095,
+        "top": 22.055
+      },
+      "shapes": 1,
+      "area_um2": 0.7889
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 16.35,
+        "bottom": 21.23,
+        "right": 19.835,
+        "top": 24.0
+      },
+      "shapes": 1,
+      "area_um2": 1.3841
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 16.505,
+        "bottom": 33.625,
+        "right": 19.03,
+        "top": 34.6
+      },
+      "shapes": 1,
+      "area_um2": 0.7521
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 16.545,
+        "bottom": 36.48,
+        "right": 16.835,
+        "top": 38.78
+      },
+      "shapes": 1,
+      "area_um2": 0.667
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 17.13,
+        "bottom": 36.57,
+        "right": 20.58,
+        "top": 38.78
+      },
+      "shapes": 1,
+      "area_um2": 1.6008
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 19.345,
+        "bottom": 51.47,
+        "right": 23.695,
+        "top": 54.24
+      },
+      "shapes": 1,
+      "area_um2": 1.9144
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 20.465,
+        "bottom": 21.23,
+        "right": 24.815,
+        "top": 24.0
+      },
+      "shapes": 1,
+      "area_um2": 1.9144
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 20.465,
+        "bottom": 42.145,
+        "right": 25.395,
+        "top": 44.61
+      },
+      "shapes": 1,
+      "area_um2": 2.681
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 20.465,
+        "bottom": 51.94,
+        "right": 20.755,
+        "top": 54.24
+      },
+      "shapes": 1,
+      "area_um2": 0.667
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 21.05,
+        "bottom": 51.94,
+        "right": 24.5,
+        "top": 54.15
+      },
+      "shapes": 1,
+      "area_um2": 1.6008
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 21.49,
+        "bottom": 16.49,
+        "right": 23.29,
+        "top": 18.805
+      },
+      "shapes": 1,
+      "area_um2": 1.178375
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 21.585,
+        "bottom": 21.7,
+        "right": 21.875,
+        "top": 24.0
+      },
+      "shapes": 1,
+      "area_um2": 0.667
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 22.17,
+        "bottom": 21.7,
+        "right": 25.62,
+        "top": 23.91
+      },
+      "shapes": 1,
+      "area_um2": 1.6008
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 23.585,
+        "bottom": 16.435,
+        "right": 26.27,
+        "top": 19.48
+      },
+      "shapes": 1,
+      "area_um2": 1.702
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 23.765,
+        "bottom": 35.96,
+        "right": 27.02,
+        "top": 39.64
+      },
+      "shapes": 1,
+      "area_um2": 1.7204
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 23.765,
+        "bottom": 46.04,
+        "right": 27.02,
+        "top": 49.72
+      },
+      "shapes": 1,
+      "area_um2": 1.7204
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 23.805,
+        "bottom": 6.055,
+        "right": 26.8,
+        "top": 9.35
+      },
+      "shapes": 1,
+      "area_um2": 1.74685
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 24.85,
+        "bottom": 31.595,
+        "right": 26.65,
+        "top": 33.91
+      },
+      "shapes": 1,
+      "area_um2": 1.178375
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 25.45,
+        "bottom": 26.01,
+        "right": 28.64,
+        "top": 28.94
+      },
+      "shapes": 1,
+      "area_um2": 1.5502
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 25.545,
+        "bottom": 16.32,
+        "right": 25.855,
+        "top": 18.905
+      },
+      "shapes": 1,
+      "area_um2": 0.80135
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 26.005,
+        "bottom": 10.76,
+        "right": 29.26,
+        "top": 14.44
+      },
+      "shapes": 1,
+      "area_um2": 1.7204
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 26.565,
+        "bottom": 16.32,
+        "right": 31.07,
+        "top": 18.905
+      },
+      "shapes": 1,
+      "area_um2": 1.644725
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 26.945,
+        "bottom": 30.92,
+        "right": 29.63,
+        "top": 33.965
+      },
+      "shapes": 1,
+      "area_um2": 1.702
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 27.13,
+        "bottom": 15.86,
+        "right": 33.11,
+        "top": 18.105
+      },
+      "shapes": 1,
+      "area_um2": 2.531725
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 27.145,
+        "bottom": 5.72,
+        "right": 29.67,
+        "top": 6.695
+      },
+      "shapes": 1,
+      "area_um2": 0.7521
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 27.585,
+        "bottom": 18.265,
+        "right": 29.855,
+        "top": 19.075
+      },
+      "shapes": 1,
+      "area_um2": 0.7889
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 28.11,
+        "bottom": 16.32,
+        "right": 31.595,
+        "top": 19.09
+      },
+      "shapes": 1,
+      "area_um2": 1.3841
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 28.905,
+        "bottom": 31.495,
+        "right": 29.215,
+        "top": 34.08
+      },
+      "shapes": 1,
+      "area_um2": 0.80135
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 28.985,
+        "bottom": 28.6,
+        "right": 31.255,
+        "top": 29.56
+      },
+      "shapes": 1,
+      "area_um2": 0.8579
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 29.925,
+        "bottom": 31.495,
+        "right": 34.43,
+        "top": 34.08
+      },
+      "shapes": 1,
+      "area_um2": 1.644725
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 30.49,
+        "bottom": 32.295,
+        "right": 36.47,
+        "top": 34.54
+      },
+      "shapes": 1,
+      "area_um2": 2.531725
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 30.945,
+        "bottom": 31.325,
+        "right": 33.215,
+        "top": 32.135
+      },
+      "shapes": 1,
+      "area_um2": 0.7889
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 31.47,
+        "bottom": 31.31,
+        "right": 34.955,
+        "top": 34.08
+      },
+      "shapes": 1,
+      "area_um2": 1.3841
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 32.225,
+        "bottom": 16.32,
+        "right": 36.575,
+        "top": 19.09
+      },
+      "shapes": 1,
+      "area_um2": 1.9144
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 33.345,
+        "bottom": 16.32,
+        "right": 33.635,
+        "top": 18.62
+      },
+      "shapes": 1,
+      "area_um2": 0.667
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 33.93,
+        "bottom": 16.41,
+        "right": 37.38,
+        "top": 18.62
+      },
+      "shapes": 1,
+      "area_um2": 1.6008
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 35.49,
+        "bottom": 36.65,
+        "right": 37.29,
+        "top": 38.965
+      },
+      "shapes": 1,
+      "area_um2": 1.178375
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 35.585,
+        "bottom": 31.31,
+        "right": 39.935,
+        "top": 34.08
+      },
+      "shapes": 1,
+      "area_um2": 1.9144
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 36.05,
+        "bottom": 26.57,
+        "right": 37.85,
+        "top": 28.885
+      },
+      "shapes": 1,
+      "area_um2": 1.178375
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 36.05,
+        "bottom": 46.73,
+        "right": 37.85,
+        "top": 49.045
+      },
+      "shapes": 1,
+      "area_um2": 1.178375
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 36.125,
+        "bottom": 10.81,
+        "right": 39.12,
+        "top": 14.105
+      },
+      "shapes": 1,
+      "area_um2": 1.74685
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 36.685,
+        "bottom": 51.13,
+        "right": 39.68,
+        "top": 54.425
+      },
+      "shapes": 1,
+      "area_um2": 1.74685
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 36.705,
+        "bottom": 31.78,
+        "right": 36.995,
+        "top": 34.08
+      },
+      "shapes": 1,
+      "area_um2": 0.667
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 37.29,
+        "bottom": 31.78,
+        "right": 40.74,
+        "top": 33.99
+      },
+      "shapes": 1,
+      "area_um2": 1.6008
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 37.585,
+        "bottom": 36.595,
+        "right": 40.27,
+        "top": 39.64
+      },
+      "shapes": 1,
+      "area_um2": 1.702
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 38.145,
+        "bottom": 26.515,
+        "right": 40.83,
+        "top": 29.56
+      },
+      "shapes": 1,
+      "area_um2": 1.702
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 38.145,
+        "bottom": 46.675,
+        "right": 40.83,
+        "top": 49.72
+      },
+      "shapes": 1,
+      "area_um2": 1.702
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 38.33,
+        "bottom": 21.46,
+        "right": 41.52,
+        "top": 24.39
+      },
+      "shapes": 1,
+      "area_um2": 1.5502
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 39.465,
+        "bottom": 13.465,
+        "right": 41.99,
+        "top": 14.44
+      },
+      "shapes": 1,
+      "area_um2": 0.7521
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 39.545,
+        "bottom": 36.48,
+        "right": 39.855,
+        "top": 39.065
+      },
+      "shapes": 1,
+      "area_um2": 0.80135
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 40.025,
+        "bottom": 53.785,
+        "right": 42.55,
+        "top": 54.76
+      },
+      "shapes": 1,
+      "area_um2": 0.7521
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 40.105,
+        "bottom": 26.4,
+        "right": 40.415,
+        "top": 28.985
+      },
+      "shapes": 1,
+      "area_um2": 0.80135
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 40.105,
+        "bottom": 46.56,
+        "right": 40.415,
+        "top": 49.145
+      },
+      "shapes": 1,
+      "area_um2": 0.80135
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 40.565,
+        "bottom": 36.48,
+        "right": 45.07,
+        "top": 39.065
+      },
+      "shapes": 1,
+      "area_um2": 1.644725
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 41.125,
+        "bottom": 26.4,
+        "right": 45.63,
+        "top": 28.985
+      },
+      "shapes": 1,
+      "area_um2": 1.644725
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 41.125,
+        "bottom": 46.56,
+        "right": 45.63,
+        "top": 49.145
+      },
+      "shapes": 1,
+      "area_um2": 1.644725
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 41.13,
+        "bottom": 36.02,
+        "right": 47.11,
+        "top": 38.265
+      },
+      "shapes": 1,
+      "area_um2": 2.531725
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 41.585,
+        "bottom": 38.425,
+        "right": 43.855,
+        "top": 39.235
+      },
+      "shapes": 1,
+      "area_um2": 0.7889
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 41.69,
+        "bottom": 25.94,
+        "right": 47.67,
+        "top": 28.185
+      },
+      "shapes": 1,
+      "area_um2": 2.531725
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 41.69,
+        "bottom": 46.1,
+        "right": 47.67,
+        "top": 48.345
+      },
+      "shapes": 1,
+      "area_um2": 2.531725
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 41.865,
+        "bottom": 20.84,
+        "right": 44.135,
+        "top": 21.8
+      },
+      "shapes": 1,
+      "area_um2": 0.8579
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 42.11,
+        "bottom": 36.48,
+        "right": 45.595,
+        "top": 39.25
+      },
+      "shapes": 1,
+      "area_um2": 1.3841
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 42.145,
+        "bottom": 28.345,
+        "right": 44.415,
+        "top": 29.155
+      },
+      "shapes": 1,
+      "area_um2": 0.7889
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 42.145,
+        "bottom": 48.505,
+        "right": 44.415,
+        "top": 49.315
+      },
+      "shapes": 1,
+      "area_um2": 0.7889
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 42.67,
+        "bottom": 26.4,
+        "right": 46.155,
+        "top": 29.17
+      },
+      "shapes": 1,
+      "area_um2": 1.3841
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 42.67,
+        "bottom": 46.56,
+        "right": 46.155,
+        "top": 49.33
+      },
+      "shapes": 1,
+      "area_um2": 1.3841
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 46.225,
+        "bottom": 36.48,
+        "right": 50.575,
+        "top": 39.25
+      },
+      "shapes": 1,
+      "area_um2": 1.9144
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 46.785,
+        "bottom": 26.4,
+        "right": 51.135,
+        "top": 29.17
+      },
+      "shapes": 1,
+      "area_um2": 1.9144
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 46.785,
+        "bottom": 46.56,
+        "right": 51.135,
+        "top": 49.33
+      },
+      "shapes": 1,
+      "area_um2": 1.9144
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 47.345,
+        "bottom": 36.48,
+        "right": 47.635,
+        "top": 38.78
+      },
+      "shapes": 1,
+      "area_um2": 0.667
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 47.905,
+        "bottom": 26.4,
+        "right": 48.195,
+        "top": 28.7
+      },
+      "shapes": 1,
+      "area_um2": 0.667
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 47.905,
+        "bottom": 46.56,
+        "right": 48.195,
+        "top": 48.86
+      },
+      "shapes": 1,
+      "area_um2": 0.667
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 47.93,
+        "bottom": 36.57,
+        "right": 51.38,
+        "top": 38.78
+      },
+      "shapes": 1,
+      "area_um2": 1.6008
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 48.49,
+        "bottom": 26.49,
+        "right": 51.94,
+        "top": 28.7
+      },
+      "shapes": 1,
+      "area_um2": 1.6008
+    },
+    {
+      "role": "metal0",
+      "layer": 34,
+      "datatype": 0,
+      "bbox_um": {
+        "left": 48.49,
+        "bottom": 46.65,
+        "right": 51.94,
+        "top": 48.86
+      },
+      "shapes": 1,
+      "area_um2": 1.6008
+    }
+  ],
+  "matched_device_groups": [],
+  "def_pin_promotion": null,
+  "pin_renames": null,
+  "rename_declared_pins": false,
+  "declared_pins": null,
+  "def_pins": null,
+  "label_layers": null,
+  "probes": [],
+  "pdk": null,
+  "provenance": {
+    "klt_version": "0.7.1.dev1765+gb61f753d0369",
+    "klayout_version": "0.30.12",
+    "pdk": null,
+    "deck": {
+      "name": "gf180mcu",
+      "content_hash": "sha256:612a48b497a015b1e92d6eb93c98a4dc35e00c954dd7ba93a924d8ea6c49d1e7",
+      "released": false,
+      "options": {
+        "metal_top": "9K",
+        "mim_cap": "cap_mim_2f0_m4m5_noshield",
+        "poly_res": "1k"
+      },
+      "options_explicit": {
+        "metal_top": false,
+        "mim_cap": false,
+        "poly_res": false
+      },
+      "options_hash": "sha256:6a7dc7660a470994263c5ca8ace6d8ac8c605d77e6876a9c5490949de6e7cb05"
+    },
+    "input": {
+      "content_hash": "sha256:3884745b7e91eddd9d8a540fbb25dc58ebfdec9171aad61edc4c942146f280d4",
+      "role": "layout"
+    }
+  },
+  "parasitics": null,
+  "spef_path": null,
+  "subcircuit": null,
+  "metrics": {
+    "extract__device__count": 0,
+    "extract__net__count": 32,
+    "extract__pin__count": 32
+  },
+  "timing": {
+    "stages": {
+      "read_layout": 0.002,
+      "device_extraction": 0.327,
+      "diagnostics": 0.0,
+      "netlist_write": 0.001,
+      "netlist_hash": 0.0,
+      "netlist_normalized_hash": 0.0
+    },
+    "total_seconds": 0.476,
+    "unattributed_seconds": 0.146
+  }
+}
