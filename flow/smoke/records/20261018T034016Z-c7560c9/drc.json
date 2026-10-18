@@ -1,0 +1,402 @@
+{
+  "schema_version": 2,
+  "file": ".klt/place-and-route/smoke_counter.gds",
+  "deck": "gf180mcu",
+  "dbu_um": 0.0005,
+  "status": "clean",
+  "violation_count": 0,
+  "rule_counts": {},
+  "metrics": {
+    "drc__error__count": 0
+  },
+  "violations": [],
+  "coverage": {
+    "deck_layers": [
+      "12/0",
+      "21/0",
+      "22/0",
+      "30/0",
+      "31/0",
+      "32/0",
+      "33/0",
+      "34/0",
+      "35/0",
+      "36/0",
+      "37/0",
+      "38/0",
+      "40/0",
+      "41/0",
+      "42/0",
+      "46/0",
+      "49/0",
+      "53/0",
+      "55/0",
+      "62/0",
+      "75/0",
+      "80/5",
+      "81/0",
+      "110/5",
+      "112/1",
+      "115/5",
+      "117/5",
+      "117/10",
+      "125/5",
+      "127/5",
+      "204/0",
+      "241/0"
+    ],
+    "layers_checked": [
+      "21/0",
+      "22/0",
+      "30/0",
+      "31/0",
+      "32/0",
+      "33/0",
+      "34/0",
+      "35/0",
+      "36/0",
+      "38/0",
+      "40/0",
+      "41/0",
+      "42/0",
+      "46/0",
+      "55/0",
+      "81/0",
+      "112/1",
+      "204/0"
+    ],
+    "layers_in_stream_without_rules": [
+      "0/0",
+      "21/10",
+      "34/10",
+      "46/10",
+      "63/63",
+      "81/10",
+      "204/10"
+    ],
+    "rules_checked": [
+      "comp.coverage.1",
+      "comp.enclosing.contact.1",
+      "comp.ongrid.1",
+      "comp.space.1",
+      "comp.space.mv.1",
+      "comp.tap_distance.nwell.mv.1",
+      "comp.tap_distance.psub.mv.1",
+      "comp.width.1",
+      "comp.width.mv.1",
+      "contact.ongrid.1",
+      "contact.space.1",
+      "contact.width.1",
+      "dualgate.ongrid.1",
+      "metal1.enclosing.contact.1",
+      "metal1.enclosing.via1.1",
+      "metal1.ongrid.1",
+      "metal1.space.1",
+      "metal1.width.1",
+      "metal2.enclosing.via1.1",
+      "metal2.enclosing.via2.1",
+      "metal2.ongrid.1",
+      "metal2.space.1",
+      "metal2.width.1",
+      "metal3.enclosing.via2.1",
+      "metal3.enclosing.via3.1",
+      "metal3.ongrid.1",
+      "metal3.space.1",
+      "metal3.width.1",
+      "metal4.enclosing.via3.1",
+      "metal4.enclosing.via4.1",
+      "metal4.ongrid.1",
+      "metal4.space.1",
+      "metal4.width.1",
+      "metal5.enclosing.via4.1",
+      "metal5.ongrid.1",
+      "metal5.space.1",
+      "metal5.width.1",
+      "nplus.enclosing.comp.1",
+      "nplus.enclosing.poly2.1",
+      "nplus.ongrid.1",
+      "nplus.space.1",
+      "nplus.space.pcomp.1",
+      "nplus.space.pcomp.far.1",
+      "nplus.width.1",
+      "nwell.enclosing.comp.1",
+      "nwell.ongrid.1",
+      "nwell.space.1",
+      "poly2.enclosing.contact.1",
+      "poly2.ongrid.1",
+      "poly2.space.1",
+      "poly2.width.1",
+      "pplus.enclosing.comp.1",
+      "pplus.enclosing.comp.far.1",
+      "pplus.enclosing.poly2.1",
+      "pplus.ongrid.1",
+      "pplus.space.1",
+      "pplus.space.ncomp.1",
+      "pplus.width.1",
+      "via1.ongrid.1",
+      "via1.space.1",
+      "via1.width.1",
+      "via2.ongrid.1",
+      "via2.space.1",
+      "via2.width.1",
+      "via3.ongrid.1",
+      "via3.space.1",
+      "via3.width.1",
+      "via4.ongrid.1",
+      "via4.space.1",
+      "via4.width.1"
+    ],
+    "rules_skipped": [
+      "bjt.separation.comp.1",
+      "cap_mk.ongrid.1",
+      "comp.tap_distance.nwell.lv.1",
+      "comp.tap_distance.psub.lv.1",
+      "diode_mk.ongrid.1",
+      "dnwell.ongrid.1",
+      "drc_bjt.ongrid.1",
+      "efuse_mk.ongrid.1",
+      "fusetop.ongrid.1",
+      "metaltop.ongrid.1",
+      "metaltop.space.1",
+      "metaltop.width.1",
+      "mim.enclosing.fusetop.1",
+      "mim.enclosing.via4.1",
+      "mim.space.1",
+      "mim_l_mk.ongrid.1",
+      "pad.enclosing.metal5.1",
+      "pad.ongrid.1",
+      "plfuse.ongrid.1",
+      "poly2.enclosing.sab.1",
+      "res_mk.ongrid.1",
+      "resistor.ongrid.1",
+      "sab.ongrid.1",
+      "sab.separation.contact.1",
+      "sab.space.1",
+      "sab.width.1"
+    ],
+    "voltage_domain_warnings": [
+      {
+        "marker": "55/0",
+        "description": "Dualgate (55/0) marks gf180mcu's 5V/6V thick-oxide voltage domain. This curated deck models it for the DF.1a/DF.3a COMP width/space rules and (issue #1111) MOS device recognition/model binding (nfet_06v0/pfet_06v0 under --pdk) only; every other DRC rule still applies the 3.3V/_LV thresholds regardless of Dualgate's presence (e.g. DF.6 COMP extend beyond gate 0.24 vs. 0.40, PL.5a/PL.5b field poly to COMP 0.10 vs. 0.30 -- all in um, and neither transcribed in this deck yet). The DF.13/DF.14 tap-distance rules read it as the MV (15 um) selector (comp.tap_distance.{nwell,psub}.mv.1)."
+      }
+    ],
+    "unchecked_rules": [],
+    "marker_blind_layers_in_stream": [],
+    "deck_scope": [
+      "10.4.2 MIM Option B",
+      "10.7 DRC_BJT Mark Layer",
+      "7.12 Contact",
+      "7.13 Metaln",
+      "7.14 Vian",
+      "7.15 MetalTop",
+      "7.4 Nwell",
+      "7.5 Comp",
+      "7.7 Poly2",
+      "7.8 Nplus",
+      "7.9 Pplus",
+      "9.1 Bond Pad",
+      "OFFGRID",
+      "SB"
+    ],
+    "unmodeled_rules": [],
+    "schema_version": 1,
+    "known": true,
+    "checked": [
+      "comp.coverage.1",
+      "comp.enclosing.contact.1",
+      "comp.ongrid.1",
+      "comp.space.1",
+      "comp.space.mv.1",
+      "comp.tap_distance.nwell.mv.1",
+      "comp.tap_distance.psub.mv.1",
+      "comp.width.1",
+      "comp.width.mv.1",
+      "contact.ongrid.1",
+      "contact.space.1",
+      "contact.width.1",
+      "dualgate.ongrid.1",
+      "metal1.enclosing.contact.1",
+      "metal1.enclosing.via1.1",
+      "metal1.ongrid.1",
+      "metal1.space.1",
+      "metal1.width.1",
+      "metal2.enclosing.via1.1",
+      "metal2.enclosing.via2.1",
+      "metal2.ongrid.1",
+      "metal2.space.1",
+      "metal2.width.1",
+      "metal3.enclosing.via2.1",
+      "metal3.enclosing.via3.1",
+      "metal3.ongrid.1",
+      "metal3.space.1",
+      "metal3.width.1",
+      "metal4.enclosing.via3.1",
+      "metal4.enclosing.via4.1",
+      "metal4.ongrid.1",
+      "metal4.space.1",
+      "metal4.width.1",
+      "metal5.enclosing.via4.1",
+      "metal5.ongrid.1",
+      "metal5.space.1",
+      "metal5.width.1",
+      "nplus.enclosing.comp.1",
+      "nplus.enclosing.poly2.1",
+      "nplus.ongrid.1",
+      "nplus.space.1",
+      "nplus.space.pcomp.1",
+      "nplus.space.pcomp.far.1",
+      "nplus.width.1",
+      "nwell.enclosing.comp.1",
+      "nwell.ongrid.1",
+      "nwell.space.1",
+      "poly2.enclosing.contact.1",
+      "poly2.ongrid.1",
+      "poly2.space.1",
+      "poly2.width.1",
+      "pplus.enclosing.comp.1",
+      "pplus.enclosing.comp.far.1",
+      "pplus.enclosing.poly2.1",
+      "pplus.ongrid.1",
+      "pplus.space.1",
+      "pplus.space.ncomp.1",
+      "pplus.width.1",
+      "via1.ongrid.1",
+      "via1.space.1",
+      "via1.width.1",
+      "via2.ongrid.1",
+      "via2.space.1",
+      "via2.width.1",
+      "via3.ongrid.1",
+      "via3.space.1",
+      "via3.width.1",
+      "via4.ongrid.1",
+      "via4.space.1",
+      "via4.width.1"
+    ],
+    "skipped": [],
+    "inapplicable": [
+      {
+        "id": "bjt.separation.comp.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "cap_mk.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "comp.tap_distance.nwell.lv.1",
+        "reason": "inapplicable_empty_checked_region"
+      },
+      {
+        "id": "comp.tap_distance.psub.lv.1",
+        "reason": "inapplicable_empty_checked_region"
+      },
+      {
+        "id": "diode_mk.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "dnwell.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "drc_bjt.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "efuse_mk.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "fusetop.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "metaltop.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "metaltop.space.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "metaltop.width.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "mim.enclosing.fusetop.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "mim.enclosing.via4.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "mim.space.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "mim_l_mk.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "pad.enclosing.metal5.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "pad.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "plfuse.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "poly2.enclosing.sab.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "res_mk.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "resistor.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "sab.ongrid.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "sab.separation.contact.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "sab.space.1",
+        "reason": "no_applicable_geometry"
+      },
+      {
+        "id": "sab.width.1",
+        "reason": "no_applicable_geometry"
+      }
+    ],
+    "unknown": [],
+    "nothing_checked": false,
+    "nothing_checked_reasons": []
+  },
+  "provenance": {
+    "klt_version": "0.7.1.dev1856+g2c76207293cb",
+    "klayout_version": "0.30.12",
+    "pdk": null,
+    "deck": {
+      "name": "gf180mcu",
+      "content_hash": "sha256:46a68344acc0c5244cb708b89a8e4fd2cbc519f815dbea4d2b819f6fb9e81104",
+      "released": false
+    },
+    "input": {
+      "content_hash": "sha256:7ce98bedea9beae497c56cb57ea29fbe94b0d0360d6d9b00a2168024da23d88d",
+      "role": "layout"
+    },
+    "klayout_version_mismatch": false
+  }
+}

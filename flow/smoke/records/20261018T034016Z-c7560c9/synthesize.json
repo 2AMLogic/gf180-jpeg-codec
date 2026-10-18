@@ -1,0 +1,109 @@
+{
+  "schema_version": 2,
+  "engine": "yosys",
+  "engine_version": "0.67+post",
+  "hdl_toplevel": "smoke_counter",
+  "parameters": {},
+  "run_id": "run-baa1cb79b89244f4918f128c2260899f",
+  "status": "ok",
+  "instance_count": 24,
+  "area_um2": 1145.8944,
+  "sequential_area_um2": 722.5344,
+  "instance_counts_by_type": {
+    "gf180mcu_fd_sc_mcu9t5v0__and4_1": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__clkinv_1": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__dffrnq_1": 8,
+    "gf180mcu_fd_sc_mcu9t5v0__nand2_1": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__nand3_1": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__nand4_1": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__nor2_1": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor2_1": 5,
+    "gf180mcu_fd_sc_mcu9t5v0__xor2_1": 3
+  },
+  "leakage_power_nw": null,
+  "leakage_by_type_nw": null,
+  "timing": {
+    "source": "abc_stime",
+    "wire_load": null,
+    "critical_path_ps": 1644.2,
+    "delay_target_ps": 20000
+  },
+  "clock_targets": {
+    "clocks": [],
+    "delay_target_ps": 20000,
+    "delay_target_basis": "clock_period_ns",
+    "per_clock_enforced": false
+  },
+  "sta": null,
+  "sta_unavailable_reason": "the optional klt_statime_native extension is not installed, so no gate-level static timing analysis was attempted -- from a repo checkout, run `uv sync --group statime` (or `maturin develop --release` inside native/statime/) and re-run to populate `sta`",
+  "structural": {
+    "latches": 0,
+    "expected_latches": 0,
+    "unexpected_latches": 0,
+    "comb_loops": 0,
+    "multi_driven": 0,
+    "has_critical": false
+  },
+  "cell_exclusions": {
+    "mode": "additive",
+    "requested": [],
+    "library_defaults": [],
+    "effective": [],
+    "validated": null,
+    "engine_supports_dont_use": null
+  },
+  "warnings": {
+    "total": 0,
+    "by_category": {},
+    "representatives": []
+  },
+  "memory_mapping": {
+    "status": "none_detected",
+    "reason": null,
+    "modules": [],
+    "script_path": {
+      "path": "flow/smoke/.klt/synthesize/run-baa1cb79b89244f4918f128c2260899f/smoke_counter_memory_evidence.ys",
+      "scope": "repo"
+    }
+  },
+  "blackbox_modules": [],
+  "netlist_path": {
+    "path": "flow/smoke/.klt/synthesize/run-baa1cb79b89244f4918f128c2260899f/smoke_counter_synth.v",
+    "scope": "repo"
+  },
+  "netlist_sha256": "a16cdd0e559f9e0e02eed9d3caa37c90c654f472509d6053f5a73647d8301a33",
+  "script_path": {
+    "path": "flow/smoke/.klt/synthesize/run-baa1cb79b89244f4918f128c2260899f/synth_smoke_counter.ys",
+    "scope": "repo"
+  },
+  "run_script_path": {
+    "path": "flow/smoke/.klt/synthesize/run-baa1cb79b89244f4918f128c2260899f/synth_smoke_counter.run.ys",
+    "scope": "repo"
+  },
+  "provenance": {
+    "klt_version": "0.7.1.dev1856+g2c76207293cb",
+    "klayout_version": "0.30.12",
+    "pdk": {
+      "name": "gf180mcuD",
+      "source": "PDK_ROOT environment variable",
+      "version": "open_pdks f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7",
+      "ambiguous_sources": [
+        "search root: ~/.volare"
+      ]
+    },
+    "deck": {
+      "name": "gf180mcu_fd_sc_mcu9t5v0__tt_025C_5v00",
+      "content_hash": "sha256:84a68abb02893c4a03624466e4f55cba284ad9db0326255bb667fece652d8c60",
+      "released": false
+    },
+    "input": {
+      "content_hash": "sha256:95fb304f6a9af86aa9563aed10807b2b4ab27d407d11135ad6d18ef42cc375ab",
+      "role": "source"
+    },
+    "parameters": {}
+  },
+  "equivalence": null,
+  "restructuring": null,
+  "arithmetic": null,
+  "baseline": null
+}
