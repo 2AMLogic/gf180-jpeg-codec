@@ -3,6 +3,11 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-10-18
+
+- **PR #13**: fix(flow): make smoke-flow DRC clean via PDN cut and tapcell changes
+- **Issue #5** (closed): Pin the gf180mcu PDK and commit a smoke RTL-to-GDS flow run
+
 ### 2026-10-17
 
 - **PR #11**: docs(spec): ratify the codec target spec and decision records

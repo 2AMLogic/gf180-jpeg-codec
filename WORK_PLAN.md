@@ -31,7 +31,6 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-- **#5**: Pin the gf180mcu PDK and commit a smoke RTL-to-GDS flow run
 - **#7**: Repo hygiene: CI plus a graded klt signoff manifest (T1 item 10)
 
 ## PRs Awaiting Review
@@ -51,7 +50,6 @@ PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 Issues carrying `loom:curated`.
 
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
-- **#5**: Pin the gf180mcu PDK and commit a smoke RTL-to-GDS flow run *(curated)*
 - **#7**: Repo hygiene: CI plus a graded klt signoff manifest (T1 item 10) *(curated)*
 
 ## Proposed (Architect / Hermit)
@@ -70,10 +68,10 @@ _None._
 | Very important | 0 |
 | Important | 0 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 2 |
+| In Progress (`loom:building`) | 1 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 1 |
-| Curated | 3 |
+| Curated | 2 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
