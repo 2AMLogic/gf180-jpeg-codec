@@ -15,6 +15,7 @@
   "power": {
     "power_net": "VDD",
     "ground_net": "VSS",
+    "tapcell": { "distance_um": 30 },
     "straps": [
       { "layer": "Metal1", "width_um": 0.9, "pitch_um": 5.04, "offset_um": 0, "followpins": true },
       { "layer": "Metal4", "width_um": 4.48, "spacing_um": 0.56, "pitch_um": 44.8, "offset_um": 22.4 },
@@ -24,8 +25,7 @@
       {
         "layers": ["Metal1", "Metal4"],
         "max_columns": 5,
-        "ongrid": ["Metal2", "Metal3", "Metal4"],
-        "split_cuts": { "layer": "Metal3", "width_um": 0.128 }
+        "ongrid": ["Metal2", "Metal3", "Metal4"]
       },
       { "layers": ["Metal4", "Metal5"] }
     ]
