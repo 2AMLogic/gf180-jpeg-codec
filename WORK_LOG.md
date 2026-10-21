@@ -3,6 +3,10 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-10-21
+
+- **PR #15**: Bump Repo Skills 0.24.3 -> 0.24.7
+
 ### 2026-10-18
 
 - **PR #13**: fix(flow): make smoke-flow DRC clean via PDN cut and tapcell changes
