@@ -3,6 +3,11 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-10-23
+
+- **PR #20**: feat: add integer golden JPEG encoder with libjpeg-turbo cross-check
+- **Issue #18** (closed): Commit the integer JPEG golden model with scripted libjpeg-turbo cross-checks (spec §11)
+
 ### 2026-10-21
 
 - **PR #15**: Bump Repo Skills 0.24.3 -> 0.24.7
