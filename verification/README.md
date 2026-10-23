@@ -35,3 +35,21 @@ that is not the codec.
 
 The skeleton was run here on Icarus 13.0 and Verilator 5.050 (host versions),
 not the pinned 14.0 / 5.053.
+
+## Golden JPEG model and libjpeg cross-check
+
+`verification/golden/jpeg_golden.py` is the integer-only, stdlib-only golden
+encoder (spec §11, record 0003). From the repo root:
+
+```sh
+python3 -m unittest discover -s verification/golden -p 'test_*.py'
+python3 verification/golden/crosscheck_libjpeg.py                   # needs Pillow 10.2.0
+python3 verification/golden/crosscheck_libjpeg.py --negative-control  # must exit exactly 1
+```
+
+The cross-check decodes every golden file in Pillow and compares its
+entropy-coded segment with libjpeg-turbo's, for 64 x 48 and 16 x 16 images at
+qualities 10, 50, 75 and 95, colour 4:2:0 and grey. Exit `0` all pass, `1` a
+case failed, `2` it did not run (Pillow missing or not 10.2.0). Each normal run
+appends one timestamped record under `verification/records/`; never edit or
+delete an earlier one. The negative control writes none.
