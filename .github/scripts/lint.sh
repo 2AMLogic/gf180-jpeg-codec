@@ -14,7 +14,9 @@ bad()  { echo "FAIL: $*" >&2; fail=1; }
 
 step "1. Python sources compile"
 python3 -m compileall -q \
-  verification/common/run_tb.py verification/tb/test_smoke.py || bad "python compile"
+  verification/common/run_tb.py verification/tb/test_smoke.py \
+  verification/images/gen_images.py verification/golden/qoi_golden.py \
+  verification/golden/qoi_crosscheck.py || bad "python compile"
 
 step "2. Every JSON document is well-formed"
 while IFS= read -r f; do
@@ -35,7 +37,10 @@ else
   echo "skipped: no verilator on PATH"
 fi
 
-step "5. No absolute host paths leaked into committed sources"
+step "5. Reference images regenerate to the committed SHA256SUMS"
+python3 verification/images/gen_images.py --check || bad "reference image hashes"
+
+step "6. No absolute host paths leaked into committed sources"
 # The prototype this repo came from had host-bound absolute paths in three
 # scripts; this is the check that stops them coming back.
 #
