@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "imports": [
+    {
+      "from": "2AMLogic/gf180-polysynth",
+      "commit": "010efac225b6173105bfb4a13dcbf1b94121ec6f",
+      "mode": "vendored",
+      "files": [
+        {
+          "upstream": "tb/run_tb.py",
+          "local": "verification/common/run_tb.py",
+          "sha256": "f0ac9323555b56389f9ac3a86eea1551395dc3431ffa73a1981d4c12c2124758",
+          "local_sha256": "0b142012dd7c3ef70118343703f3590383e2a86be241e36674d11962c1bab04d",
+          "diverged": "spec/decision-records/0001-harness-divergence.md"
+        },
+        {
+          "upstream": ".github/scripts/install-oss-cad-suite.sh",
+          "local": ".github/scripts/install-oss-cad-suite.sh",
+          "sha256": "353edb075b3dd85bdf6613f2a971e5fc43f65dc75f2da60a03c3e525d3ae2e25",
+          "local_sha256": "353edb075b3dd85bdf6613f2a971e5fc43f65dc75f2da60a03c3e525d3ae2e25"
+        },
+        {
+          "upstream": ".github/scripts/lint.sh",
+          "local": ".github/scripts/lint.sh",
+          "sha256": "3f9684081e7c7fad72fc3f6e84ca6ec0fb01c1db88fe0495b891ed546976eca1",
+          "local_sha256": "1c3f6be9314c5fa0abce2f8ea27dfec4ede60689e543217d7231b205110b9936",
+          "diverged": "spec/decision-records/0001-harness-divergence.md"
+        }
+      ]
+    }
+  ],
+  "in_tree": []
+}

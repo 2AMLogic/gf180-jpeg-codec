@@ -18,6 +18,9 @@ sim/.work/
 sim/pdk.local.json
 # synthesis / P&R scratch
 flow/build/
+# klt scratch and extracted spice from the smoke flow (records/ keeps the evidence)
+flow/smoke/.klt/
+flow/smoke/*.spice
 # cocotb/Icarus build + result artifacts (verification/)
 sim_build/
 results.xml
