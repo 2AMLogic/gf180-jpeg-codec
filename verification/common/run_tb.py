@@ -34,7 +34,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent.parent
 RTL = ROOT / "rtl"
 TB = ROOT / "verification" / "tb"
-REFERENCE = ROOT / "spec" / "reference"
+GOLDEN = ROOT / "verification" / "golden"
 
 SOURCES = [RTL / "smoke_placeholder.v"]
 TOPLEVEL = "smoke_placeholder"
@@ -88,30 +88,18 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{args.sim}: the design did not build: {exc}", file=sys.stderr)
         return EXIT_DID_NOT_RUN
 
-    # The golden model (a later issue) will live under spec/reference/ and be
-    # imported by the testbench; both directories go on the path now.
-    #
-    # These go on *this* process's sys.path, not just into extra_env, because
-    # cocotb's runner overwrites PYTHONPATH rather than extending it:
-    # `_set_env_common()` ends with
-    #
-    #     self.env["PYTHONPATH"] = os.pathsep.join(sys.path)
-    #
-    # which runs after `self.env = dict(extra_env)` in `test()`, so anything
-    # passed as extra_env["PYTHONPATH"] is silently discarded. Putting the two
-    # directories on sys.path here is what actually reaches the simulator's
-    # embedded interpreter. extra_env keeps them too, so this still works if a
-    # future cocotb merges instead of overwriting.
-    #
-    # Without this the suite does not fail -- it does not RUN, dying at
-    # `import` of the golden model before a single test executes. That is a far more
-    # dangerous mode than a red test (see the injected-bug job's comment).
-    for path in (REFERENCE, TB):
+    # cocotb's runner overwrites PYTHONPATH rather than extending it
+    # (`_set_env_common()` ends with `self.env["PYTHONPATH"] =
+    # os.pathsep.join(sys.path)`, after `self.env = dict(extra_env)`), so
+    # extra_env["PYTHONPATH"] is silently discarded. The golden model and the
+    # testbench directory therefore go on this process's sys.path. A wrong
+    # path makes the suite not RUN (import error, exit 2) instead of failing.
+    for path in (GOLDEN, TB):
         if str(path) not in sys.path:
             sys.path.insert(0, str(path))
 
     pythonpath = os.pathsep.join(
-        [str(REFERENCE), str(TB)] + ([os.environ["PYTHONPATH"]] if os.environ.get("PYTHONPATH") else [])
+        [str(GOLDEN), str(TB)] + ([os.environ["PYTHONPATH"]] if os.environ.get("PYTHONPATH") else [])
     )
 
     try:
