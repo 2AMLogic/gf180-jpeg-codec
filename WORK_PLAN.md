@@ -31,7 +31,6 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-- **#7**: Repo hygiene: CI plus a graded klt signoff manifest (T1 item 10)
 - **#17**: Commit the reference image generator and the QOI golden model (spec §8, §11, §12)
 
 ## PRs Awaiting Review
@@ -44,14 +43,13 @@ PRs waiting on Judge (`loom:review-requested`).
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-- **#9**: ci: add lint and klt signoff workflows with a committed T1 manifest
+_None._
 
 ## Proposed
 
 Issues carrying `loom:curated`.
 
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
-- **#7**: Repo hygiene: CI plus a graded klt signoff manifest (T1 item 10) *(curated)*
 - **#17**: Commit the reference image generator and the QOI golden model (spec §8, §11, §12) *(curated)*
 
 ## Proposed (Architect / Hermit)
@@ -70,10 +68,10 @@ _None._
 | Very important | 0 |
 | Important | 0 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 2 |
+| In Progress (`loom:building`) | 1 |
 | PRs awaiting review | 1 |
-| Approved PRs awaiting merge | 1 |
-| Curated | 3 |
+| Approved PRs awaiting merge | 0 |
+| Curated | 2 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

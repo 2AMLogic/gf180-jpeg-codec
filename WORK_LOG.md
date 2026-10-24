@@ -3,6 +3,11 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-10-24
+
+- **PR #9**: ci: add lint and klt signoff workflows with a committed T1 manifest
+- **Issue #7** (closed): Repo hygiene: CI plus a graded klt signoff manifest (T1 item 10)
+
 ### 2026-10-23
 
 - **PR #24**: chore: remove no-op package.json scripts that always exit 0
