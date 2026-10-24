@@ -5,6 +5,8 @@ Maintained by the Guide triage role.
 
 ### 2026-10-24
 
+- **PR #28**: fix: point run_tb.py golden-model path at verification/golden
+- **Issue #27** (closed): Fix stale golden-model path in run_tb.py: REFERENCE points at a directory that does not exist
 - **PR #9**: ci: add lint and klt signoff workflows with a committed T1 manifest
 - **Issue #7** (closed): Repo hygiene: CI plus a graded klt signoff manifest (T1 item 10)
 
