@@ -5,6 +5,8 @@ Maintained by the Guide triage role.
 
 ### 2026-10-23
 
+- **PR #24**: chore: remove no-op package.json scripts that always exit 0
+- **Issue #21** (closed): Remove no-op package.json check scripts that always exit 0
 - **PR #20**: feat: add integer golden JPEG encoder with libjpeg-turbo cross-check
 - **Issue #18** (closed): Commit the integer JPEG golden model with scripted libjpeg-turbo cross-checks (spec §11)
 
