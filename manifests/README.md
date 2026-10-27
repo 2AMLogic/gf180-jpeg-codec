@@ -9,7 +9,12 @@ output: the machine-readable state of the
 
 - **`gf180-jpeg-codec.json`** - the block manifest: `kind: digital` plus an
   `evidence` map. Every citation pins the `content_hash` of the artifact it
-  cites; today only item 10 is cited.
+  cites; today items 9 and 10 are cited.
+- **`attest/item9.inventory.json`** / **`attest/item9.json`** - the item-9
+  (testbenches shipped) inventory and its envelope: the committed testbench
+  files, the cold-start argv (the stdlib-only golden tests, no simulator
+  needed), and the PDK / tool pins (copied from `flow/pdk.env` and
+  `verification/README.md`). Extend `testbenches` as new suites land.
 - **`attest/item10.inventory.json`** / **`attest/item10.json`** - the item-10
   (repo hygiene) inventory and the envelope `klt signoff --attest` produced
   from it. The manifest cites the envelope with the inventory's sha256.
@@ -27,6 +32,8 @@ output: the machine-readable state of the
 
 ```console
 pip install klayout-tools==0.8.0        # provides the `klt` command
+klt signoff --attest 9 --inventory manifests/attest/item9.inventory.json \
+            -o manifests/attest/item9.json
 klt signoff --attest 10 --inventory manifests/attest/item10.inventory.json \
             -o manifests/attest/item10.json
 klt signoff --manifest manifests/gf180-jpeg-codec.json \
@@ -34,8 +41,8 @@ klt signoff --manifest manifests/gf180-jpeg-codec.json \
             --format json > manifests/gf180-jpeg-codec.signoff.json
 ```
 
-The attestation envelope hashes the files its inventory lists (README,
-LICENSE, both workflows), so regenerate it after editing any of them; update
+The attestation envelopes hash the files their inventories list (item 10:
+README, LICENSE, both workflows; item 9: the testbenches), so regenerate it after editing any of them; update
 the manifest's `content_hash` only if the inventory itself changed.
 Run it from the repository root with exactly these arguments: the record
 embeds the `--tiers-doc` path and the klt build. Exit `3` (some T1 item
@@ -51,5 +58,5 @@ bump.
 [`.github/workflows/signoff.yml`](../.github/workflows/signoff.yml) re-runs
 the command on every push and pull request, accepts exit 0 or 3 only, and
 byte-compares the output with the committed record. It also runs
-`klt signoff --attest 10 --inventory ... --check manifests/attest/item10.json`
+`klt signoff --attest 9|10 --inventory ... --check manifests/attest/item<N>.json`
 (exit 0 = the envelope still reproduces; exit 3 = drift).
