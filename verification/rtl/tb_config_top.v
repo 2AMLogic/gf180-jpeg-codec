@@ -1,5 +1,5 @@
 // Test top for the configuration stage: jc_cfg_regs, jc_table_load,
-// jc_header_gen and jc_out_mux with two sram_rw_model instances for M1 and
+// jc_header_gen and jc_out_mux with two sram_model instances for M1 and
 // M2. The scan sources (jc_bitpack, jc_qoi) are stood in by bench-driven byte
 // streams. A fixed-priority two-client mux (table load first) stands in for
 // the jc_sram_arb of issue #48; the two clients are never active together.
@@ -120,11 +120,12 @@ module tb_config_top (
   wire [31:0] s1_rd;
   reg         own1_t;
   wire        m1_req_i = t1_req | h1_req;
-  sram_rw_model u_m1 (
+  sram_model u_m1 (
       .clk(clk), .rst_n(rst_n),
       .req(m1_req_i), .we(t1_req & t1_we),
       .addr(t1_req ? t1_addr : h1_addr), .wdata(t1_wd), .stall(m1_stall),
       .gnt(s1_gnt), .rvalid(s1_rv), .rdata(s1_rd),
+      .bd_en(1'b0), .bd_addr(8'd0), .bd_data(32'd0),
       .dbg_addr(m1_dbg_addr), .dbg_data(m1_dbg_data)
   );
   assign t1_gnt = s1_gnt & t1_req;
@@ -140,11 +141,12 @@ module tb_config_top (
   wire [31:0] s2_rd;
   reg         own2_t;
   wire        m2_req_i = t2_req | h2_req;
-  sram_rw_model u_m2 (
+  sram_model u_m2 (
       .clk(clk), .rst_n(rst_n),
       .req(m2_req_i), .we(t2_req & t2_we),
       .addr(t2_req ? t2_addr : h2_addr), .wdata(t2_wd), .stall(m2_stall),
       .gnt(s2_gnt), .rvalid(s2_rv), .rdata(s2_rd),
+      .bd_en(1'b0), .bd_addr(8'd0), .bd_data(32'd0),
       .dbg_addr(m2_dbg_addr), .dbg_data(m2_dbg_data)
   );
   assign t2_gnt = s2_gnt & t2_req;

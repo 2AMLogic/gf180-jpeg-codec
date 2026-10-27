@@ -25,7 +25,7 @@ run_tb.SOURCES = [
     ROOT / "rtl" / "jc_table_load.v",
     ROOT / "rtl" / "jc_header_gen.v",
     ROOT / "rtl" / "jc_out_mux.v",
-    HERE / "sram_rw_model.v",
+    HERE / "sram_model.v",
     HERE / "tb_config_top.v",
 ]
 run_tb.TOPLEVEL = "tb_config_top"
