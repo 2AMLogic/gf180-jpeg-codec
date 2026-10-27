@@ -9,8 +9,8 @@ For every image, quality and mode:
 Exit status: 0 every case passed, 1 a case failed (also what --negative-control
 must produce), 2 the check did not run (Pillow missing or not 10.2.0).
 
-Images are generated inline until #17 lands verification/images/gen_images.py;
-the PRNG is the xorshift32 of spec section 12.  One new timestamped JSON
+Images are the small colour and grey files of the spec section 12 reference
+set, taken from verification/images/gen_images.py.  One new timestamped JSON
 record is written per normal run under verification/records/ (append-only);
 the negative control writes none.
 """
@@ -20,11 +20,14 @@ import hashlib
 import io
 import json
 import os
+import re
 import sys
 import warnings
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(HERE, "..", "images"))
+import gen_images  # noqa: E402
 import jpeg_golden as g  # noqa: E402
 
 PILLOW_REQUIRED = "10.2.0"
@@ -32,76 +35,36 @@ QUALITIES = (10, 50, 75, 95)
 SIZES = ((64, 48), (16, 16))
 
 
-def _xorshift_bytes(n):
-    x = 0x1BADB002
-    out = bytearray()
-    for _ in range(n):
-        x ^= (x << 13) & 0xFFFFFFFF
-        x ^= x >> 17
-        x ^= (x << 5) & 0xFFFFFFFF
-        out.append(x >> 24)
-    return bytes(out)
+def reference_images():
+    """Yield (name, w, h, rgb, grey) for the small spec section 12 reference set.
+
+    Colour comes from the PPM and grey from the matching PGM that gen_images.py
+    writes, so the cross-check runs on exactly the files SHA256SUMS locks.
+    640x480 is left out on purpose: the pure-Python golden encoder is too slow
+    for a per-quality sweep there.
+    """
+    files = dict(gen_images.generate())
+    for fname in sorted(files):
+        m = re.fullmatch(r"(.+)_(\d+)x(\d+)\.ppm", fname)
+        if not m or (int(m[2]), int(m[3])) not in SIZES:
+            continue
+        name, w, h = m[1], int(m[2]), int(m[3])
+        grey = files[fname[:-len(".ppm")] + "_grey.pgm"]
+        yield (name, w, h, _pnm_body(files[fname], w, h, 3),
+               _pnm_body(grey, w, h, 1))
 
 
-def _rgb_image(name, w, h):
-    px = bytearray()
-    for y in range(h):
-        for x in range(w):
-            if name == "flat_gray_128":
-                p = (128, 128, 128)
-            elif name == "flat_white":
-                p = (255, 255, 255)
-            elif name == "flat_black":
-                p = (0, 0, 0)
-            elif name == "ramp_h":
-                v = x * 255 // (w - 1)
-                p = (v, 255 - v, v // 2)
-            elif name == "ramp_v":
-                v = y * 255 // (h - 1)
-                p = (255 - v, v, 255 - v // 2)
-            elif name == "checker_1px":
-                v = 255 * ((x + y) & 1)
-                p = (v, v, v)
-            elif name == "checker_8px":
-                v = 255 * (((x >> 3) + (y >> 3)) & 1)
-                p = (v, v, v)
-            elif name == "colour_bars":
-                bars = ((255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0),
-                        (0, 255, 255), (255, 0, 255), (255, 255, 255), (0, 0, 0))
-                p = bars[x * 8 // w]
-            elif name == "smooth_scene":
-                r = (x * x + 3 * y * y) // 9 % 256
-                p = (r, (x * 5 + y * 3) % 256, (x * y) // 4 % 256)
-            else:
-                raise KeyError(name)
-            px += bytes(p)
-    return bytes(px)
+def _pnm_body(data, w, h, channels):
+    body = data.split(b"\n", 3)[3]
+    assert len(body) == channels * w * h
+    return body
 
 
-IMAGES = ("flat_gray_128", "flat_white", "flat_black", "ramp_h", "ramp_v",
-          "checker_1px", "checker_8px", "colour_bars", "smooth_scene",
-          "noise_max_entropy")
-
-
-def make_image(name, w, h):
-    if name == "noise_max_entropy":
-        return _xorshift_bytes(w * h * 3)
-    return _rgb_image(name, w, h)
-
-
-def grey_of(rgb):
-    return bytes(g.rgb_to_ycc(rgb[i], rgb[i + 1], rgb[i + 2])[0]
-                 for i in range(0, len(rgb), 3))
-
-
-def run_case(Image, rgb, w, h, mode, quality, round_delta):
+def run_case(Image, pixels, w, h, mode, quality, round_delta):
     """Return (verdict dict, ac_clamps)."""
     lq, cq = g.quality_tables(quality)
     stats = {}
-    if mode == "colour":
-        pixels, pil_mode = rgb, "RGB"
-    else:
-        pixels, pil_mode = grey_of(rgb), "L"
+    pil_mode = "RGB" if mode == "colour" else "L"
     golden = g.encode(pixels, w, h, mode, lq, cq, stats, round_delta)
 
     ref = io.BytesIO()
@@ -148,15 +111,13 @@ def main(argv=None):
     round_delta = 1 if args.negative_control else 0
 
     cases, clamps = [], 0
-    for (w, h) in SIZES:
-        for name in IMAGES:
-            rgb = make_image(name, w, h)
-            for mode in ("colour", "grey"):
-                for q in QUALITIES:
-                    verdict, c = run_case(Image, rgb, w, h, mode, q, round_delta)
-                    clamps += c
-                    cases.append(dict(image=name, size="%dx%d" % (w, h),
-                                      mode=mode, quality=q, **verdict))
+    for name, w, h, rgb, grey in reference_images():
+        for mode, pixels in (("colour", rgb), ("grey", grey)):
+            for q in QUALITIES:
+                verdict, c = run_case(Image, pixels, w, h, mode, q, round_delta)
+                clamps += c
+                cases.append(dict(image=name, size="%dx%d" % (w, h),
+                                  mode=mode, quality=q, **verdict))
     failed = [c for c in cases if not c["pass"]]
     for c in failed:
         print("FAIL %(image)s %(size)s %(mode)s q=%(quality)d decodable=%(decodable)s "
@@ -176,10 +137,10 @@ def main(argv=None):
             "libjpeg_turbo": turbo,
             "python": sys.version.split()[0],
             "golden_model_sha256": model_sha,
-            "image_source": "inline generators in crosscheck_libjpeg.py "
-                            "(gen_images.py of #17 not yet used)",
+            "image_source": "verification/images/gen_images.py generate() "
+                            "(spec section 12 reference set)",
             "qualities": list(QUALITIES),
-            "sizes": ["%dx%d" % s for s in SIZES],
+            "sizes": sorted({c["size"] for c in cases}),
             "ac_clamps_total": clamps,
             "cases_total": len(cases),
             "cases_failed": len(failed),
