@@ -6,7 +6,7 @@
 // arithmetic is colour_convert; the 2 x 2 average is the spec section 4 rule
 // (sum of four co-sited samples + bias, >> 2, bias 1 for even output column,
 // 2 for odd) over a vertical-pair accumulator of 8 columns x 2 components of
-// 9-bit partial sums, as chroma_downsample computes it.
+// 9-bit partial sums.
 //
 // S2 out: word write {frame_last, offset[6:0], word[31:0]}, offset relative to
 // the macroblock buffer base (record 0005 note (a) layout; grey words 0..15).

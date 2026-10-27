@@ -3,7 +3,6 @@
   "kind": "t1-attestation-inventory",
   "t1_item": 1,
   "sources": [
-    "rtl/chroma_downsample.v",
     "rtl/colour_convert.v",
     "rtl/jc_bitpack.v",
     "rtl/jc_cfg_regs.v",

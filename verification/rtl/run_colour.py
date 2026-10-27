@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Runs the colour-stage cocotb bench (colour_convert, chroma_downsample).
+"""Runs the colour-stage cocotb bench (colour_convert).
 
 Reuses the vendored runner in verification/common/run_tb.py with this stage's
 sources, top level and test module; its flags and exit statuses are unchanged
@@ -21,7 +21,6 @@ import run_tb  # noqa: E402
 run_tb.TB = HERE
 run_tb.SOURCES = [
     ROOT / "rtl" / "colour_convert.v",
-    ROOT / "rtl" / "chroma_downsample.v",
     HERE / "colour_tb_top.v",
 ]
 run_tb.TOPLEVEL = "colour_tb_top"

@@ -3,14 +3,14 @@
   "kind": "generic",
   "status": "pass",
   "t1_item": 1,
-  "summary": "T1 item 1 (Design sources): 25/25 attestation checks passed (klt signoff --attest)",
+  "summary": "T1 item 1 (Design sources): 24/24 attestation checks passed (klt signoff --attest)",
   "source": "manifests/attest/item1.inventory.json",
   "attestation": {
     "producer": "klt signoff --attest",
     "inventory_schema_version": 1,
     "hash_algorithm": "sha256-raw-bytes",
-    "check_count": 25,
-    "passed_count": 25,
+    "check_count": 24,
+    "passed_count": 24,
     "checks": [
       {
         "check": "present",
@@ -25,13 +25,6 @@
         "path": "flow/synthesize.json",
         "passed": true,
         "content_hash": "sha256:2aedbcbe815ce2199d3715230a27b2d9d49430949c2bdae95c61f26d614418d1"
-      },
-      {
-        "check": "present",
-        "role": "source",
-        "path": "rtl/chroma_downsample.v",
-        "passed": true,
-        "content_hash": "sha256:9378b0984d48fd503a77409b1370bbfa85fc0058fe4a2b35a093458732584aba"
       },
       {
         "check": "present",
@@ -73,7 +66,7 @@
         "role": "source",
         "path": "rtl/jc_downsample.v",
         "passed": true,
-        "content_hash": "sha256:d815590c8e449736a638e3aa4dc24993498fa477e0f32a3e8af464d37d2cf7b4"
+        "content_hash": "sha256:884260b30fd94921c2051e7d25dd4490aab865eb85250e3067dd7172c3ce8399"
       },
       {
         "check": "present",
@@ -206,7 +199,7 @@
         "path": "manifests/attest/item1.inventory.json",
         "scope": "repo"
       },
-      "content_hash": "sha256:b0dcdbb133f17d3e38a03215914a17a40ce47c3c9a43c24a7f88570f2435ec35"
+      "content_hash": "sha256:b5400440562b0f65354c97ccb37304b15eee104fe8f630295e8cf281cabccdfe"
     }
   }
 }
