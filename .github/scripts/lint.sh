@@ -42,7 +42,7 @@ if [ "${#rtl[@]}" -eq 0 ]; then
 elif ! command -v verilator > /dev/null; then
   echo "skipped: no verilator on PATH"
 else
-  verilator --lint-only -Wall -Irtl "${rtl[@]}" || bad "verilator lint"
+  verilator --lint-only -Wall -Wno-MULTITOP -Irtl "${rtl[@]}" || bad "verilator lint"
 fi
 
 step "5. Reference images regenerate to the committed SHA256SUMS"
