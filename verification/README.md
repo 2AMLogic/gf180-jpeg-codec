@@ -72,3 +72,25 @@ non-zero, ZRL runs, `FF 00` stuffing, DC chain across components and frames,
 size-10 AC and size-11 DC, output/input/memory back-pressure, and 600 seeded
 random blocks. Not covered here: cycle counts against the record 0005 budget
 rows, and the byte-exact comparison with the golden encoder (#34).
+
+## Configuration / table-load / header bench (`verification/rtl/`)
+
+`verification/rtl/test_config_header.py` drives `jc_cfg_regs`, `jc_table_load`,
+`jc_header_gen` and `jc_out_mux` (top `tb_config_top.v`) with two
+`sram_rw_model.v` instances for M1/M2. `sram_model.v` has no write client port,
+so a read/write model with the same A = 2 timing is used here. Oracles are
+written from spec sections 7, 8 and T.81 Annex C, not from the RTL or the
+golden framing code.
+
+```sh
+python3 verification/rtl/run_config_header.py      # icarus; same exit codes as run_tb.py
+python3 verification/rtl/gen_table_rom.py --check  # rtl/jc_table_load_rom.v is current
+```
+
+Covers: Annex K reset load (busy until done) and its header, colour/grey/QOI
+headers at sizes 1 and 65535, every rejection rule (`ZERO_QUANT`,
+`BAD_HUFFMAN` variants, `BAD_CONFIG`, `ADDR_UNMAPPED`, `TABLE_INVALID`),
+writes while busy, canonical codes (16-bit code, chain tables, random valid
+tables) against an independent Annex C computation, partial commits, and random
+memory and output stalls. Not covered: cycle budgets, the golden comparison
+(#34). Note the spec section 7 figure 625 B includes `EOI`: the header is 623 B.
