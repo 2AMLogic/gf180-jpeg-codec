@@ -14,6 +14,10 @@
         }
       }
     },
+    "9": {
+      "file": "manifests/attest/item9.json",
+      "content_hash": "sha256:91baabe6ebc2ba3a47434f34a829563e1b3c39943aa99892fb1eb43f8db73134"
+    },
     "10": {
       "file": "manifests/attest/item10.json",
       "content_hash": "sha256:7b81dd1abe1895a8b12b687ac4beaeab0832b13b7fe98f066e5e401738ebc542"

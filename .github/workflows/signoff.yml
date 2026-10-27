@@ -30,6 +30,12 @@ jobs:
       - name: Install pinned klt
         run: pip install klayout-tools==0.8.0
 
+      - name: Check the item-9 attestation still reproduces
+        run: |
+          klt signoff --attest 9 \
+                      --inventory manifests/attest/item9.inventory.json \
+                      --check manifests/attest/item9.json
+
       - name: Check the item-10 attestation still reproduces
         run: |
           klt signoff --attest 10 \

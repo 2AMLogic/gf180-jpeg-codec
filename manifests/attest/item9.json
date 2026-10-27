@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "kind": "generic",
+  "status": "pass",
+  "t1_item": 9,
+  "summary": "T1 item 9 (Testbenches shipped): 8/8 attestation checks passed (klt signoff --attest)",
+  "source": "manifests/attest/item9.inventory.json",
+  "attestation": {
+    "producer": "klt signoff --attest",
+    "inventory_schema_version": 1,
+    "hash_algorithm": "sha256-raw-bytes",
+    "check_count": 8,
+    "passed_count": 8,
+    "checks": [
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/common/run_tb.py",
+        "passed": true,
+        "content_hash": "sha256:9a02e7537f2effa3d6078aeda4f7b9b988709ccc6081976b78d0f749067ced02"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/golden/crosscheck_libjpeg.py",
+        "passed": true,
+        "content_hash": "sha256:f849eb0f9a1ae3a632d67a4f584b304ac938898609a4db8119019ecbd055e648"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/golden/test_jpeg_golden.py",
+        "passed": true,
+        "content_hash": "sha256:45f2ef842a1c06b2123858d996d2b1def9ae4c9a25b8b355b291e747b5e3545e"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/tb/negative_control.sh",
+        "passed": true,
+        "content_hash": "sha256:4d23145c59551a4568186940432fd28c4f55874e0aa03f5dffd1bad13d60bdcd"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/tb/test_smoke.py",
+        "passed": true,
+        "content_hash": "sha256:8aa614de1f6aaa89fed368ac7b9843774ed8b6b0b5ffd515d4eb376cd24cd822"
+      },
+      {
+        "check": "command",
+        "role": "cold_start",
+        "argv": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "verification/golden",
+          "-p",
+          "test_*.py"
+        ],
+        "cwd": ".",
+        "exit_status": 0,
+        "passed": true
+      },
+      {
+        "check": "pin",
+        "role": "pdk",
+        "passed": true,
+        "value": {
+          "name": "gf180mcuD",
+          "revision": "f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7"
+        }
+      },
+      {
+        "check": "pin",
+        "role": "tools",
+        "passed": true,
+        "value": {
+          "cocotb": "2.1.0",
+          "icarus": "14.0",
+          "klt": "0.8.0",
+          "verilator": "5.053"
+        }
+      }
+    ]
+  },
+  "provenance": {
+    "klt_version": "0.8.0",
+    "klayout_version": null,
+    "pdk": null,
+    "deck": null,
+    "input": {
+      "path": {
+        "path": "manifests/attest/item9.inventory.json",
+        "scope": "repo"
+      },
+      "content_hash": "sha256:91baabe6ebc2ba3a47434f34a829563e1b3c39943aa99892fb1eb43f8db73134"
+    }
+  }
+}
