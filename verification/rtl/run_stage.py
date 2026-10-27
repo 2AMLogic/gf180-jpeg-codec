@@ -37,7 +37,7 @@ STAGES = {
             RTL / "jc_table_load.v",
             RTL / "jc_header_gen.v",
             RTL / "jc_out_mux.v",
-            HERE / "sram_rw_model.v",
+            HERE / "sram_model.v",
             HERE / "tb_config_top.v",
         ],
         "tb_config_top",
@@ -57,7 +57,7 @@ STAGES = {
     ),
     # jc_qoi on an M0 model
     "qoi": (
-        [RTL / "jc_qoi.v", HERE / "sram_model_rw.v", HERE / "tb_qoi_top.v"],
+        [RTL / "jc_qoi.v", HERE / "sram_model.v", HERE / "tb_qoi_top.v"],
         "tb_qoi_top",
         "test_qoi",
     ),

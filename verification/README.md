@@ -77,8 +77,8 @@ rows, and the byte-exact comparison with the golden encoder (#34).
 
 `verification/rtl/test_config_header.py` drives `jc_cfg_regs`, `jc_table_load`,
 `jc_header_gen` and `jc_out_mux` (top `tb_config_top.v`) with two
-`sram_rw_model.v` instances for M1/M2. `sram_model.v` has no write client port,
-so a read/write model with the same A = 2 timing is used here. Oracles are
+`sram_model.v` instances for M1/M2, using its read/write client port and the
+`dbg_*` read backdoor. Oracles are
 written from spec sections 7, 8 and T.81 Annex C, not from the RTL or the
 golden framing code.
 
@@ -98,7 +98,7 @@ memory and output stalls. Not covered: cycle budgets, the golden comparison
 ## QOI stage bench (`verification/rtl/`)
 
 `verification/rtl/test_qoi.py` drives `jc_qoi` (RTL: `rtl/jc_qoi.v`) on
-`sram_model_rw.v`, an M0 model with a write port and the record 0005 A = 2
+`sram_model.v`, an M0 model with a write port and the record 0005 A = 2
 timing (`tb_qoi_top.v`). `jc_qoi` emits the chunk stream only, so each image
 is compared byte for byte with `qoi_golden.qoi_encode(...)[14:-8]`; one test
 adds the header and end marker and decodes the result with the vendored
