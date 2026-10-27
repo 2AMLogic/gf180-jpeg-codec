@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "kind": "t1-attestation-inventory",
+  "t1_item": 10,
+  "hygiene": [
+    "README.md",
+    "LICENSE",
+    ".github/workflows/ci.yml",
+    ".github/workflows/signoff.yml"
+  ],
+  "checks": [
+    {"name": "lint", "argv": ["bash", ".github/scripts/lint.sh"]},
+    {"name": "golden-tests", "argv": ["python3", "-m", "unittest", "discover", "-s", "verification/golden", "-p", "test_*.py"]}
+  ]
+}

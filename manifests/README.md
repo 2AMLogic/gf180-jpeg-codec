@@ -8,9 +8,11 @@ output: the machine-readable state of the
 ## Files
 
 - **`gf180-jpeg-codec.json`** - the block manifest: `kind: digital` plus an
-  `evidence` map. The map is empty on purpose: no evidence exists yet, and
-  every citation added later must pin the `content_hash` of the artifact it
-  cites.
+  `evidence` map. Every citation pins the `content_hash` of the artifact it
+  cites; today only item 10 is cited.
+- **`attest/item10.inventory.json`** / **`attest/item10.json`** - the item-10
+  (repo hygiene) inventory and the envelope `klt signoff --attest` produced
+  from it. The manifest cites the envelope with the inventory's sha256.
 - **`design-evidence-tiers.md`** - the T1-T4 checklist the grader parses.
   Vendored **byte-identical** from
   [`2AMLogic/klayout-tools@c6b7e4d`](https://github.com/2AMLogic/klayout-tools/blob/c6b7e4d08a5e6e6475627aba4f90e5bab68d13a7/docs/design-evidence-tiers.md)
@@ -24,12 +26,17 @@ output: the machine-readable state of the
 ## Regenerate (cold start)
 
 ```console
-pip install klayout-tools==0.7.0        # provides the `klt` command
+pip install klayout-tools==0.8.0        # provides the `klt` command
+klt signoff --attest 10 --inventory manifests/attest/item10.inventory.json \
+            -o manifests/attest/item10.json
 klt signoff --manifest manifests/gf180-jpeg-codec.json \
             --tiers-doc manifests/design-evidence-tiers.md \
             --format json > manifests/gf180-jpeg-codec.signoff.json
 ```
 
+The attestation envelope hashes the files its inventory lists (README,
+LICENSE, both workflows), so regenerate it after editing any of them; update
+the manifest's `content_hash` only if the inventory itself changed.
 Run it from the repository root with exactly these arguments: the record
 embeds the `--tiers-doc` path and the klt build. Exit `3` (some T1 item
 unmet) is the expected result today; `0` means every item is met. Any other
@@ -43,4 +50,6 @@ bump.
 
 [`.github/workflows/signoff.yml`](../.github/workflows/signoff.yml) re-runs
 the command on every push and pull request, accepts exit 0 or 3 only, and
-byte-compares the output with the committed record.
+byte-compares the output with the committed record. It also runs
+`klt signoff --attest 10 --inventory ... --check manifests/attest/item10.json`
+(exit 0 = the envelope still reproduces; exit 3 = drift).
