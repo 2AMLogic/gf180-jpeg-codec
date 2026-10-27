@@ -83,6 +83,25 @@ layout/        GDS + DRC/LVS reports + STA reports (klayout-tools driven)
 measurements/  silicon characterization (empty until tape-out)
 ```
 
+## Reproducing results
+
+Progress toward the first maturity tier is tracked in
+[#4](https://github.com/2AMLogic/gf180-jpeg-codec/issues/4), and graded
+mechanically by `manifests/` (see [manifests/README.md](manifests/README.md)).
+
+```console
+bash .github/scripts/lint.sh            # PDK-free lint, same as CI
+pip install klayout-tools==0.8.0        # then regenerate the item-10 attestation:
+klt signoff --attest 10 --inventory manifests/attest/item10.inventory.json \
+            -o manifests/attest/item10.json
+# ...and the tier verdict:
+klt signoff --manifest manifests/gf180-jpeg-codec.json \
+            --tiers-doc manifests/design-evidence-tiers.md \
+            --format json > manifests/gf180-jpeg-codec.signoff.json
+```
+
+Each evidence directory adds its own cold-start command here as it lands.
+
 ## License
 
 Apache License 2.0 — see [LICENSE](LICENSE).

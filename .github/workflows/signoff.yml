@@ -1,0 +1,59 @@
+name: klt signoff
+
+# The T1 tier state is graded, not hand-read: re-render the verdict from the
+# committed block manifest (manifests/gf180-jpeg-codec.json) and byte-compare
+# it with the committed record (manifests/gf180-jpeg-codec.signoff.json).
+# Changing the manifest, the vendored checklist or the klt pin without
+# regenerating the record in the same PR fails this job.
+# See manifests/README.md.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  signoff:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install pinned klt
+        run: pip install klayout-tools==0.8.0
+
+      - name: Check the item-10 attestation still reproduces
+        run: |
+          klt signoff --attest 10 \
+                      --inventory manifests/attest/item10.inventory.json \
+                      --check manifests/attest/item10.json
+
+      - name: Re-run klt signoff and compare against the committed record
+        run: |
+          set -uo pipefail
+          rc=0
+          klt signoff --manifest manifests/gf180-jpeg-codec.json \
+                      --tiers-doc manifests/design-evidence-tiers.md \
+                      --format json > "$RUNNER_TEMP/fresh-signoff.json" || rc=$?
+          # 0 = every T1 item met; 3 = grader ran clean, some item unmet.
+          # Anything else is a hard error.
+          if [ "$rc" -ne 0 ] && [ "$rc" -ne 3 ]; then
+            echo "::error::klt signoff exited $rc (expected 0 or 3)"
+            exit 1
+          fi
+          if ! cmp -s "$RUNNER_TEMP/fresh-signoff.json" manifests/gf180-jpeg-codec.signoff.json; then
+            echo "::error::Fresh klt signoff output differs from manifests/gf180-jpeg-codec.signoff.json - the committed record is stale."
+            echo "Regenerate and commit it in this same PR (see manifests/README.md)."
+            diff <(python3 -m json.tool "$RUNNER_TEMP/fresh-signoff.json") \
+                 <(python3 -m json.tool manifests/gf180-jpeg-codec.signoff.json) || true
+            exit 1
+          fi
+          echo "Committed signoff record is fresh."
