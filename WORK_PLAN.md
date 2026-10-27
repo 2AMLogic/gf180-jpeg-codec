@@ -32,18 +32,22 @@ _None._
 Issues currently being built (`loom:building`).
 
 - **#17**: Commit the reference image generator and the QOI golden model (spec §8, §11, §12)
+- **#35**: T1 item 6 (Monte Carlo): cite spec §11's no-statistical-rows statement as the item 6 not-applicable entry
+- **#41**: RTL microarchitecture decision record: stage split, pin-level interface, cycle budget
+- **#42**: Encoder RTL stage: colour conversion and 4:2:0 downsample (spec §4)
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
-_None._
+- **#22**: feat(verification): add reference image generator and QOI golden model
 
 ## Approved (Awaiting Merge)
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-_None._
+- **#51**: feat(rtl): add colour converter and 4:2:0 chroma downsampler (spec §4)
+- **#52**: docs: add RTL microarchitecture decision record 0005
 
 ## Proposed
 
@@ -51,6 +55,12 @@ Issues carrying `loom:curated`.
 
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
 - **#17**: Commit the reference image generator and the QOI golden model (spec §8, §11, §12) *(curated)*
+- **#35**: T1 item 6 (Monte Carlo): cite spec §11's no-statistical-rows statement as the item 6 not-applicable entry *(curated)*
+- **#38**: T1 item 9 (testbenches shipped): item 9 inventory and attestation for the codec testbenches *(curated)*
+- **#41**: RTL microarchitecture decision record: stage split, pin-level interface, cycle budget *(curated)*
+- **#42**: Encoder RTL stage: colour conversion and 4:2:0 downsample (spec §4) *(curated)*
+- **#44**: Encoder RTL stage: quantizer with exhaustive check (spec §5) *(curated)*
+- **#45**: Encoder RTL stage: zig-zag, DC prediction, Huffman coding and bit packer (spec §6) *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -68,10 +78,10 @@ _None._
 | Very important | 0 |
 | Important | 0 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 1 |
-| PRs awaiting review | 0 |
-| Approved PRs awaiting merge | 0 |
-| Curated | 2 |
+| In Progress (`loom:building`) | 4 |
+| PRs awaiting review | 1 |
+| Approved PRs awaiting merge | 2 |
+| Curated | 8 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
