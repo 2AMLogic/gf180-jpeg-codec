@@ -19,7 +19,9 @@ module jc_dct (
     input  wire        s3_valid,
     output wire        s3_ready,
     input  wire [31:0] s3_data,
+    /* verilator lint_off UNUSEDSIGNAL */  // bit 0 is not consumed by this stage
     input  wire [3:0]  s3_tag,
+    /* verilator lint_on UNUSEDSIGNAL */
 
     output wire        s4_valid,
     input  wire        s4_ready,
