@@ -64,7 +64,7 @@ only; Annex K table data comes from the golden module, the worked-example
 bytes are pinned in the test.
 
 ```sh
-python3 verification/rtl/run_entropy.py            # icarus; same exit codes as run_tb.py
+python3 verification/rtl/run_stage.py entropy         # icarus; same exit codes as run_tb.py
 ```
 
 Covers: the section 6 worked example (12 bytes), all-zero block, position 63
@@ -83,7 +83,7 @@ written from spec sections 7, 8 and T.81 Annex C, not from the RTL or the
 golden framing code.
 
 ```sh
-python3 verification/rtl/run_config_header.py      # icarus; same exit codes as run_tb.py
+python3 verification/rtl/run_stage.py config_header     # icarus; same exit codes as run_tb.py
 python3 verification/rtl/gen_table_rom.py --check  # rtl/jc_table_load_rom.v is current
 ```
 
@@ -105,7 +105,7 @@ adds the header and end marker and decodes the result with the vendored
 `qoi.h` (`qoi_dec_ref.c`, needs a C compiler).
 
 ```sh
-python3 verification/rtl/run_qoi.py                # icarus; same exit codes as run_tb.py
+python3 verification/rtl/run_stage.py qoi              # icarus; same exit codes as run_tb.py
 ```
 
 Covers: six image classes (flat, gradient, noise, runs, index hits, DIFF/LUMA
