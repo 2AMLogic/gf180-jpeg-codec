@@ -1,0 +1,8 @@
+gf180_sram_256x32
+gf180_sram_256x32/Q
+gf180_sram_256x32/D
+gf180_sram_256x32/A
+gf180_sram_256x32/WEN
+gf180_sram_256x32/GWEN
+gf180_sram_256x32/CEN
+gf180_sram_256x32/CLK

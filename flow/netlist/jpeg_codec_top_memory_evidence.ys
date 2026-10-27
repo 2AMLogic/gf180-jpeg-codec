@@ -1,0 +1,27 @@
+read_verilog ./rtl/jpeg_codec_top.v
+read_verilog ./rtl/jc_sram_wrap.v
+read_verilog ./rtl/jc_sram_arb.v
+read_verilog ./rtl/jc_downsample.v
+read_verilog ./rtl/jc_mb_ctrl.v
+read_verilog ./rtl/colour_convert.v
+read_verilog ./rtl/jc_dct.v
+read_verilog ./rtl/jc_dct1d.v
+read_verilog ./rtl/jc_xpose_rf.v
+read_verilog ./rtl/jc_zigzag.v
+read_verilog ./rtl/jc_quant.v
+read_verilog ./rtl/jc_quant_core.v
+read_verilog ./rtl/jc_huff.v
+read_verilog ./rtl/jc_bitpack.v
+read_verilog ./rtl/jc_cfg_regs.v
+read_verilog ./rtl/jc_table_load.v
+read_verilog ./rtl/jc_table_load_rom.v
+read_verilog ./rtl/jc_header_gen.v
+read_verilog ./rtl/jc_out_mux.v
+read_verilog ./rtl/jc_qoi.v
+read_verilog ./flow/sram_blackbox.v
+hierarchy -check -top jpeg_codec_top
+tee -q -o ./flow/netlist/jpeg_codec_top_blackboxes.txt select -list =A:blackbox =A:whitebox
+proc
+tee -q -o ./flow/netlist/jpeg_codec_top_memory_elaborated.json stat -json
+synth -top jpeg_codec_top -run :fine
+tee -q -o ./flow/netlist/jpeg_codec_top_memory_pre_lowering.json stat -json
