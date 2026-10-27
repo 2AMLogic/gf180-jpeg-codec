@@ -72,3 +72,22 @@ non-zero, ZRL runs, `FF 00` stuffing, DC chain across components and frames,
 size-10 AC and size-11 DC, output/input/memory back-pressure, and 600 seeded
 random blocks. Not covered here: cycle counts against the record 0005 budget
 rows, and the byte-exact comparison with the golden encoder (#34).
+
+## QOI stage bench (`verification/rtl/`)
+
+`verification/rtl/test_qoi.py` drives `jc_qoi` (RTL: `rtl/jc_qoi.v`) on
+`sram_model_rw.v`, an M0 model with a write port and the record 0005 A = 2
+timing (`tb_qoi_top.v`). `jc_qoi` emits the chunk stream only, so each image
+is compared byte for byte with `qoi_golden.qoi_encode(...)[14:-8]`; one test
+adds the header and end marker and decodes the result with the vendored
+`qoi.h` (`qoi_dec_ref.c`, needs a C compiler).
+
+```sh
+python3 verification/rtl/run_qoi.py                # icarus; same exit codes as run_tb.py
+```
+
+Covers: six image classes (flat, gradient, noise, runs, index hits, DIFF/LUMA
+edges), 1-pixel images, runs of 62/63, per-frame index clear with a poisoned
+array and back-to-back frames, out_ready/input/M0 back-pressure, and cycles
+per pixel on `noise_64x48` (seed 7), whole frame and steady state, against
+5.43 (spec §8) and 4 (record 0005 §7). Simulated cycles, not measurements.
