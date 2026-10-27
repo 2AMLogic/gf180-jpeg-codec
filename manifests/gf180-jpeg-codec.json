@@ -1,5 +1,10 @@
 {
   "block": "gf180-jpeg-codec",
   "kind": "digital",
-  "evidence": {}
+  "evidence": {
+    "10": {
+      "file": "manifests/attest/item10.json",
+      "content_hash": "sha256:7b81dd1abe1895a8b12b687ac4beaeab0832b13b7fe98f066e5e401738ebc542"
+    }
+  }
 }

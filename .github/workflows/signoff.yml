@@ -28,7 +28,13 @@ jobs:
           python-version: "3.10"
 
       - name: Install pinned klt
-        run: pip install klayout-tools==0.7.0
+        run: pip install klayout-tools==0.8.0
+
+      - name: Check the item-10 attestation still reproduces
+        run: |
+          klt signoff --attest 10 \
+                      --inventory manifests/attest/item10.inventory.json \
+                      --check manifests/attest/item10.json
 
       - name: Re-run klt signoff and compare against the committed record
         run: |
