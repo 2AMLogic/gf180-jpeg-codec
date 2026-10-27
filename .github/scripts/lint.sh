@@ -45,7 +45,10 @@ else
   verilator --lint-only -Wall -Irtl "${rtl[@]}" || bad "verilator lint"
 fi
 
-step "5. No absolute host paths leaked into committed sources"
+step "5. Reference images regenerate to the committed SHA256SUMS"
+python3 verification/images/gen_images.py --check || bad "reference image hashes"
+
+step "6. No absolute host paths leaked into committed sources"
 # The prototype this repo came from had host-bound absolute paths in three
 # scripts; this is the check that stops them coming back.
 #
