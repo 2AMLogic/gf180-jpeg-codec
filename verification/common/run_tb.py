@@ -57,6 +57,11 @@ def main(argv: list[str] | None = None) -> int:
         metavar="NAME[=VALUE]",
         help="Verilog `define passed to the build (repeatable).",
     )
+    ap.add_argument("--source", action="append", default=None, metavar="FILE",
+                    help="RTL source (repeatable, relative to rtl/); default smoke_placeholder.v")
+    ap.add_argument("--toplevel", default=TOPLEVEL)
+    ap.add_argument("--test-module", default=TEST_MODULE)
+    ap.add_argument("--test-dir", default=str(TB))
     ap.add_argument("--testcase", default=None, help="run a single named test")
     ap.add_argument("--waves", action="store_true")
     args = ap.parse_args(argv)
@@ -69,14 +74,16 @@ def main(argv: list[str] | None = None) -> int:
         name, _, value = item.partition("=")
         defines[name] = value or 1
 
-    build_dir = TB / "sim_build" / args.sim
+    sources = [RTL / f for f in args.source] if args.source else SOURCES
+    test_dir = Path(args.test_dir).resolve()
+    build_dir = TB / "sim_build" / args.sim / args.toplevel
     runner = get_runner(args.sim)
     try:
         runner.build(
-            verilog_sources=SOURCES,
+            verilog_sources=sources,
             includes=[RTL],
             defines=defines,
-            hdl_toplevel=TOPLEVEL,
+            hdl_toplevel=args.toplevel,
             build_dir=build_dir,
             timescale=TIMESCALE,
             waves=args.waves,
@@ -94,19 +101,19 @@ def main(argv: list[str] | None = None) -> int:
     # extra_env["PYTHONPATH"] is silently discarded. The golden model and the
     # testbench directory therefore go on this process's sys.path. A wrong
     # path makes the suite not RUN (import error, exit 2) instead of failing.
-    for path in (GOLDEN, TB):
+    for path in (GOLDEN, TB, test_dir):
         if str(path) not in sys.path:
             sys.path.insert(0, str(path))
 
     pythonpath = os.pathsep.join(
-        [str(GOLDEN), str(TB)] + ([os.environ["PYTHONPATH"]] if os.environ.get("PYTHONPATH") else [])
+        [str(GOLDEN), str(TB), str(test_dir)] + ([os.environ["PYTHONPATH"]] if os.environ.get("PYTHONPATH") else [])
     )
 
     try:
         results_xml = runner.test(
-            hdl_toplevel=TOPLEVEL,
-            test_module=TEST_MODULE,
-            test_dir=TB,
+            hdl_toplevel=args.toplevel,
+            test_module=args.test_module,
+            test_dir=test_dir,
             build_dir=build_dir,
             seed=args.seed,
             timescale=TIMESCALE,
