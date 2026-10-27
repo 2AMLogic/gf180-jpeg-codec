@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "kind": "generic",
+  "status": "pass",
+  "t1_item": 1,
+  "summary": "T1 item 1 (Design sources): 25/25 attestation checks passed (klt signoff --attest)",
+  "source": "manifests/attest/item1.inventory.json",
+  "attestation": {
+    "producer": "klt signoff --attest",
+    "inventory_schema_version": 1,
+    "hash_algorithm": "sha256-raw-bytes",
+    "check_count": 25,
+    "passed_count": 25,
+    "checks": [
+      {
+        "check": "present",
+        "role": "source",
+        "path": "flow/sram_blackbox.v",
+        "passed": true,
+        "content_hash": "sha256:507bea8718254f65a4bef4d7085effa427b1fa9cf59d0617bd4c2a92273f3854"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "flow/synthesize.json",
+        "passed": true,
+        "content_hash": "sha256:2aedbcbe815ce2199d3715230a27b2d9d49430949c2bdae95c61f26d614418d1"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/chroma_downsample.v",
+        "passed": true,
+        "content_hash": "sha256:9378b0984d48fd503a77409b1370bbfa85fc0058fe4a2b35a093458732584aba"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/colour_convert.v",
+        "passed": true,
+        "content_hash": "sha256:f3cafe02d76549faacb4157bdaccc4fc2a91b5a3627e745032be40e0cf0ffcb8"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_bitpack.v",
+        "passed": true,
+        "content_hash": "sha256:309dc924f0024dae114e75427106f144ca439fbe3647c4f547db1a551298f23d"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_cfg_regs.v",
+        "passed": true,
+        "content_hash": "sha256:9323d0a7f59154a00fa9a739ccd14a40558068a4a25913b05f07ed46566384ec"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_dct.v",
+        "passed": true,
+        "content_hash": "sha256:1a015bdbcc0acee373547df23ddb559cf94040c1e0b950f105006bc04c5f21d4"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_dct1d.v",
+        "passed": true,
+        "content_hash": "sha256:b9f5a42858e7cd82e8f9212645341ca3de863d11f50aab3b8d1ed971c8489423"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_downsample.v",
+        "passed": true,
+        "content_hash": "sha256:d815590c8e449736a638e3aa4dc24993498fa477e0f32a3e8af464d37d2cf7b4"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_header_gen.v",
+        "passed": true,
+        "content_hash": "sha256:06f672f910419bd57e275470771abcb874eb7ea40654888fefd39d8468ef39c2"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_huff.v",
+        "passed": true,
+        "content_hash": "sha256:434df2eaf81e6f47931d167617c12098bb5c1294defdb0d80ef5892b1dd24989"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_mb_ctrl.v",
+        "passed": true,
+        "content_hash": "sha256:2643a76ff01f707b3653d6ce3bce291f2b336fdfafe51768ce9cd50a3e9d8eb8"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_out_mux.v",
+        "passed": true,
+        "content_hash": "sha256:0d44a1507f2b8d802ad818df09764e26e20776c2afb849d98171cd70ff99f098"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_qoi.v",
+        "passed": true,
+        "content_hash": "sha256:422418e49232b06da70e16cb64b873265b1fad4c8666ac671e1dea4fc25142fd"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_quant.v",
+        "passed": true,
+        "content_hash": "sha256:725e212de6979f809aacd639275fab229d535c2a070fbb28527c3b9393e44dcf"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_quant_core.v",
+        "passed": true,
+        "content_hash": "sha256:ff00e0dcdf76b2cb7891283916d059532501894341285ff9f71ffc524856f3fa"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_sram_arb.v",
+        "passed": true,
+        "content_hash": "sha256:34001623d20af04c96bee26e39b00f63207ab96ef92a0b880615c3d577d087f1"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_sram_wrap.v",
+        "passed": true,
+        "content_hash": "sha256:ef858d5e86c410aac008beb582334fee4eaad9e99d96b286ef8eafb949f600e1"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_table_load.v",
+        "passed": true,
+        "content_hash": "sha256:aeef602b83abf7d254c719ea564bd14ca1529ff4f23b6f3d3459ff8308240c25"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_table_load_rom.v",
+        "passed": true,
+        "content_hash": "sha256:c756bf7470de4cc4ee2b578017bde90a2ba7cf34d38bd305cc0d9378abbd8d51"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_xpose_rf.v",
+        "passed": true,
+        "content_hash": "sha256:40cbd8a524ae37157557dbd96e0c05c7e015ba660d33aee84a9c22a0981c5897"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_zigzag.v",
+        "passed": true,
+        "content_hash": "sha256:29a998f69d3d4456172d2f68afcecee048afb885662f1abba5ab753aa9cf25db"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jpeg_codec_top.v",
+        "passed": true,
+        "content_hash": "sha256:d5e6052f75566aa9217b7d34ba5ec68fe9349cdb7e57a8f848e1f8a57701a31e"
+      },
+      {
+        "check": "present",
+        "role": "derived",
+        "path": "flow/netlist/jpeg_codec_top_synth.v",
+        "passed": true,
+        "content_hash": "sha256:871dc5df053c0cca368f79f862b469a774ba32b1ee906cc13477e57b54b5c682"
+      },
+      {
+        "check": "command",
+        "role": "freshness",
+        "target": "flow/netlist/jpeg_codec_top_synth.v",
+        "generator": "klt synthesize",
+        "argv": [
+          "flow/synthesize.sh",
+          "--check"
+        ],
+        "cwd": ".",
+        "exit_status": 0,
+        "passed": true,
+        "local_only": true
+      }
+    ]
+  },
+  "provenance": {
+    "klt_version": "0.8.0",
+    "klayout_version": null,
+    "pdk": null,
+    "deck": null,
+    "input": {
+      "path": {
+        "path": "manifests/attest/item1.inventory.json",
+        "scope": "repo"
+      },
+      "content_hash": "sha256:b0dcdbb133f17d3e38a03215914a17a40ce47c3c9a43c24a7f88570f2435ec35"
+    }
+  }
+}

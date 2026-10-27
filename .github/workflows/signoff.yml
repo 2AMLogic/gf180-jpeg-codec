@@ -30,6 +30,15 @@ jobs:
       - name: Install pinned klt
         run: pip install klayout-tools==0.8.0
 
+      - name: Check the item-1 attestation still reproduces
+        # The netlist freshness command needs yosys and the PDK, so the
+        # inventory marks it local_only: this step re-hashes the sources and
+        # the netlist and carries the committed freshness outcome.
+        run: |
+          klt signoff --attest 1 \
+                      --inventory manifests/attest/item1.inventory.json \
+                      --check manifests/attest/item1.json
+
       - name: Check the item-9 attestation still reproduces
         run: |
           klt signoff --attest 9 \

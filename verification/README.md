@@ -113,3 +113,21 @@ edges), 1-pixel images, runs of 62/63, per-frame index clear with a poisoned
 array and back-to-back frames, out_ready/input/M0 back-pressure, and cycles
 per pixel on `noise_64x48` (seed 7), whole frame and steady state, against
 5.43 (spec §8) and 4 (record 0005 §7). Simulated cycles, not measurements.
+
+## Top-level smoke bench (issue #48)
+
+`verification/rtl/test_top_smoke.py` drives `jpeg_codec_top` (all of `rtl/`
+except the placeholder) with `sram_macro_model.v`, a pin-accurate model of the
+`gf180-sram` 256 x 32 macro (`CEN`/`GWEN` active low, per-bit `WEN`, one-cycle
+read latency). It configures the chip through the configuration port, feeds
+block-ordered pixels, and checks: colour (32 x 16, and 20 x 18 with host edge
+padding) and grey (16 x 8) output decodes in Pillow 10.2.0 without warning and
+has the right size; QOI (12 x 9) decodes with `qoi.h`; and, as a stronger
+check than the issue asks for, every output is byte-identical to the golden
+encoder (the full item-5 comparison is #34). One colour case runs with
+random input and output stalls. Needs cocotb 2.1.0, Pillow 10.2.0 and a C
+compiler.
+
+```sh
+python3 verification/rtl/run_top_smoke.py          # icarus; same exit codes as run_tb.py
+```

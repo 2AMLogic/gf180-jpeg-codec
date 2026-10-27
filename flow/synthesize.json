@@ -1,0 +1,31 @@
+{
+  "schema": "klt.synthesize.request/1",
+  "engine": "yosys",
+  "sources": [
+    "../rtl/jpeg_codec_top.v",
+    "../rtl/jc_sram_wrap.v",
+    "../rtl/jc_sram_arb.v",
+    "../rtl/jc_downsample.v",
+    "../rtl/jc_mb_ctrl.v",
+    "../rtl/colour_convert.v",
+    "../rtl/jc_dct.v",
+    "../rtl/jc_dct1d.v",
+    "../rtl/jc_xpose_rf.v",
+    "../rtl/jc_zigzag.v",
+    "../rtl/jc_quant.v",
+    "../rtl/jc_quant_core.v",
+    "../rtl/jc_huff.v",
+    "../rtl/jc_bitpack.v",
+    "../rtl/jc_cfg_regs.v",
+    "../rtl/jc_table_load.v",
+    "../rtl/jc_table_load_rom.v",
+    "../rtl/jc_header_gen.v",
+    "../rtl/jc_out_mux.v",
+    "../rtl/jc_qoi.v",
+    "sram_blackbox.v"
+  ],
+  "hdl_toplevel": "jpeg_codec_top",
+  "pdk": { "cell_library": "gf180mcu_fd_sc_mcu9t5v0", "corner": "ss_125C_3v00" },
+  "constraints": { "clock_period_ns": 20.0 },
+  "outputs": { "dir": "netlist" }
+}

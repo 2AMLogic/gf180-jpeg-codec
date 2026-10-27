@@ -10,12 +10,18 @@ output: the machine-readable state of the
 - **`gf180-jpeg-codec.json`** - the block manifest: `kind: digital` plus an
   `evidence` map. Every citation must pin the `content_hash` of the artifact
   it cites. Item 6 (statistical claims) is `not_applicable`: it cites the two
-  spec files below. Items 9 and 10 cite attestation envelopes.
+  spec files below. Items 1, 9 and 10 cite attestation envelopes.
 - **`codec-spec-rows.json`** - JSON row index of the ratified
   [`spec/codec.md`](../spec/codec.md) §1 (klt binds JSON, not Markdown). A
   transcription, not a spec change.
 - **`codec-item6-statement.json`** - one entry per spec row stating why it is
   not statistical (spec §11, decision record 0005).
+- **`attest/item1.inventory.json`** / **`attest/item1.json`** - the item-1
+  (design sources) inventory and its envelope: the committed RTL under `rtl/`
+  (the placeholder excluded), the synthesis request and the SRAM black-box
+  declaration, plus the derived gate-level netlist `flow/netlist/` with its
+  freshness command (`flow/synthesize.sh --check`, marked `local_only`
+  because it needs yosys and the PDK; CI carries the committed outcome).
 - **`attest/item9.inventory.json`** / **`attest/item9.json`** - the item-9
   (testbenches shipped) inventory and its envelope: the committed testbench
   files, the cold-start argv (the stdlib-only golden tests, no simulator
@@ -38,6 +44,9 @@ output: the machine-readable state of the
 
 ```console
 pip install klayout-tools==0.8.0        # provides the `klt` command
+flow/synthesize.sh                      # item 1 only: regenerate flow/netlist/ after any RTL edit
+klt signoff --attest 1 --inventory manifests/attest/item1.inventory.json \
+            -o manifests/attest/item1.json
 klt signoff --attest 9 --inventory manifests/attest/item9.inventory.json \
             -o manifests/attest/item9.json
 klt signoff --attest 10 --inventory manifests/attest/item10.inventory.json \
@@ -47,8 +56,9 @@ klt signoff --manifest manifests/gf180-jpeg-codec.json \
             --format json > manifests/gf180-jpeg-codec.signoff.json
 ```
 
-The attestation envelopes hash the files their inventories list (item 10:
-README, LICENSE, both workflows; item 9: the testbenches), so regenerate it after editing any of them; update
+The attestation envelopes hash the files their inventories list (item 1: the RTL, the
+synthesis request and the netlist; item 10: README, LICENSE, both workflows;
+item 9: the testbenches), so regenerate it after editing any of them; update
 the manifest's `content_hash` only if the inventory itself changed.
 Run it from the repository root with exactly these arguments: the record
 embeds the `--tiers-doc` path and the klt build. Exit `3` (some T1 item
@@ -64,5 +74,5 @@ bump.
 [`.github/workflows/signoff.yml`](../.github/workflows/signoff.yml) re-runs
 the command on every push and pull request, accepts exit 0 or 3 only, and
 byte-compares the output with the committed record. It also runs
-`klt signoff --attest 9|10 --inventory ... --check manifests/attest/item<N>.json`
+`klt signoff --attest 1|9|10 --inventory ... --check manifests/attest/item<N>.json`
 (exit 0 = the envelope still reproduces; exit 3 = drift).
