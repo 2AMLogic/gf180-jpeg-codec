@@ -23,9 +23,9 @@ RTL = ROOT / "rtl"
 
 # stage -> (sources, toplevel, test module)
 STAGES = {
-    # colour_convert, chroma_downsample
+    # colour_convert
     "colour": (
-        [RTL / "colour_convert.v", RTL / "chroma_downsample.v", HERE / "colour_tb_top.v"],
+        [RTL / "colour_convert.v", HERE / "colour_tb_top.v"],
         "colour_tb_top",
         "test_colour",
     ),

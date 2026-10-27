@@ -22,7 +22,7 @@ Module names, ports and stream widths are fixed by
 | `smoke_placeholder.v` | verification-skeleton stand-in, not the codec | #6 |
 
 Note: record 0005 section 2 assigns `jc_downsample` and `jc_mb_ctrl` to #42, but
-#42 delivered only the combinational `colour_convert` and `chroma_downsample`,
-so the sequential ingest stage that connects them to M0 was written with the
+#42 delivered only the combinational `colour_convert`,
+so the sequential ingest stage that connects it to M0 was written with the
 integration in #48. `colour_convert` is used under its #42 name rather than
 `jc_color_convert`.
