@@ -1,4 +1,4 @@
-// Test top for the QOI stage: jc_qoi with one M0 model (sram_model_rw).
+// Test top for the QOI stage: jc_qoi with one M0 model (sram_model).
 // Test only; not part of the chip.
 `timescale 1ns / 1ps
 module tb_qoi_top (
@@ -40,11 +40,12 @@ module tb_qoi_top (
       .m0_rdata(m0_rdata)
   );
 
-  sram_model_rw u_m0 (
+  sram_model u_m0 (
       .clk(clk), .rst_n(rst_n),
       .req(m0_req), .we(m0_we), .addr(m0_addr), .wdata(m0_wdata),
       .stall(m0_stall), .gnt(m0_gnt), .rvalid(m0_rvalid), .rdata(m0_rdata),
-      .bd_en(bd_en), .bd_addr(bd_addr), .bd_data(bd_data)
+      .bd_en(bd_en), .bd_addr(bd_addr), .bd_data(bd_data),
+      .dbg_addr(8'd0), .dbg_data()
   );
 
   // The stage may only touch words 192 to 255 (spec section 13).
