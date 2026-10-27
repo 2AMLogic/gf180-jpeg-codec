@@ -21,7 +21,7 @@ import run_tb  # noqa: E402
 run_tb.TB = HERE
 run_tb.SOURCES = [
     ROOT / "rtl" / "jc_qoi.v",
-    HERE / "sram_model_rw.v",
+    HERE / "sram_model.v",
     HERE / "tb_qoi_top.v",
 ]
 run_tb.TOPLEVEL = "tb_qoi_top"

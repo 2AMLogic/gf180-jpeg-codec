@@ -70,13 +70,17 @@ module tb_entropy_top (
   sram_model u_m1 (
       .clk(clk), .rst_n(rst_n), .req(m1_req), .addr(m1_addr),
       .stall(m1_stall), .gnt(m1_gnt), .rvalid(m1_rvalid), .rdata(m1_rdata),
-      .wr_en(m1_wr_en), .wr_addr(m1_wr_addr), .wr_data(m1_wr_data)
+      .we(1'b0), .wdata(32'd0),
+      .bd_en(m1_wr_en), .bd_addr(m1_wr_addr), .bd_data(m1_wr_data),
+      .dbg_addr(8'd0), .dbg_data()
   );
 
   sram_model u_m2 (
       .clk(clk), .rst_n(rst_n), .req(m2_req), .addr(m2_addr),
       .stall(m2_stall), .gnt(m2_gnt), .rvalid(m2_rvalid), .rdata(m2_rdata),
-      .wr_en(m2_wr_en), .wr_addr(m2_wr_addr), .wr_data(m2_wr_data)
+      .we(1'b0), .wdata(32'd0),
+      .bd_en(m2_wr_en), .bd_addr(m2_wr_addr), .bd_data(m2_wr_data),
+      .dbg_addr(8'd0), .dbg_data()
   );
 
 endmodule
