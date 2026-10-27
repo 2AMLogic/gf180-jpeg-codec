@@ -13,6 +13,10 @@
           "content_hash": "sha256:0fc4df2b57b27dac28b8ee80c95b2eaf765ed3618145e58f3a1ec7e2a935b55f"
         }
       }
+    },
+    "10": {
+      "file": "manifests/attest/item10.json",
+      "content_hash": "sha256:7b81dd1abe1895a8b12b687ac4beaeab0832b13b7fe98f066e5e401738ebc542"
     }
   }
 }
