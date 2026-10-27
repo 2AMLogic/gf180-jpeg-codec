@@ -4,7 +4,8 @@
 **Resolves**: #3 ("Draft and ratify the target spec")
 **Decision records**: [0002 input order and buffering](decision-records/0002-input-order-and-buffering.md),
 [0003 DCT arithmetic](decision-records/0003-dct-arithmetic.md),
-[0004 SRAM source](decision-records/0004-sram-source.md). The PDK pin is
+[0004 SRAM source](decision-records/0004-sram-source.md),
+[0005 item 6 row accounting](decision-records/0005-item6-row-accounting.md). The PDK pin is
 `decision-records/0001-pdk-pin.md`, owned by #5; this spec cites it and does
 not restate it.
 
@@ -378,8 +379,10 @@ the macro's Liberty views exist: they do not yet (gf180-sram README,
 - **Statistical rows**: none. The block is digital and every row of this spec
   is deterministic and exact, so Monte Carlo evidence (T1 item 6) is not
   applicable. This statement covers: JPEG mode, lossless path, resolution/rate
-  (a derived cycle count), tables, signoff clock and byte-exactness, the last
-  of which is exact by definition.
+  (a derived cycle count), tables, signoff clock, byte-exactness (exact by
+  definition) and signoff (DRC and LVS are pass/fail; STA is checked at each
+  ratified corner). That is all seven rows of §1 (clarified by
+  [decision record 0005](decision-records/0005-item6-row-accounting.md)).
 
 ## 12. Reference image set
 
