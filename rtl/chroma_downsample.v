@@ -10,7 +10,9 @@ module chroma_downsample (
     input  wire [7:0] s11,
     output wire [7:0] out
 );
+  /* verilator lint_off UNUSEDSIGNAL */  // sum[1:0] is the floor dropped by >> 2
   wire [9:0] sum = {2'b00, s00} + {2'b00, s01} + {2'b00, s10} + {2'b00, s11}
                  + (odd_col ? 10'd2 : 10'd1);
+  /* verilator lint_on UNUSEDSIGNAL */
   assign out = sum[9:2];
 endmodule
