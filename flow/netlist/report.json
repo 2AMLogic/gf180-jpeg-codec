@@ -204,7 +204,7 @@
     "path": "flow/netlist/jpeg_codec_top_synth.v",
     "scope": "repo"
   },
-  "netlist_sha256": "16b74727ecd470eb3e22fac03b39e7092c23ba3ebb84c01aaec1efa0d02061e0",
+  "netlist_sha256": "871dc5df053c0cca368f79f862b469a774ba32b1ee906cc13477e57b54b5c682",
   "script_path": {
     "path": "flow/netlist/synth_jpeg_codec_top.ys",
     "scope": "repo"
@@ -230,7 +230,7 @@
       "released": false
     },
     "input": {
-      "content_hash": "sha256:38c2b0c92b7e2cbc29ab70c4ea0855122fd890f79bc1dd35c1a774e050d1d1b0",
+      "content_hash": "sha256:89a67970584fcfffa2d19e41702163ee4cf7271a637139759a9cb477d51d4c68",
       "role": "source"
     },
     "parameters": {}

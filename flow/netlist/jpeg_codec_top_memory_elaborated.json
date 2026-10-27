@@ -360,7 +360,7 @@
       },
       "\\jc_xpose_rf": {
          "num_wires":         147,
-         "num_wire_bits":     2673,
+         "num_wire_bits":     1633,
          "num_pub_wires":     7,
          "num_pub_wire_bits": 264,
          "num_ports":         6,
@@ -379,10 +379,10 @@
          }
       },
       "\\jc_dct1d": {
-         "num_wires":         289,
-         "num_wire_bits":     5111,
-         "num_pub_wires":     76,
-         "num_pub_wire_bits": 1781,
+         "num_wires":         299,
+         "num_wire_bits":     5307,
+         "num_pub_wires":     86,
+         "num_pub_wire_bits": 1977,
          "num_ports":         9,
          "num_port_bits":     239,
          "num_memories":      0,
@@ -591,10 +591,10 @@
       }
    },
       "design": {
-         "num_wires":         5107,
-         "num_wire_bits":     34029,
-         "num_pub_wires":     936,
-         "num_pub_wire_bits": 9331,
+         "num_wires":         5117,
+         "num_wire_bits":     33185,
+         "num_pub_wires":     946,
+         "num_pub_wire_bits": 9527,
          "num_ports":         320,
          "num_port_bits":     2917,
          "num_memories":      9,

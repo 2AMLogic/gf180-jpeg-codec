@@ -382,10 +382,10 @@
          }
       },
       "\\jc_dct1d": {
-         "num_wires":         158,
-         "num_wire_bits":     2636,
-         "num_pub_wires":     70,
-         "num_pub_wire_bits": 1460,
+         "num_wires":         168,
+         "num_wire_bits":     2832,
+         "num_pub_wires":     80,
+         "num_pub_wire_bits": 1656,
          "num_ports":         9,
          "num_port_bits":     239,
          "num_memories":      0,
@@ -608,10 +608,10 @@
       }
    },
       "design": {
-         "num_wires":         2814,
-         "num_wire_bits":     18893,
-         "num_pub_wires":     921,
-         "num_pub_wire_bits": 8918,
+         "num_wires":         2824,
+         "num_wire_bits":     19089,
+         "num_pub_wires":     931,
+         "num_pub_wire_bits": 9114,
          "num_ports":         320,
          "num_port_bits":     2917,
          "num_memories":      0,
