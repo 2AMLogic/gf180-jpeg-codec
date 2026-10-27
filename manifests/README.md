@@ -8,8 +8,14 @@ output: the machine-readable state of the
 ## Files
 
 - **`gf180-jpeg-codec.json`** - the block manifest: `kind: digital` plus an
-  `evidence` map. Every citation pins the `content_hash` of the artifact it
-  cites; today only item 10 is cited.
+  `evidence` map. Every citation must pin the `content_hash` of the artifact
+  it cites. Item 6 (statistical claims) is `not_applicable`: it cites the two
+  spec files below. Item 10 cites the attestation envelope.
+- **`codec-spec-rows.json`** - JSON row index of the ratified
+  [`spec/codec.md`](../spec/codec.md) §1 (klt binds JSON, not Markdown). A
+  transcription, not a spec change.
+- **`codec-item6-statement.json`** - one entry per spec row stating why it is
+  not statistical (spec §11, decision record 0005).
 - **`attest/item10.inventory.json`** / **`attest/item10.json`** - the item-10
   (repo hygiene) inventory and the envelope `klt signoff --attest` produced
   from it. The manifest cites the envelope with the inventory's sha256.

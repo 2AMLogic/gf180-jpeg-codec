@@ -1,0 +1,12 @@
+{
+  "spec": "manifests/codec-spec-rows.json",
+  "rows": [
+    {"id": "jpeg_mode", "class": "deterministic", "reason": "A format choice (baseline sequential, 4:2:0 or grey); it has no distribution."},
+    {"id": "lossless_path", "class": "deterministic", "reason": "QOI is lossless: output is exact by construction, with no tolerance."},
+    {"id": "resolution_rate", "class": "derived", "reason": "A cycle count from the signoff clock and a counted simulation on a named image; arithmetic, not a sampled quantity."},
+    {"id": "tables", "class": "deterministic", "reason": "Table contents are loaded values; the table paths are exact."},
+    {"id": "signoff_clock", "class": "corner-bounded", "reason": "Static timing at each ratified corner is a deterministic analysis of the routed netlist."},
+    {"id": "correctness", "class": "deterministic", "reason": "Byte-exact against the golden encoder; exact by definition."},
+    {"id": "signoff", "class": "deterministic", "reason": "DRC and LVS are pass/fail on the layout; STA closure is checked at every ratified corner. None is a sampled quantity."}
+  ]
+}
