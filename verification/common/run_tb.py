@@ -36,9 +36,15 @@ RTL = ROOT / "rtl"
 TB = ROOT / "verification" / "tb"
 GOLDEN = ROOT / "verification" / "golden"
 
-SOURCES = [RTL / "smoke_placeholder.v"]
-TOPLEVEL = "smoke_placeholder"
-TEST_MODULE = "test_smoke"
+# bench -> (sources, toplevel, test module, test dir)
+BENCHES = {
+    "smoke": ([RTL / "smoke_placeholder.v"], "smoke_placeholder", "test_smoke", TB),
+    "colour": (
+        [RTL / "colour_convert.v", RTL / "chroma_downsample.v",
+         ROOT / "verification" / "rtl" / "colour_tb_top.v"],
+        "colour_tb_top", "test_colour", ROOT / "verification" / "rtl",
+    ),
+}
 TIMESCALE = ("1ns", "1ps")
 
 EXIT_OK = 0
@@ -58,6 +64,8 @@ def main(argv: list[str] | None = None) -> int:
         help="Verilog `define passed to the build (repeatable).",
     )
     ap.add_argument("--testcase", default=None, help="run a single named test")
+    ap.add_argument("--bench", default="smoke", choices=sorted(BENCHES),
+                    help="which testbench to run (default: smoke)")
     ap.add_argument("--waves", action="store_true")
     args = ap.parse_args(argv)
 
@@ -69,7 +77,8 @@ def main(argv: list[str] | None = None) -> int:
         name, _, value = item.partition("=")
         defines[name] = value or 1
 
-    build_dir = TB / "sim_build" / args.sim
+    SOURCES, TOPLEVEL, TEST_MODULE, TEST_DIR = BENCHES[args.bench]
+    build_dir = TB / "sim_build" / args.sim / args.bench
     runner = get_runner(args.sim)
     try:
         runner.build(
@@ -94,19 +103,19 @@ def main(argv: list[str] | None = None) -> int:
     # extra_env["PYTHONPATH"] is silently discarded. The golden model and the
     # testbench directory therefore go on this process's sys.path. A wrong
     # path makes the suite not RUN (import error, exit 2) instead of failing.
-    for path in (GOLDEN, TB):
+    for path in (GOLDEN, TEST_DIR):
         if str(path) not in sys.path:
             sys.path.insert(0, str(path))
 
     pythonpath = os.pathsep.join(
-        [str(GOLDEN), str(TB)] + ([os.environ["PYTHONPATH"]] if os.environ.get("PYTHONPATH") else [])
+        [str(GOLDEN), str(TEST_DIR)] + ([os.environ["PYTHONPATH"]] if os.environ.get("PYTHONPATH") else [])
     )
 
     try:
         results_xml = runner.test(
             hdl_toplevel=TOPLEVEL,
             test_module=TEST_MODULE,
-            test_dir=TB,
+            test_dir=TEST_DIR,
             build_dir=build_dir,
             seed=args.seed,
             timescale=TIMESCALE,
