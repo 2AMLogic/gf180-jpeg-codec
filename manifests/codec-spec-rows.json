@@ -1,0 +1,14 @@
+{
+  "status": "ratified",
+  "source": "spec/codec.md section 1 (README table, row by row)",
+  "ratified": "2026-10-17",
+  "rows": [
+    {"id": "jpeg_mode", "title": "JPEG mode"},
+    {"id": "lossless_path", "title": "Lossless path"},
+    {"id": "resolution_rate", "title": "Resolution / rate"},
+    {"id": "tables", "title": "Tables"},
+    {"id": "signoff_clock", "title": "Signoff clock"},
+    {"id": "correctness", "title": "Correctness"},
+    {"id": "signoff", "title": "Signoff"}
+  ]
+}

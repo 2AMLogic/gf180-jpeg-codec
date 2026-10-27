@@ -53,3 +53,22 @@ qualities 10, 50, 75 and 95, colour 4:2:0 and grey. Exit `0` all pass, `1` a
 case failed, `2` it did not run (Pillow missing or not 10.2.0). Each normal run
 appends one timestamped record under `verification/records/`; never edit or
 delete an earlier one. The negative control writes none.
+
+## Entropy stage bench (`verification/rtl/`)
+
+`verification/rtl/test_entropy.py` drives `jc_zigzag -> jc_huff -> jc_bitpack`
+(RTL: `rtl/jc_*.v`, ports per decision record 0005) with two `sram_model.v`
+instances standing in for M1/M2 and a pass-through stand-in for the quantizer
+(`tb_entropy_top.v`). Its integer reference is written from spec section 6
+only; Annex K table data comes from the golden module, the worked-example
+bytes are pinned in the test.
+
+```sh
+python3 verification/rtl/run_entropy.py            # icarus; same exit codes as run_tb.py
+```
+
+Covers: the section 6 worked example (12 bytes), all-zero block, position 63
+non-zero, ZRL runs, `FF 00` stuffing, DC chain across components and frames,
+size-10 AC and size-11 DC, output/input/memory back-pressure, and 600 seeded
+random blocks. Not covered here: cycle counts against the record 0005 budget
+rows, and the byte-exact comparison with the golden encoder (#34).

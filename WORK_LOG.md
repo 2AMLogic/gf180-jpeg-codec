@@ -3,6 +3,11 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-10-27
+
+- **PR #49**: feat: attest T1 item 10 via klt signoff --attest, bump klt to 0.8.0
+- **Issue #39** (closed): T1 item 10 (repo hygiene): item 10 inventory and klt signoff --attest envelope
+
 ### 2026-10-24
 
 - **PR #28**: fix: point run_tb.py golden-model path at verification/golden
