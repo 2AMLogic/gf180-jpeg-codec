@@ -5,6 +5,14 @@ Maintained by the Guide triage role.
 
 ### 2026-10-27
 
+- **PR #71**: fix: make stage RTL Verilator -Wall clean without changing arithmetic
+- **PR #70**: feat(rtl): integrate jpeg_codec_top with SRAM wrappers, netlist and item-1 attestation
+- **PR #66**: feat(rtl): config, table-load, header and output-mux stage with cocotb bench
+- **PR #63**: feat: add jc_qoi QOI chunk encoder with cocotb bench
+- **Issue #69** (closed): lint: Verilator -Wall fails on main (39 warnings), item-10 attestation no longer reproduces
+- **Issue #48** (closed): Encoder RTL integration: top level, synthesis flow, gate-level netlist and item 1 attestation
+- **Issue #47** (closed): Encoder RTL stage: QOI lossless path (spec §8)
+- **Issue #46** (closed): Encoder RTL stage: configuration, table load/validation and file framing (spec §3, §5–§7)
 - **PR #60**: refactor: run libjpeg cross-check on gen_images.py reference set
 - **PR #58**: feat: add rounding quantizer stage with exhaustive check
 - **PR #57**: feat: add zig-zag, Huffman symbol path and bit packer RTL with cocotb bench

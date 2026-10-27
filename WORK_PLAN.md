@@ -19,8 +19,7 @@ _None._
 
 `loom:important`; taken before unlabelled work.
 
-- **#46**: Encoder RTL stage: configuration, table load/validation and file framing (spec §3, §5–§7)
-- **#47**: Encoder RTL stage: QOI lossless path (spec §8)
+- **#30**: T1 item 1 (design sources): encoder RTL per spec §2–§8 and its synthesized gate-level netlist
 
 ## Ready
 
@@ -32,8 +31,7 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-- **#46**: Encoder RTL stage: configuration, table load/validation and file framing (spec §3, §5–§7)
-- **#47**: Encoder RTL stage: QOI lossless path (spec §8)
+_None._
 
 ## PRs Awaiting Review
 
@@ -45,20 +43,19 @@ PRs waiting on Judge (`loom:review-requested`).
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-- **#63**: feat: add jc_qoi QOI chunk encoder with cocotb bench
+_None._
 
 ## Proposed
 
 Issues carrying `loom:curated`.
 
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
-- **#46**: Encoder RTL stage: configuration, table load/validation and file framing (spec §3, §5–§7) *(curated)*
-- **#47**: Encoder RTL stage: QOI lossless path (spec §8) *(curated)*
 - **#59**: golden model differs from libjpeg-turbo on 4:2:0 odd-size image (odd_100x60) *(curated)*
 
 ## Proposed (Architect / Hermit)
 
-_None._
+- **#67**: Consolidate three duplicate SRAM test models in verification/rtl *(hermit)*
+- **#68**: Consolidate four near-identical run_*.py cocotb runner wrappers in verification/rtl *(hermit)*
 
 ## Epics
 
@@ -70,12 +67,12 @@ _None._
 |------|-------|
 | Operator merge-risk holds | 0 |
 | Very important | 0 |
-| Important | 2 |
+| Important | 1 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 2 |
+| In Progress (`loom:building`) | 0 |
 | PRs awaiting review | 1 |
-| Approved PRs awaiting merge | 1 |
-| Curated | 4 |
-| Architect / Hermit proposals | 0 |
+| Approved PRs awaiting merge | 0 |
+| Curated | 2 |
+| Architect / Hermit proposals | 2 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
