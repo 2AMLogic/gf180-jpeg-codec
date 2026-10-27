@@ -29,14 +29,24 @@ module jc_dct1d (
     assign done = busy && (step == 3'd7) && go;
 
     // ---- butterflies, from the latched inputs --------------------------
-    wire signed [16:0] t0 = d0 + d7;
-    wire signed [16:0] t7 = d0 - d7;
-    wire signed [16:0] t1 = d1 + d6;
-    wire signed [16:0] t6 = d1 - d6;
-    wire signed [16:0] t2 = d2 + d5;
-    wire signed [16:0] t5 = d2 - d5;
-    wire signed [16:0] t3 = d3 + d4;
-    wire signed [16:0] t4 = d3 - d4;
+    // Sign-extend the 14-bit inputs to the 17-bit butterfly width explicitly.
+    wire signed [16:0] e0 = {{3{d0[13]}}, d0};
+    wire signed [16:0] e1 = {{3{d1[13]}}, d1};
+    wire signed [16:0] e2 = {{3{d2[13]}}, d2};
+    wire signed [16:0] e3 = {{3{d3[13]}}, d3};
+    wire signed [16:0] e4 = {{3{d4[13]}}, d4};
+    wire signed [16:0] e5 = {{3{d5[13]}}, d5};
+    wire signed [16:0] e6 = {{3{d6[13]}}, d6};
+    wire signed [16:0] e7 = {{3{d7[13]}}, d7};
+
+    wire signed [16:0] t0 = e0 + e7;
+    wire signed [16:0] t7 = e0 - e7;
+    wire signed [16:0] t1 = e1 + e6;
+    wire signed [16:0] t6 = e1 - e6;
+    wire signed [16:0] t2 = e2 + e5;
+    wire signed [16:0] t5 = e2 - e5;
+    wire signed [16:0] t3 = e3 + e4;
+    wire signed [16:0] t4 = e3 - e4;
 
     wire signed [16:0] t10 = t0 + t3;
     wire signed [16:0] t13 = t0 - t3;
@@ -65,8 +75,10 @@ module jc_dct1d (
             default: ;
         endcase
     end
+    /* verilator lint_off UNUSEDSIGNAL */  // products are kept to [29:0] below
     wire signed [32:0] ma = opa * $signed({2'b00, ka});
     wire signed [32:0] mb = opb * $signed({2'b00, kb});
+    /* verilator lint_on UNUSEDSIGNAL */
 
     // pa1 = (t12+t13)*4433   pb1 = z5            pa2 = t13*6270   pb2 = t4*2446
     // pa3 = t12*15137        pb3 = t5*16819      pa4 = t6*25172   pb4 = t7*12299
@@ -118,8 +130,10 @@ module jc_dct1d (
     wire signed [29:0] z3f = pb1 - pa6;
     wire signed [29:0] z4f = pb1 - pb6;
 
-    wire signed [29:0] sum_e = t10 + t11;
-    wire signed [29:0] dif_e = t10 - t11;
+    wire signed [29:0] t10x = {{13{t10[16]}}, t10};
+    wire signed [29:0] t11x = {{13{t11[16]}}, t11};
+    wire signed [29:0] sum_e = t10x + t11x;
+    wire signed [29:0] dif_e = t10x - t11x;
 
     wire signed [29:0] x0 = p2 ? sum_e : (sum_e <<< 2);
     wire signed [29:0] x4 = p2 ? dif_e : (dif_e <<< 2);
@@ -133,6 +147,7 @@ module jc_dct1d (
     // DESCALE(x, S) = (x + (1 << (S-1))) >> S; the even DC terms use S = 2
     // in pass 2 and a plain << 2 in pass 1.
     wire signed [29:0] rnd = p2 ? 30'sd16384 : 30'sd1024;
+    /* verilator lint_off UNUSEDSIGNAL */  // only y*[14:0] reach o_flat
     wire signed [29:0] y0 = (x0 + (p2 ? 30'sd2 : 30'sd0)) >>> (p2 ? 2 : 0);
     wire signed [29:0] y4 = (x4 + (p2 ? 30'sd2 : 30'sd0)) >>> (p2 ? 2 : 0);
     wire signed [29:0] y1 = (x1 + rnd) >>> (p2 ? 15 : 11);
@@ -141,6 +156,7 @@ module jc_dct1d (
     wire signed [29:0] y5 = (x5 + rnd) >>> (p2 ? 15 : 11);
     wire signed [29:0] y6 = (x6 + rnd) >>> (p2 ? 15 : 11);
     wire signed [29:0] y7 = (x7 + rnd) >>> (p2 ? 15 : 11);
+    /* verilator lint_on UNUSEDSIGNAL */
 
     assign o_flat = {y7[14:0], y6[14:0], y5[14:0], y4[14:0],
                      y3[14:0], y2[14:0], y1[14:0], y0[14:0]};

@@ -19,7 +19,7 @@ module jc_xpose_rf (
     always @(posedge clk) begin
         if (we)
             for (i = 0; i < 8; i = i + 1)
-                mem[{wrow, 3'b000} + i] <= wdata[14 * i +: 14];
+                mem[{wrow, 3'b000} + i[5:0]] <= wdata[14 * i +: 14];
     end
 
     genvar r;

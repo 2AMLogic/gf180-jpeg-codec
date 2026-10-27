@@ -25,9 +25,11 @@ module colour_convert (
   wire signed [24:0] cr_sum = 25'sd32768 * rs - 25'sd27439 * gs - 25'sd5329 * bs + CHROMA_OFF;
 
   // Arithmetic shift (floor); results are 0..255 by the spec's exhaustive run.
+  /* verilator lint_off UNUSEDSIGNAL */  // only bits [7:0] are the 0..255 result
   wire signed [24:0] y_sh  = y_sum >>> 16;
   wire signed [24:0] cb_sh = cb_sum >>> 16;
   wire signed [24:0] cr_sh = cr_sum >>> 16;
+  /* verilator lint_on UNUSEDSIGNAL */
 
   assign y            = grey ? r : y_sh[7:0];
   assign cb           = cb_sh[7:0];
