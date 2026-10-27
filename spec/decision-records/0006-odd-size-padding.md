@@ -43,7 +43,7 @@ MCUs). Greyscale is unaffected (8 x 8 MCU, no chroma).
   image** (recommended). Spec, golden and RTL unchanged; the chip stays unaware
   of padding. The cross-check feeds libjpeg the padded image and compares the
   scan; SOF0 dimensions are not part of the scan. Gives up: libjpeg on the true
-  size image is not byte-identical,.
+  size image is not byte-identical.
 - **B. Change the golden model and RTL to follow libjpeg-turbo.** Byte-equal to
   libjpeg on any size. Gives up: the chip must know the true size (dummy luma
   blocks, chroma-domain row padding), which contradicts §2's "unaware of
