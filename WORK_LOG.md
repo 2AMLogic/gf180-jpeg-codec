@@ -5,6 +5,24 @@ Maintained by the Guide triage role.
 
 ### 2026-10-27
 
+- **PR #60**: refactor: run libjpeg cross-check on gen_images.py reference set
+- **PR #58**: feat: add rounding quantizer stage with exhaustive check
+- **PR #57**: feat: add zig-zag, Huffman symbol path and bit packer RTL with cocotb bench
+- **PR #56**: feat: add DCT stage RTL with transpose register file and cocotb test
+- **PR #54**: feat: attest T1 item 9 testbenches via klt signoff --attest
+- **PR #52**: docs: add RTL microarchitecture decision record 0005
+- **PR #51**: feat(rtl): add colour converter and 4:2:0 chroma downsampler (spec §4)
+- **PR #50**: feat: grade T1 item 6 as not_applicable and pin klt 0.8.0
+- **PR #22**: feat(verification): add reference image generator and QOI golden model
+- **Issue #55** (closed): Remove inline image generators from crosscheck_libjpeg.py: use gen_images.py (#17 landed)
+- **Issue #45** (closed): Encoder RTL stage: zig-zag, DC prediction, Huffman coding and bit packer (spec §6)
+- **Issue #44** (closed): Encoder RTL stage: quantizer with exhaustive check (spec §5)
+- **Issue #43** (closed): Encoder RTL stage: 2-D DCT and transpose register file (record 0003)
+- **Issue #42** (closed): Encoder RTL stage: colour conversion and 4:2:0 downsample (spec §4)
+- **Issue #41** (closed): RTL microarchitecture decision record: stage split, pin-level interface, cycle budget
+- **Issue #38** (closed): T1 item 9 (testbenches shipped): item 9 inventory and attestation for the codec testbenches
+- **Issue #35** (closed): T1 item 6 (Monte Carlo): cite spec §11's no-statistical-rows statement as the item 6 not-applicable entry
+- **Issue #17** (closed): Commit the reference image generator and the QOI golden model (spec §8, §11, §12)
 - **PR #49**: feat: attest T1 item 10 via klt signoff --attest, bump klt to 0.8.0
 - **Issue #39** (closed): T1 item 10 (repo hygiene): item 10 inventory and klt signoff --attest envelope
 
