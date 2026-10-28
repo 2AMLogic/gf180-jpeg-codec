@@ -3,6 +3,10 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-10-28
+
+- **PR #77**: flow: add codec place-and-route request, record missing SRAM macro LEF
+
 ### 2026-10-27
 
 - **PR #76**: refactor(verification): merge three SRAM test models into one
