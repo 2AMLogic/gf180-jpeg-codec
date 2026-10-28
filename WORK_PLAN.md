@@ -19,7 +19,7 @@ _None._
 
 `loom:important`; taken before unlabelled work.
 
-- **#30**: T1 item 1 (design sources): encoder RTL per spec §2–§8 and its synthesized gate-level netlist
+- **#31**: T1 item 2 (layout): place-and-route the encoder with the three SRAM macros to a committed routed GDS
 
 ## Ready
 
@@ -54,8 +54,7 @@ Issues carrying `loom:curated`.
 
 ## Proposed (Architect / Hermit)
 
-- **#67**: Consolidate three duplicate SRAM test models in verification/rtl *(hermit)*
-- **#68**: Consolidate four near-identical run_*.py cocotb runner wrappers in verification/rtl *(hermit)*
+_None._
 
 ## Epics
 
@@ -73,6 +72,6 @@ _None._
 | PRs awaiting review | 1 |
 | Approved PRs awaiting merge | 0 |
 | Curated | 2 |
-| Architect / Hermit proposals | 2 |
+| Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
