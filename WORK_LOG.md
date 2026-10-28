@@ -5,6 +5,13 @@ Maintained by the Guide triage role.
 
 ### 2026-10-27
 
+- **PR #76**: refactor(verification): merge three SRAM test models into one
+- **PR #75**: refactor(verification): replace four cocotb stage wrappers with one table-driven run_stage.py
+- **PR #74**: refactor(rtl): remove unused chroma_downsample module and its unit test
+- **Issue #73** (closed): Remove chroma_downsample: unused by the chip, jc_downsample reimplements it
+- **Issue #68** (closed): Consolidate four near-identical run_*.py cocotb runner wrappers in verification/rtl
+- **Issue #67** (closed): Consolidate three duplicate SRAM test models in verification/rtl
+- **Issue #30** (closed): T1 item 1 (design sources): encoder RTL per spec §2–§8 and its synthesized gate-level netlist
 - **PR #71**: fix: make stage RTL Verilator -Wall clean without changing arithmetic
 - **PR #70**: feat(rtl): integrate jpeg_codec_top with SRAM wrappers, netlist and item-1 attestation
 - **PR #66**: feat(rtl): config, table-load, header and output-mux stage with cocotb bench
