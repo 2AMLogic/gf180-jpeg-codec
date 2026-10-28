@@ -31,7 +31,9 @@ run stops at floorplan:
 [ERROR ORD-2013] instance u_m0/u_macro LEF master gf180_sram_256x32 not found.
 ```
 
-Recorded as it ran in `records/20261028T050500Z-a53678d/`. No routed GDS exists,
+Recorded as it ran in `records/20261028T050500Z-a53678d/` (klt wrote the failure
+envelope to stderr and nothing to stdout, so `place-and-route.json` there is a
+copy of `place-and-route.stderr`). No routed GDS exists,
 `reuse.lock.json` has no `gf180-sram` pin (nothing is vendored), and
 `manifests/gf180-jpeg-codec.json` is unchanged. Unblocked by a full-macro
 LEF/GDS for decision 0004's pin list from `gf180-sram`; then add the three

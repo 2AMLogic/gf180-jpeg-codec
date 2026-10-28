@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "error": {
+    "command": "place-and-route",
+    "message": "openroad 'floorplan' stage failed: [ERROR ORD-2013] instance u_m0/u_macro LEF master gf180_sram_256x32 not found. -- instance 'u_m0/u_macro' is a hard macro ('gf180_sram_256x32') with no physical view loaded: declare it in request.macros as {\"cell\": \"gf180_sram_256x32\", \"lef\": \"<gf180_sram_256x32.lef>\"} (add a per-corner \"lib\" to time it too) -- openroad invocation: {\"directory\": {\"path\": \"flow/.klt/place-and-route/openroad-logs/054cc48607ef4a958d57ba965ea45cbb\", \"scope\": \"repo\"}, \"invocation_id\": \"054cc48607ef4a958d57ba965ea45cbb\", \"metadata_path\": {\"path\": \"flow/.klt/place-and-route/openroad-logs/054cc48607ef4a958d57ba965ea45cbb/invocation.json\", \"scope\": \"repo\"}, \"metrics_path\": {\"path\": \"flow/.klt/place-and-route/jpeg_codec_top_floorplan_metrics.json\", \"scope\": \"repo\"}, \"outcome\": \"exited\", \"retention_errors\": [], \"returncode\": 1, \"script_name\": \"pnr_jpeg_codec_top_floorplan.tcl\", \"script_path\": {\"path\": \"flow/.klt/place-and-route/pnr_jpeg_codec_top_floorplan.tcl\", \"scope\": \"repo\"}, \"script_sha256\": \"f8dde4e797bd637562ebe1c491f5837bcfa33d4406334d95234279a73731ec6b\", \"stderr_path\": {\"path\": \"flow/.klt/place-and-route/openroad-logs/054cc48607ef4a958d57ba965ea45cbb/stderr.log\", \"scope\": \"repo\"}, \"stdout_path\": {\"path\": \"flow/.klt/place-and-route/openroad-logs/054cc48607ef4a958d57ba965ea45cbb/stdout.log\", \"scope\": \"repo\"}}"
+  }
+}
