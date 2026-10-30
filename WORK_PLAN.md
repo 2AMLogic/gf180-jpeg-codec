@@ -19,7 +19,7 @@ _None._
 
 `loom:important`; taken before unlabelled work.
 
-_None._
+- **#31**: T1 item 2 (layout): place-and-route the encoder with the three SRAM macros to a committed routed GDS
 
 ## Ready
 
@@ -31,36 +31,26 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-- **#17**: Commit the reference image generator and the QOI golden model (spec §8, §11, §12)
-- **#35**: T1 item 6 (Monte Carlo): cite spec §11's no-statistical-rows statement as the item 6 not-applicable entry
-- **#41**: RTL microarchitecture decision record: stage split, pin-level interface, cycle budget
-- **#42**: Encoder RTL stage: colour conversion and 4:2:0 downsample (spec §4)
+_None._
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
-- **#22**: feat(verification): add reference image generator and QOI golden model
+- **#61**: docs: diagnose odd-size 4:2:0 libjpeg mismatch and propose padding record
 
 ## Approved (Awaiting Merge)
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-- **#51**: feat(rtl): add colour converter and 4:2:0 chroma downsampler (spec §4)
-- **#52**: docs: add RTL microarchitecture decision record 0005
+_None._
 
 ## Proposed
 
 Issues carrying `loom:curated`.
 
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
-- **#17**: Commit the reference image generator and the QOI golden model (spec §8, §11, §12) *(curated)*
-- **#35**: T1 item 6 (Monte Carlo): cite spec §11's no-statistical-rows statement as the item 6 not-applicable entry *(curated)*
-- **#38**: T1 item 9 (testbenches shipped): item 9 inventory and attestation for the codec testbenches *(curated)*
-- **#41**: RTL microarchitecture decision record: stage split, pin-level interface, cycle budget *(curated)*
-- **#42**: Encoder RTL stage: colour conversion and 4:2:0 downsample (spec §4) *(curated)*
-- **#44**: Encoder RTL stage: quantizer with exhaustive check (spec §5) *(curated)*
-- **#45**: Encoder RTL stage: zig-zag, DC prediction, Huffman coding and bit packer (spec §6) *(curated)*
+- **#59**: golden model differs from libjpeg-turbo on 4:2:0 odd-size image (odd_100x60) *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -76,12 +66,12 @@ _None._
 |------|-------|
 | Operator merge-risk holds | 0 |
 | Very important | 0 |
-| Important | 0 |
+| Important | 1 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 4 |
+| In Progress (`loom:building`) | 0 |
 | PRs awaiting review | 1 |
-| Approved PRs awaiting merge | 2 |
-| Curated | 8 |
+| Approved PRs awaiting merge | 0 |
+| Curated | 2 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

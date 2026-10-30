@@ -2,6 +2,10 @@
   "block": "gf180-jpeg-codec",
   "kind": "digital",
   "evidence": {
+    "1": {
+      "file": "manifests/attest/item1.json",
+      "content_hash": "sha256:b5400440562b0f65354c97ccb37304b15eee104fe8f630295e8cf281cabccdfe"
+    },
     "6": {
       "not_applicable": {
         "spec": {
@@ -13,6 +17,10 @@
           "content_hash": "sha256:0fc4df2b57b27dac28b8ee80c95b2eaf765ed3618145e58f3a1ec7e2a935b55f"
         }
       }
+    },
+    "9": {
+      "file": "manifests/attest/item9.json",
+      "content_hash": "sha256:91baabe6ebc2ba3a47434f34a829563e1b3c39943aa99892fb1eb43f8db73134"
     },
     "10": {
       "file": "manifests/attest/item10.json",

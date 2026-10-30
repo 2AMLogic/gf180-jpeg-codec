@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "kind": "t1-attestation-inventory",
+  "t1_item": 1,
+  "sources": [
+    "rtl/colour_convert.v",
+    "rtl/jc_bitpack.v",
+    "rtl/jc_cfg_regs.v",
+    "rtl/jc_dct.v",
+    "rtl/jc_dct1d.v",
+    "rtl/jc_downsample.v",
+    "rtl/jc_header_gen.v",
+    "rtl/jc_huff.v",
+    "rtl/jc_mb_ctrl.v",
+    "rtl/jc_out_mux.v",
+    "rtl/jc_qoi.v",
+    "rtl/jc_quant.v",
+    "rtl/jc_quant_core.v",
+    "rtl/jc_sram_arb.v",
+    "rtl/jc_sram_wrap.v",
+    "rtl/jc_table_load.v",
+    "rtl/jc_table_load_rom.v",
+    "rtl/jc_xpose_rf.v",
+    "rtl/jc_zigzag.v",
+    "rtl/jpeg_codec_top.v",
+    "flow/synthesize.json",
+    "flow/sram_blackbox.v"
+  ],
+  "derived": [
+    {
+      "path": "flow/netlist/jpeg_codec_top_synth.v",
+      "generator": "klt synthesize",
+      "check": {
+        "argv": [
+          "flow/synthesize.sh",
+          "--check"
+        ],
+        "cwd": ".",
+        "local_only": true
+      }
+    }
+  ]
+}

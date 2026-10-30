@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "kind": "t1-attestation-inventory",
+  "t1_item": 9,
+  "testbenches": [
+    "verification/tb/test_smoke.py",
+    "verification/tb/negative_control.sh",
+    "verification/common/run_tb.py",
+    "verification/golden/test_jpeg_golden.py",
+    "verification/golden/crosscheck_libjpeg.py"
+  ],
+  "cold_start": {
+    "argv": ["python3", "-m", "unittest", "discover", "-s", "verification/golden", "-p", "test_*.py"]
+  },
+  "pins": {
+    "pdk": {"name": "gf180mcuD", "revision": "f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7"},
+    "tools": {"cocotb": "2.1.0", "icarus": "14.0", "klt": "0.8.0", "verilator": "5.053"}
+  }
+}

@@ -289,9 +289,11 @@ module jc_quant_core (
 
     wire               neg = x[14];
     wire        [13:0] mag = neg ? (~x[13:0] + 14'd1) : x[13:0];  // |x| <= 8192
+    /* verilator lint_off UNUSEDSIGNAL */  // num[2:0] is the floor dropped by >> 3
     wire        [14:0] num = {1'b0, mag} + {5'b0, qv, 2'b0};      // |x| + 4Q
-    wire        [10:0] n   = num[14:3];                           // <= 1151
+    wire        [10:0] n   = num[13:3];                           // <= 1151
     wire        [30:0] prod = n * recip;
+    /* verilator lint_on UNUSEDSIGNAL */
     wire        [11:0] mq  = prod[30:19];                         // <= 1152 (Q = 1)
     wire               clamp = is_ac && (mq > 12'd1023);
     wire        [11:0] mc  = clamp ? 12'd1023 : mq;
