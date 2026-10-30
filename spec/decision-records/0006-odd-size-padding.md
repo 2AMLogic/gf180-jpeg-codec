@@ -1,7 +1,7 @@
 # Decision record 0006: odd-size padding versus libjpeg-turbo
 
-**Status**: Proposed, awaiting an operator ruling (issue #59). Nothing in the
-golden model, the spec or the cross-check changes until it is ratified.
+**Status**: Decided, option A (operator ruling, 2026-10-30, fleet:decide round
+20261030-r4, question r4-q13; issue #59). Golden model, spec and RTL unchanged.
 **Spec**: `spec/codec.md` §2 (Non-multiple sizes), §11, §12
 
 ## Question
@@ -52,6 +52,15 @@ MCUs). Greyscale is unaffected (8 x 8 MCU, no chroma).
 
 ## Decision
 
-Pending. Whichever is ratified, golden/spec changes and the extra `SIZES`
-entries are a follow-up (`Part of #59`), and the passing run is recorded under
+Option A. Operator ruling (2026-10-30, fleet:decide round 20261030-r4,
+question r4-q13, issue #59): keep §2. The host pads to whole MCUs and the chip
+stays unaware of padding; the cross-check feeds libjpeg-turbo the host-padded
+image for sizes that are not a multiple of 16.
+
+Consequences: the golden model, the spec and the RTL do not change. Byte
+identity with libjpeg on the true-size image is given up knowingly; the three
+edge behaviours above are libjpeg's, not the §2 contract's.
+
+Follow-up (`Part of #59`, a separate change): adapt `crosscheck_libjpeg.py` to
+pad for libjpeg, add the odd sizes to `SIZES`, and record the passing run under
 `verification/records/`.
