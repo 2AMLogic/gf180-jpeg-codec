@@ -25,7 +25,7 @@ _None._
 
 Human-approved issues ready for implementation (`loom:issue`).
 
-_None._
+- **#59**: golden model differs from libjpeg-turbo on 4:2:0 odd-size image (odd_100x60)
 
 ## In Progress
 
@@ -37,7 +37,7 @@ _None._
 
 PRs waiting on Judge (`loom:review-requested`).
 
-- **#61**: docs: diagnose odd-size 4:2:0 libjpeg mismatch and propose padding record
+_None._
 
 ## Approved (Awaiting Merge)
 
@@ -67,9 +67,9 @@ _None._
 | Operator merge-risk holds | 0 |
 | Very important | 0 |
 | Important | 1 |
-| Ready (`loom:issue`) | 0 |
+| Ready (`loom:issue`) | 1 |
 | In Progress (`loom:building`) | 0 |
-| PRs awaiting review | 1 |
+| PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
 | Curated | 2 |
 | Architect / Hermit proposals | 0 |

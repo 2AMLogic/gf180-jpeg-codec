@@ -3,6 +3,10 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-10-30
+
+- **PR #61**: docs: diagnose odd-size 4:2:0 libjpeg mismatch and propose padding record
+
 ### 2026-10-28
 
 - **PR #77**: flow: add codec place-and-route request, record missing SRAM macro LEF
