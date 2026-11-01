@@ -3,6 +3,10 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-10-31
+
+- **PR #82**: Bump Repo Skills 0.24.7 -> 0.25.1
+
 ### 2026-10-30
 
 - **PR #61**: docs: diagnose odd-size 4:2:0 libjpeg mismatch and propose padding record
