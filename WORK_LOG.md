@@ -3,6 +3,11 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-11-02
+
+- **PR #86**: test: cross-check odd sizes on the host-padded image
+- **Issue #59** (closed): golden model differs from libjpeg-turbo on 4:2:0 odd-size image (odd_100x60)
+
 ### 2026-10-31
 
 - **PR #82**: Bump Repo Skills 0.24.7 -> 0.25.1
