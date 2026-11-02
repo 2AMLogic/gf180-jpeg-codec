@@ -6,6 +6,12 @@ For every image, quality and mode:
   2. arithmetic: its entropy-coded segment equals the one Pillow/libjpeg-turbo
      writes for the same pixels (Annex K tables scaled to the quality).
 
+Sizes that are not a multiple of the MCU (16 colour, 8 grey) follow decision
+record 0006 (option A, spec section 2): libjpeg is fed the image the host would
+send, edge-replicated to a whole MCU, because libjpeg's own edge handling on
+the true-size image (dummy luma blocks, chroma-edge rows) is not the contract.
+The golden model still encodes the true-size image and pads it itself.
+
 Exit status: 0 every case passed, 1 a case failed (also what --negative-control
 must produce), 2 the check did not run (Pillow missing or not 10.2.0).
 
@@ -33,6 +39,9 @@ import jpeg_golden as g  # noqa: E402
 PILLOW_REQUIRED = "10.2.0"
 QUALITIES = (10, 50, 75, 95)
 SIZES = ((64, 48), (16, 16))
+# Not multiples of 16 (decision record 0006): cropped from scene_fbm 640x480.
+ODD_SIZES = ((100, 60), (104, 48), (100, 48), (64, 50), (64, 56), (64, 60),
+             (80, 56))
 
 
 def reference_images():
@@ -52,12 +61,26 @@ def reference_images():
         grey = files[fname[:-len(".ppm")] + "_grey.pgm"]
         yield (name, w, h, _pnm_body(files[fname], w, h, 3),
                _pnm_body(grey, w, h, 1))
+    big = gen_images.scene_fbm(640, 480)
+    for w, h in ODD_SIZES:
+        rgb = gen_images.crop(big, 640, w, h)
+        yield ("scene_fbm_crop", w, h, rgb, gen_images.luma(rgb))
 
 
 def _pnm_body(data, w, h, channels):
     body = data.split(b"\n", 3)[3]
     assert len(body) == channels * w * h
     return body
+
+
+def host_pad(pixels, w, h, channels, mcu):
+    """Edge-replicate to a whole MCU, as the host does (spec section 2)."""
+    pw, ph = -(-w // mcu) * mcu, -(-h // mcu) * mcu
+    out = bytearray()
+    for y in range(ph):
+        row = pixels[min(y, h - 1) * w * channels:(min(y, h - 1) + 1) * w * channels]
+        out += row + row[-channels:] * (pw - w)
+    return bytes(out), pw, ph
 
 
 def run_case(Image, pixels, w, h, mode, quality, round_delta):
@@ -69,7 +92,9 @@ def run_case(Image, pixels, w, h, mode, quality, round_delta):
 
     ref = io.BytesIO()
     kw = {"subsampling": 2} if mode == "colour" else {}
-    Image.frombytes(pil_mode, (w, h), pixels).save(
+    ref_px, rw, rh = host_pad(pixels, w, h, 3 if mode == "colour" else 1,
+                              16 if mode == "colour" else 8)
+    Image.frombytes(pil_mode, (rw, rh), ref_px).save(
         ref, "JPEG", quality=quality, optimize=False, **kw)
 
     decodable, why = True, ""
