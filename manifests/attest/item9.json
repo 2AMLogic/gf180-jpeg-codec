@@ -24,7 +24,7 @@
         "role": "testbench",
         "path": "verification/golden/crosscheck_libjpeg.py",
         "passed": true,
-        "content_hash": "sha256:f849eb0f9a1ae3a632d67a4f584b304ac938898609a4db8119019ecbd055e648"
+        "content_hash": "sha256:51118f558ee99461bbdfc66d3b2ce5756528dc905469c03cc7df2e8d737baa9e"
       },
       {
         "check": "present",
