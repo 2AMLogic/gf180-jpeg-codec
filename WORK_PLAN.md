@@ -13,14 +13,13 @@ _None._
 
 `loom:very-important` (one counts per workspace); every stage takes these first.
 
-_None._
+- **#59**: golden model differs from libjpeg-turbo on 4:2:0 odd-size image (odd_100x60)
 
 ## Important
 
 `loom:important`; taken before unlabelled work.
 
 - **#31**: T1 item 2 (layout): place-and-route the encoder with the three SRAM macros to a committed routed GDS
-- **#59**: golden model differs from libjpeg-turbo on 4:2:0 odd-size image (odd_100x60)
 
 ## Ready
 
@@ -66,8 +65,8 @@ _None._
 | Bucket | Count |
 |------|-------|
 | Operator merge-risk holds | 0 |
-| Very important | 0 |
-| Important | 2 |
+| Very important | 1 |
+| Important | 1 |
 | Ready (`loom:issue`) | 1 |
 | In Progress (`loom:building`) | 0 |
 | PRs awaiting review | 0 |
