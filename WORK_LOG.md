@@ -5,6 +5,10 @@ Maintained by the Guide triage role.
 
 ### 2026-11-05
 
+- **PR #95**: fix(rtl): reset jc_qoi col/row to remove gate-level X
+- **PR #94**: test: add zero-delay gate-level runner for the top-level smoke bench
+- **Issue #93** (closed): Gate-level netlist diverges from RTL on the QOI path (status_idle goes X, frame never completes)
+- **Issue #89** (closed): Re-run the top-level smoke bench on the synthesized gate-level netlist (zero delay)
 - **PR #91**: test: byte-exact top-level golden suite with klt negative control
 - **Issue #88** (closed): T1 item 5 (functional half): byte-exact klt functional-verification suite with negative control
 
