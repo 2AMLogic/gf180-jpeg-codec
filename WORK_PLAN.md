@@ -31,8 +31,7 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-- **#88**: T1 item 5 (functional half): byte-exact klt functional-verification suite with negative control
-- **#89**: Re-run the top-level smoke bench on the synthesized gate-level netlist (zero delay)
+_None._
 
 ## PRs Awaiting Review
 
@@ -54,7 +53,7 @@ Issues carrying `loom:curated`.
 
 ## Proposed (Architect / Hermit)
 
-_None._
+- **#96**: Remove smoke_placeholder skeleton: superseded by real codec benches *(hermit)*
 
 ## Epics
 
@@ -68,10 +67,10 @@ _None._
 | Very important | 0 |
 | Important | 1 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 2 |
+| In Progress (`loom:building`) | 0 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
 | Curated | 1 |
-| Architect / Hermit proposals | 0 |
+| Architect / Hermit proposals | 1 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
