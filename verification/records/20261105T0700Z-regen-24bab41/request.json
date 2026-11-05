@@ -1,0 +1,30 @@
+{
+  "sources": [
+    "flow/netlist/jpeg_codec_top_synth.v",
+    "$PDK_ROOT/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu9t5v0/verilog/gf180mcu_fd_sc_mcu9t5v0.v",
+    "$PDK_ROOT/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu9t5v0/verilog/primitives.v",
+    "verification/rtl/sram_macro_model.v"
+  ],
+  "hdl_toplevel": "jpeg_codec_top",
+  "engine": "icarus",
+  "testbench": {
+    "module": "test_top_smoke",
+    "search_path": "verification/rtl",
+    "testcase": [
+      "test_colour_decodes",
+      "test_colour_padded_size",
+      "test_grey_decodes",
+      "test_colour_with_stalls"
+    ]
+  },
+  "options": {
+    "timescale": [
+      "1ns",
+      "1ps"
+    ],
+    "random_seed": 1,
+    "includes": [
+      "rtl"
+    ]
+  }
+}

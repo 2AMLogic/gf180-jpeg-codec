@@ -1,0 +1,62 @@
+{
+  "schema_version": 2,
+  "engine": "icarus",
+  "hdl_toplevel": "jpeg_codec_top",
+  "testbench": "test_top_smoke",
+  "status": "pass",
+  "test_count": 4,
+  "passed_count": 4,
+  "failed_count": 0,
+  "skipped_count": 0,
+  "tests": [
+    {
+      "name": "test_colour_decodes",
+      "status": "passed",
+      "sim_time_ns": 51990.0,
+      "real_time_s": 20.853
+    },
+    {
+      "name": "test_colour_padded_size",
+      "status": "passed",
+      "sim_time_ns": 68330.0,
+      "real_time_s": 27.681
+    },
+    {
+      "name": "test_grey_decodes",
+      "status": "passed",
+      "sim_time_ns": 33610.000000000015,
+      "real_time_s": 4.686
+    },
+    {
+      "name": "test_colour_with_stalls",
+      "status": "passed",
+      "sim_time_ns": 57920.0,
+      "real_time_s": 17.391
+    }
+  ],
+  "coverage": null,
+  "trace": null,
+  "environment": {
+    "engine": "icarus",
+    "engine_version": "13.0",
+    "tools": [],
+    "cocotb_version": "2.1.0",
+    "results_xml": {
+      "path": null,
+      "scope": "external"
+    },
+    "test_log": {
+      "path": null,
+      "scope": "external"
+    },
+    "build_log": {
+      "path": null,
+      "scope": "external"
+    },
+    "random_seed": 1,
+    "source_defines": {},
+    "env": {},
+    "initial_state": null,
+    "sdf": null
+  }
+}
