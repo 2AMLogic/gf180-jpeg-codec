@@ -101,7 +101,7 @@
         "role": "source",
         "path": "rtl/jc_qoi.v",
         "passed": true,
-        "content_hash": "sha256:422418e49232b06da70e16cb64b873265b1fad4c8666ac671e1dea4fc25142fd"
+        "content_hash": "sha256:0317b035ff61aad5b7b39e7ab0e0c40e2b3c799f5001532467e60074b215fb75"
       },
       {
         "check": "present",
@@ -171,7 +171,7 @@
         "role": "derived",
         "path": "flow/netlist/jpeg_codec_top_synth.v",
         "passed": true,
-        "content_hash": "sha256:871dc5df053c0cca368f79f862b469a774ba32b1ee906cc13477e57b54b5c682"
+        "content_hash": "sha256:e32b0e8b820d07887a6b19d81b3beb63bffe334dabdcd66c04c8f7d227d8c3ee"
       },
       {
         "check": "command",

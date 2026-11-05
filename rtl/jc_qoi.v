@@ -176,6 +176,11 @@ module jc_qoi (
       state   <= S_IDLE;
       px_last <= 1'b0;
       run     <= 6'd0;
+      // col/row are cleared again in S_IDLE; resetting them here keeps the
+      // mapped clear logic (row[0] = nor(row & E, aoi21(S, E, row))) free of
+      // an unknown input, which a 4-state gate-level run cannot resolve (#93).
+      col     <= 16'd0;
+      row     <= 16'd0;
     end else begin
       case (state)
         S_IDLE: if (frame_active & ~pc_valid & (c_len == 3'd0)) begin
