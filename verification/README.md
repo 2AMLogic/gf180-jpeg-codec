@@ -150,3 +150,34 @@ Four of the five tests pass at gate level; `test_qoi_decodes` diverges (it never
 finishes) and, with no `--testcase`, the run only ends at the bench's 4 000 000
 cycle cap, about an hour. Keep it out of any required job. Evidence:
 `verification/records/20261105T053856Z-24bab41/`.
+
+## Top-level golden comparison (issue #88, functional half of T1 item 5)
+
+`verification/rtl/test_top_golden.py` drives `jpeg_codec_top` with
+`sram_macro_model.v` (same driver and block ordering as the smoke bench) and
+compares every output byte for byte with the golden models
+(`jpeg_golden.encode`, `qoi_golden.qoi_encode`). Images come from
+`verification/images/gen_images.py`; the sha256 of each generated PPM/PGM is
+checked against `SHA256SUMS` before it is encoded. A mismatch is a finding, never
+a reason to change the golden model.
+
+Covered (180 cases): all 10 named §12 images at 64 x 48 and 16 x 16 (the CI
+sizes) for colour 4:2:0 and grey at qualities 10, 50, 75 and 95 (host-scaled
+Annex K, both DQT windows loaded through the configuration port and
+committed), and for QOI. Deferred: 640 x 480 (the pure-Python golden encoder
+is too slow for a sweep, and the simulation is far longer), `odd_100x60` and
+other non-MCU sizes (the smoke bench covers 20 x 18), and stalled-port runs
+(smoke bench). Cycle counts are not a result here.
+
+```sh
+python3 verification/rtl/run_top_golden.py     # icarus; exit 0 pass, 1 test failed, 2 did not run
+cd verification/klt
+uvx --from "klayout-tools[functional-verification]==0.8.0" klt functional-verification \
+    top_golden.request.json -o <outdir>        # klt: 0 pass, 3 a test failed, 1 request/env error
+bash verification/klt/negative_control.sh      # mutant with 0xFF stuffing off must exit exactly 3
+```
+
+Reports of the committed runs are under `verification/records/`
+(`top-golden-*.json`, `top-golden-negctl-*.json`; append-only, run with Icarus
+13.0 and cocotb 2.1.0 on the host, not the pinned Icarus 14.0). Needs only
+cocotb and a simulator; Pillow is not used by this suite.

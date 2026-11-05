@@ -31,7 +31,8 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-_None._
+- **#88**: T1 item 5 (functional half): byte-exact klt functional-verification suite with negative control
+- **#89**: Re-run the top-level smoke bench on the synthesized gate-level netlist (zero delay)
 
 ## PRs Awaiting Review
 
@@ -67,7 +68,7 @@ _None._
 | Very important | 0 |
 | Important | 1 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 0 |
+| In Progress (`loom:building`) | 2 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
 | Curated | 1 |
