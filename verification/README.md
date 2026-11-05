@@ -18,9 +18,8 @@ export PATH="$HOME/oss-cad-suite/bin:$PATH"
 python3 -m venv .venv && . .venv/bin/activate
 pip install cocotb==2.1.0
 
-python3 verification/common/run_tb.py --sim icarus
-python3 verification/common/run_tb.py --sim verilator
-bash verification/tb/negative_control.sh           # injected bug must exit exactly 1
+python3 verification/rtl/run_top_golden.py
+bash verification/klt/negative_control.sh          # mutant must exit exactly 3
 bash .github/scripts/lint.sh
 ```
 
@@ -28,13 +27,8 @@ bash .github/scripts/lint.sh
 failed, `2` the suite did not run (build error, import error, empty results).
 A negative control must require exactly `1`.
 
-`verification/tb/test_smoke.py` drives `rtl/smoke_placeholder.v`, a stand-in
-that is not the codec.
-
-## Status
-
-The skeleton was run here on Icarus 13.0 and Verilator 5.050 (host versions),
-not the pinned 14.0 / 5.053.
+`run_tb.py` has no default sources, top level or test module; the wrappers in
+`verification/rtl/` supply them (record 0001, addendum 2026-11-05).
 
 ## Golden JPEG model and libjpeg cross-check
 

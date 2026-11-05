@@ -3,8 +3,6 @@
   "kind": "t1-attestation-inventory",
   "t1_item": 9,
   "testbenches": [
-    "verification/tb/test_smoke.py",
-    "verification/tb/negative_control.sh",
     "verification/common/run_tb.py",
     "verification/golden/test_jpeg_golden.py",
     "verification/golden/crosscheck_libjpeg.py",

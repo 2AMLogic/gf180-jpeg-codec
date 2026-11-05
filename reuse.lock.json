@@ -10,7 +10,7 @@
           "upstream": "tb/run_tb.py",
           "local": "verification/common/run_tb.py",
           "sha256": "f0ac9323555b56389f9ac3a86eea1551395dc3431ffa73a1981d4c12c2124758",
-          "local_sha256": "7abd4c25bdf68969c90b882764d4357503854482a70298ddc9c9ff33d1b7d5e9",
+          "local_sha256": "46163096341fa788c25f3785777ee29b9156f84e51f29c8f600ebb2c026ea027",
           "diverged": "spec/decision-records/0001-harness-divergence.md"
         },
         {

@@ -5,9 +5,12 @@ Drives the cocotb testbench straight through cocotb's own runner, so CI and a
 cold-start contributor need only `iverilog` / `verilator` and `pip install
 cocotb`, with no klayout-tools install and no PDK.
 
-    python3 verification/common/run_tb.py                      # icarus
-    python3 verification/common/run_tb.py --sim verilator
-    python3 verification/common/run_tb.py --sim icarus --define INJECT_BUG_ENV=1   # expect exit 1
+    python3 verification/common/run_tb.py --source X.v --toplevel X --test-module test_x
+    python3 verification/common/run_tb.py ... --sim verilator
+    python3 verification/common/run_tb.py ... --define INJECT_BUG_ENV=1   # expect exit 1
+
+Normally driven through the wrappers in verification/rtl/, which set the
+sources, top level and test module.
 
 Vendored from 2AMLogic/gf180-polysynth tb/run_tb.py (see reuse.lock.json and
 spec/decision-records/0001-harness-divergence.md for what differs).
@@ -36,9 +39,11 @@ RTL = ROOT / "rtl"
 TB = ROOT / "verification" / "tb"
 GOLDEN = ROOT / "verification" / "golden"
 
-SOURCES = [RTL / "smoke_placeholder.v"]
-TOPLEVEL = "smoke_placeholder"
-TEST_MODULE = "test_smoke"
+# No defaults: a wrapper (run_stage.py, run_top_*.py) sets these, or the caller
+# passes --source / --toplevel / --test-module.
+SOURCES: list[Path] = []
+TOPLEVEL = ""
+TEST_MODULE = ""
 TIMESCALE = ("1ns", "1ps")
 
 EXIT_OK = 0
@@ -58,7 +63,7 @@ def main(argv: list[str] | None = None) -> int:
         help="Verilog `define passed to the build (repeatable).",
     )
     ap.add_argument("--source", action="append", default=None, metavar="FILE",
-                    help="RTL source (repeatable, relative to rtl/); default smoke_placeholder.v")
+                    help="RTL source (repeatable, relative to rtl/); required unless a wrapper sets SOURCES")
     ap.add_argument("--toplevel", default=TOPLEVEL)
     ap.add_argument("--test-module", default=TEST_MODULE)
     ap.add_argument("--test-dir", default=str(TB))
@@ -75,6 +80,10 @@ def main(argv: list[str] | None = None) -> int:
         defines[name] = value or 1
 
     sources = [RTL / f for f in args.source] if args.source else SOURCES
+    if not sources or not args.toplevel or not args.test_module:
+        print("run_tb: no sources, toplevel or test module given "
+              "(use --source, --toplevel, --test-module or a wrapper)", file=sys.stderr)
+        return EXIT_DID_NOT_RUN
     test_dir = Path(args.test_dir).resolve()
     build_dir = TB / "sim_build" / args.sim / args.toplevel
     runner = get_runner(args.sim)
