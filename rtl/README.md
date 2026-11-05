@@ -19,7 +19,6 @@ Module names, ports and stream widths are fixed by
 | `jc_sram_arb.v` | fixed-priority N-requester arbiter in front of one wrap, enforces access time A = 2 | #48 |
 | `jc_downsample.v` | pixel ingest, `colour_convert`, 2 x 2 chroma average, word packing into S2 writes | #48 (see note) |
 | `jc_mb_ctrl.v` | macroblock buffers A/B, M0 write-before-read arbitration, S3 read sequencing | #48 (see note) |
-| `smoke_placeholder.v` | verification-skeleton stand-in, not the codec | #6 |
 
 Note: record 0005 section 2 assigns `jc_downsample` and `jc_mb_ctrl` to #42, but
 #42 delivered only the combinational `colour_convert`,

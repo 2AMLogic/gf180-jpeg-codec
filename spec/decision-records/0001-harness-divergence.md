@@ -15,7 +15,7 @@ because they name polysynth's own modules and layout.
 
 | File | Divergence | Why |
 |---|---|---|
-| `verification/common/run_tb.py` | `ROOT` is one directory deeper; `TB` is `verification/tb`; `GOLDEN` (upstream `REFERENCE`) is `verification/golden`, where the golden model landed; `SOURCES`, `TOPLEVEL` and the test module name the placeholder (`smoke_placeholder`, `test_smoke`); the `--nv` option and the `parameters`/`SYNTH_NV` plumbing are removed; comments and the usage text are updated. | Upstream hard-codes polysynth's RTL, top level, test module and the `NV` parameter. The exit-code contract (0 pass, 1 failed, 2 did not run) and the `PYTHONPATH`/`sys.path` workaround for cocotb 2.1 are unchanged. |
+| `verification/common/run_tb.py` | `ROOT` is one directory deeper; `TB` is `verification/tb`; `GOLDEN` (upstream `REFERENCE`) is `verification/golden`, where the golden model landed; `SOURCES`, `TOPLEVEL` and `TEST_MODULE` have no defaults (see the addendum); the `--nv` option and the `parameters`/`SYNTH_NV` plumbing are removed; comments and the usage text are updated. | Upstream hard-codes polysynth's RTL, top level, test module and the `NV` parameter. The exit-code contract (0 pass, 1 failed, 2 did not run) and the `PYTHONPATH`/`sys.path` workaround for cocotb 2.1 are unchanged. |
 | `.github/scripts/lint.sh` | Python compile list, Verilator lint target, and the generated-ROM step are replaced or removed; step 6 (host-path leak) also excludes `.agents/`. | Upstream steps 1, 4, 5 are block-specific. Only the PDK-free legs are kept. `.agents/` is vendored agent tooling like `.loom/` and `.claude/`. |
 
 `.github/scripts/install-oss-cad-suite.sh` is byte-identical to upstream and
@@ -25,3 +25,13 @@ The golden model has landed at `verification/golden`, so the former
 `REFERENCE` path (`spec/reference`, which never existed here) is now `GOLDEN`.
 `run_tb.py` will change again when the real sources and top level replace the
 placeholder; that edit stays under this record.
+
+## Addendum 2026-11-05 (issue #96): placeholder removed
+
+The verification skeleton (`rtl/smoke_placeholder.v`,
+`verification/tb/test_smoke.py`, `verification/tb/negative_control.sh`) is
+deleted; the real codec benches replaced it and no CI job ran it. `run_tb.py`
+now has empty `SOURCES`, `TOPLEVEL` and `TEST_MODULE` defaults and exits 2
+(did not run) if a caller supplies none; every wrapper in `verification/rtl/`
+already sets all three. Further divergence from polysynth, same record. The
+item-9 attestation is re-issued (earlier versions stay in git history).

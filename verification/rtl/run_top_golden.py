@@ -19,9 +19,7 @@ sys.path.insert(0, str(ROOT / "verification" / "golden"))
 import run_tb  # noqa: E402
 
 run_tb.TB = HERE
-run_tb.SOURCES = sorted(
-    p for p in (ROOT / "rtl").glob("*.v") if p.name != "smoke_placeholder.v"
-) + [HERE / "sram_macro_model.v"]
+run_tb.SOURCES = sorted((ROOT / "rtl").glob("*.v")) + [HERE / "sram_macro_model.v"]
 run_tb.TOPLEVEL = "jpeg_codec_top"
 run_tb.TEST_MODULE = "test_top_golden"
 
