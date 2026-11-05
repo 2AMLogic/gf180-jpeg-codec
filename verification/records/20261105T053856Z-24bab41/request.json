@@ -1,0 +1,30 @@
+{
+  "sources": [
+    "/home/ubuntu/GitHub/gf180-jpeg-codec/.loom/worktrees/issue-89/flow/netlist/jpeg_codec_top_synth.v",
+    "/home/ubuntu/.ciel/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu9t5v0/verilog/gf180mcu_fd_sc_mcu9t5v0.v",
+    "/home/ubuntu/.ciel/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu9t5v0/verilog/primitives.v",
+    "/home/ubuntu/GitHub/gf180-jpeg-codec/.loom/worktrees/issue-89/verification/rtl/sram_macro_model.v"
+  ],
+  "hdl_toplevel": "jpeg_codec_top",
+  "engine": "icarus",
+  "testbench": {
+    "module": "test_top_smoke",
+    "search_path": "/home/ubuntu/GitHub/gf180-jpeg-codec/.loom/worktrees/issue-89/verification/rtl",
+    "testcase": [
+      "test_colour_decodes",
+      "test_colour_padded_size",
+      "test_grey_decodes",
+      "test_colour_with_stalls"
+    ]
+  },
+  "options": {
+    "timescale": [
+      "1ns",
+      "1ps"
+    ],
+    "random_seed": 1,
+    "includes": [
+      "/home/ubuntu/GitHub/gf180-jpeg-codec/.loom/worktrees/issue-89/rtl"
+    ]
+  }
+}
