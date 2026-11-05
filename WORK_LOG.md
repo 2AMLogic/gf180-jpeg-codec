@@ -3,6 +3,11 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-11-05
+
+- **PR #91**: test: byte-exact top-level golden suite with klt negative control
+- **Issue #88** (closed): T1 item 5 (functional half): byte-exact klt functional-verification suite with negative control
+
 ### 2026-11-02
 
 - **PR #86**: test: cross-check odd sizes on the host-padded image
