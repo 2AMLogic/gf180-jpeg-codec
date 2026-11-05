@@ -40,6 +40,17 @@ output: the machine-readable state of the
 - **`gf180-jpeg-codec.signoff.json`** - the verdict of record: committed
   output of the command below. Never hand-edit it.
 
+## Item 5 (functional half) is committed uncited
+
+`verification/records/top-golden-*.json` is a passing `klt
+functional-verification` report of the top-level byte-exact suite (180 cases)
+and `top-golden-negctl-*.json` its failing negative control (issue #88).
+Item 5 is not cited in the manifest: its evidence is a `klt sta` report plus
+a functional report, and whether a functional report alone is accepted as a
+partial citation without grading `met` was not verified. #34 cites the report
+together with the STA run. The testbench files are listed in the item-9
+inventory.
+
 ## Regenerate (cold start)
 
 ```console

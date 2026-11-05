@@ -1,0 +1,1217 @@
+{
+  "schema_version": 1,
+  "engine": "icarus",
+  "hdl_toplevel": "jpeg_codec_top",
+  "testbench": "test_top_golden",
+  "status": "fail",
+  "test_count": 180,
+  "passed_count": 125,
+  "failed_count": 55,
+  "skipped_count": 0,
+  "tests": [
+    {
+      "name": "test_colour_golden/case=0",
+      "status": "passed",
+      "sim_time_ns": 139550.0,
+      "real_time_s": 0.958
+    },
+    {
+      "name": "test_colour_golden/case=1",
+      "status": "passed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 0.99
+    },
+    {
+      "name": "test_colour_golden/case=2",
+      "status": "passed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 1.059
+    },
+    {
+      "name": "test_colour_golden/case=3",
+      "status": "passed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 0.968
+    },
+    {
+      "name": "test_colour_golden/case=4",
+      "status": "passed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.301
+    },
+    {
+      "name": "test_colour_golden/case=5",
+      "status": "passed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.322
+    },
+    {
+      "name": "test_colour_golden/case=6",
+      "status": "passed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.286
+    },
+    {
+      "name": "test_colour_golden/case=7",
+      "status": "passed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.298
+    },
+    {
+      "name": "test_colour_golden/case=8",
+      "status": "passed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 1.013
+    },
+    {
+      "name": "test_colour_golden/case=9",
+      "status": "passed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 0.992
+    },
+    {
+      "name": "test_colour_golden/case=10",
+      "status": "passed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 1.114
+    },
+    {
+      "name": "test_colour_golden/case=11",
+      "status": "passed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 0.975
+    },
+    {
+      "name": "test_colour_golden/case=12",
+      "status": "passed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.293
+    },
+    {
+      "name": "test_colour_golden/case=13",
+      "status": "passed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.333
+    },
+    {
+      "name": "test_colour_golden/case=14",
+      "status": "passed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.299
+    },
+    {
+      "name": "test_colour_golden/case=15",
+      "status": "passed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.282
+    },
+    {
+      "name": "test_colour_golden/case=16",
+      "status": "passed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 1.019
+    },
+    {
+      "name": "test_colour_golden/case=17",
+      "status": "passed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 1.068
+    },
+    {
+      "name": "test_colour_golden/case=18",
+      "status": "passed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 1.048
+    },
+    {
+      "name": "test_colour_golden/case=19",
+      "status": "passed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 1.069
+    },
+    {
+      "name": "test_colour_golden/case=20",
+      "status": "passed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.298
+    },
+    {
+      "name": "test_colour_golden/case=21",
+      "status": "passed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.293
+    },
+    {
+      "name": "test_colour_golden/case=22",
+      "status": "passed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.343
+    },
+    {
+      "name": "test_colour_golden/case=23",
+      "status": "passed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.281
+    },
+    {
+      "name": "test_colour_golden/case=24",
+      "status": "passed",
+      "sim_time_ns": 139590.0,
+      "real_time_s": 1.106
+    },
+    {
+      "name": "test_colour_golden/case=25",
+      "status": "passed",
+      "sim_time_ns": 139590.0,
+      "real_time_s": 1.24
+    },
+    {
+      "name": "test_colour_golden/case=26",
+      "status": "passed",
+      "sim_time_ns": 139620.0,
+      "real_time_s": 1.205
+    },
+    {
+      "name": "test_colour_golden/case=27",
+      "status": "failed",
+      "sim_time_ns": 139650.0,
+      "real_time_s": 1.202,
+      "error_type": "AssertionError",
+      "error_message": "953 bytes vs golden 959, first difference at index 650\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...dd\\x1f\\xdc\\x9e\\x1e\\xef\\x03\\x02\\xff\\xa9\\xfaV\\x16\\xa5\\xde\\xb7o\\xfa\\x9f\\xa5aj]\\xeb\\xf6\\xbc\\x87x\\x9f\\xdc~\\x1fo\\x03\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...1f\\xdc\\x9e\\x1e\\xef\\x03\\x02\\xff\\x00\\xa9\\xfaV\\x16\\xa5\\xde\\xb7o\\xfa\\x9f\\xa5aj]\\xeb\\xf6\\xbc\\x87x\\x9f\\xdc~\\x1fo\\x03\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=28",
+      "status": "passed",
+      "sim_time_ns": 49610.0,
+      "real_time_s": 0.337
+    },
+    {
+      "name": "test_colour_golden/case=29",
+      "status": "passed",
+      "sim_time_ns": 49640.0,
+      "real_time_s": 0.305
+    },
+    {
+      "name": "test_colour_golden/case=30",
+      "status": "passed",
+      "sim_time_ns": 49640.0,
+      "real_time_s": 0.331
+    },
+    {
+      "name": "test_colour_golden/case=31",
+      "status": "failed",
+      "sim_time_ns": 49700.0,
+      "real_time_s": 0.323,
+      "error_type": "AssertionError",
+      "error_message": "670 bytes vs golden 675, first difference at index 627\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...O\\xfc\\xb4\\xfck\\xdf>$\\xff\\xcbO\\xc6\\xbc\\x0f\\xe2O\\xfc\\xb4\\xfch\\xfa?\\xff\\xcb\\xaf\\x90~\\xce\\xff\\xf9\\x83\\xff\\xb7\\x7fC\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...df>$\\xff\\x00\\xcbO\\xc6\\xbc\\x0f\\xe2O\\xfc\\xb4\\xfch\\xfa?\\xff\\x00\\xcb\\xaf\\x90~\\xce\\xff\\x00\\xf9\\x83\\xff\\x00\\xb7\\x7fC\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=32",
+      "status": "passed",
+      "sim_time_ns": 139590.0,
+      "real_time_s": 1.135
+    },
+    {
+      "name": "test_colour_golden/case=33",
+      "status": "passed",
+      "sim_time_ns": 139590.0,
+      "real_time_s": 1.172
+    },
+    {
+      "name": "test_colour_golden/case=34",
+      "status": "passed",
+      "sim_time_ns": 139620.0,
+      "real_time_s": 1.068
+    },
+    {
+      "name": "test_colour_golden/case=35",
+      "status": "failed",
+      "sim_time_ns": 139650.0,
+      "real_time_s": 1.147,
+      "error_type": "AssertionError",
+      "error_message": "979 bytes vs golden 991, first difference at index 649\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...D\\xef\\xef\\xfe&g\\xd8\\xcf\\xb5\\x1fc>\\xd5\\xa7\\xf61\\xfd\\xd1\\xf9Q\\xf61\\xfd\\xd1\\xf9Q\\xfe\\xa6\\xfft?\\xe2\\'\\x7f\\x7f\\xf1?\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...f\\xef\\xfe&g\\xd8\\xcf\\xb5\\x1fc>\\xd5\\xa7\\xf61\\xfd\\xd1\\xf9Q\\xf61\\xfd\\xd1\\xf9Q\\xfe\\xa6\\xff\\x00t?\\xe2\\'\\x7f\\x7f\\xf1?\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=36",
+      "status": "passed",
+      "sim_time_ns": 49610.0,
+      "real_time_s": 0.381
+    },
+    {
+      "name": "test_colour_golden/case=37",
+      "status": "failed",
+      "sim_time_ns": 49640.0,
+      "real_time_s": 0.343,
+      "error_type": "AssertionError",
+      "error_message": "642 bytes vs golden 643, first difference at index 637\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...ff\\xda\\x00\\x0c\\x03\\x01\\x00\\x02\\x11\\x03\\x11\\x00?\\x00\\xc8\\xd9F\\xca\\xb1\\xb2\\x8d\\x95\\xd5\\xfd\\x9d\\xe4v\\xffm\\xf9\\x9f\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...da\\x00\\x0c\\x03\\x01\\x00\\x02\\x11\\x03\\x11\\x00?\\x00\\xc8\\xd9F\\xca\\xb1\\xb2\\x8d\\x95\\xd5\\xfd\\x9d\\xe4v\\xff\\x00m\\xf9\\x9f\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=38",
+      "status": "passed",
+      "sim_time_ns": 49640.0,
+      "real_time_s": 0.305
+    },
+    {
+      "name": "test_colour_golden/case=39",
+      "status": "failed",
+      "sim_time_ns": 49700.0,
+      "real_time_s": 0.326,
+      "error_type": "AssertionError",
+      "error_message": "677 bytes vs golden 685, first difference at index 633\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...f\\x84x\\xff\\xcf1\\xf9Q\\xff\\x08\\xf1\\xff\\x9ec\\xf2\\xaf\\xd5\\x7f\\xe2X\\xff\\xe9\\xc7\\xe0~\\xd7\\xff\\x13\\xea\\xbf\\xe8+\\xff&?\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...\\xff\\x00\\x08\\xf1\\xff\\x00\\x9ec\\xf2\\xaf\\xd5\\x7f\\xe2X\\xff\\x00\\xe9\\xc7\\xe0~\\xd7\\xff\\x00\\x13\\xea\\xbf\\xe8+\\xff\\x00&?\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=40",
+      "status": "failed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 1.146,
+      "error_type": "AssertionError",
+      "error_message": "1129 bytes vs golden 1177, first difference at index 625\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00P7<F<2PFAFZUP_x\\xc8\\x82xnnx\\xf5...bf\\xe7\\xff\\xd7\\xeb\\xef\\xd7\\xbe~s\\xaf\\xf9\\xff\\xf5\\xfa\\xfb\\xf5\\xef\\x9f\\x9c\\xeb\\xfe\\x7f\\xfd~\\xbe\\xfd{\\xe7\\xe7\\x00\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00P7<F<2PFAFZUP_x\\xc8\\x82xnnx\\xf5...ff\\x00\\xd7\\xeb\\xef\\xd7\\xbe~s\\xaf\\xf9\\xff\\x00\\xf5\\xfa\\xfb\\xf5\\xef\\x9f\\x9c\\xeb\\xfe\\x7f\\xfd~\\xbe\\xfd{\\xe7\\xe7\\x00\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=41",
+      "status": "failed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 1.203,
+      "error_type": "AssertionError",
+      "error_message": "1591 bytes vs golden 1741, first difference at index 625\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...xce\\xff\\xf6\\xb3\\xbf\\xf8\\xf7\\xff\\xa4\\x1f\\x7f\\xfd\\xad\\xdf\\xf0-\\xd9\\xff\\xbe\\xb3\\x9d\\xff\\xedg\\x7f\\xf1\\xef\\xffH\\x00\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...xbf\\xf8\\xf7\\xff\\x00\\xa4\\x1f\\x7f\\xfd\\xad\\xdf\\xf0-\\xd9\\xff\\x00\\xbe\\xb3\\x9d\\xff\\x00\\xedg\\x7f\\xf1\\xef\\xff\\x00H\\x00\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=42",
+      "status": "failed",
+      "sim_time_ns": 139560.00000000047,
+      "real_time_s": 1.243,
+      "error_type": "AssertionError",
+      "error_message": "1874 bytes vs golden 1958, first difference at index 630\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...3\\xbf\\xe5\\xb7\\x9d\\xff\\x13\\x13\\xfdw\\xfd4\\xf3?\\xe0{\\xf7\\x7f\\xdf\\xcd\\xdb\\xbc\\xef\\xfai\\xbb\\xce\\xff\\x96\\xdew\\xfcL@?\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...5\\xb7\\x9d\\xff\\x00\\x13\\x13\\xfdw\\xfd4\\xf3?\\xe0{\\xf7\\x7f\\xdf\\xcd\\xdb\\xbc\\xef\\xfai\\xbb\\xce\\xff\\x00\\x96\\xdew\\xfcL@?\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=43",
+      "status": "failed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 1.231,
+      "error_type": "AssertionError",
+      "error_message": "2390 bytes vs golden 2558, first difference at index 632\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...\\xedO\\xfb\\x7f\\xfb\\x7f\\xda\\xbf\\xf0g\\xf6\\xcf\\xb4\\x7fn\\x7f\\xd4S\\xed_\\xf0\\x90\\xff\\xccw\\xfe\\x12\\x1f\\xf8\\xba\\x80\\x1f\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...O\\xfb\\x7f\\xfb\\x7f\\xda\\xbf\\xf0g\\xf6\\xcf\\xb4\\x7fn\\x7f\\xd4S\\xed_\\xf0\\x90\\xff\\x00\\xccw\\xfe\\x12\\x1f\\xf8\\xba\\x80\\x1f\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=44",
+      "status": "failed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.296,
+      "error_type": "AssertionError",
+      "error_message": "667 bytes vs golden 671, first difference at index 625\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00P7<F<2PFAFZUP_x\\xc8\\x82xnnx\\xf5...bf\\xe7\\xff\\xd7\\xeb\\xef\\xd7\\xbe~s\\xaf\\xf9\\xff\\xf5\\xfa\\xfb\\xf5\\xef\\x9f\\x9c\\xeb\\xfe\\x7f\\xfd~\\xbe\\xfd{\\xe7\\xe7\\x00\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00P7<F<2PFAFZUP_x\\xc8\\x82xnnx\\xf5...ff\\x00\\xd7\\xeb\\xef\\xd7\\xbe~s\\xaf\\xf9\\xff\\x00\\xf5\\xfa\\xfb\\xf5\\xef\\x9f\\x9c\\xeb\\xfe\\x7f\\xfd~\\xbe\\xfd{\\xe7\\xe7\\x00\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=45",
+      "status": "failed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.296,
+      "error_type": "AssertionError",
+      "error_message": "706 bytes vs golden 721, first difference at index 625\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...5\\x9c\\xef\\xffk;\\xff\\x8f\\x7f\\xfaA\\xf7\\xff\\xda\\xdd\\xff\\x02\\xdd\\x9f\\xfb\\xeb9\\xdf\\xfe\\xd6w\\xff\\x1e\\xff\\xf4\\x80\\x0f\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...x00\\x8f\\x7f\\xfaA\\xf7\\xff\\x00\\xda\\xdd\\xff\\x00\\x02\\xdd\\x9f\\xfb\\xeb9\\xdf\\xfe\\xd6w\\xff\\x00\\x1e\\xff\\x00\\xf4\\x80\\x0f\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=46",
+      "status": "failed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.307,
+      "error_type": "AssertionError",
+      "error_message": "730 bytes vs golden 737, first difference at index 630\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...3\\xbf\\xe5\\xb7\\x9d\\xff\\x13\\x13\\xfdw\\xfd4\\xf3?\\xe0{\\xf7\\x7f\\xdf\\xcd\\xdb\\xbc\\xef\\xfai\\xbb\\xce\\xff\\x96\\xdew\\xfcL@?\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...5\\xb7\\x9d\\xff\\x00\\x13\\x13\\xfdw\\xfd4\\xf3?\\xe0{\\xf7\\x7f\\xdf\\xcd\\xdb\\xbc\\xef\\xfai\\xbb\\xce\\xff\\x00\\x96\\xdew\\xfcL@?\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=47",
+      "status": "failed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.308,
+      "error_type": "AssertionError",
+      "error_message": "773 bytes vs golden 787, first difference at index 632\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...\\xedO\\xfb\\x7f\\xfb\\x7f\\xda\\xbf\\xf0g\\xf6\\xcf\\xb4\\x7fn\\x7f\\xd4S\\xed_\\xf0\\x90\\xff\\xccw\\xfe\\x12\\x1f\\xf8\\xba\\x80\\x1f\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...O\\xfb\\x7f\\xfb\\x7f\\xda\\xbf\\xf0g\\xf6\\xcf\\xb4\\x7fn\\x7f\\xd4S\\xed_\\xf0\\x90\\xff\\x00\\xccw\\xfe\\x12\\x1f\\xf8\\xba\\x80\\x1f\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=48",
+      "status": "passed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 0.928
+    },
+    {
+      "name": "test_colour_golden/case=49",
+      "status": "passed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 0.973
+    },
+    {
+      "name": "test_colour_golden/case=50",
+      "status": "passed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 0.979
+    },
+    {
+      "name": "test_colour_golden/case=51",
+      "status": "failed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 1.005,
+      "error_type": "AssertionError",
+      "error_message": "723 bytes vs golden 735, first difference at index 631\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...e0\\x0e\\x8a\\xfe\\xff(\\x00\\xaf\\xe0\\x0e\\x8a\\xfe\\xff(\\x00\\xaf\\xe0\\x0e\\x8a\\xfe\\xff(\\x00\\xaf\\xe0\\x0e\\x8a\\xfe\\xff(\\x03\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...ff\\x00(\\x00\\xaf\\xe0\\x0e\\x8a\\xfe\\xff\\x00(\\x00\\xaf\\xe0\\x0e\\x8a\\xfe\\xff\\x00(\\x00\\xaf\\xe0\\x0e\\x8a\\xfe\\xff\\x00(\\x03\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=52",
+      "status": "passed",
+      "sim_time_ns": 49590.0,
+      "real_time_s": 0.285
+    },
+    {
+      "name": "test_colour_golden/case=53",
+      "status": "passed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.301
+    },
+    {
+      "name": "test_colour_golden/case=54",
+      "status": "passed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.309
+    },
+    {
+      "name": "test_colour_golden/case=55",
+      "status": "failed",
+      "sim_time_ns": 49580.0,
+      "real_time_s": 0.307,
+      "error_type": "AssertionError",
+      "error_message": "635 bytes vs golden 636, first difference at index 631\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...\\xf6\\xf7\\xf8\\xf9\\xfa\\xff\\xda\\x00\\x0c\\x03\\x01\\x00\\x02\\x11\\x03\\x11\\x00?\\x00\\xfd\\xfc\\xaf\\xe0\\x0e\\x8a\\xfe\\xff(\\x03\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...\\xf7\\xf8\\xf9\\xfa\\xff\\xda\\x00\\x0c\\x03\\x01\\x00\\x02\\x11\\x03\\x11\\x00?\\x00\\xfd\\xfc\\xaf\\xe0\\x0e\\x8a\\xfe\\xff\\x00(\\x03\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=56",
+      "status": "passed",
+      "sim_time_ns": 139590.0,
+      "real_time_s": 1.093
+    },
+    {
+      "name": "test_colour_golden/case=57",
+      "status": "failed",
+      "sim_time_ns": 139620.0,
+      "real_time_s": 1.027,
+      "error_type": "AssertionError",
+      "error_message": "814 bytes vs golden 815, first difference at index 713\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...L\\x8a\\xa3W\\xaa\\x8dz\\x99\\xd7\\xd8\\xf9\\xfe\\x87\\xed\\xd4\\xfa\\x98\\xf5F\\xafU\\x1a\\xf53\\xaf\\xb1\\xf3\\xfd\\x0f\\x83\\xa7\\xd4\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...L\\x8a\\xa3W\\xaa\\x8dz\\x99\\xd7\\xd8\\xf9\\xfe\\x87\\xed\\xd4\\xfa\\x98\\xf5F\\xafU\\x1a\\xf53\\xaf\\xb1\\xf3\\xfd\\x0f\\x83\\xa7\\xd4\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=58",
+      "status": "failed",
+      "sim_time_ns": 139620.0,
+      "real_time_s": 1.035,
+      "error_type": "AssertionError",
+      "error_message": "871 bytes vs golden 891, first difference at index 636\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...xaf\\xa4\\xe3?\\xf9q\\xffo\\x7f\\xed\\xa7\\xf6\\x86\\x1f\\xa9\\xc8V\\x15n\\xd6\\x15}7\\x19\\xff\\xcb\\x8f\\xfb{\\xffm?\\x0e\\xc3\\xf5?\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...\\xf9q\\xff\\x00o\\x7f\\xed\\xa7\\xf6\\x86\\x1f\\xa9\\xc8V\\x15n\\xd6\\x15}7\\x19\\xff\\x00\\xcb\\x8f\\xfb{\\xff\\x00m?\\x0e\\xc3\\xf5?\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=59",
+      "status": "failed",
+      "sim_time_ns": 139680.0,
+      "real_time_s": 1.027,
+      "error_type": "AssertionError",
+      "error_message": "999 bytes vs golden 1038, first difference at index 634\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...\\xc2\\xeb\\xdd+\\xc2\\xeb\\xfa\\xb3\\xe9\\xcd\\xff4\\xff\\xfd\\xcd\\xff\\xee\\xb1\\xfe\\x00\\xf0\\xcf\\xfc\\xbd\\xff\\xb7\\x7f\\xf6\\xe3\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...2\\xeb\\xfa\\xb3\\xe9\\xcd\\xff\\x004\\xff\\x00\\xfd\\xcd\\xff\\x00\\xee\\xb1\\xfe\\x00\\xf0\\xcf\\xfc\\xbd\\xff\\x00\\xb7\\x7f\\xf6\\xe3\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=60",
+      "status": "failed",
+      "sim_time_ns": 49670.0,
+      "real_time_s": 0.308,
+      "error_type": "AssertionError",
+      "error_message": "642 bytes vs golden 643, first difference at index 635\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00P7<F<2PFAFZUP_x\\xc8\\x82xnnx\\xf5...f8\\xf9\\xfa\\xff\\xda\\x00\\x0c\\x03\\x01\\x00\\x02\\x11\\x03\\x11\\x00?\\x00\\x9ej\\xa15_\\x9a\\xa8MD?\\xcf\\xffn\\x08\\xfd\\xaf\\x91\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00P7<F<2PFAFZUP_x\\xc8\\x82xnnx\\xf5...f9\\xfa\\xff\\xda\\x00\\x0c\\x03\\x01\\x00\\x02\\x11\\x03\\x11\\x00?\\x00\\x9ej\\xa15_\\x9a\\xa8MD?\\xcf\\xff\\x00n\\x08\\xfd\\xaf\\x91\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=61",
+      "status": "failed",
+      "sim_time_ns": 49670.0,
+      "real_time_s": 0.351,
+      "error_type": "AssertionError",
+      "error_message": "663 bytes vs golden 666, first difference at index 644\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...faW\\x9ak\\xbf\\xe7\\xf4\\xafK\\xd7\\x7f\\xcf\\xe9^i\\xae\\xff\\x9f\\xd2\\x8c\\x07\\xda\\xff\\xb7\\xbf\\xf7(`\\xff\\xe6/\\xfe\\xe1\\x9f\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...\\xe7\\xf4\\xafK\\xd7\\x7f\\xcf\\xe9^i\\xae\\xff\\x00\\x9f\\xd2\\x8c\\x07\\xda\\xff\\x00\\xb7\\xbf\\xf7(`\\xff\\x00\\xe6/\\xfe\\xe1\\x9f\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=62",
+      "status": "failed",
+      "sim_time_ns": 49700.0,
+      "real_time_s": 0.331,
+      "error_type": "AssertionError",
+      "error_message": "672 bytes vs golden 677, first difference at index 628\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...\\xbe\\x97\\xf1\\xafo\\xf3\\xfd\\xda\\xf9\\xa3\\xc6\\xbd\\xbf\\xcf\\xf7h\\xc8>\\xdf\\xfd\\xc4\\xff\\xdd\\xb0\\xca?\\xe6k\\xffr\\xff\\xa1\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...\\xafo\\xf3\\xfd\\xda\\xf9\\xa3\\xc6\\xbd\\xbf\\xcf\\xf7h\\xc8>\\xdf\\xfd\\xc4\\xff\\x00\\xdd\\xb0\\xca?\\xe6k\\xff\\x00r\\xff\\x00\\xa1\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=63",
+      "status": "failed",
+      "sim_time_ns": 49700.0,
+      "real_time_s": 0.324,
+      "error_type": "AssertionError",
+      "error_message": "694 bytes vs golden 707, first difference at index 626\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...c7\\xffm+\\xf9\\xa7\\xff\\x82\\x9f\\xff\\xcb?\\xc7\\xffm)}\\x1d?\\xe6c\\xffu/\\xfd\\xfdE\\xe0\\xb7\\xfc\\xdeo\\xfb\\xb6\\x7f\\xf7\\x19\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...\\xff\\x00\\x82\\x9f\\xff\\x00\\xcb?\\xc7\\xff\\x00m)}\\x1d?\\xe6c\\xff\\x00u/\\xfd\\xfdE\\xe0\\xb7\\xfc\\xdeo\\xfb\\xb6\\x7f\\xf7\\x19\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=64",
+      "status": "failed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 1.237,
+      "error_type": "AssertionError",
+      "error_message": "955 bytes vs golden 958, first difference at index 630\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00P7<F<2PFAFZUP_x\\xc8\\x82xnnx\\xf5...xc7|s\\xfe\\x7f\\xcf\\xe3N$\\xb1-\\x82\\x7f\\x11\\xfe\\x7f\\xcf\\xb5\\x03\\x1bq\\x9ez}h\\xcfQ\\x80:\\x8f\\xf3\\xfe\\x7f\\xfa\\xcc\\x0f\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00P7<F<2PFAFZUP_x\\xc8\\x82xnnx\\xf5...xc7|s\\xfe\\x7f\\xcf\\xe3N$\\xb1-\\x82\\x7f\\x11\\xfe\\x7f\\xcf\\xb5\\x03\\x1bq\\x9ez}h\\xcfQ\\x80:\\x8f\\xf3\\xfe\\x7f\\xfa\\xcc\\x0f\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=65",
+      "status": "failed",
+      "sim_time_ns": 153330.0,
+      "real_time_s": 1.396,
+      "error_type": "AssertionError",
+      "error_message": "1872 bytes vs golden 1876, first difference at index 720\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...\"8\\x90\\x1d\\xf1\\xb0bp\\xa0\\x0cp\\x07\\x18\\xcf\\x1c\\xe3\\x1e\\xc0|\\xb6\\x9b\\xb7\\x98\\xbd\\xe7\\xa4\\x96\\xbf\\xd7\\xf5\\xea\\x7f\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...\"8\\x90\\x1d\\xf1\\xb0bp\\xa0\\x0cp\\x07\\x18\\xcf\\x1c\\xe3\\x1e\\xc0|\\xb6\\x9b\\xb7\\x98\\xbd\\xe7\\xa4\\x96\\xbf\\xd7\\xf5\\xea\\x7f\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=66",
+      "status": "failed",
+      "sim_time_ns": 179420.0,
+      "real_time_s": 1.533,
+      "error_type": "AssertionError",
+      "error_message": "2470 bytes vs golden 2471, first difference at index 2256\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...J|\\xa0\\x0cc8_\\x9b\\x188\\xc6\\xd0>M\\xa3)rj\\xac\\xd5\\xfd|\\xf5\\xf9?7mv%{I+MY\\xdd\\xf5\\xe8\\xdf\\xa7\\x95\\xaf\\xdd\\xee\\x7f\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...J|\\xa0\\x0cc8_\\x9b\\x188\\xc6\\xd0>M\\xa3)rj\\xac\\xd5\\xfd|\\xf5\\xf9?7mv%{I+MY\\xdd\\xf5\\xe8\\xdf\\xa7\\x95\\xaf\\xdd\\xee\\x7f\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=67",
+      "status": "failed",
+      "sim_time_ns": 216640.0,
+      "real_time_s": 1.773,
+      "error_type": "AssertionError",
+      "error_message": "4215 bytes vs golden 4222, first difference at index 1527\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...4\\x1c\\x9f57\\x9d\\xe3!\\xec\\xb1\\xd4\\xbd\\x9dYN\\xa4\\xbd\\xe9\\xa8\\xbeI\\xd4\\xe5M8\\xd3m(\\xc6\\x1e\\xcf\\x9fV\\xebTq\\x8dIJQg\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...4\\x1c\\x9f57\\x9d\\xe3!\\xec\\xb1\\xd4\\xbd\\x9dYN\\xa4\\xbd\\xe9\\xa8\\xbeI\\xd4\\xe5M8\\xd3m(\\xc6\\x1e\\xcf\\x9fV\\xebTq\\x8dIJQg\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=68",
+      "status": "failed",
+      "sim_time_ns": 49610.0,
+      "real_time_s": 0.297,
+      "error_type": "AssertionError",
+      "error_message": "653 bytes vs golden 654, first difference at index 633\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00P7<F<2PFAFZUP_x\\xc8\\x82xnnx\\xf5...00\\x02\\x11\\x03\\x11\\x00?\\x0027r\\t\\xed\\x81F\\xd6\\xe7\\xff\\xafA\\xe9\\x83\\xc1\\xc7\\x1fZF\\xe0\\xf28\\xe9\\x8f\\xf3\\xc5\\x01c\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00P7<F<2PFAFZUP_x\\xc8\\x82xnnx\\xf5...02\\x11\\x03\\x11\\x00?\\x0027r\\t\\xed\\x81F\\xd6\\xe7\\xff\\x00\\xafA\\xe9\\x83\\xc1\\xc7\\x1fZF\\xe0\\xf28\\xe9\\x8f\\xf3\\xc5\\x01c\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=69",
+      "status": "failed",
+      "sim_time_ns": 51280.0,
+      "real_time_s": 0.314,
+      "error_type": "AssertionError",
+      "error_message": "726 bytes vs golden 727, first difference at index 673\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...4\\x1e*;\\xa6\\x11\\xcb\\xf3\\xc2\\x15\\t\\xd9\\xb3\\x1f1\\x1c\\xf206\\xe4g\\xe8\\x08\\xeahK\\x99+\\x7f_\\xd7\\xf5\\xd0\\xa5\\x04\\x97c\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...4\\x1e*;\\xa6\\x11\\xcb\\xf3\\xc2\\x15\\t\\xd9\\xb3\\x1f1\\x1c\\xf206\\xe4g\\xe8\\x08\\xeahK\\x99+\\x7f_\\xd7\\xf5\\xd0\\xa5\\x04\\x97c\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=70",
+      "status": "passed",
+      "sim_time_ns": 53760.0,
+      "real_time_s": 0.338
+    },
+    {
+      "name": "test_colour_golden/case=71",
+      "status": "failed",
+      "sim_time_ns": 57010.0,
+      "real_time_s": 0.355,
+      "error_type": "AssertionError",
+      "error_message": "919 bytes vs golden 920, first difference at index 663\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...xd4prp\\xf6V\\xf4hd\\xf9~\\x07\\r\\x1ff\\x9d\\x18S\\xf6\\x8eQ\\x83\\x8a\\x83\\x9c#\\'\\tZ*\\x9a\\x94c\\x1eK*\\x91wNJqq\\xa4\\xaa\\x9f\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...xd4prp\\xf6V\\xf4hd\\xf9~\\x07\\r\\x1ff\\x9d\\x18S\\xf6\\x8eQ\\x83\\x8a\\x83\\x9c#\\'\\tZ*\\x9a\\x94c\\x1eK*\\x91wNJqq\\xa4\\xaa\\x9f\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=72",
+      "status": "passed",
+      "sim_time_ns": 139560.0,
+      "real_time_s": 1.221
+    },
+    {
+      "name": "test_colour_golden/case=73",
+      "status": "passed",
+      "sim_time_ns": 139620.0,
+      "real_time_s": 1.251
+    },
+    {
+      "name": "test_colour_golden/case=74",
+      "status": "passed",
+      "sim_time_ns": 139710.0,
+      "real_time_s": 1.266
+    },
+    {
+      "name": "test_colour_golden/case=75",
+      "status": "failed",
+      "sim_time_ns": 139860.0,
+      "real_time_s": 1.296,
+      "error_type": "AssertionError",
+      "error_message": "1282 bytes vs golden 1283, first difference at index 667\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0... \\xe8+\\x8c\\xd3\\xef.\\x16=\\xc4\\xf1O\\xbb\\xd6\\xe4\\xb79f\\xf9;\\x9a\\xf5\\xe5\\x99K\\x19G\\x96[\\x9f7\\x8d\\xa7\\x0cMD\\xda\\xd4\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0... \\xe8+\\x8c\\xd3\\xef.\\x16=\\xc4\\xf1O\\xbb\\xd6\\xe4\\xb79f\\xf9;\\x9a\\xf5\\xe5\\x99K\\x19G\\x96[\\x9f7\\x8d\\xa7\\x0cMD\\xda\\xd4\\xff\\xd9'"
+    },
+    {
+      "name": "test_colour_golden/case=76",
+      "status": "passed",
+      "sim_time_ns": 49610.0,
+      "real_time_s": 0.363
+    },
+    {
+      "name": "test_colour_golden/case=77",
+      "status": "passed",
+      "sim_time_ns": 49670.0,
+      "real_time_s": 0.403
+    },
+    {
+      "name": "test_colour_golden/case=78",
+      "status": "passed",
+      "sim_time_ns": 49730.0,
+      "real_time_s": 0.357
+    },
+    {
+      "name": "test_colour_golden/case=79",
+      "status": "failed",
+      "sim_time_ns": 49850.0,
+      "real_time_s": 0.322,
+      "error_type": "AssertionError",
+      "error_message": "683 bytes vs golden 684, first difference at index 667\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...x15\\x87\\x1d\\x87\\xd9\\xe4\\x0b&9\\xad\\xbd\\x1eG\\x86@\\xb8\\xfd\\xdfs_\\xb4\\xe6x\\xffh\\xb9\\xfbv\\xea}\\xdes*\\x18z\\\\\\x8d\\xdc\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...x87\\x1d\\x87\\xd9\\xe4\\x0b&9\\xad\\xbd\\x1eG\\x86@\\xb8\\xfd\\xdfs_\\xb4\\xe6x\\xff\\x00h\\xb9\\xfbv\\xea}\\xdes*\\x18z\\\\\\x8d\\xdc\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=0",
+      "status": "passed",
+      "sim_time_ns": 95960.0,
+      "real_time_s": 0.701
+    },
+    {
+      "name": "test_grey_golden/case=1",
+      "status": "passed",
+      "sim_time_ns": 95960.0,
+      "real_time_s": 0.715
+    },
+    {
+      "name": "test_grey_golden/case=2",
+      "status": "passed",
+      "sim_time_ns": 95960.0,
+      "real_time_s": 0.709
+    },
+    {
+      "name": "test_grey_golden/case=3",
+      "status": "passed",
+      "sim_time_ns": 95960.0,
+      "real_time_s": 0.697
+    },
+    {
+      "name": "test_grey_golden/case=4",
+      "status": "passed",
+      "sim_time_ns": 39640.0,
+      "real_time_s": 0.282
+    },
+    {
+      "name": "test_grey_golden/case=5",
+      "status": "passed",
+      "sim_time_ns": 39640.0,
+      "real_time_s": 0.23
+    },
+    {
+      "name": "test_grey_golden/case=6",
+      "status": "passed",
+      "sim_time_ns": 39640.0,
+      "real_time_s": 0.272
+    },
+    {
+      "name": "test_grey_golden/case=7",
+      "status": "passed",
+      "sim_time_ns": 39640.0,
+      "real_time_s": 0.246
+    },
+    {
+      "name": "test_grey_golden/case=8",
+      "status": "passed",
+      "sim_time_ns": 95960.0,
+      "real_time_s": 0.792
+    },
+    {
+      "name": "test_grey_golden/case=9",
+      "status": "passed",
+      "sim_time_ns": 95970.0,
+      "real_time_s": 0.807
+    },
+    {
+      "name": "test_grey_golden/case=10",
+      "status": "passed",
+      "sim_time_ns": 95970.0,
+      "real_time_s": 0.679
+    },
+    {
+      "name": "test_grey_golden/case=11",
+      "status": "passed",
+      "sim_time_ns": 95960.0,
+      "real_time_s": 0.672
+    },
+    {
+      "name": "test_grey_golden/case=12",
+      "status": "passed",
+      "sim_time_ns": 39640.0,
+      "real_time_s": 0.239
+    },
+    {
+      "name": "test_grey_golden/case=13",
+      "status": "passed",
+      "sim_time_ns": 39650.0,
+      "real_time_s": 0.243
+    },
+    {
+      "name": "test_grey_golden/case=14",
+      "status": "passed",
+      "sim_time_ns": 39650.0,
+      "real_time_s": 0.241
+    },
+    {
+      "name": "test_grey_golden/case=15",
+      "status": "passed",
+      "sim_time_ns": 39640.0,
+      "real_time_s": 0.25
+    },
+    {
+      "name": "test_grey_golden/case=16",
+      "status": "passed",
+      "sim_time_ns": 95960.0,
+      "real_time_s": 0.686
+    },
+    {
+      "name": "test_grey_golden/case=17",
+      "status": "passed",
+      "sim_time_ns": 95970.0,
+      "real_time_s": 0.705
+    },
+    {
+      "name": "test_grey_golden/case=18",
+      "status": "passed",
+      "sim_time_ns": 95960.0,
+      "real_time_s": 0.684
+    },
+    {
+      "name": "test_grey_golden/case=19",
+      "status": "passed",
+      "sim_time_ns": 95960.0,
+      "real_time_s": 0.695
+    },
+    {
+      "name": "test_grey_golden/case=20",
+      "status": "passed",
+      "sim_time_ns": 39640.0,
+      "real_time_s": 0.23
+    },
+    {
+      "name": "test_grey_golden/case=21",
+      "status": "passed",
+      "sim_time_ns": 39650.0,
+      "real_time_s": 0.25
+    },
+    {
+      "name": "test_grey_golden/case=22",
+      "status": "passed",
+      "sim_time_ns": 39640.0,
+      "real_time_s": 0.257
+    },
+    {
+      "name": "test_grey_golden/case=23",
+      "status": "passed",
+      "sim_time_ns": 39640.0,
+      "real_time_s": 0.28
+    },
+    {
+      "name": "test_grey_golden/case=24",
+      "status": "passed",
+      "sim_time_ns": 95960.0,
+      "real_time_s": 0.759
+    },
+    {
+      "name": "test_grey_golden/case=25",
+      "status": "passed",
+      "sim_time_ns": 96000.0,
+      "real_time_s": 0.752
+    },
+    {
+      "name": "test_grey_golden/case=26",
+      "status": "passed",
+      "sim_time_ns": 95990.0,
+      "real_time_s": 0.771
+    },
+    {
+      "name": "test_grey_golden/case=27",
+      "status": "failed",
+      "sim_time_ns": 97150.0,
+      "real_time_s": 0.83,
+      "error_type": "AssertionError",
+      "error_message": "540 bytes vs golden 546, first difference at index 348\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...j]\\xeb\\xed\\x1dG\\xaf\\xe3XZ\\x97z\\xc0\\xd4\\xba\\x1f\\xadaj]\\xeb\\x02\\xff\\xa9\\xfaV\\x16\\xa5\\xde\\xb0/\\xfa\\x9f\\xa5aj]\\xeb\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...eb\\xed\\x1dG\\xaf\\xe3XZ\\x97z\\xc0\\xd4\\xba\\x1f\\xadaj]\\xeb\\x02\\xff\\x00\\xa9\\xfaV\\x16\\xa5\\xde\\xb0/\\xfa\\x9f\\xa5aj]\\xeb\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=28",
+      "status": "passed",
+      "sim_time_ns": 39680.0,
+      "real_time_s": 0.258
+    },
+    {
+      "name": "test_grey_golden/case=29",
+      "status": "passed",
+      "sim_time_ns": 39670.0,
+      "real_time_s": 0.238
+    },
+    {
+      "name": "test_grey_golden/case=30",
+      "status": "passed",
+      "sim_time_ns": 39830.0,
+      "real_time_s": 0.25
+    },
+    {
+      "name": "test_grey_golden/case=31",
+      "status": "failed",
+      "sim_time_ns": 40850.0,
+      "real_time_s": 0.263,
+      "error_type": "AssertionError",
+      "error_message": "360 bytes vs golden 362, first difference at index 332\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...x01\\x01\\x00\\x00?\\x00\\xef>$\\xff\\xcbO\\xc6\\xbc\\x0f\\xe2O\\xfc\\xb4\\xfck\\xdf>$\\xff\\xcbO\\xc6\\xbc\\x0f\\xe2O\\xfc\\xb4\\xfck\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...x00\\x00?\\x00\\xef>$\\xff\\x00\\xcbO\\xc6\\xbc\\x0f\\xe2O\\xfc\\xb4\\xfck\\xdf>$\\xff\\x00\\xcbO\\xc6\\xbc\\x0f\\xe2O\\xfc\\xb4\\xfck\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=32",
+      "status": "passed",
+      "sim_time_ns": 95960.0,
+      "real_time_s": 0.753
+    },
+    {
+      "name": "test_grey_golden/case=33",
+      "status": "passed",
+      "sim_time_ns": 95990.0,
+      "real_time_s": 0.71
+    },
+    {
+      "name": "test_grey_golden/case=34",
+      "status": "passed",
+      "sim_time_ns": 95990.0,
+      "real_time_s": 0.744
+    },
+    {
+      "name": "test_grey_golden/case=35",
+      "status": "passed",
+      "sim_time_ns": 97220.0,
+      "real_time_s": 0.759
+    },
+    {
+      "name": "test_grey_golden/case=36",
+      "status": "passed",
+      "sim_time_ns": 39680.0,
+      "real_time_s": 0.233
+    },
+    {
+      "name": "test_grey_golden/case=37",
+      "status": "passed",
+      "sim_time_ns": 39670.0,
+      "real_time_s": 0.269
+    },
+    {
+      "name": "test_grey_golden/case=38",
+      "status": "passed",
+      "sim_time_ns": 39850.0,
+      "real_time_s": 0.257
+    },
+    {
+      "name": "test_grey_golden/case=39",
+      "status": "failed",
+      "sim_time_ns": 40900.0,
+      "real_time_s": 0.233,
+      "error_type": "AssertionError",
+      "error_message": "363 bytes vs golden 368, first difference at index 338\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...\\x00\\xf9\\'\\xfe\\x11\\xef\\xfag\\xfaQ\\xff\\x08\\xf7\\xfd3\\xfd+\\xbb\\xff\\x84x\\xff\\xcf1\\xf9Q\\xff\\x08\\xf1\\xff\\x9ec\\xf2\\xaf\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...ef\\xfag\\xfaQ\\xff\\x00\\x08\\xf7\\xfd3\\xfd+\\xbb\\xff\\x00\\x84x\\xff\\x00\\xcf1\\xf9Q\\xff\\x00\\x08\\xf1\\xff\\x00\\x9ec\\xf2\\xaf\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=40",
+      "status": "failed",
+      "sim_time_ns": 97120.0,
+      "real_time_s": 0.799,
+      "error_type": "AssertionError",
+      "error_message": "822 bytes vs golden 870, first difference at index 330\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00P7<F<2PFAFZUP_x\\xc8\\x82xnnx\\xf5...ce\\xbf\\xe7\\xff\\xd7\\xeb\\xef\\xd7\\xbe~s\\xaf\\xf9\\xff\\xf5\\xfa\\xfb\\xf5\\xef\\x9f\\x9c\\xeb\\xfe\\x7f\\xfd~\\xbe\\xfd{\\xe7\\xe7\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00P7<F<2PFAFZUP_x\\xc8\\x82xnnx\\xf5...e7\\xff\\x00\\xd7\\xeb\\xef\\xd7\\xbe~s\\xaf\\xf9\\xff\\x00\\xf5\\xfa\\xfb\\xf5\\xef\\x9f\\x9c\\xeb\\xfe\\x7f\\xfd~\\xbe\\xfd{\\xe7\\xe7\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=41",
+      "status": "failed",
+      "sim_time_ns": 97820.0,
+      "real_time_s": 1.019,
+      "error_type": "AssertionError",
+      "error_message": "1284 bytes vs golden 1434, first difference at index 330\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...dfY\\xce\\xff\\xf6\\xb3\\xbf\\xf8\\xf7\\xff\\xa4\\x1f\\x7f\\xfd\\xad\\xdf\\xf0-\\xd9\\xff\\xbe\\xb3\\x9d\\xff\\xedg\\x7f\\xf1\\xef\\xffH\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...xb3\\xbf\\xf8\\xf7\\xff\\x00\\xa4\\x1f\\x7f\\xfd\\xad\\xdf\\xf0-\\xd9\\xff\\x00\\xbe\\xb3\\x9d\\xff\\x00\\xedg\\x7f\\xf1\\xef\\xff\\x00H\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=42",
+      "status": "failed",
+      "sim_time_ns": 97860.0,
+      "real_time_s": 1.316,
+      "error_type": "AssertionError",
+      "error_message": "1567 bytes vs golden 1651, first difference at index 335\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...xbf\\xe5\\xb7\\x9d\\xff\\x13\\x13\\xfdw\\xfd4\\xf3?\\xe0{\\xf7\\x7f\\xdf\\xcd\\xdb\\xbc\\xef\\xfai\\xbb\\xce\\xff\\x96\\xdew\\xfcL\\x7f\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...xb7\\x9d\\xff\\x00\\x13\\x13\\xfdw\\xfd4\\xf3?\\xe0{\\xf7\\x7f\\xdf\\xcd\\xdb\\xbc\\xef\\xfai\\xbb\\xce\\xff\\x00\\x96\\xdew\\xfcL\\x7f\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=43",
+      "status": "failed",
+      "sim_time_ns": 97890.0,
+      "real_time_s": 1.351,
+      "error_type": "AssertionError",
+      "error_message": "2083 bytes vs golden 2251, first difference at index 337\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...ffQO\\xedO\\xfb\\x7f\\xfb\\x7f\\xda\\xbf\\xf0g\\xf6\\xcf\\xb4\\x7fn\\x7f\\xd4S\\xed_\\xf0\\x90\\xff\\xccw\\xfe\\x12\\x1f\\xf8\\xba\\x9f\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...\\xedO\\xfb\\x7f\\xfb\\x7f\\xda\\xbf\\xf0g\\xf6\\xcf\\xb4\\x7fn\\x7f\\xd4S\\xed_\\xf0\\x90\\xff\\x00\\xccw\\xfe\\x12\\x1f\\xf8\\xba\\x9f\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=44",
+      "status": "failed",
+      "sim_time_ns": 40870.0,
+      "real_time_s": 0.416,
+      "error_type": "AssertionError",
+      "error_message": "371 bytes vs golden 375, first difference at index 330\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00P7<F<2PFAFZUP_x\\xc8\\x82xnnx\\xf5...ce\\xbf\\xe7\\xff\\xd7\\xeb\\xef\\xd7\\xbe~s\\xaf\\xf9\\xff\\xf5\\xfa\\xfb\\xf5\\xef\\x9f\\x9c\\xeb\\xfe\\x7f\\xfd~\\xbe\\xfd{\\xe7\\xe7\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00P7<F<2PFAFZUP_x\\xc8\\x82xnnx\\xf5...e7\\xff\\x00\\xd7\\xeb\\xef\\xd7\\xbe~s\\xaf\\xf9\\xff\\x00\\xf5\\xfa\\xfb\\xf5\\xef\\x9f\\x9c\\xeb\\xfe\\x7f\\xfd~\\xbe\\xfd{\\xe7\\xe7\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=45",
+      "status": "failed",
+      "sim_time_ns": 41960.0,
+      "real_time_s": 0.413,
+      "error_type": "AssertionError",
+      "error_message": "410 bytes vs golden 425, first difference at index 330\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...d\\xf5\\x9c\\xef\\xffk;\\xff\\x8f\\x7f\\xfaA\\xf7\\xff\\xda\\xdd\\xff\\x02\\xdd\\x9f\\xfb\\xeb9\\xdf\\xfe\\xd6w\\xff\\x1e\\xff\\xf4\\x8f\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...xff\\x00\\x8f\\x7f\\xfaA\\xf7\\xff\\x00\\xda\\xdd\\xff\\x00\\x02\\xdd\\x9f\\xfb\\xeb9\\xdf\\xfe\\xd6w\\xff\\x00\\x1e\\xff\\x00\\xf4\\x8f\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=46",
+      "status": "failed",
+      "sim_time_ns": 41990.0,
+      "real_time_s": 0.412,
+      "error_type": "AssertionError",
+      "error_message": "434 bytes vs golden 441, first difference at index 335\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...xbf\\xe5\\xb7\\x9d\\xff\\x13\\x13\\xfdw\\xfd4\\xf3?\\xe0{\\xf7\\x7f\\xdf\\xcd\\xdb\\xbc\\xef\\xfai\\xbb\\xce\\xff\\x96\\xdew\\xfcL\\x7f\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...xb7\\x9d\\xff\\x00\\x13\\x13\\xfdw\\xfd4\\xf3?\\xe0{\\xf7\\x7f\\xdf\\xcd\\xdb\\xbc\\xef\\xfai\\xbb\\xce\\xff\\x00\\x96\\xdew\\xfcL\\x7f\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=47",
+      "status": "failed",
+      "sim_time_ns": 42020.0,
+      "real_time_s": 0.395,
+      "error_type": "AssertionError",
+      "error_message": "477 bytes vs golden 491, first difference at index 337\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...ffQO\\xedO\\xfb\\x7f\\xfb\\x7f\\xda\\xbf\\xf0g\\xf6\\xcf\\xb4\\x7fn\\x7f\\xd4S\\xed_\\xf0\\x90\\xff\\xccw\\xfe\\x12\\x1f\\xf8\\xba\\x9f\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...\\xedO\\xfb\\x7f\\xfb\\x7f\\xda\\xbf\\xf0g\\xf6\\xcf\\xb4\\x7fn\\x7f\\xd4S\\xed_\\xf0\\x90\\xff\\x00\\xccw\\xfe\\x12\\x1f\\xf8\\xba\\x9f\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=48",
+      "status": "passed",
+      "sim_time_ns": 95970.0,
+      "real_time_s": 1.051
+    },
+    {
+      "name": "test_grey_golden/case=49",
+      "status": "passed",
+      "sim_time_ns": 95970.0,
+      "real_time_s": 1.064
+    },
+    {
+      "name": "test_grey_golden/case=50",
+      "status": "failed",
+      "sim_time_ns": 95970.0,
+      "real_time_s": 1.043,
+      "error_type": "AssertionError",
+      "error_message": "431 bytes vs golden 437, first difference at index 334\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...\\xff\\xaf\\x80+\\xef\\xfa\\xf8\\x02\\xbe\\xff\\xaf\\x80(\\xaf\\xbf\\xeb\\xe0\\n\\xfb\\xfe\\xbe\\x00\\xaf\\xbf\\xeb\\xe0\\n\\xfb\\xfe\\xbf\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...\\xaf\\x80+\\xef\\xfa\\xf8\\x02\\xbe\\xff\\x00\\xaf\\x80(\\xaf\\xbf\\xeb\\xe0\\n\\xfb\\xfe\\xbe\\x00\\xaf\\xbf\\xeb\\xe0\\n\\xfb\\xfe\\xbf\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=51",
+      "status": "failed",
+      "sim_time_ns": 95960.0,
+      "real_time_s": 0.994,
+      "error_type": "AssertionError",
+      "error_message": "452 bytes vs golden 458, first difference at index 358\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...fb\\xfc\\xaf\\xe0\\x0e\\xbf\\xbf\\xca\\xfe\\x00\\xe8\\xaf\\xef\\xf2\\xbf\\x80:\\xfe\\xff+\\xf8\\x03\\xaf\\xef\\xf2\\xbf\\x80:\\xfe\\xff+\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...af\\xe0\\x0e\\xbf\\xbf\\xca\\xfe\\x00\\xe8\\xaf\\xef\\xf2\\xbf\\x80:\\xfe\\xff\\x00+\\xf8\\x03\\xaf\\xef\\xf2\\xbf\\x80:\\xfe\\xff\\x00+\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=52",
+      "status": "passed",
+      "sim_time_ns": 39650.0,
+      "real_time_s": 0.358
+    },
+    {
+      "name": "test_grey_golden/case=53",
+      "status": "passed",
+      "sim_time_ns": 39650.0,
+      "real_time_s": 0.38
+    },
+    {
+      "name": "test_grey_golden/case=54",
+      "status": "passed",
+      "sim_time_ns": 39650.0,
+      "real_time_s": 0.371
+    },
+    {
+      "name": "test_grey_golden/case=55",
+      "status": "failed",
+      "sim_time_ns": 39640.0,
+      "real_time_s": 0.364,
+      "error_type": "AssertionError",
+      "error_message": "339 bytes vs golden 340, first difference at index 336\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...\\xf1\\xf2\\xf3\\xf4\\xf5\\xf6\\xf7\\xf8\\xf9\\xfa\\xff\\xda\\x00\\x08\\x01\\x01\\x00\\x00?\\x00\\xfd\\xfc\\xaf\\xe0\\x0e\\x8a\\xfe\\xff+\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...\\xf2\\xf3\\xf4\\xf5\\xf6\\xf7\\xf8\\xf9\\xfa\\xff\\xda\\x00\\x08\\x01\\x01\\x00\\x00?\\x00\\xfd\\xfc\\xaf\\xe0\\x0e\\x8a\\xfe\\xff\\x00+\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=56",
+      "status": "passed",
+      "sim_time_ns": 95970.0,
+      "real_time_s": 1.046
+    },
+    {
+      "name": "test_grey_golden/case=57",
+      "status": "passed",
+      "sim_time_ns": 95970.0,
+      "real_time_s": 1.136
+    },
+    {
+      "name": "test_grey_golden/case=58",
+      "status": "failed",
+      "sim_time_ns": 95960.0,
+      "real_time_s": 1.06,
+      "error_type": "AssertionError",
+      "error_message": "411 bytes vs golden 414, first difference at index 343\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...e4+\\n\\xb9*\\xc2\\xaeB\\xb0\\xab\\xef\\xfa\\xc2\\xaeB\\xb0\\xab\\x92\\xac*\\xe4+\\n\\xbe\\xff\\xac*\\xe4+\\n\\xb9*\\xc2\\xaeB\\xb0\\xab\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...n\\xb9*\\xc2\\xaeB\\xb0\\xab\\xef\\xfa\\xc2\\xaeB\\xb0\\xab\\x92\\xac*\\xe4+\\n\\xbe\\xff\\x00\\xac*\\xe4+\\n\\xb9*\\xc2\\xaeB\\xb0\\xab\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=59",
+      "status": "passed",
+      "sim_time_ns": 95960.0,
+      "real_time_s": 1.083
+    },
+    {
+      "name": "test_grey_golden/case=60",
+      "status": "passed",
+      "sim_time_ns": 39680.0,
+      "real_time_s": 0.396
+    },
+    {
+      "name": "test_grey_golden/case=61",
+      "status": "failed",
+      "sim_time_ns": 40630.0,
+      "real_time_s": 0.388,
+      "error_type": "AssertionError",
+      "error_message": "354 bytes vs golden 355, first difference at index 349\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...xda\\x00\\x08\\x01\\x01\\x00\\x00?\\x00\\xe9u\\xdf\\xf3\\xfaW\\x9ak\\xbf\\xe7\\xf4\\xafK\\xd7\\x7f\\xcf\\xe9^i\\xae\\xff\\x9f\\xd2\\xbf\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...x00\\x08\\x01\\x01\\x00\\x00?\\x00\\xe9u\\xdf\\xf3\\xfaW\\x9ak\\xbf\\xe7\\xf4\\xafK\\xd7\\x7f\\xcf\\xe9^i\\xae\\xff\\x00\\x9f\\xd2\\xbf\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=62",
+      "status": "failed",
+      "sim_time_ns": 40930.0,
+      "real_time_s": 0.408,
+      "error_type": "AssertionError",
+      "error_message": "361 bytes vs golden 363, first difference at index 333\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...\\x00\\xf4\\xbf\\x1a\\xf6\\xff?\\xdd\\xaf\\x9a<k\\xdb\\xfc\\xffv\\xbe\\x97\\xf1\\xafo\\xf3\\xfd\\xda\\xf9\\xa3\\xc6\\xbd\\xbf\\xcf\\xf7k\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...\\xbf\\x1a\\xf6\\xff\\x00?\\xdd\\xaf\\x9a<k\\xdb\\xfc\\xff\\x00v\\xbe\\x97\\xf1\\xafo\\xf3\\xfd\\xda\\xf9\\xa3\\xc6\\xbd\\xbf\\xcf\\xf7k\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=63",
+      "status": "failed",
+      "sim_time_ns": 40930.0,
+      "real_time_s": 0.412,
+      "error_type": "AssertionError",
+      "error_message": "378 bytes vs golden 390, first difference at index 331\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...\\xa7\\xff\\x82\\x9f\\xff\\xcb?\\xc7\\xffm+\\xfaX\\xff\\x82\\x9f\\xff\\xcb?\\xc7\\xffm+\\xf9\\xa7\\xff\\x82\\x9f\\xff\\xcb?\\xc7\\xffm+\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...7\\xff\\x00m+\\xfaX\\xff\\x00\\x82\\x9f\\xff\\x00\\xcb?\\xc7\\xff\\x00m+\\xf9\\xa7\\xff\\x00\\x82\\x9f\\xff\\x00\\xcb?\\xc7\\xff\\x00m+\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=64",
+      "status": "failed",
+      "sim_time_ns": 97440.0,
+      "real_time_s": 1.343,
+      "error_type": "AssertionError",
+      "error_message": "646 bytes vs golden 653, first difference at index 335\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00P7<F<2PFAFZUP_x\\xc8\\x82xnnx\\xf5...xfeNiH\\xeb\\x8e\\xbd\\xfd\\xe8\\x19\\x07\\xe5\\xe0r\\x0e{\\xd01\\xb7\\x19\\xe7\\xa7\\xd6\\x8c\\xf5\\x18\\x03\\xa8\\xff?\\xe7\\xff\\xad\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00P7<F<2PFAFZUP_x\\xc8\\x82xnnx\\xf5...eb\\x8e\\xbd\\xfd\\xe8\\x19\\x07\\xe5\\xe0r\\x0e{\\xd01\\xb7\\x19\\xe7\\xa7\\xd6\\x8c\\xf5\\x18\\x03\\xa8\\xff\\x00?\\xe7\\xff\\x00\\xad\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=65",
+      "status": "passed",
+      "sim_time_ns": 124730.0,
+      "real_time_s": 1.66
+    },
+    {
+      "name": "test_grey_golden/case=66",
+      "status": "failed",
+      "sim_time_ns": 141170.0,
+      "real_time_s": 1.841,
+      "error_type": "AssertionError",
+      "error_message": "1799 bytes vs golden 1801, first difference at index 1187\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...l\\x0eT\\x03\\xbbp\\xe0\\x90U\\xae\\xc0{\\xdb1ok\\x12\\x914\\x0e$b\\x04H\\x14\\xa7\\xca\\x00\\xc63\\x85\\xf9\\xb1\\x83\\x8cm\\x03\\xe4\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x08\\x06\\x06\\x07\\x06\\x05\\x08\\x0...l\\x0eT\\x03\\xbbp\\xe0\\x90U\\xae\\xc0{\\xdb1ok\\x12\\x914\\x0e$b\\x04H\\x14\\xa7\\xca\\x00\\xc63\\x85\\xf9\\xb1\\x83\\x8cm\\x03\\xe4\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=67",
+      "status": "failed",
+      "sim_time_ns": 157030.0,
+      "real_time_s": 2.08,
+      "error_type": "AssertionError",
+      "error_message": "3018 bytes vs golden 3029, first difference at index 564\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...0\\x8e\\x93\\x04\\xb1k\\xde\\x1f\\xd5`\\xd6/f\\x8e-\"\\xc6\\x1byl\\x19m!\\xb7A\\x13@\\xb3\\x98\\xedsq\\xe5}\\x9eO/\\xcb[x`-\\xa7\\xff\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...e\\x93\\x04\\xb1k\\xde\\x1f\\xd5`\\xd6/f\\x8e-\"\\xc6\\x1byl\\x19m!\\xb7A\\x13@\\xb3\\x98\\xedsq\\xe5}\\x9eO/\\xcb[x`-\\xa7\\xff\\x00\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=68",
+      "status": "failed",
+      "sim_time_ns": 41170.0,
+      "real_time_s": 0.405,
+      "error_type": "AssertionError",
+      "error_message": "357 bytes vs golden 358, first difference at index 338\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00P7<F<2PFAFZUP_x\\xc8\\x82xnnx\\xf5...x00\\x08\\x01\\x01\\x00\\x00?\\x0027r\\t\\xed\\x81F\\xd6\\xe7\\xff\\xafA\\xe9\\x83\\xc1\\xc7\\x1fZF\\xe0\\xf28\\xe9\\x8f\\xf3\\xc5\\x7f\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00P7<F<2PFAFZUP_x\\xc8\\x82xnnx\\xf5...x08\\x01\\x01\\x00\\x00?\\x0027r\\t\\xed\\x81F\\xd6\\xe7\\xff\\x00\\xafA\\xe9\\x83\\xc1\\xc7\\x1fZF\\xe0\\xf28\\xe9\\x8f\\xf3\\xc5\\x7f\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=69",
+      "status": "failed",
+      "sim_time_ns": 44100.0,
+      "real_time_s": 0.427,
+      "error_type": "AssertionError",
+      "error_message": "419 bytes vs golden 420, first difference at index 378\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...e5\\xae\\xd5\\x19s\\x9cq\\x8e\\xe7\\xd3#\\x04\\x1e*;\\xa6\\x11\\xcb\\xf3\\xc2\\x15\\t\\xd9\\xb3\\x1f1\\x1c\\xf206\\xe4g\\xe8\\x08\\xeak\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x10\\x0b\\x0c\\x0e\\x0c\\n\\x10\\x0e\\...e5\\xae\\xd5\\x19s\\x9cq\\x8e\\xe7\\xd3#\\x04\\x1e*;\\xa6\\x11\\xcb\\xf3\\xc2\\x15\\t\\xd9\\xb3\\x1f1\\x1c\\xf206\\xe4g\\xe8\\x08\\xeak\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=70",
+      "status": "passed",
+      "sim_time_ns": 45680.0,
+      "real_time_s": 0.446
+    },
+    {
+      "name": "test_grey_golden/case=71",
+      "status": "failed",
+      "sim_time_ns": 47270.0,
+      "real_time_s": 0.466,
+      "error_type": "AssertionError",
+      "error_message": "549 bytes vs golden 551, first difference at index 368\nassert b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...|2`\\x8d\\xf5\\x0b\\x98\\x15.\\xa2\\x92\\xe2\\xd7\\xec\\x96\\xaf\\xa6Eu\\x04\\xb7\\x9b\\x99B\\xc9\\x05\\xbd\\xe4\\'\\xf7\\xb2\\x97`\\xff\\xff\\xd9' == b'\\xff\\xd8\\xff\\xe0\\x00\\x10JFIF\\x00\\x01\\x01\\x00\\x00\\x01\\x00\\x01\\x00\\x00\\xff\\xdb\\x00C\\x00\\x02\\x01\\x01\\x01\\x01\\x01\\x02\\x0...x8d\\xf5\\x0b\\x98\\x15.\\xa2\\x92\\xe2\\xd7\\xec\\x96\\xaf\\xa6Eu\\x04\\xb7\\x9b\\x99B\\xc9\\x05\\xbd\\xe4\\'\\xf7\\xb2\\x97`\\xff\\x00\\xff\\xd9'"
+    },
+    {
+      "name": "test_grey_golden/case=72",
+      "status": "passed",
+      "sim_time_ns": 95970.0,
+      "real_time_s": 1.157
+    },
+    {
+      "name": "test_grey_golden/case=73",
+      "status": "passed",
+      "sim_time_ns": 96050.0,
+      "real_time_s": 1.26
+    },
+    {
+      "name": "test_grey_golden/case=74",
+      "status": "passed",
+      "sim_time_ns": 97240.0,
+      "real_time_s": 1.222
+    },
+    {
+      "name": "test_grey_golden/case=75",
+      "status": "passed",
+      "sim_time_ns": 97740.0,
+      "real_time_s": 1.289
+    },
+    {
+      "name": "test_grey_golden/case=76",
+      "status": "passed",
+      "sim_time_ns": 39640.0,
+      "real_time_s": 0.405
+    },
+    {
+      "name": "test_grey_golden/case=77",
+      "status": "passed",
+      "sim_time_ns": 39830.0,
+      "real_time_s": 0.402
+    },
+    {
+      "name": "test_grey_golden/case=78",
+      "status": "passed",
+      "sim_time_ns": 40930.0,
+      "real_time_s": 0.404
+    },
+    {
+      "name": "test_grey_golden/case=79",
+      "status": "passed",
+      "sim_time_ns": 41520.0,
+      "real_time_s": 0.408
+    },
+    {
+      "name": "test_qoi_golden/case=0",
+      "status": "passed",
+      "sim_time_ns": 120480.0,
+      "real_time_s": 0.941
+    },
+    {
+      "name": "test_qoi_golden/case=1",
+      "status": "passed",
+      "sim_time_ns": 36000.0,
+      "real_time_s": 0.316
+    },
+    {
+      "name": "test_qoi_golden/case=2",
+      "status": "passed",
+      "sim_time_ns": 120480.0,
+      "real_time_s": 0.934
+    },
+    {
+      "name": "test_qoi_golden/case=3",
+      "status": "passed",
+      "sim_time_ns": 36000.0,
+      "real_time_s": 0.299
+    },
+    {
+      "name": "test_qoi_golden/case=4",
+      "status": "passed",
+      "sim_time_ns": 120470.0,
+      "real_time_s": 0.956
+    },
+    {
+      "name": "test_qoi_golden/case=5",
+      "status": "passed",
+      "sim_time_ns": 35990.0,
+      "real_time_s": 0.301
+    },
+    {
+      "name": "test_qoi_golden/case=6",
+      "status": "passed",
+      "sim_time_ns": 132420.0,
+      "real_time_s": 1.144
+    },
+    {
+      "name": "test_qoi_golden/case=7",
+      "status": "passed",
+      "sim_time_ns": 36160.0,
+      "real_time_s": 0.241
+    },
+    {
+      "name": "test_qoi_golden/case=8",
+      "status": "passed",
+      "sim_time_ns": 121890.0,
+      "real_time_s": 0.918
+    },
+    {
+      "name": "test_qoi_golden/case=9",
+      "status": "passed",
+      "sim_time_ns": 36450.0,
+      "real_time_s": 0.323
+    },
+    {
+      "name": "test_qoi_golden/case=10",
+      "status": "passed",
+      "sim_time_ns": 121440.0,
+      "real_time_s": 1.186
+    },
+    {
+      "name": "test_qoi_golden/case=11",
+      "status": "passed",
+      "sim_time_ns": 36320.0,
+      "real_time_s": 0.328
+    },
+    {
+      "name": "test_qoi_golden/case=12",
+      "status": "passed",
+      "sim_time_ns": 128050.0,
+      "real_time_s": 1.01
+    },
+    {
+      "name": "test_qoi_golden/case=13",
+      "status": "passed",
+      "sim_time_ns": 36610.0,
+      "real_time_s": 0.323
+    },
+    {
+      "name": "test_qoi_golden/case=14",
+      "status": "passed",
+      "sim_time_ns": 128210.0,
+      "real_time_s": 0.842
+    },
+    {
+      "name": "test_qoi_golden/case=15",
+      "status": "passed",
+      "sim_time_ns": 38610.0,
+      "real_time_s": 0.312
+    },
+    {
+      "name": "test_qoi_golden/case=16",
+      "status": "passed",
+      "sim_time_ns": 151220.0,
+      "real_time_s": 1.651
+    },
+    {
+      "name": "test_qoi_golden/case=17",
+      "status": "passed",
+      "sim_time_ns": 38580.0,
+      "real_time_s": 0.372
+    },
+    {
+      "name": "test_qoi_golden/case=18",
+      "status": "passed",
+      "sim_time_ns": 151220.0,
+      "real_time_s": 1.655
+    },
+    {
+      "name": "test_qoi_golden/case=19",
+      "status": "passed",
+      "sim_time_ns": 38500.0,
+      "real_time_s": 0.332
+    }
+  ],
+  "coverage": null,
+  "trace": null,
+  "environment": {
+    "engine": "icarus",
+    "engine_version": "13.0",
+    "cocotb_version": "2.1.0",
+    "results_xml": "/tmp/fv88n2/results_icarus.xml",
+    "test_log": "/tmp/fv88n2/test_icarus.log",
+    "build_log": "/tmp/fv88n2/build_icarus.log",
+    "random_seed": 1,
+    "source_defines": {},
+    "initial_state": null,
+    "sdf": null
+  }
+}
