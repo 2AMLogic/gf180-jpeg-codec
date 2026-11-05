@@ -1,5 +1,11 @@
 # Gate-level (zero-delay) smoke run, issue #89
 
+> **Superseded.** The `report.json` originally committed here was a 0-byte file
+> (removed; it was not evidence and failed the JSON lint). The klt report for this
+> run is in `../20261105T0700Z-regen-24bab41/report.json`. The pass/fail table below
+> is the Builder's account; the four-test gate-level result is backed by that record.
+
+
 Netlist `flow/netlist/jpeg_codec_top_synth.v`, sha256
 `871dc5df053c0cca368f79f862b469a774ba32b1ee906cc13477e57b54b5c682`
 (see `netlist.sha256`), at `24bab41`. Cell models: PDK `gf180mcu_fd_sc_mcu9t5v0`
