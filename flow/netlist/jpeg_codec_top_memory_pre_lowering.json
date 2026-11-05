@@ -61,7 +61,7 @@
          "num_cells_by_type": {
             "$alu": 22,
             "$and": 17,
-            "$dffe": 13,
+            "$dffe": 11,
             "$eq": 16,
             "$logic_not": 4,
             "$logic_or": 2,
@@ -74,7 +74,7 @@
             "$reduce_and": 14,
             "$reduce_bool": 10,
             "$reduce_or": 2,
-            "$sdffe": 6
+            "$sdffe": 8
          }
       },
       "\\jc_out_mux": {
@@ -624,7 +624,7 @@
             "$and": 288,
             "$bmux": 4,
             "$dff": 6,
-            "$dffe": 84,
+            "$dffe": 82,
             "$eq": 203,
             "$logic_and": 91,
             "$logic_not": 59,
@@ -641,7 +641,7 @@
             "$reduce_or": 98,
             "$sdff": 25,
             "$sdffce": 2,
-            "$sdffe": 74,
+            "$sdffe": 76,
             "$shift": 12,
             "$shiftx": 6,
             "$shl": 6,
