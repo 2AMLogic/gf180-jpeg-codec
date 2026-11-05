@@ -5,6 +5,8 @@ Maintained by the Guide triage role.
 
 ### 2026-11-05
 
+- **PR #99**: chore: remove smoke_placeholder skeleton superseded by real codec benches
+- **Issue #96** (closed): Remove smoke_placeholder skeleton: superseded by real codec benches
 - **PR #95**: fix(rtl): reset jc_qoi col/row to remove gate-level X
 - **PR #94**: test: add zero-delay gate-level runner for the top-level smoke bench
 - **Issue #93** (closed): Gate-level netlist diverges from RTL on the QOI path (status_idle goes X, frame never completes)
