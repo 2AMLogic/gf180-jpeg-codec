@@ -131,3 +131,22 @@ compiler.
 ```sh
 python3 verification/rtl/run_top_smoke.py          # icarus; same exit codes as run_tb.py
 ```
+
+### Gate-level run (issue #89)
+
+`verification/rtl/run_top_smoke_gl.py` runs the same `test_top_smoke.py`,
+unchanged, on the synthesized `flow/netlist/jpeg_codec_top_synth.v` with zero
+delay: the PDK cell models of the library the netlist is mapped to (found from
+the netlist) from the tree `flow/pdk.env` pins, and `sram_macro_model.v`. It
+exits 2 before simulating if the PDK pin does not match.
+
+```sh
+python3 verification/rtl/run_top_smoke_gl.py --testcase test_colour_decodes,test_grey_decodes
+python3 verification/rtl/run_top_smoke_gl.py --inject-fault --testcase test_grey_decodes   # expect exit 1
+python3 verification/rtl/run_top_smoke_gl.py --klt-request OUT --testcase ...             # klt request
+```
+
+Four of the five tests pass at gate level; `test_qoi_decodes` diverges (it never
+finishes) and, with no `--testcase`, the run only ends at the bench's 4 000 000
+cycle cap, about an hour. Keep it out of any required job. Evidence:
+`verification/records/20261105T053856Z-24bab41/`.
