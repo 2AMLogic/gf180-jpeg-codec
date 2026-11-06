@@ -175,3 +175,18 @@ Reports of the committed runs are under `verification/records/`
 (`top-golden-*.json`, `top-golden-negctl-*.json`; append-only, run with Icarus
 13.0 and cocotb 2.1.0 on the host, not the pinned Icarus 14.0). Needs only
 cocotb and a simulator; Pillow is not used by this suite.
+
+### Gate-level golden run (issue #102)
+
+`verification/rtl/run_top_smoke_gl.py --test-module test_top_golden` runs the
+same 180-case byte-exact suite against the committed synthesized netlist
+`flow/netlist/jpeg_codec_top_synth.v` (zero delay, seed 1, no SDF), instead of
+the smoke bench (`--test-module` defaults to `test_top_smoke`, so earlier usage is
+unchanged). With `--klt-request OUTDIR` it writes the `klt functional-verification`
+request and `netlist.sha256` for a new append-only record under
+`verification/records/`; the record README gives the run command, the netlist hash
+it covers and the `--inject-fault` negative control (must exit exactly 1). The
+script needs cocotb importable: without it the run dies in a traceback that
+also exits 1, so a negative control must check for the test summary, not the
+exit code alone. A mismatch between gate level and RTL is an RTL/netlist finding;
+the golden model is never adjusted.
