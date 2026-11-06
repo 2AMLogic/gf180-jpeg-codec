@@ -15,6 +15,8 @@ does.
 
     python3 verification/rtl/run_top_smoke_gl.py                 # run_tb path
     python3 verification/rtl/run_top_smoke_gl.py --inject-fault  # expect exit 1
+    python3 verification/rtl/run_top_smoke_gl.py --test-module test_top_golden
+        # the byte-exact golden suite instead of the smoke bench (issue #102)
     python3 verification/rtl/run_top_smoke_gl.py --klt-request OUTDIR
         # write OUTDIR/request.json and OUTDIR/netlist.sha256, for
         #   klt functional-verification OUTDIR/request.json -o OUTDIR/run
@@ -41,7 +43,7 @@ NETLIST = ROOT / "flow" / "netlist" / "jpeg_codec_top_synth.v"
 PDK_ENV = ROOT / "flow" / "pdk.env"
 MACRO_MODEL = HERE / "sram_macro_model.v"
 TOPLEVEL = "jpeg_codec_top"
-TEST_MODULE = "test_top_smoke"
+TEST_MODULES = ("test_top_smoke", "test_top_golden")
 
 EXIT_DID_NOT_RUN = 2
 
@@ -98,6 +100,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--inject-fault", action="store_true", help="negative control: corrupt a temp copy of the netlist; expect exit 1")
     ap.add_argument("--klt-request", metavar="OUTDIR", help="write a klt functional-verification request instead of running")
+    ap.add_argument("--test-module", choices=TEST_MODULES, default="test_top_smoke", help="cocotb module to run against the netlist (default: test_top_smoke)")
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--testcase", default=None, help="comma-separated test names to run (default: all)")
     args = ap.parse_args()
@@ -121,7 +124,7 @@ def main() -> int:
                 "sources": [str(s) for s in srcs],
                 "hdl_toplevel": TOPLEVEL,
                 "engine": "icarus",
-                "testbench": {"module": TEST_MODULE, "search_path": str(HERE)},
+                "testbench": {"module": args.test_module, "search_path": str(HERE)},
                 "options": {
                     "timescale": ["1ns", "1ps"],
                     "random_seed": args.seed,
@@ -139,7 +142,7 @@ def main() -> int:
         run_tb.TB = HERE
         run_tb.SOURCES = srcs
         run_tb.TOPLEVEL = TOPLEVEL
-        run_tb.TEST_MODULE = TEST_MODULE
+        run_tb.TEST_MODULE = args.test_module
         extra = ["--testcase", args.testcase] if args.testcase else []
         return run_tb.main(["--seed", str(args.seed)] + extra)
 
