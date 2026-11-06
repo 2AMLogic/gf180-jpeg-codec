@@ -3,6 +3,11 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-11-06
+
+- **PR #103**: verification: run the golden suite on the gate-level netlist
+- **Issue #102** (closed): Run the 180-case byte-exact golden suite on the zero-delay gate-level netlist
+
 ### 2026-11-05
 
 - **PR #99**: chore: remove smoke_placeholder skeleton superseded by real codec benches
