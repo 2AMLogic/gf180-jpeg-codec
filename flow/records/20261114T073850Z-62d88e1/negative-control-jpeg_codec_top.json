@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "error": {
+    "command": "sta",
+    "message": "openroad sta run failed: [ERROR ORD-2013] instance u_m0/u_macro LEF master gf180_sram_256x32 not found. -- instance 'u_m0/u_macro' is a hard macro ('gf180_sram_256x32') with no physical view loaded: declare it in request.macros as {\"cell\": \"gf180_sram_256x32\", \"lef\": \"<gf180_sram_256x32.lef>\"} (add a per-corner \"lib\" to time it too) -- openroad invocation: {\"directory\": {\"path\": \"flow/.klt/sta/openroad-logs/551f2eb5611b488186c02a4b59eb5546\", \"scope\": \"repo\"}, \"invocation_id\": \"551f2eb5611b488186c02a4b59eb5546\", \"metadata_path\": {\"path\": \"flow/.klt/sta/openroad-logs/551f2eb5611b488186c02a4b59eb5546/invocation.json\", \"scope\": \"repo\"}, \"metrics_path\": {\"path\": \"flow/.klt/sta/jpeg_codec_top_synth__ss_125C_3v00_metrics.json\", \"scope\": \"repo\"}, \"outcome\": \"exited\", \"retention_errors\": [], \"returncode\": 1, \"script_name\": \"sta_jpeg_codec_top_synth__ss_125C_3v00.tcl\", \"script_path\": {\"path\": \"flow/.klt/sta/sta_jpeg_codec_top_synth__ss_125C_3v00.tcl\", \"scope\": \"repo\"}, \"script_sha256\": \"ed9060847cfe3f3cc954fe2b61ce312cce246ff4ab78ed661109e464e42ea101\", \"stderr_path\": {\"path\": \"flow/.klt/sta/openroad-logs/551f2eb5611b488186c02a4b59eb5546/stderr.log\", \"scope\": \"repo\"}, \"stdout_path\": {\"path\": \"flow/.klt/sta/openroad-logs/551f2eb5611b488186c02a4b59eb5546/stdout.log\", \"scope\": \"repo\"}}"
+  }
+}

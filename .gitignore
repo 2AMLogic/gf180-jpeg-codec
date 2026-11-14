@@ -112,3 +112,6 @@ results.xml
 
 # Repo Skills Codex-side machine-local install metadata (never committed)
 .agents/skills/repo/.install-local.json
+
+# klt sta scratch from flow/sta-preroute.sh (records/ keeps the evidence)
+flow/.klt/
