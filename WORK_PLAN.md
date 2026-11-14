@@ -13,7 +13,7 @@ _None._
 
 `loom:very-important` (one counts per workspace); every stage takes these first.
 
-_None._
+- **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md)
 
 ## Important
 
@@ -64,7 +64,7 @@ _None._
 | Bucket | Count |
 |------|-------|
 | Operator merge-risk holds | 0 |
-| Very important | 0 |
+| Very important | 1 |
 | Important | 1 |
 | Ready (`loom:issue`) | 0 |
 | In Progress (`loom:building`) | 0 |
