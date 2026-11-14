@@ -64,9 +64,9 @@
       {
         "check": "present",
         "role": "testbench",
-        "path": "verification/rtl/run_top_golden.py",
+        "path": "verification/rtl/run_stage.py",
         "passed": true,
-        "content_hash": "sha256:c5c28b9910d344d75cb3565d626cf059e2ebf171413b2bd0882eb0f2c615d285"
+        "content_hash": "sha256:9b1e093b0c7fe55be6c3928921f32d16105de41efed3387857cdaf5eab8d58e2"
       },
       {
         "check": "present",
@@ -124,7 +124,7 @@
         "path": "manifests/attest/item9.inventory.json",
         "scope": "repo"
       },
-      "content_hash": "sha256:7d7bbdd92fd5783536b6ffc509bfc972ace96ab26bb75400ce0482e30e0a9d82"
+      "content_hash": "sha256:951b7dd9a6e9846e061eaacd4a46f200938a4871a7429fafb5d56d81cc8727b0"
     }
   }
 }

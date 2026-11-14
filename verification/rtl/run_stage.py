@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-"""Runs one RTL-stage cocotb bench by name.
+"""Runs one RTL cocotb bench by name.
 
-Reuses the vendored runner in verification/common/run_tb.py with the stage's
+Reuses the vendored runner in verification/common/run_tb.py with the bench's
 sources, top level and test module from STAGES; the remaining flags and the
 exit statuses are unchanged (0 pass, 1 a test failed, 2 the suite did not run,
-which includes an unknown stage name).
+which includes an unknown bench name).
 
     python3 verification/rtl/run_stage.py qoi                  # icarus
     python3 verification/rtl/run_stage.py qoi --sim verilator
+    python3 verification/rtl/run_stage.py top_golden           # the byte-exact suite
 """
 
 import sys
@@ -16,10 +17,19 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
 sys.path.insert(0, str(ROOT / "verification" / "common"))
+# The top-level benches reach the golden model (test_top_smoke.py imports
+# jpeg_golden/qoi_golden). run_tb.main() puts GOLDEN on sys.path and on the
+# simulator's PYTHONPATH itself, but only after the build, so keep the
+# wrapper-side insert the per-bench run_top_*.py scripts used to carry.
+sys.path.insert(0, str(ROOT / "verification" / "golden"))
 
 import run_tb  # noqa: E402
 
 RTL = ROOT / "rtl"
+
+# Every .v in rtl/ plus the pin-accurate gf180-sram macro model: what the
+# jpeg_codec_top benches build (issue #48).
+TOP_SOURCES = sorted(RTL.glob("*.v")) + [HERE / "sram_macro_model.v"]
 
 # stage -> (sources, toplevel, test module)
 STAGES = {
@@ -28,6 +38,18 @@ STAGES = {
         [RTL / "colour_convert.v", HERE / "colour_tb_top.v"],
         "colour_tb_top",
         "test_colour",
+    ),
+    # jc_dct, jc_dct1d, jc_xpose_rf (issue #43)
+    "dct": (
+        [RTL / "jc_dct.v", RTL / "jc_dct1d.v", RTL / "jc_xpose_rf.v"],
+        "jc_dct",
+        "test_dct",
+    ),
+    # jc_quant, jc_quant_core (issue #44)
+    "quantizer": (
+        [RTL / "jc_quant.v", RTL / "jc_quant_core.v"],
+        "jc_quant",
+        "test_quantizer",
     ),
     # configuration / table-load / header (issue #46)
     "config_header": (
@@ -61,6 +83,10 @@ STAGES = {
         "tb_qoi_top",
         "test_qoi",
     ),
+    # jpeg_codec_top smoke bench (issue #48)
+    "top_smoke": (TOP_SOURCES, "jpeg_codec_top", "test_top_smoke"),
+    # jpeg_codec_top byte-exact golden comparison (issue #88)
+    "top_golden": (TOP_SOURCES, "jpeg_codec_top", "test_top_golden"),
 }
 
 
