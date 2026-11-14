@@ -216,10 +216,15 @@ class CycleHost(Host):
         self.stage_sample_cycles = 0
         while True:
             await RisingEdge(d.clk)
+            now = cocotb.utils.get_sim_time("ns")
+            if now <= self.start_ns:
+                # Fork-time edge: start_soon runs this body in the same step
+                # `run_frame` captured start_ns, and the edge registered there
+                # can fire on that same step. It is not a frame cycle.
+                continue
             deadline = self.sampler_deadline_ns
             if self.sampler_stop or (
-                    deadline is not None
-                    and cocotb.utils.get_sim_time("ns") > deadline):
+                    deadline is not None and now > deadline):
                 break
             self.stage_sample_cycles += 1
             codes = {}
