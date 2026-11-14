@@ -18,13 +18,14 @@ from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge, Timer
 
 import jpeg_golden as g  # Annex K table data only
+from cfg_host import (  # shared decision-0005 map and cfg-port driver
+    REG_CMD, REG_H, REG_MODE, REG_W,
+    cfg_write, commit, configure, wait_idle, write_table,
+)
 
 # ---------------------------------------------------------------- tables --
 
 TABLES = ("q0", "q1", "dc0", "ac0", "dc1", "ac1")
-WIN = {"q0": 0x040, "q1": 0x080, "dc0": 0x100, "ac0": 0x140,
-       "dc1": 0x200, "ac1": 0x240}
-WIN_LEN = {"q0": 64, "q1": 64, "dc0": 28, "ac0": 178, "dc1": 28, "ac1": 178}
 # (raw mem, raw base word) and, for DHT, (lookup mem, lookup base, entries)
 RAW = {"q0": (1, 186), "q1": (1, 202), "dc0": (1, 218), "ac0": (2, 162),
        "dc1": (1, 225), "ac1": (2, 207)}
@@ -42,7 +43,6 @@ ANNEX_K = {
 
 E_BUSY, E_ZERO_Q, E_BAD_HUFF, E_CONFIG, E_ADDR, E_TABLE = 1, 2, 3, 4, 5, 6
 MODE_COLOUR, MODE_GREY, MODE_QOI = 0, 1, 2
-REG_MODE, REG_W, REG_H, REG_CMD = 0x000, 0x001, 0x003, 0x005
 
 
 def annexc(payload):
@@ -190,48 +190,6 @@ async def reset(dut, wait=True):
     if wait:
         assert dut.status_busy.value == 1, "reset load must hold busy"
         await wait_idle(dut)
-
-
-async def wait_idle(dut, cap=60000):
-    for _ in range(cap):
-        await RisingEdge(dut.clk)
-        if dut.status_idle.value == 1:
-            return
-    raise AssertionError("timeout waiting for idle")
-
-
-async def cfg_write(dut, addr, val):
-    dut.cfg_valid.value = 1
-    dut.cfg_addr.value = addr
-    dut.cfg_wdata.value = val
-    while True:
-        await RisingEdge(dut.clk)
-        if dut.cfg_ready.value == 1:
-            break
-    dut.cfg_valid.value = 0
-
-
-async def write_reg16(dut, addr, v):
-    await cfg_write(dut, addr, v & 0xFF)
-    await cfg_write(dut, addr + 1, v >> 8)
-
-
-async def write_table(dut, name, payload):
-    assert len(payload) <= WIN_LEN[name]
-    for i, b in enumerate(payload):
-        await cfg_write(dut, WIN[name] + i, b)
-
-
-async def configure(dut, mode, w, h):
-    await cfg_write(dut, REG_MODE, mode)
-    await write_reg16(dut, REG_W, w)
-    await write_reg16(dut, REG_H, h)
-
-
-async def commit(dut):
-    await cfg_write(dut, REG_CMD, 2)
-    await RisingEdge(dut.clk)
-    await wait_idle(dut)
 
 
 async def clear_error(dut):
