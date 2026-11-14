@@ -20,7 +20,7 @@
     },
     "9": {
       "file": "manifests/attest/item9.json",
-      "content_hash": "sha256:7d7bbdd92fd5783536b6ffc509bfc972ace96ab26bb75400ce0482e30e0a9d82"
+      "content_hash": "sha256:951b7dd9a6e9846e061eaacd4a46f200938a4871a7429fafb5d56d81cc8727b0"
     },
     "10": {
       "file": "manifests/attest/item10.json",

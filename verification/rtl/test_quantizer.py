@@ -2,9 +2,7 @@
 
 Run (toplevel jc_quant):
 
-    python3 verification/common/run_tb.py --toplevel jc_quant --test-module test_quantizer \
-        --test-dir verification/rtl \
-        --source jc_quant.v --source jc_quant_core.v
+    python3 verification/rtl/run_stage.py quantizer
 
 The reference is the spec section 5 expression, written out here and
 independent of verification/golden/. The exhaustive sweep over all x and Q is
