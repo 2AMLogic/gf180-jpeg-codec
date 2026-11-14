@@ -94,7 +94,7 @@ def main(argv):
     if not argv or argv[0] not in STAGES:
         print(f"usage: run_stage.py {{{','.join(STAGES)}}} [run_tb.py flags]", file=sys.stderr)
         return 2
-    run_tb.TB = HERE
+    run_tb.TEST_DIR = HERE
     run_tb.SOURCES, run_tb.TOPLEVEL, run_tb.TEST_MODULE = STAGES[argv[0]]
     return run_tb.main(argv[1:])
 

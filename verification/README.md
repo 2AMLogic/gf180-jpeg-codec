@@ -27,9 +27,10 @@ bash .github/scripts/lint.sh
 failed, `2` the suite did not run (build error, import error, empty results).
 A negative control must require exactly `1`.
 
-`run_tb.py` has no default sources, top level or test module (record 0001,
-addendum 2026-11-05). `verification/rtl/run_stage.py` supplies them from a
-table keyed by bench name, and is the one way to launch every bench here:
+`run_tb.py` has no default sources, top level, test module or test directory
+(record 0001, addenda 2026-11-05 and 2026-11-14). `verification/rtl/run_stage.py`
+supplies them from a table keyed by bench name, and is the one way to launch
+every bench here:
 
 ```sh
 python3 verification/rtl/run_stage.py <name> [run_tb.py flags]

@@ -5,12 +5,14 @@ Drives the cocotb testbench straight through cocotb's own runner, so CI and a
 cold-start contributor need only `iverilog` / `verilator` and `pip install
 cocotb`, with no klayout-tools install and no PDK.
 
-    python3 verification/common/run_tb.py --source X.v --toplevel X --test-module test_x
+    python3 verification/common/run_tb.py --source jc_dct.v --source jc_dct1d.v \
+        --source jc_xpose_rf.v --toplevel jc_dct --test-module test_dct \
+        --test-dir verification/rtl
     python3 verification/common/run_tb.py ... --sim verilator
     python3 verification/common/run_tb.py ... --define INJECT_BUG_ENV=1   # expect exit 1
 
 Normally driven through the wrappers in verification/rtl/, which set the
-sources, top level and test module.
+sources, top level, test module and test directory.
 
 Vendored from 2AMLogic/gf180-polysynth tb/run_tb.py (see reuse.lock.json and
 spec/decision-records/0001-harness-divergence.md for what differs).
@@ -36,14 +38,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 RTL = ROOT / "rtl"
-TB = ROOT / "verification" / "tb"
 GOLDEN = ROOT / "verification" / "golden"
 
 # No defaults: a wrapper (run_stage.py, run_top_*.py) sets these, or the caller
-# passes --source / --toplevel / --test-module.
+# passes --source / --toplevel / --test-module / --test-dir.
 SOURCES: list[Path] = []
 TOPLEVEL = ""
 TEST_MODULE = ""
+TEST_DIR = ""
 TIMESCALE = ("1ns", "1ps")
 
 EXIT_OK = 0
@@ -66,7 +68,9 @@ def main(argv: list[str] | None = None) -> int:
                     help="RTL source (repeatable, relative to rtl/); required unless a wrapper sets SOURCES")
     ap.add_argument("--toplevel", default=TOPLEVEL)
     ap.add_argument("--test-module", default=TEST_MODULE)
-    ap.add_argument("--test-dir", default=str(TB))
+    ap.add_argument("--test-dir", default=TEST_DIR,
+                    help="directory holding the cocotb bench module; sim_build/ lands under it; "
+                         "required unless a wrapper sets TEST_DIR")
     ap.add_argument("--testcase", default=None, help="run a single named test")
     ap.add_argument("--waves", action="store_true")
     args = ap.parse_args(argv)
@@ -80,12 +84,12 @@ def main(argv: list[str] | None = None) -> int:
         defines[name] = value or 1
 
     sources = [RTL / f for f in args.source] if args.source else SOURCES
-    if not sources or not args.toplevel or not args.test_module:
-        print("run_tb: no sources, toplevel or test module given "
-              "(use --source, --toplevel, --test-module or a wrapper)", file=sys.stderr)
+    if not sources or not args.toplevel or not args.test_module or not args.test_dir:
+        print("run_tb: no sources, toplevel, test module or test dir given "
+              "(use --source, --toplevel, --test-module, --test-dir or a wrapper)", file=sys.stderr)
         return EXIT_DID_NOT_RUN
     test_dir = Path(args.test_dir).resolve()
-    build_dir = TB / "sim_build" / args.sim / args.toplevel
+    build_dir = test_dir / "sim_build" / args.sim / args.toplevel
     runner = get_runner(args.sim)
     try:
         runner.build(
@@ -110,12 +114,12 @@ def main(argv: list[str] | None = None) -> int:
     # extra_env["PYTHONPATH"] is silently discarded. The golden model and the
     # testbench directory therefore go on this process's sys.path. A wrong
     # path makes the suite not RUN (import error, exit 2) instead of failing.
-    for path in (GOLDEN, TB, test_dir):
+    for path in (GOLDEN, test_dir):
         if str(path) not in sys.path:
             sys.path.insert(0, str(path))
 
     pythonpath = os.pathsep.join(
-        [str(GOLDEN), str(TB), str(test_dir)] + ([os.environ["PYTHONPATH"]] if os.environ.get("PYTHONPATH") else [])
+        [str(GOLDEN), str(test_dir)] + ([os.environ["PYTHONPATH"]] if os.environ.get("PYTHONPATH") else [])
     )
 
     try:
