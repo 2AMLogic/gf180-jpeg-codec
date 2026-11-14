@@ -139,7 +139,7 @@ def main() -> int:
 
         import run_tb  # noqa: E402
 
-        run_tb.TB = HERE
+        run_tb.TEST_DIR = HERE
         run_tb.SOURCES = srcs
         run_tb.TOPLEVEL = TOPLEVEL
         run_tb.TEST_MODULE = args.test_module
