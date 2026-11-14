@@ -49,6 +49,9 @@ python3 verification/rtl/run_stage.py <name> [run_tb.py flags]
 An unknown name exits `2` with the list above. The one bench outside the
 table is the gate-level run `verification/rtl/run_top_smoke_gl.py`, which
 carries its own netlist, PDK-pin and fault-injection logic (see below).
+`test_top_frame_cycles.py` has no row of its own either: it reuses the
+`top_golden` row's sources and top level and is launched with
+`--test-module test_top_frame_cycles` (see below).
 
 ## Golden JPEG model and libjpeg cross-check
 
@@ -178,10 +181,11 @@ a reason to change the golden model.
 Covered (180 cases): all 10 named §12 images at 64 x 48 and 16 x 16 (the CI
 sizes) for colour 4:2:0 and grey at qualities 10, 50, 75 and 95 (host-scaled
 Annex K, both DQT windows loaded through the configuration port and
-committed), and for QOI. Deferred: 640 x 480 (the pure-Python golden encoder
-is too slow for a sweep, and the simulation is far longer), `odd_100x60` and
-other non-MCU sizes (the smoke bench covers 20 x 18), and stalled-port runs
-(smoke bench). Cycle counts are not a result here.
+committed), and for QOI. Deferred: 640 x 480 (a 180-case sweep at that size
+would be hours of simulator time — three 640 x 480 colour rows have their own
+bench below, issue #113), `odd_100x60` and other non-MCU sizes (the smoke
+bench covers 20 x 18), and stalled-port runs (smoke bench). Cycle counts are
+not a result here.
 
 ```sh
 python3 verification/rtl/run_stage.py top_golden  # icarus; exit 0 pass, 1 test failed, 2 did not run
@@ -210,3 +214,41 @@ script needs cocotb importable: without it the run dies in a traceback that
 also exits 1, so a negative control must check for the test summary, not the
 exit code alone. A mismatch between gate level and RTL is an RTL/netlist finding;
 the golden model is never adjusted.
+
+## Cycles per frame at 640 x 480 (issue #113, spec §9)
+
+`verification/rtl/test_top_frame_cycles.py` is the only bench that counts
+cycles per frame at the §9 target size. It drives `jpeg_codec_top` with
+`sram_macro_model.v` (same driver and block ordering as the smoke and golden
+benches) on three colour 4:2:0 rows at 640 x 480 — `scene_fbm` at q50,
+`noise_max_entropy` at q50 and `noise_max_entropy` at q95 — and reports the
+cycles from frame start to the `out_last` beat, which is the figure §9 names.
+
+```sh
+# from the repository root; writes cycles.json beside the command
+FRAME_CYCLES_JSON=$PWD/cycles.json \
+  python3 verification/rtl/run_stage.py top_golden --test-module test_top_frame_cycles
+# icarus; exit 0 every row in range, 1 a row failed, 2 did not run
+```
+
+Why its own module: the 180-case golden suite's committed records rest on a
+180/180/0/0 shape, so neither `test_top_golden.py` nor `test_top_smoke.py` is
+touched. The one new mechanism is the `out_last` timestamp — `Host.cycles` in
+`test_top_smoke.py` is frame start to `status_idle`, a strict superset — so a
+`CycleHost` subclass inside the new module times that beat and also pins
+`in_gap` / `out_gap` at 0 and asserts the host never stalled.
+
+Each row additionally checks the image sha256 against `SHA256SUMS`, that the
+pixel stream is exactly 921,600 bytes, that `status_error` is 0, that the
+output decodes in Pillow 10.2.0 at (640, 480) mode RGB, and that it is
+byte-identical to `jpeg_golden.encode`. A count outside the mechanical range
+[921,600, 1,666,667] fails the run as a finding to file, never something to
+tune away. Takes about 8 minutes of simulator time for the three rows, so it
+is deliberately in no CI or required job.
+
+Evidence: `verification/records/20261114T0551Z-frame-cycles-62d88e1/`
+(`cycles.json` machine-written by the bench, `report.json` the `klt
+functional-verification` verdict). Simulated cycles, never measurements. The
+run found that `noise_max_entropy` at q95 needs 1,740,070 cycles, 104.4% of
+the 1,666,667-cycle frame period — filed as #119; the §9 target row is met at
+the reset-default q50 on both images §9 names.

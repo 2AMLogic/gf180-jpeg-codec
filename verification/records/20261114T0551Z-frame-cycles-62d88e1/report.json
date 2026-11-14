@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "engine": "icarus",
+  "hdl_toplevel": "jpeg_codec_top",
+  "testbench": "test_top_frame_cycles",
+  "status": "fail",
+  "test_count": 3,
+  "passed_count": 2,
+  "failed_count": 1,
+  "skipped_count": 0,
+  "tests": [
+    {
+      "name": "test_scene_fbm_q50",
+      "status": "passed",
+      "sim_time_ns": 9857480.0,
+      "real_time_s": 99.531
+    },
+    {
+      "name": "test_noise_max_entropy_q50",
+      "status": "passed",
+      "sim_time_ns": 11064459.999999998,
+      "real_time_s": 135.794
+    },
+    {
+      "name": "test_noise_max_entropy_q95",
+      "status": "failed",
+      "sim_time_ns": 17433489.999999996,
+      "real_time_s": 165.453,
+      "error_type": "AssertionError",
+      "error_message": "1740070 cycles to out_last is outside [921600, 1666667]: file this as a finding, do not tune it away\nassert 1740070 <= 1666667"
+    }
+  ],
+  "coverage": null,
+  "trace": null,
+  "environment": {
+    "engine": "icarus",
+    "engine_version": "13.0",
+    "cocotb_version": "2.1.0",
+    "results_xml": "/tmp/loom-i113-klt/run/results_icarus.xml",
+    "test_log": "/tmp/loom-i113-klt/run/test_icarus.log",
+    "build_log": "/tmp/loom-i113-klt/run/build_icarus.log",
+    "random_seed": 1,
+    "source_defines": {},
+    "initial_state": null,
+    "sdf": null
+  }
+}
