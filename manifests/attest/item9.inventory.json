@@ -8,6 +8,7 @@
     "verification/golden/crosscheck_libjpeg.py",
     "verification/rtl/test_top_golden.py",
     "verification/rtl/run_stage.py",
+    "verification/rtl/test_top_frame_cycles.py",
     "verification/klt/top_golden.request.json",
     "verification/klt/top_golden.negative_control.request.json",
     "verification/klt/negative_control.sh",
