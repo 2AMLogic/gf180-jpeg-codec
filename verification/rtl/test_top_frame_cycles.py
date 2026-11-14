@@ -22,8 +22,18 @@ What each row checks
 * The generated PPM is sha256-checked against `verification/images/SHA256SUMS`
   before it is encoded (`load_image`, shared with `test_top_golden.py`).
 * The host never stalls: `out_ready` is held at 1 for the whole run and
-  `pix_valid` is held at 1 until the last pixel byte is accepted. Both are
-  *asserted*, not assumed (`CycleHost.out_stalls` / `.pix_gaps`).
+  `pix_valid` is held at 1 until the last pixel byte is accepted. The holds
+  are structural (drive code); what is *observed* is the DUT side:
+  `pix_valid && !pix_ready` (input backpressure the DUT imposed on a host
+  that never stalls) and `out_valid && !out_ready`.
+* Where the cycles go (issue #119): one sampler coroutine classifies, per
+  clock edge of the frame window, every stage-boundary handshake as stalled
+  (`valid && !ready`), starved (`!valid && ready`), transferred
+  (`valid && ready`) or idle, plus the `m0_en` / `m1_en` / `m2_en` port
+  occupancy and the arbitration-request stalls (`hf_m1_req && !hf_m1_gnt`,
+  `hf_m2_req && !hf_m2_gnt`, `qa_pend && !qa_gnt`). The window is frame
+  start to the `out_last` beat, inclusive, so each boundary's four buckets
+  sum to exactly `cycles_to_out_last`.
 * `status_error` is 0 at the end of the frame.
 * The output decodes in Pillow 10.2.0 with warnings fatal, at size
   (640, 480) and mode RGB.
@@ -88,6 +98,42 @@ CYCLE_CEILING = FRAME_PERIOD
 OUT_JSON = os.environ.get("FRAME_CYCLES_JSON") or os.path.join(
     HERE, "sim_build", "frame_cycles.json")
 
+# Stage boundaries: valid/ready handshake pairs on top-level wires of
+# `jpeg_codec_top`, so cocotb hierarchical reads count them with no RTL
+# change. Producer -> consumer, named after decision record 0005 section 7's
+# stage rows.
+BOUNDARIES = {
+    "pix": ("pix_valid", "pix_ready"),   # host -> jc_downsample
+    "s2": ("s2_valid", "s2_ready"),      # jc_downsample -> jc_mb_ctrl
+    "s3": ("s3_valid", "s3_ready"),      # jc_mb_ctrl -> jc_dct
+    "s4": ("s4_valid", "s4_ready"),      # jc_dct -> jc_zigzag
+    "s5": ("s5_valid", "s5_ready"),      # jc_zigzag -> jc_quant
+    "s6": ("s6_valid", "s6_ready"),      # jc_quant -> jc_huff
+    "s7": ("s7_valid", "s7_ready"),      # jc_huff -> jc_bitpack
+    "bp": ("bp_valid", "bp_ready"),      # jc_bitpack -> jc_out_mux
+    "out": ("out_valid", "out_ready"),   # jc_out_mux -> host
+}
+
+# The record 0005 section 7 memory rows: SRAM port enable occupancy, and
+# arbitration-request stalls. `hf_m1` (jc_huff) and `qa` (the quantizer's
+# request holder) share M1 through `u_arb1`, so `hf_m1` stalls separate
+# arbitration contention from jc_huff's own FSM cost.
+SRAM_PORTS = ("m0_en", "m1_en", "m2_en")
+ARB_PAIRS = {
+    "hf_m1": ("hf_m1_req", "hf_m1_gnt"),
+    "hf_m2": ("hf_m2_req", "hf_m2_gnt"),
+    "qa": ("qa_pend", "qa_gnt"),
+}
+
+
+def _bit(sig):
+    """0/1 of a one-bit signal; X/Z reads as 0 (must not occur in-window)."""
+    try:
+        return int(sig.value)
+    except ValueError:
+        return 0
+
+
 _ROWS = []
 
 
@@ -103,17 +149,23 @@ class CycleHost(Host):
     record names both reference points.
 
     `run_frame` below mirrors `Host.run_frame` with the random gaps removed
-    (this bench is the no-stall case by definition) and the two stall counters
-    added. `in_gap` / `out_gap` are pinned at 0.
+    (this bench is the no-stall case by definition), the `out_last`
+    timestamp kept, and one `stage_sampler` coroutine added alongside: it
+    counts the per-boundary stalled/starved/transferred/idle cycles of
+    issue #119 over exactly the `cycles_to_out_last` window.
+    `in_gap` / `out_gap` are pinned at 0.
     """
 
     def __init__(self, dut, seed=1):
         super().__init__(dut, in_gap=0.0, out_gap=0.0, seed=seed)
         self.start_ns = None
         self.last_ns = None
-        self.out_stalls = 0
-        self.pix_gaps = 0
         self.drive_cycles = 0
+        self.stage_counts = None
+        self.sram_occupancy = None
+        self.arb_stalls = None
+        self.stage_sample_cycles = None
+        self.sampler_stop = False
 
     async def out_monitor(self):
         """Hold `out_ready` high for the whole run and timestamp `out_last`."""
@@ -121,44 +173,84 @@ class CycleHost(Host):
         while True:
             d.out_ready.value = 1
             await RisingEdge(d.clk)
-            if d.out_ready.value != 1:
-                self.out_stalls += 1
             if d.out_valid.value == 1 and d.out_ready.value == 1:
                 self.out.append(int(d.out_data.value))
                 if d.out_last.value == 1 and self.last_ns is None:
                     self.last_ns = cocotb.utils.get_sim_time("ns")
                     self.last_seen = True
 
+    async def stage_sampler(self):
+        """Classify every boundary handshake once per clock of the frame.
+
+        The window starts at the first edge after `run_frame` captures
+        `start_ns` and ends with the edge that samples the `out_last` beat,
+        inclusive: exactly `cycles_to_out_last` edges. Reads use the same
+        convention as `out_monitor` (the values stable in the cycle that
+        ends at each edge), so a boundary's four buckets sum to the window
+        length and `out.transferred` equals the output byte count.
+        """
+        d = self.dut
+        counts = {n: {"stalled": 0, "starved": 0, "transferred": 0, "idle": 0}
+                  for n in BOUNDARIES}
+        sram = {p: 0 for p in SRAM_PORTS}
+        arb = {a: 0 for a in ARB_PAIRS}
+        self.stage_counts = counts
+        self.sram_occupancy = sram
+        self.arb_stalls = arb
+        self.stage_sample_cycles = 0
+        while True:
+            await RisingEdge(d.clk)
+            if self.sampler_stop:
+                break
+            self.stage_sample_cycles += 1
+            for name, (v, r) in BOUNDARIES.items():
+                valid, ready = _bit(getattr(d, v)), _bit(getattr(d, r))
+                if valid:
+                    counts[name]["transferred" if ready else "stalled"] += 1
+                else:
+                    counts[name]["starved" if ready else "idle"] += 1
+            for p in SRAM_PORTS:
+                if _bit(getattr(d, p)):
+                    sram[p] += 1
+            for a, (req, gnt) in ARB_PAIRS.items():
+                if _bit(getattr(d, req)) and not _bit(getattr(d, gnt)):
+                    arb[a] += 1
+            if (_bit(d.out_valid) and _bit(d.out_ready) and _bit(d.out_last)):
+                break
+
     async def run_frame(self, mode, w, h, stream):
         d = self.dut
         self.out, self.last_seen = [], False
         self.start_ns = self.last_ns = None
-        self.out_stalls = self.pix_gaps = self.drive_cycles = 0
+        self.drive_cycles = 0
+        self.sampler_stop = False
         await self.configure(mode, w, h)
         await self.cfg_write(REG_CMD, 1)
         assert d.status_error.value == 0, "start raised an error: cause %d" % int(
             d.err_cause.value)
         self.start_ns = cocotb.utils.get_sim_time("ns")
-        i = 0
-        for cyc in range(CAP):
-            feeding = i < len(stream)
-            if feeding:
-                d.pix_valid.value = 1
-                d.pix_data.value = stream[i]
+        cocotb.start_soon(self.stage_sampler())
+        try:
+            i = 0
+            for cyc in range(CAP):
+                feeding = i < len(stream)
+                if feeding:
+                    d.pix_valid.value = 1
+                    d.pix_data.value = stream[i]
+                else:
+                    d.pix_valid.value = 0
+                await RisingEdge(d.clk)
+                if d.pix_valid.value == 1 and d.pix_ready.value == 1:
+                    i += 1
+                if self.last_seen and i == len(stream):
+                    self.drive_cycles = cyc + 1
+                    break
             else:
-                d.pix_valid.value = 0
-            await RisingEdge(d.clk)
-            if feeding and d.pix_valid.value != 1:
-                self.pix_gaps += 1
-            if d.pix_valid.value == 1 and d.pix_ready.value == 1:
-                i += 1
-            if self.last_seen and i == len(stream):
-                self.drive_cycles = cyc + 1
-                break
-        else:
-            raise AssertionError(
-                "frame did not finish: sent %d of %d pixel bytes, %d output bytes"
-                % (i, len(stream), len(self.out)))
+                raise AssertionError(
+                    "frame did not finish: sent %d of %d pixel bytes, %d output bytes"
+                    % (i, len(stream), len(self.out)))
+        finally:
+            self.sampler_stop = True
         d.pix_valid.value = 0
         await self.wait_idle()
         self.cycles = int((cocotb.utils.get_sim_time("ns") - self.start_ns) / 10)
@@ -174,13 +266,25 @@ class CycleHost(Host):
 def _write_rows():
     os.makedirs(os.path.dirname(OUT_JSON) or ".", exist_ok=True)
     doc = {
-        "schema_version": 1,
+        "schema_version": 2,
         "kind": "frame-cycle-count",
-        "issue": 113,
+        "issue": 119,
         "note": ("Simulated cycle counts, never measured (spec/codec.md section 9, "
                  "CLAUDE.md). Icarus + cocotb, RTL with sram_macro_model.v, no host "
-                 "stalls."),
+                 "stalls. schema_version 2 adds the issue #119 per-boundary "
+                 "stage counters."),
         "testbench": "verification/rtl/test_top_frame_cycles.py",
+        "stage_boundaries": {
+            "pix": "host -> jc_downsample",
+            "s2": "jc_downsample -> jc_mb_ctrl",
+            "s3": "jc_mb_ctrl -> jc_dct",
+            "s4": "jc_dct -> jc_zigzag",
+            "s5": "jc_zigzag -> jc_quant",
+            "s6": "jc_quant -> jc_huff",
+            "s7": "jc_huff -> jc_bitpack",
+            "bp": "jc_bitpack -> jc_out_mux",
+            "out": "jc_out_mux -> host",
+        },
         "signoff_clock_hz": CLOCK_HZ,
         "frames_per_s": FRAMES_PER_S,
         "frame_period_cycles": FRAME_PERIOD,
@@ -227,8 +331,12 @@ async def frame_cycle_case(dut, name, quality):
         "golden_match": got == want,
         "golden_bytes": len(want),
         "decode": {"size": list(im.size), "mode": im.mode},
-        "out_ready_stall_cycles": host.out_stalls,
-        "pix_valid_gap_cycles": host.pix_gaps,
+        "pix_valid_not_ready_cycles": host.stage_counts["pix"]["stalled"],
+        "out_valid_not_ready_cycles": host.stage_counts["out"]["stalled"],
+        "stage_counts": host.stage_counts,
+        "sram_occupancy_cycles": host.sram_occupancy,
+        "arb_stall_cycles": host.arb_stalls,
+        "stage_sample_cycles": host.stage_sample_cycles,
         "drive_cycles": host.drive_cycles,
         "wall_time_s": round(time.monotonic() - t0, 3),
     }
@@ -242,9 +350,27 @@ async def frame_cycle_case(dut, name, quality):
         100.0 * cycles / FRAME_PERIOD, FRAME_PERIOD,
         100.0 * cycles / RECORD_0005_BOUND, host.cycles)
 
-    # Host-stall freedom is enforced, not assumed.
-    assert host.out_stalls == 0, "out_ready was deasserted for %d cycles" % host.out_stalls
-    assert host.pix_gaps == 0, "pix_valid was gapped for %d cycles" % host.pix_gaps
+    # The no-stall hold is structural (out_ready driven 1 on every cycle), so
+    # the DUT-side observation below cannot be nonzero unless the bench broke
+    # its own guarantee. `pix_valid && !pix_ready` is a real DUT observation
+    # (input backpressure) and is recorded, never asserted.
+    assert host.stage_counts["out"]["stalled"] == 0, (
+        "out_valid was not accepted for %d cycles" % host.stage_counts["out"]["stalled"])
+    # The sampler must have covered exactly the frame window, and its
+    # transferred counts must agree with the bytes the monitors collected.
+    assert host.stage_sample_cycles == cycles, (
+        "sampler window %d != cycles_to_out_last %d"
+        % (host.stage_sample_cycles, cycles))
+    assert host.stage_counts["pix"]["transferred"] == len(stream), (
+        "pix transferred %d != stream %d"
+        % (host.stage_counts["pix"]["transferred"], len(stream)))
+    assert host.stage_counts["out"]["transferred"] == len(got), (
+        "out transferred %d != output bytes %d"
+        % (host.stage_counts["out"]["transferred"], len(got)))
+    for name, c in host.stage_counts.items():
+        assert sum(c.values()) == host.stage_sample_cycles, (
+            "boundary %s buckets %d != window %d"
+            % (name, sum(c.values()), host.stage_sample_cycles))
     # Decodability is an independent check, never a substitute for byte-exactness.
     assert im.size == (W, H), im.size
     assert im.mode == "RGB", im.mode
