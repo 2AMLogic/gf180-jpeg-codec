@@ -94,7 +94,10 @@ rows, and the byte-exact comparison with the golden encoder (#34).
 `sram_model.v` instances for M1/M2, using its read/write client port and the
 `dbg_*` read backdoor. Oracles are
 written from spec sections 7, 8 and T.81 Annex C, not from the RTL or the
-golden framing code.
+golden framing code. The configuration address map and the cfg-port driver
+(`cfg_write`, `wait_idle`, `configure`, `write_table`, `commit`) live once in
+`verification/rtl/cfg_host.py`, shared with the two top-level benches; it
+holds no expected-bytes oracle.
 
 ```sh
 python3 verification/rtl/run_stage.py config_header     # icarus; same exit codes as run_tb.py

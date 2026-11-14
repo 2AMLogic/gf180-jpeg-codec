@@ -26,13 +26,13 @@ import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge
 
+import cfg_host
 import jpeg_golden
 import qoi_golden
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REF = os.path.join(HERE, "..", "golden", "ref")
 
-REG_MODE, REG_W, REG_H, REG_CMD = 0x000, 0x001, 0x003, 0x005
 CAP = 4_000_000
 
 
@@ -129,35 +129,19 @@ class Host:
         await self.wait_idle()
 
     async def wait_idle(self):
-        for _ in range(CAP):
-            await RisingEdge(self.dut.clk)
-            if self.dut.status_idle.value == 1:
-                return
-        raise AssertionError("timeout waiting for idle")
+        await cfg_host.wait_idle(self.dut, cap=CAP)
 
     async def cfg_write(self, addr, val):
-        d = self.dut
-        d.cfg_valid.value = 1
-        d.cfg_addr.value = addr
-        d.cfg_wdata.value = val
-        while True:
-            await RisingEdge(d.clk)
-            if d.cfg_ready.value == 1:
-                break
-        d.cfg_valid.value = 0
+        await cfg_host.cfg_write(self.dut, addr, val)
 
     async def configure(self, mode, w, h):
-        await self.cfg_write(REG_MODE, mode)
-        await self.cfg_write(REG_W, w & 255)
-        await self.cfg_write(REG_W + 1, w >> 8)
-        await self.cfg_write(REG_H, h & 255)
-        await self.cfg_write(REG_H + 1, h >> 8)
+        await cfg_host.configure(self.dut, mode, w, h)
 
     async def run_frame(self, mode, w, h, stream):
         d = self.dut
         self.out, self.last_seen = [], False
         await self.configure(mode, w, h)
-        await self.cfg_write(REG_CMD, 1)
+        await self.cfg_write(cfg_host.REG_CMD, 1)
         assert d.status_error.value == 0, "start raised an error: cause %d" % int(d.err_cause.value)
         start = cocotb.utils.get_sim_time("ns")
         i = 0
