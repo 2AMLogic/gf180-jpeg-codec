@@ -1,0 +1,349 @@
+{
+  "schema_version": 2,
+  "engine": "yosys",
+  "engine_version": "0.67+post",
+  "hdl_toplevel": "jpeg_codec_top",
+  "parameters": {},
+  "defines": {},
+  "run_id": "netlist-optc",
+  "status": "ok",
+  "instance_count": 129467,
+  "area_um2": 4886480.3904,
+  "sequential_area_um2": 2344420.9152,
+  "instance_counts_by_type": {
+    "gf180mcu_fd_sc_mcu9t5v0__and2_1": 674,
+    "gf180mcu_fd_sc_mcu9t5v0__and2_2": 7,
+    "gf180mcu_fd_sc_mcu9t5v0__and2_4": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__and3_1": 265,
+    "gf180mcu_fd_sc_mcu9t5v0__and3_2": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__and3_4": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__and4_1": 135,
+    "gf180mcu_fd_sc_mcu9t5v0__and4_2": 3,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi211_1": 319,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi211_2": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi211_4": 5,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi21_1": 1533,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi21_2": 79,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi21_4": 22,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi221_1": 169,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi221_4": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi222_1": 181,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi22_1": 1521,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi22_2": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi22_4": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_1": 9206,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_2": 199,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_3": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_4": 3,
+    "gf180mcu_fd_sc_mcu9t5v0__clkbuf_1": 2214,
+    "gf180mcu_fd_sc_mcu9t5v0__clkbuf_2": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__clkinv_1": 2122,
+    "gf180mcu_fd_sc_mcu9t5v0__dffq_1": 29666,
+    "gf180mcu_fd_sc_mcu9t5v0__inv_1": 59,
+    "gf180mcu_fd_sc_mcu9t5v0__inv_8": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__mux2_1": 5280,
+    "gf180mcu_fd_sc_mcu9t5v0__mux2_2": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__mux4_1": 7226,
+    "gf180mcu_fd_sc_mcu9t5v0__nand2_1": 29740,
+    "gf180mcu_fd_sc_mcu9t5v0__nand2_2": 6,
+    "gf180mcu_fd_sc_mcu9t5v0__nand2_4": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__nand3_1": 2630,
+    "gf180mcu_fd_sc_mcu9t5v0__nand3_2": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__nand4_1": 769,
+    "gf180mcu_fd_sc_mcu9t5v0__nand4_2": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__nor2_1": 2714,
+    "gf180mcu_fd_sc_mcu9t5v0__nor2_2": 19,
+    "gf180mcu_fd_sc_mcu9t5v0__nor3_1": 370,
+    "gf180mcu_fd_sc_mcu9t5v0__nor3_2": 16,
+    "gf180mcu_fd_sc_mcu9t5v0__nor3_4": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__nor4_1": 127,
+    "gf180mcu_fd_sc_mcu9t5v0__nor4_2": 7,
+    "gf180mcu_fd_sc_mcu9t5v0__oai211_1": 642,
+    "gf180mcu_fd_sc_mcu9t5v0__oai211_2": 8,
+    "gf180mcu_fd_sc_mcu9t5v0__oai211_4": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__oai21_1": 22861,
+    "gf180mcu_fd_sc_mcu9t5v0__oai21_2": 69,
+    "gf180mcu_fd_sc_mcu9t5v0__oai21_4": 15,
+    "gf180mcu_fd_sc_mcu9t5v0__oai221_1": 255,
+    "gf180mcu_fd_sc_mcu9t5v0__oai221_2": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__oai221_4": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__oai222_1": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__oai22_1": 254,
+    "gf180mcu_fd_sc_mcu9t5v0__oai22_2": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__oai22_4": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__oai31_1": 3387,
+    "gf180mcu_fd_sc_mcu9t5v0__oai31_2": 18,
+    "gf180mcu_fd_sc_mcu9t5v0__oai31_4": 10,
+    "gf180mcu_fd_sc_mcu9t5v0__oai32_1": 75,
+    "gf180mcu_fd_sc_mcu9t5v0__oai32_2": 6,
+    "gf180mcu_fd_sc_mcu9t5v0__oai32_4": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__oai33_1": 41,
+    "gf180mcu_fd_sc_mcu9t5v0__or2_1": 578,
+    "gf180mcu_fd_sc_mcu9t5v0__or2_2": 9,
+    "gf180mcu_fd_sc_mcu9t5v0__or3_1": 58,
+    "gf180mcu_fd_sc_mcu9t5v0__or3_2": 3,
+    "gf180mcu_fd_sc_mcu9t5v0__or3_4": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__or4_1": 38,
+    "gf180mcu_fd_sc_mcu9t5v0__or4_2": 5,
+    "gf180mcu_fd_sc_mcu9t5v0__or4_4": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__tieh": 113,
+    "gf180mcu_fd_sc_mcu9t5v0__tiel": 516,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor2_1": 1475,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor2_2": 28,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor3_1": 566,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor3_2": 12,
+    "gf180mcu_fd_sc_mcu9t5v0__xor2_1": 843,
+    "gf180mcu_fd_sc_mcu9t5v0__xor2_2": 57,
+    "gf180mcu_fd_sc_mcu9t5v0__xor3_1": 171,
+    "gf180mcu_fd_sc_mcu9t5v0__xor3_2": 23
+  },
+  "macros": [],
+  "macro_instance_counts_by_type": {},
+  "macro_instance_count": 0,
+  "cells_without_area": [],
+  "leakage_power_nw": null,
+  "leakage_by_type_nw": null,
+  "timing": {
+    "source": "abc_stime",
+    "wire_load": null,
+    "critical_path_ps": 50289.57,
+    "delay_target_ps": 20000,
+    "regions": [
+      {
+        "module": "$paramod\\jc_sram_arb\\N=s32",
+        "critical_path_ps": 5963.07
+      },
+      {
+        "module": "$paramod\\jc_sram_arb\\N=s32",
+        "critical_path_ps": 5804.68
+      },
+      {
+        "module": "gf180_sram_256x32",
+        "critical_path_ps": 19474.12
+      },
+      {
+        "module": "jc_qoi",
+        "critical_path_ps": 19807.13
+      },
+      {
+        "module": "jc_out_mux",
+        "critical_path_ps": 6728.19
+      },
+      {
+        "module": "jc_header_gen",
+        "critical_path_ps": 19187.87
+      },
+      {
+        "module": "jc_table_load_rom",
+        "critical_path_ps": 10031.8
+      },
+      {
+        "module": "jc_table_load",
+        "critical_path_ps": 19787.59
+      },
+      {
+        "module": "jc_cfg_regs",
+        "critical_path_ps": 11590.86
+      },
+      {
+        "module": "jc_bitpack",
+        "critical_path_ps": 19176.05
+      },
+      {
+        "module": "jc_huff",
+        "critical_path_ps": 19891.76
+      },
+      {
+        "module": "jc_quant_core",
+        "critical_path_ps": 41515.0
+      },
+      {
+        "module": "jc_quant",
+        "critical_path_ps": 8806.99
+      },
+      {
+        "module": "jc_zigzag",
+        "critical_path_ps": 14046.42
+      },
+      {
+        "module": "jc_xpose_rf",
+        "critical_path_ps": 9692.53
+      },
+      {
+        "module": "jc_dct1d",
+        "critical_path_ps": 50289.57
+      },
+      {
+        "module": "jc_dct",
+        "critical_path_ps": 6783.2
+      },
+      {
+        "module": "colour_convert",
+        "critical_path_ps": 37515.76
+      },
+      {
+        "module": "jc_mb_ctrl",
+        "critical_path_ps": 10731.53
+      },
+      {
+        "module": "jc_downsample",
+        "critical_path_ps": 18839.82
+      },
+      {
+        "module": "$paramod\\jc_sram_arb\\N=s32",
+        "critical_path_ps": 4267.04
+      },
+      {
+        "module": "jc_sram_wrap",
+        "critical_path_ps": 364.39
+      },
+      {
+        "module": "jpeg_codec_top",
+        "critical_path_ps": 3171.51
+      }
+    ]
+  },
+  "clock_targets": {
+    "clocks": [],
+    "delay_target_ps": 20000,
+    "delay_target_basis": "clock_period_ns",
+    "per_clock_enforced": false
+  },
+  "sta": null,
+  "sta_unavailable_reason": "the optional klt_statime_native extension is not installed (it is not shipped with the published klayout-tools package), so no gate-level static timing analysis was attempted -- from a repo checkout, run `uv sync --group statime` (or `maturin develop --release` inside native/statime/) and re-run to populate `sta`; from an installed package, `klt sta` with a `verilog` request gives a netlist-level timing estimate (needs OpenSTA)",
+  "structural": {
+    "latches": 0,
+    "expected_latches": 0,
+    "unexpected_latches": 0,
+    "comb_loops": 0,
+    "multi_driven": 0,
+    "has_critical": false
+  },
+  "cell_exclusions": {
+    "mode": "additive",
+    "requested": [],
+    "library_defaults": [],
+    "effective": [],
+    "validated": null,
+    "engine_supports_dont_use": null
+  },
+  "abc_constr": {
+    "source": "builtin",
+    "driving_cell": "gf180mcu_fd_sc_mcu9t5v0__buf_4",
+    "load_ff": 13.43
+  },
+  "warnings": {
+    "total": 0,
+    "by_category": {},
+    "representatives": []
+  },
+  "memory_mapping": {
+    "status": "lowered_to_logic",
+    "reason": null,
+    "modules": [
+      {
+        "module": "gf180_sram_256x32",
+        "status": "lowered_to_logic",
+        "elaborated_memories": 1,
+        "elaborated_memory_bits": 8192,
+        "pre_lowering_memories": 1,
+        "final_memories": 0
+      },
+      {
+        "module": "jc_downsample",
+        "status": "lowered_to_logic",
+        "elaborated_memories": 2,
+        "elaborated_memory_bits": 144,
+        "pre_lowering_memories": 2,
+        "final_memories": 0
+      },
+      {
+        "module": "jc_header_gen",
+        "status": "lowered_to_logic",
+        "elaborated_memories": 1,
+        "elaborated_memory_bits": 256,
+        "pre_lowering_memories": 1,
+        "final_memories": 0
+      },
+      {
+        "module": "jc_quant_core",
+        "status": "lowered_to_logic",
+        "elaborated_memories": 1,
+        "elaborated_memory_bits": 5120,
+        "pre_lowering_memories": 1,
+        "final_memories": 0
+      },
+      {
+        "module": "jc_table_load_rom",
+        "status": "lowered_to_logic",
+        "elaborated_memories": 1,
+        "elaborated_memory_bits": 8192,
+        "pre_lowering_memories": 1,
+        "final_memories": 0
+      },
+      {
+        "module": "jc_xpose_rf",
+        "status": "lowered_to_logic",
+        "elaborated_memories": 1,
+        "elaborated_memory_bits": 896,
+        "pre_lowering_memories": 1,
+        "final_memories": 0
+      },
+      {
+        "module": "jc_zigzag",
+        "status": "lowered_to_logic",
+        "elaborated_memories": 3,
+        "elaborated_memory_bits": 2304,
+        "pre_lowering_memories": 3,
+        "final_memories": 0
+      }
+    ],
+    "script_path": {
+      "path": "flow/netlist-optc/jpeg_codec_top_memory_evidence.ys",
+      "scope": "repo"
+    }
+  },
+  "blackbox_modules": [],
+  "netlist_path": {
+    "path": "flow/netlist-optc/jpeg_codec_top_synth.v",
+    "scope": "repo"
+  },
+  "netlist_sha256": "2ddf200ebe38e8b1745bfe8978fb7b2461176779774dc107c1a38ff2ef9b6beb",
+  "script_path": {
+    "path": "flow/netlist-optc/synth_jpeg_codec_top.ys",
+    "scope": "repo"
+  },
+  "run_script_path": {
+    "path": "flow/netlist-optc/synth_jpeg_codec_top.run.ys",
+    "scope": "repo"
+  },
+  "provenance": {
+    "klt_version": "0.9.2.dev1029+g76f47afa48f1",
+    "klt_git_commit": "76f47afa48f144640d67a7337e5c01b95bc88c7b",
+    "klt_reinstall_spec": "klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@76f47afa48f144640d67a7337e5c01b95bc88c7b",
+    "klayout_version": "0.30.13",
+    "pdk": {
+      "name": "gf180mcuD",
+      "source": "PDK_ROOT environment variable",
+      "version": "open_pdks f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7",
+      "ambiguous_sources": [
+        "search root: ~/.volare"
+      ]
+    },
+    "deck": {
+      "name": "gf180mcu_fd_sc_mcu9t5v0__ss_125C_3v00",
+      "content_hash": "sha256:d83917f827021eadb159f6011905bf20de632533b2953abba89266a88c2b24af",
+      "released": false
+    },
+    "input": {
+      "content_hash": "sha256:db9eb796e5ce61437b53e4a65081dfb7c0b10a327414fd1e806b7d690831db50",
+      "role": "source"
+    },
+    "parameters": {},
+    "defines": {}
+  },
+  "equivalence": null,
+  "restructuring": null,
+  "arithmetic": null,
+  "baseline": null
+}
