@@ -122,9 +122,16 @@ pip install 'cocotb==2.1.0' 'pillow==10.2.0'
 
 # from the repository root
 FRAME_CYCLES_JSON=$PWD/cycles.json \
-  python3 verification/rtl/run_top_golden.py --test-module test_top_frame_cycles
+  python3 verification/rtl/run_stage.py top_golden --test-module test_top_frame_cycles
 # exit 0 all rows in range, 1 a row failed (today: 1, see Finding), 2 did not run
 ```
+
+The run itself was launched at `62d88e1` as
+`python3 verification/rtl/run_top_golden.py --test-module test_top_frame_cycles`;
+that wrapper was folded into `run_stage.py`'s `top_golden` row by #118 after the
+run, with identical sources, top level and test module, so the command above
+reproduces it unchanged on the current tree. No figure in this record was
+re-derived for the rename.
 
 `cycles.json` is written by the bench itself, one row appended per test, so the
 table above quotes a machine-written number rather than a transcribed log line.

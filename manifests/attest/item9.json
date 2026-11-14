@@ -64,16 +64,16 @@
       {
         "check": "present",
         "role": "testbench",
-        "path": "verification/rtl/run_top_golden.py",
+        "path": "verification/rtl/run_stage.py",
         "passed": true,
-        "content_hash": "sha256:c5c28b9910d344d75cb3565d626cf059e2ebf171413b2bd0882eb0f2c615d285"
+        "content_hash": "sha256:9b1e093b0c7fe55be6c3928921f32d16105de41efed3387857cdaf5eab8d58e2"
       },
       {
         "check": "present",
         "role": "testbench",
         "path": "verification/rtl/test_top_frame_cycles.py",
         "passed": true,
-        "content_hash": "sha256:6785f73255ccd8cae963587ec20a7167a98d59eec6959bcaf665f5615c71f285"
+        "content_hash": "sha256:ef9ffff62d3b4c87257759867196e65058f5ba521bb4d67132efdc2869ae6935"
       },
       {
         "check": "present",
@@ -131,7 +131,7 @@
         "path": "manifests/attest/item9.inventory.json",
         "scope": "repo"
       },
-      "content_hash": "sha256:153dba7817addf1efce27d2f5afb2218b6a1c4d9d251ac0a76011e30e514a7aa"
+      "content_hash": "sha256:fe0d4235ae6fa13b01a30fbf299a7b288f4041f755d2afe8951ed9e768497df0"
     }
   }
 }

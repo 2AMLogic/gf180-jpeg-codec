@@ -18,7 +18,7 @@ export PATH="$HOME/oss-cad-suite/bin:$PATH"
 python3 -m venv .venv && . .venv/bin/activate
 pip install cocotb==2.1.0
 
-python3 verification/rtl/run_top_golden.py
+python3 verification/rtl/run_stage.py top_golden
 bash verification/klt/negative_control.sh          # mutant must exit exactly 3
 bash .github/scripts/lint.sh
 ```
@@ -27,8 +27,31 @@ bash .github/scripts/lint.sh
 failed, `2` the suite did not run (build error, import error, empty results).
 A negative control must require exactly `1`.
 
-`run_tb.py` has no default sources, top level or test module; the wrappers in
-`verification/rtl/` supply them (record 0001, addendum 2026-11-05).
+`run_tb.py` has no default sources, top level or test module (record 0001,
+addendum 2026-11-05). `verification/rtl/run_stage.py` supplies them from a
+table keyed by bench name, and is the one way to launch every bench here:
+
+```sh
+python3 verification/rtl/run_stage.py <name> [run_tb.py flags]
+```
+
+| Name | Bench | Top level |
+|---|---|---|
+| `colour` | `test_colour.py` | `colour_tb_top` |
+| `dct` | `test_dct.py` (#43) | `jc_dct` |
+| `quantizer` | `test_quantizer.py` (#44) | `jc_quant` |
+| `config_header` | `test_config_header.py` (#46) | `tb_config_top` |
+| `entropy` | `test_entropy.py` | `tb_entropy_top` |
+| `qoi` | `test_qoi.py` | `tb_qoi_top` |
+| `top_smoke` | `test_top_smoke.py` (#48) | `jpeg_codec_top` |
+| `top_golden` | `test_top_golden.py` (#88) | `jpeg_codec_top` |
+
+An unknown name exits `2` with the list above. The one bench outside the
+table is the gate-level run `verification/rtl/run_top_smoke_gl.py`, which
+carries its own netlist, PDK-pin and fault-injection logic (see below).
+`test_top_frame_cycles.py` has no row of its own either: it reuses the
+`top_golden` row's sources and top level and is launched with
+`--test-module test_top_frame_cycles` (see below).
 
 ## Golden JPEG model and libjpeg cross-check
 
@@ -123,7 +146,7 @@ random input and output stalls. Needs cocotb 2.1.0, Pillow 10.2.0 and a C
 compiler.
 
 ```sh
-python3 verification/rtl/run_top_smoke.py          # icarus; same exit codes as run_tb.py
+python3 verification/rtl/run_stage.py top_smoke   # icarus; same exit codes as run_tb.py
 ```
 
 ### Gate-level run (issue #89)
@@ -165,7 +188,7 @@ bench covers 20 x 18), and stalled-port runs (smoke bench). Cycle counts are
 not a result here.
 
 ```sh
-python3 verification/rtl/run_top_golden.py     # icarus; exit 0 pass, 1 test failed, 2 did not run
+python3 verification/rtl/run_stage.py top_golden  # icarus; exit 0 pass, 1 test failed, 2 did not run
 cd verification/klt
 uvx --from "klayout-tools[functional-verification]==0.8.0" klt functional-verification \
     top_golden.request.json -o <outdir>        # klt: 0 pass, 3 a test failed, 1 request/env error
@@ -204,7 +227,7 @@ cycles from frame start to the `out_last` beat, which is the figure §9 names.
 ```sh
 # from the repository root; writes cycles.json beside the command
 FRAME_CYCLES_JSON=$PWD/cycles.json \
-  python3 verification/rtl/run_top_golden.py --test-module test_top_frame_cycles
+  python3 verification/rtl/run_stage.py top_golden --test-module test_top_frame_cycles
 # icarus; exit 0 every row in range, 1 a row failed, 2 did not run
 ```
 

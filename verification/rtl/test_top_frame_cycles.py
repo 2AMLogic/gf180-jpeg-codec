@@ -41,7 +41,7 @@ Why a separate module
 byte-reproducible, so neither it nor `test_top_smoke.py` is touched. Run this
 module through the existing runner:
 
-    python3 verification/rtl/run_top_golden.py --test-module test_top_frame_cycles
+    python3 verification/rtl/run_stage.py top_golden --test-module test_top_frame_cycles
 
 Each test appends a row to a machine-written JSON file so the record quotes a
 committed number instead of a hand-transcribed log line. The path is
