@@ -18,6 +18,11 @@ sim/.work/
 sim/pdk.local.json
 # synthesis / P&R scratch
 flow/build/
+# option-C size-estimate run directory (flow/synthesize-optc.sh, issue #115):
+# ~8 MB of generated Verilog, reproducible from flow/synthesize-optc.json
+# (records/ keeps the committed evidence). The black-box baseline
+# flow/netlist/ stays committed as T1 item 1 evidence.
+flow/netlist-optc/
 # klt scratch and extracted spice from the smoke flow (records/ keeps the evidence)
 flow/smoke/.klt/
 flow/smoke/*.spice
