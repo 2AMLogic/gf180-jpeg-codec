@@ -1,0 +1,41 @@
+{
+  "sources": [
+    "rtl/colour_convert.v",
+    "rtl/jc_bitpack.v",
+    "rtl/jc_cfg_regs.v",
+    "rtl/jc_dct.v",
+    "rtl/jc_dct1d.v",
+    "rtl/jc_downsample.v",
+    "rtl/jc_header_gen.v",
+    "rtl/jc_huff.v",
+    "rtl/jc_mb_ctrl.v",
+    "rtl/jc_out_mux.v",
+    "rtl/jc_qoi.v",
+    "rtl/jc_quant.v",
+    "rtl/jc_quant_core.v",
+    "rtl/jc_sram_arb.v",
+    "rtl/jc_sram_wrap.v",
+    "rtl/jc_table_load.v",
+    "rtl/jc_table_load_rom.v",
+    "rtl/jc_xpose_rf.v",
+    "rtl/jc_zigzag.v",
+    "rtl/jpeg_codec_top.v",
+    "verification/rtl/sram_macro_model.v"
+  ],
+  "hdl_toplevel": "jpeg_codec_top",
+  "engine": "icarus",
+  "testbench": {
+    "module": "test_top_frame_cycles",
+    "search_path": "verification/rtl"
+  },
+  "options": {
+    "timescale": [
+      "1ns",
+      "1ps"
+    ],
+    "random_seed": 1,
+    "includes": [
+      "rtl"
+    ]
+  }
+}
