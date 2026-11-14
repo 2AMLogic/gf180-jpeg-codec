@@ -64,6 +64,7 @@ import json
 import os
 import sys
 import time
+from collections import deque
 
 import cocotb
 from cocotb.triggers import RisingEdge
@@ -166,6 +167,7 @@ class CycleHost(Host):
         self.arb_stalls = None
         self.stage_sample_cycles = None
         self.sampler_stop = False
+        self.sampler_deadline_ns = None
 
     async def out_monitor(self):
         """Hold `out_ready` high for the whole run and timestamp `out_last`."""
@@ -178,45 +180,81 @@ class CycleHost(Host):
                 if d.out_last.value == 1 and self.last_ns is None:
                     self.last_ns = cocotb.utils.get_sim_time("ns")
                     self.last_seen = True
+                    # Sample at least three edges past the beat, so the
+                    # sampler has provably covered it whatever the coroutine
+                    # resumption order was; trim_stage_window pops the rest.
+                    self.sampler_deadline_ns = self.last_ns + 30
 
     async def stage_sampler(self):
         """Classify every boundary handshake once per clock of the frame.
 
         The window starts at the first edge after `run_frame` captures
-        `start_ns` and ends with the edge that samples the `out_last` beat,
-        inclusive: exactly `cycles_to_out_last` edges. Reads use the same
-        convention as `out_monitor` (the values stable in the cycle that
-        ends at each edge), so a boundary's four buckets sum to the window
-        length and `out.transferred` equals the output byte count.
+        `start_ns`. Reads use the same convention as `out_monitor` (the
+        values stable in the cycle that ends at each edge), so a boundary's
+        four buckets sum to the window length and `out.transferred` equals
+        the output byte count.
+
+        The stop is deterministic, not racy: `out_monitor` arms a deadline
+        three edges past the beat it timestamps, so this coroutine provably
+        samples every edge up to and including the `out_last` beat whatever
+        the coroutine resumption order on a shared edge, and over-samples a
+        known few edges past it. `run_frame` then calls
+        `trim_stage_window`, which pops every sampled edge after the
+        beat's edge - the same edge that defined `cycles_to_out_last` - so
+        the window is exactly [frame start, `out_last`].
         """
         d = self.dut
         counts = {n: {"stalled": 0, "starved": 0, "transferred": 0, "idle": 0}
                   for n in BOUNDARIES}
         sram = {p: 0 for p in SRAM_PORTS}
         arb = {a: 0 for a in ARB_PAIRS}
+        hist = deque(maxlen=8)
         self.stage_counts = counts
         self.sram_occupancy = sram
         self.arb_stalls = arb
+        self._edge_hist = hist
         self.stage_sample_cycles = 0
         while True:
             await RisingEdge(d.clk)
-            if self.sampler_stop:
+            deadline = self.sampler_deadline_ns
+            if self.sampler_stop or (
+                    deadline is not None
+                    and cocotb.utils.get_sim_time("ns") > deadline):
                 break
             self.stage_sample_cycles += 1
+            codes = {}
             for name, (v, r) in BOUNDARIES.items():
                 valid, ready = _bit(getattr(d, v)), _bit(getattr(d, r))
-                if valid:
-                    counts[name]["transferred" if ready else "stalled"] += 1
-                else:
-                    counts[name]["starved" if ready else "idle"] += 1
-            for p in SRAM_PORTS:
-                if _bit(getattr(d, p)):
-                    sram[p] += 1
-            for a, (req, gnt) in ARB_PAIRS.items():
-                if _bit(getattr(d, req)) and not _bit(getattr(d, gnt)):
-                    arb[a] += 1
+                bucket = ("transferred" if valid and ready else
+                          "stalled" if valid else
+                          "starved" if ready else "idle")
+                counts[name][bucket] += 1
+                codes[name] = bucket
+            sram_set = tuple(p for p in SRAM_PORTS if _bit(getattr(d, p)))
+            for p in sram_set:
+                sram[p] += 1
+            arb_set = tuple(a for a, (req, gnt) in ARB_PAIRS.items()
+                            if _bit(getattr(d, req)) and not _bit(getattr(d, gnt)))
+            for a in arb_set:
+                arb[a] += 1
+            hist.append((cocotb.utils.get_sim_time("ns"), codes, sram_set, arb_set))
             if (_bit(d.out_valid) and _bit(d.out_ready) and _bit(d.out_last)):
                 break
+
+    def trim_stage_window(self, last_ns):
+        """Pop sampled edges later than the `out_last` beat (see sampler)."""
+        while self._edge_hist and self._edge_hist[-1][0] > last_ns:
+            _, codes, sram_set, arb_set = self._edge_hist.pop()
+            for name, bucket in codes.items():
+                self.stage_counts[name][bucket] -= 1
+            for p in sram_set:
+                self.sram_occupancy[p] -= 1
+            for a in arb_set:
+                self.arb_stalls[a] -= 1
+            self.stage_sample_cycles -= 1
+        assert self._edge_hist and self._edge_hist[-1][0] == last_ns, (
+            "sampler window ends at %s, out_last beat is at %s"
+            % (self._edge_hist[-1][0] if self._edge_hist else None, last_ns))
 
     async def run_frame(self, mode, w, h, stream):
         d = self.dut
@@ -313,6 +351,7 @@ async def frame_cycle_case(dut, name, quality):
     got = await host.run_frame(0, W, H, stream)
 
     cycles = host.out_last_cycles
+    host.trim_stage_window(host.last_ns)
     want = jpeg_golden.encode(list(rgb), W, H, "colour", q_luma, q_chroma)
     im = decode_jpeg(got)
 
