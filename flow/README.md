@@ -13,8 +13,47 @@ evidence about the codec.
 uvx --from "klayout-tools==X.Y.Z" klt place-and-route flow/place-and-route.json --format json
 ```
 
-`X.Y.Z` is the klt named in the newest `records/*/versions.txt`. Run it as one
-local unit; it is a single OpenROAD job, not a grid.
+`X.Y.Z` is the klt named in the newest `records/*/versions.txt` whose
+`request:` line is a place-and-route request. Run it as one local unit; it is
+a single OpenROAD job, not a grid.
+
+## Option C size estimate (decision 0004, issue #115)
+
+`synthesize-optc.json` + `synthesize-optc.sh` + `sram_stdcell.v` size decision
+record 0004's **option C** (standard-cell RAM), whose options table leaves the
+9-track area "not estimated here (unverified)". The request is
+`synthesize.json` with two fields changed -- `sram_blackbox.v` becomes
+`sram_stdcell.v`, and `outputs.dir` becomes `netlist-optc` -- so the figures are
+like-for-like on library (`gf180mcu_fd_sc_mcu9t5v0`), corner (`ss_125C_3v00`)
+and clock (20 ns). Nothing under `rtl/` changes: `jc_sram_wrap.v` instantiates
+`gf180_sram_256x32` by module name, so giving that name a synthesizable body is
+the whole substitution.
+
+```sh
+. flow/pdk.env
+flow/synthesize-optc.sh       # writes flow/netlist-optc/ (gitignored, ~10 MB)
+```
+
+One local Yosys job, not a grid: 51 s and 653 MB peak when recorded. There is
+deliberately no `--check` mode; `synthesize.sh --check` remains the only
+freshness contract here.
+
+| `report.json` key | baseline (3 black boxes) | option C | delta |
+|---|---|---|---|
+| `instance_count` | 31,341 | 129,467 | +98,126 (4.13x) |
+| `area_um2` | 1,118,900.97 | 4,886,480.39 | +3,767,579.42 (4.37x) |
+| `sequential_area_um2` | 394,661.84 | 2,344,420.92 | +1,949,759.08 (5.94x) |
+
+**Option C costs about 3.77 mm² of extra cell area (1.12 -> 4.89 mm²).** The
+newest record is `records/20261114T084338Z-17614fc/`; read its `README.md`
+before quoting any number from it.
+
+**Synthesis only** -- no placement, no routing, no STA, so not evidence for any
+maturity rung. **It does not invoke decision 0004's fallback gate**: 0004 still
+adopts option A, `netlist/` is untouched (`synthesize.sh --check` exits 0 after
+an option-C run), `manifests/` is unchanged, and switching to option C would
+still need a new decision record. The option-C netlist is not committed; it is
+reproducible from the committed request.
 
 ## Status: item 2 is NOT met
 
