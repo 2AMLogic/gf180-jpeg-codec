@@ -20,6 +20,9 @@ _None._
 `loom:important`; taken before unlabelled work.
 
 - **#31**: T1 item 2 (layout): place-and-route the encoder with the three SRAM macros to a committed routed GDS
+- **#113**: Count cycles per frame in simulation on the two named 640 x 480 images (spec §9)
+- **#114**: Pre-route timing of the synthesized netlist at the five spec §10 views, macros black-boxed
+- **#115**: Record a synthesis-only size estimate for decision 0004's option C (standard-cell RAM)
 
 ## Ready
 
@@ -50,10 +53,13 @@ _None._
 Issues carrying `loom:curated`.
 
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
+- **#113**: Count cycles per frame in simulation on the two named 640 x 480 images (spec §9) *(curated)*
+- **#114**: Pre-route timing of the synthesized netlist at the five spec §10 views, macros black-boxed *(curated)*
+- **#115**: Record a synthesis-only size estimate for decision 0004's option C (standard-cell RAM) *(curated)*
 
 ## Proposed (Architect / Hermit)
 
-_None._
+- **#116**: Consolidate the two identical top-level run_*.py wrappers into run_stage.py's table *(hermit)*
 
 ## Epics
 
@@ -65,12 +71,12 @@ _None._
 |------|-------|
 | Operator merge-risk holds | 0 |
 | Very important | 1 |
-| Important | 1 |
+| Important | 4 |
 | Ready (`loom:issue`) | 0 |
 | In Progress (`loom:building`) | 0 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
-| Curated | 1 |
-| Architect / Hermit proposals | 0 |
+| Curated | 4 |
+| Architect / Hermit proposals | 1 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
