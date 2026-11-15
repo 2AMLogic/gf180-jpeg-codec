@@ -20,13 +20,16 @@ _None._
 `loom:important`; taken before unlabelled work.
 
 - **#31**: T1 item 2 (layout): place-and-route the encoder with the three SRAM macros to a committed routed GDS
+- **#131**: Retime jc_dct1d: pipeline the butterfly/multiply/combine chain to the record 0007 depth target
+- **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
 - **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor
 
 ## Ready
 
 Human-approved issues ready for implementation (`loom:issue`).
 
-_None._
+- **#131**: Retime jc_dct1d: pipeline the butterfly/multiply/combine chain to the record 0007 depth target
+- **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
 
 ## In Progress
 
@@ -34,11 +37,9 @@ Issues currently being built (`loom:building`).
 
 - **#124**: Consolidate the configuration address map and host driver duplicated across the three top-level benches
 - **#130**: run_tb.py: a --testcase that matches no test exits 0 and prints "N/N passed" — a filtered run can certify nothing
-- **#131**: Retime jc_dct1d: pipeline the butterfly/multiply/combine chain to the record 0007 depth target
-- **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
+- **#133**: Retime jc_quant_core: pipeline the reciprocal-ROM multiply to the record 0007 depth target
 - **#136**: Correct record 0005 section 7's Huffman budget row to the counted jc_huff floor
 - **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor
-- **#140**: no lint leg asserts spec/README.md indexes every file in spec/decision-records/
 - **#141**: Two wording inaccuracies left by #138: a "measured" slip in spec/README.md and the stage sampler stop-margin comments
 - **#142**: Refresh the item-1 attestation under a pinned klt 0.9.2: the committed 0.8.0 evidence does not bind the design sources (klayout-tools#4764)
 
@@ -48,13 +49,13 @@ PRs waiting on Judge (`loom:review-requested`).
 
 - **#128**: refactor: consolidate the cfg address map and port driver into cfg_host.py
 - **#143**: docs: correct the stage sampler stop-margin comments in the frame-cycles bench
-- **#149**: docs: re-derive 0005 §7 row 4 from the jc_huff FSM floor per record 0008
+- **#147**: Pin klt 0.9.2 and refresh the item-1 attestation to the whole-input-set binding
 
 ## Approved (Awaiting Merge)
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-- **#148**: lint: assert spec/README.md indexes every decision record, both directions
+- **#149**: docs: re-derive 0005 §7 row 4 from the jc_huff FSM floor per record 0008
 
 ## Proposed
 
@@ -67,10 +68,10 @@ Issues carrying `loom:curated`.
 - **#133**: Retime jc_quant_core: pipeline the reciprocal-ROM multiply to the record 0007 depth target *(curated)*
 - **#136**: Correct record 0005 section 7's Huffman budget row to the counted jc_huff floor *(curated)*
 - **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor *(curated)*
-- **#140**: no lint leg asserts spec/README.md indexes every file in spec/decision-records/ *(curated)*
 - **#141**: Two wording inaccuracies left by #138: a "measured" slip in spec/README.md and the stage sampler stop-margin comments *(curated)*
 - **#142**: Refresh the item-1 attestation under a pinned klt 0.9.2: the committed 0.8.0 evidence does not bind the design sources (klayout-tools#4764) *(curated)*
 - **#144**: Record 0007 §4: publish an authorized depth for colour_convert and jc_quant_core, and price the two-stage quant case *(curated)*
+- **#150**: lint leg 7 false-positives on a decision-record link carrying an #anchor or a link title *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -86,9 +87,9 @@ _None._
 |------|-------|
 | Operator merge-risk holds | 0 |
 | Very important | 1 |
-| Important | 2 |
-| Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 9 |
+| Important | 4 |
+| Ready (`loom:issue`) | 2 |
+| In Progress (`loom:building`) | 7 |
 | PRs awaiting review | 3 |
 | Approved PRs awaiting merge | 1 |
 | Curated | 11 |
