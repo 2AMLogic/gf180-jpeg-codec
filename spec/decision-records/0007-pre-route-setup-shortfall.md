@@ -106,12 +106,22 @@ issue's STA run is a complete, successful outcome, not a failure to deliver.
 
 The decided response: **insert registers into these combinational networks —
 pipelining only, no arithmetic change — holding every computed value
-bit-identical.** `colour_convert` and `jc_quant_core` are ratified as
-combinational modules (record 0005 §2), so re-porting them as sequential (or
-placing the equivalent registers in their parents `jc_downsample` and
-`jc_quant`) is a change a stage may not make without a new record; **this
-record is that authorization.** For `jc_dct1d`, the registered version of the
-0005 §6 schedule is decided in §4 below.
+bit-identical.** Record 0005 ratifies no per-module clocking property for
+these blocks: §1 fixes only the global conventions (one `clk`, rising-edge
+registers, no latches, and the naming rule that every module but the top is
+prefixed `jc_`), and §2 is a hierarchy/ownership table whose
+colour-conversion and quantizer rows are named `jc_color_convert` and
+`jc_quant`. The RTL diverges from that table, and this record closes the
+divergence: `rtl/colour_convert.v` is unprefixed against §1's naming rule
+and appears in §2 under no name, while `rtl/jc_quant_core.v` is a further
+split of the tabled `jc_quant` — a file §2 lets a stage issue add under its
+own `jc_<stage>_` prefix. Registering either network — re-porting it as
+sequential, or placing the equivalent registers in its parent `jc_downsample`
+or `jc_quant` — is a change §2's closing rule ("may not rename or re-port a
+module in this table without a new record") reserves to a new record; **this
+record is that authorization**, for both modules as they exist in `rtl/`.
+For `jc_dct1d` — named in §2 inside the `jc_dct` row — the registered
+version of the 0005 §6 schedule is decided in §4 below.
 
 ### 2. Per-module depth target
 
