@@ -244,7 +244,8 @@ buffered (record 0002), `zigzag` is ping-pong, and `quant` to `huff` to
 `bitpack` run as a streaming chain. **Throughput of the pipeline is
 therefore set by its slowest stage, not by the sum of the stages**; each row
 must be at most 1388.9 and the shared-memory rows (last four) are the
-sums that must also fit. The serial sum of all five stage rows (4241) is
+sums that must also fit. The serial sum of all five stage rows (4034,
+with record 0009's row 4) is
 reported only as the bound on first-MCU latency.
 
 | Stage | Budget derivation | Cycles per MCU | % of 1388.9 |
@@ -252,25 +253,42 @@ reported only as the bound on first-MCU latency.
 | 1 Ingest, convert, downsample | input-bound: 3 beats x 256 pixels; §9 row "Input-bus cycles per MCU: 768 (55%)" | 768 | 55.3 |
 | 2 M0 read, DCT (both passes) | per block 16 vectors x 8 cycles + 12 fill/drain = 140, 6 blocks; against §9 231.5 per block | 840 | 60.5 |
 | 3 Zig-zag, quantize | 64 coefficients at 1 per cycle + 8 latency = 72 per block; against §9 231.5 per block | 432 | 31.1 |
-| 4 Huffman symbol path | Y block: 80 M1 accesses x A = 160 + 10 fill = 170; Cb/Cr block: 63 M2 accesses x 2 = 126 + 10 = 136 (Q reads on M1 overlap); 4 x 170 + 2 x 136; M1 count from record 0004 | 952 | 68.5 |
+| 4 Huffman symbol path | record 0009's pipelined path: 2 cycles per symbol (the A = 2 grant cadence) x symbols + 1 per in-run zero, plus arbitration and S7 back-pressure — content-dependent; at the q95 row of the §12 image, counted-derived (2 x 425,695 + 35,105 + 39,211 + 3,624) / 1200 = 745.2 (record 0009). The replaced blocking FSM cost 1448.2 counted (record 0008); the original M1/M2 access pricing here undercounted the stage at ~2.1 cycles per symbol | 745.2 | 53.7 |
 | 5 Bit pack and byte out, **worst-case content** | 6 x 1665 bits (§3 per-block bound) = 9990 bits = 1248.75 bytes at 1 byte per cycle; §3 "44.96 MB/s under 50 MB/s" | 1249 | 89.9 |
 | M0 port | (96 writes + 96 reads) x A = 2; §9 "192 port cycles", worst tolerable A is 7 | 384 | 27.6 |
 | M1 port | 354 accesses x 2 | 708 | 51.0 |
 | M2 port | 126 accesses x 2 | 252 | 18.1 |
 
-**Slowest stage.** At worst-case content (`noise_max_entropy_640x480`,
-spec §12) it is **stage 5, the bit packer and one-byte output**, at 1249
-cycles/MCU, because the output is one byte per cycle (spec §3 sizes it at 90% of
-the port). At typical content (`scene_fbm_640x480`) the scan output is far
-below its bound and the slowest stage is **stage 2, the DCT**, at 840.
-Neither figure is a result; the cycles per frame are counted in simulation on
-those images (item 5).
+**Slowest stage.** At worst-case content (`noise_max_entropy_640x480` at
+q95, spec §12) it is now **stage 2, the DCT**, at 840: record 0009's
+pipelined `jc_huff` sits at a counted-derived 745.2 cycles/MCU, below the
+768-cycle input row, so stage 4 no longer binds at any content or quality
+(the blocking FSM it replaced counted 1448.2 — record 0008 — and was the
+binder at q95). Stage 5's 1249 row remains the §3 theoretical per-block
+bound at hypothetical all-max-symbol content; on the named §12 images the
+scan output counts 300.8 bytes/block at q95 and that stage does not bind.
+At typical content (`scene_fbm_640x480`) the slowest stage is also stage 2,
+at 840. All figures are budgets or counted simulations, never measurements;
+the cycles per frame are counted in simulation on those images (item 5).
 
-**Frame bound at the target (derived from the budgets).** 1200 MCUs x 1249 =
-1,498,800 cycles at worst-case content, plus first-MCU latency 4241 and the
-header 627 bytes (625 + `EOI`, spec §7) = 1,503,668 cycles, which is 90.2%
-of the frame period 50e6 / 30 = 1,666,667. The same bound at 840 cycles/MCU
-is 1,012,868 (60.8%).
+**Frame bound at the target (derived from the budgets).** With stage 4 at
+745.2 (record 0009) the binder at worst-case content is stage 2 at 840:
+1200 MCUs x 840 = 1,008,000 cycles, plus first-MCU latency 4034 and the
+header 627 bytes (625 + `EOI`, spec §7) = 1,012,661 cycles, which is 60.8%
+of the frame period 50e6 / 30 = 1,666,667. Counted in simulation (record
+`verification/records/20261115T1237Z-frame-stages-pipelined-83423424/`,
+record 0009): the q95 row needs 1,088,887 cycles to `out_last`, 65.3% of
+the period (45.9 frames/s simulated) — the ~76,000-cycle difference from
+the derived bound is the quantizer's M1 contention behind `jc_huff`'s
+lookup rate (`qa` stalls 407,647, reported in record 0009). Record 0007
+(`0007-pre-route-setup-shortfall.md`) re-derives stage 2 across its depth
+band: at the decided depth 10 (1032 cycles/MCU) the same slowest-stage
+model gives 1,243,259 (74.6%), at the band edge depth 12 (1224) 1,473,851
+(88.4%, 33.9 frames/s simulated) — 207 cycles under 0007 §4's published
+depth-10 figure and 15 under its depth-12 figure (which reuses the depth-10
+latency term; the pre-0009 row 4, 952, was priced into both). The §9 row
+holds across the whole authorized depth band, with `jc_huff` (745.2) below
+the 768-cycle input row and therefore never the binding stage.
 
 Other modes against §9:
 
@@ -278,7 +296,7 @@ Other modes against §9:
 |---|---|---|---|
 | Grey 320 x 240, 25 MHz | 1388.9 cycles per block | slowest stage the packer, 1665 bits / 8 = 209 per block; DCT 140; ingest 64 | 15.0% of the budget, met |
 | QOI 640 x 480, 50 MHz | 5.43 cycles per pixel; input 3, output at most 4 | `jc_qoi` at most 4 cycles per pixel (index read A = 2, conditional write A = 2; input 3 beats; output at most 4 bytes) | 73.7%, met by budget |
-| Colour 1280 x 720, 100 MHz (stretch) | 925.9 per MCU, 154.3 per block | DCT 840 (90.7%) and ingest 768 (83.0%) fit; stage 4 (952) and stage 5 (1249) **do not** at worst-case content | not met at worst case; stretch is open for typical content only, to be decided by item 8 |
+| Colour 1280 x 720, 100 MHz (stretch) | 925.9 per MCU, 154.3 per block | DCT 840 (90.7%) and ingest 768 (83.0%) fit; stage 4 at 745.2 (record 0009) now also fits; stage 5 (1249) **does not** at worst-case content | not met at worst case; stretch is open for typical content only, to be decided by item 8 |
 
 ### 8. Edge cases in the stage graph
 
