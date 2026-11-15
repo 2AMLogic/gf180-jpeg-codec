@@ -17,15 +17,30 @@ cd "$(dirname "$0")"
 . ./pdk.env
 
 KLT="${KLT:-klt}"
+# klt-watchdog.sh bounds every "$KLT" call below (issue #156): KLT_TIMEOUT
+# seconds, default 900; on expiry it captures diagnostics, kills the run's
+# process group and returns 124, which this script then exits with.
+# shellcheck source=klt-watchdog.sh
+. ./klt-watchdog.sh
 
 if [ "${1:-}" = "--check" ]; then
-  exec "$KLT" synthesize synthesize.json --check netlist/report.json
+  rc=0
+  # Bounded too (issue #156): --check also runs the synthesis engine, and
+  # exec would replace this wrapper, leaving nothing to time it out. The
+  # leading "-" arguments pass klt's stdout/stderr straight through, and
+  # klt's own exit status is propagated unchanged.
+  klt_bounded - - "klt-watchdog-check-$$.diag.txt" \
+    "$KLT" synthesize synthesize.json --check netlist/report.json || rc=$?
+  exit "$rc"
 fi
 
 rm -rf netlist
 tmp=$(mktemp)
 trap 'rm -f "$tmp"' EXIT
-"$KLT" synthesize synthesize.json --format json > "$tmp"
+# On expiry klt_bounded returns 124 and this script exits with it (set -e);
+# on engine failure its status propagates the same way the direct call's did.
+klt_bounded "$tmp" - "klt-watchdog-$$.diag.txt" \
+  "$KLT" synthesize synthesize.json --format json
 mv "$tmp" netlist/report.json
 ROOT=$(git rev-parse --show-toplevel)
 sed -i "s#$ROOT/#./#g; s#$HOME#~#g" netlist/*.ys netlist/*.json
