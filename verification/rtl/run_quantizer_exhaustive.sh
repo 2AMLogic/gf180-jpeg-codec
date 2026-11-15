@@ -8,7 +8,7 @@ out=$(mktemp -d)
 trap 'rm -rf "$out"' EXIT
 def=()
 [ "${1:-}" = "--negative" ] && def=(-DINJECT_BUG=1)
-iverilog -g2005 "${def[@]}" -o "$out/sim" rtl/jc_quant_core.v verification/rtl/tb_quantizer_exhaustive.v || exit 2
+iverilog -g2005 "${def[@]}" -o "$out/sim" rtl/jc_quant_core.v rtl/jc_quant_recip.v rtl/jc_quant_mul.v rtl/jc_quant_clamp.v verification/rtl/tb_quantizer_exhaustive.v || exit 2
 start=$(date +%s)
 log=$(vvp "$out/sim")
 echo "$log"
