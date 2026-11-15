@@ -246,7 +246,8 @@ pixel stream is exactly 921,600 bytes, that `status_error` is 0, that the
 output decodes in Pillow 10.2.0 at (640, 480) mode RGB, and that it is
 byte-identical to `jpeg_golden.encode`. A count outside the mechanical range
 [921,600, 1,666,667] fails the run as a finding to file, never something to
-tune away. Takes about 8 minutes of simulator time for the three rows, so it
+tune away. Takes about 11 minutes of simulator time for the three rows (the
+per-stage sampler's per-edge signal reads slow the simulation ~35%), so it
 is deliberately in no CI or required job.
 
 Evidence: `verification/records/20261114T0551Z-frame-cycles-62d88e1/`
