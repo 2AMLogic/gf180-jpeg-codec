@@ -103,6 +103,20 @@ RECORD_0005_BOUND = 1_503_668                           # record 0005 section 7
 CYCLE_FLOOR = (W // 16) * (H // 16) * 768               # 921,600
 CYCLE_CEILING = FRAME_PERIOD
 
+# Committed `pix.stalled` baseline per row, from the newest committed
+# frame re-count on main
+# (verification/records/20261117T2156Z-frame-cycles-depth12-39c70b2/cycles.json,
+# the depth-12 jc_dct1d tree of #197; the older 61644ee figures predate the
+# dct retime and no longer describe main). The depth-12 downstream drains
+# slower, so all three rows now share one figure. The #132 retime must not
+# add input backpressure, so each row asserts this ceiling from above; only
+# "do not worsen" is claimed.
+PIX_STALLED_CEILING = {
+    ("scene_fbm", 50): 459_994,
+    ("noise_max_entropy", 50): 459_994,
+    ("noise_max_entropy", 95): 459_994,
+}
+
 OUT_JSON = os.environ.get("FRAME_CYCLES_JSON") or os.path.join(
     HERE, "sim_build", "frame_cycles.json")
 
@@ -464,6 +478,10 @@ async def frame_cycle_case(dut, name, quality):
     assert host.stage_counts["pix"]["transferred"] == len(stream), (
         "pix transferred %d != stream %d"
         % (host.stage_counts["pix"]["transferred"], len(stream)))
+    assert host.stage_counts["pix"]["stalled"] <= PIX_STALLED_CEILING[(name, quality)], (
+        "pix stalled %d exceeds the committed baseline %d: the #132 retime "
+        "added input backpressure"
+        % (host.stage_counts["pix"]["stalled"], PIX_STALLED_CEILING[(name, quality)]))
     assert host.stage_counts["out"]["transferred"] == len(got), (
         "out transferred %d != output bytes %d"
         % (host.stage_counts["out"]["transferred"], len(got)))

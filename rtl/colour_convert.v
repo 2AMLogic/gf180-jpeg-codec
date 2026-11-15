@@ -1,6 +1,10 @@
 // RGB -> YCbCr, spec/codec.md section 4 (libjpeg jccolor.c, SCALEBITS = 16).
-// Combinational. 25-bit signed intermediates, no saturation (spec: all 2^24
-// inputs stay within 0..255). In grey mode the input byte (on r) is Y with no
+// Combinational: the composition of jc_cc_mul, jc_cc_add, jc_cc_t3 and
+// jc_cc_rnd in the original left-associated sum order, so every computed
+// value is bit-identical to the pre-split single-expression version (issue
+// #132 — the split exists so jc_cc_pipe can register between the stages).
+// 25-bit signed intermediates, no saturation (spec: all 2^24 inputs stay
+// within 0..255). In grey mode the input byte (on r) is Y with no
 // conversion, and no chroma is produced (chroma_valid low).
 `timescale 1ns / 1ps
 module colour_convert (
@@ -13,26 +17,29 @@ module colour_convert (
     output wire [7:0] cr,
     output wire       chroma_valid
 );
-  wire signed [24:0] rs = {17'd0, r};
-  wire signed [24:0] gs = {17'd0, g};
-  wire signed [24:0] bs = {17'd0, b};
+  wire signed [24:0] y_a, y_b, y_c, cb_a, cb_b, cb_c, cr_a, cr_b, cr_c;
+  wire signed [24:0] y_ab, cb_ab, cr_ab;
+  wire signed [24:0] y_abc, cb_abc, cr_abc;
 
-  // (128 << 16) + 32768 - 1
-  localparam signed [24:0] CHROMA_OFF = 25'sd8421375;
-
-  wire signed [24:0] y_sum  = 25'sd19595 * rs + 25'sd38470 * gs + 25'sd7471 * bs + 25'sd32768;
-  wire signed [24:0] cb_sum = -25'sd11059 * rs - 25'sd21709 * gs + 25'sd32768 * bs + CHROMA_OFF;
-  wire signed [24:0] cr_sum = 25'sd32768 * rs - 25'sd27439 * gs - 25'sd5329 * bs + CHROMA_OFF;
-
-  // Arithmetic shift (floor); results are 0..255 by the spec's exhaustive run.
-  /* verilator lint_off UNUSEDSIGNAL */  // only bits [7:0] are the 0..255 result
-  wire signed [24:0] y_sh  = y_sum >>> 16;
-  wire signed [24:0] cb_sh = cb_sum >>> 16;
-  wire signed [24:0] cr_sh = cr_sum >>> 16;
-  /* verilator lint_on UNUSEDSIGNAL */
-
-  assign y            = grey ? r : y_sh[7:0];
-  assign cb           = cb_sh[7:0];
-  assign cr           = cr_sh[7:0];
-  assign chroma_valid = ~grey;
+  jc_cc_mul u_mul (
+      .r(r), .g(g), .b(b),
+      .y_a(y_a), .y_b(y_b), .y_c(y_c),
+      .cb_a(cb_a), .cb_b(cb_b), .cb_c(cb_c),
+      .cr_a(cr_a), .cr_b(cr_b), .cr_c(cr_c)
+  );
+  jc_cc_add u_add (
+      .y_a(y_a), .y_b(y_b), .cb_a(cb_a), .cb_b(cb_b),
+      .cr_a(cr_a), .cr_b(cr_b),
+      .y_ab(y_ab), .cb_ab(cb_ab), .cr_ab(cr_ab)
+  );
+  jc_cc_t3 u_t3 (
+      .y_ab(y_ab), .y_c(y_c), .cb_ab(cb_ab), .cb_c(cb_c),
+      .cr_ab(cr_ab), .cr_c(cr_c),
+      .y_abc(y_abc), .cb_abc(cb_abc), .cr_abc(cr_abc)
+  );
+  jc_cc_rnd u_rnd (
+      .grey(grey), .r_grey(r),
+      .y_abc(y_abc), .cb_abc(cb_abc), .cr_abc(cr_abc),
+      .y(y), .cb(cb), .cr(cr), .chroma_valid(chroma_valid)
+  );
 endmodule
