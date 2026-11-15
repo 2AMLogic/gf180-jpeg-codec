@@ -3,6 +3,15 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-11-15
+
+- **Issue #127** (closed): Decide what to do about the pre-route setup shortfall in jc_dct, jc_downsample and jc_quant
+- **PR #134**: docs: decide the pre-route setup shortfall response in decision record 0007
+- **Issue #112** (closed): Bring README, spec/README and verification/README status text in line with main
+- **PR #139**: docs: bring README, spec/README and verification/README status text in line with the tree
+- **Issue #119** (closed): Finding: 640 x 480 colour at q95 needs 1,740,070 cycles, 104.4% of the 30 frames/s frame period
+- **PR #138**: Count per-stage boundary cycles at 640x480; decision record 0008 corrects the jc_huff budget
+
 ### 2026-11-14
 
 - **Issue #115** (closed): Record a synthesis-only size estimate for decision 0004's option C (standard-cell RAM)
