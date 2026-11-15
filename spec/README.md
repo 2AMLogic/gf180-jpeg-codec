@@ -9,6 +9,7 @@ Ratified specification and decision records. See the repo README for scope.
 | [decision-records/0003-dct-arithmetic.md](decision-records/0003-dct-arithmetic.md) | DCT arithmetic, bit for bit |
 | [decision-records/0004-sram-source.md](decision-records/0004-sram-source.md) | SRAM source: adopt `gf180-sram` |
 | [decision-records/0005-rtl-microarchitecture.md](decision-records/0005-rtl-microarchitecture.md) | RTL microarchitecture: module split, pin-level interface, memory access, cycle budget |
+| [decision-records/0008-huff-cycle-budget.md](decision-records/0008-huff-cycle-budget.md) | Huffman cycle budget: the measured `jc_huff` binding stage; §7 row 4 does not bound the design |
 
 Record `0001` (the PDK pin) is owned by issue #5 and is not yet committed.
 A change to a ratified row needs a new decision record, not an edit.
