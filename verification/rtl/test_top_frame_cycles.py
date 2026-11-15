@@ -33,7 +33,11 @@ What each row checks
   occupancy and the arbitration-request stalls (`hf_m1_req && !hf_m1_gnt`,
   `hf_m2_req && !hf_m2_gnt`, `qa_pend && !qa_gnt`). The window is frame
   start to the `out_last` beat, inclusive, so each boundary's four buckets
-  sum to exactly `cycles_to_out_last`.
+  sum to exactly the sampled edge count. That count is the true
+  integer-cycle figure between the two edges; `cycles_to_out_last` floors
+  the float-ns quotient of the same interval and can land one cycle low on
+  a row carrying accumulated clock drift (sub-picosecond), so both numbers
+  are recorded.
 * `status_error` is 0 at the end of the frame.
 * The output decodes in Pillow 10.2.0 with warnings fatal, at size
   (640, 480) and mode RGB.
@@ -205,7 +209,10 @@ class CycleHost(Host):
         known few edges past it. `run_frame` then calls
         `trim_stage_window`, which pops every sampled edge after the
         beat's edge - the same edge that defined `cycles_to_out_last` - so
-        the window is exactly [frame start, `out_last`].
+        the window is exactly the frame-start-to-`out_last` edge count.
+        (`cycles_to_out_last` itself floors the float-ns quotient of that
+        interval and can land one cycle low on a drifted row; the integer
+        count here is the exact one.)
 
         Two artifacts of a long cocotb session are filtered explicitly,
         both invisible to the DUT (whose cycle counts stay exact):
@@ -432,11 +439,17 @@ async def frame_cycle_case(dut, name, quality):
     # (input backpressure) and is recorded, never asserted.
     assert host.stage_counts["out"]["stalled"] == 0, (
         "out_valid was not accepted for %d cycles" % host.stage_counts["out"]["stalled"])
-    # The sampler must have covered exactly the frame window, and its
-    # transferred counts must agree with the bytes the monitors collected.
-    assert host.stage_sample_cycles == cycles, (
-        "sampler window %d != cycles_to_out_last %d"
-        % (host.stage_sample_cycles, cycles))
+    # The sampler must have covered exactly the frame window: the true
+    # integer cycle count between the frame-start edge and the out_last
+    # edge. `cycles_to_out_last` floors the float-ns quotient of the same
+    # interval, which on a row carrying accumulated clock drift (sub-ps
+    # edge offsets, see stage_sample_window_ns) lands one cycle low; the
+    # §9 figures keep that committed formula unchanged, so on drifted rows
+    # stage_sample_cycles is one higher and is the exact count.
+    true_cycles = (host.beat_ps - host.start_ps) // 10_000
+    assert host.stage_sample_cycles == true_cycles, (
+        "sampler window %d != integer cycle count %d"
+        % (host.stage_sample_cycles, true_cycles))
     assert host.stage_counts["pix"]["transferred"] == len(stream), (
         "pix transferred %d != stream %d"
         % (host.stage_counts["pix"]["transferred"], len(stream)))
