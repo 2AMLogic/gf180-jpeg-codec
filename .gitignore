@@ -18,6 +18,8 @@ sim/.work/
 sim/pdk.local.json
 # synthesis / P&R scratch
 flow/build/
+# machine-local rehydration of the commit-safe .ys (PDK root substituted); klt synthesize regenerates it -- the .ys is the artifact of record
+flow/netlist/*.run.ys
 # option-C size-estimate run directory (flow/synthesize-optc.sh, issue #115):
 # ~8 MB of generated Verilog, reproducible from flow/synthesize-optc.json
 # (records/ keeps the committed evidence). The black-box baseline
