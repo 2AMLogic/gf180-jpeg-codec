@@ -22,8 +22,22 @@ What each row checks
 * The generated PPM is sha256-checked against `verification/images/SHA256SUMS`
   before it is encoded (`load_image`, shared with `test_top_golden.py`).
 * The host never stalls: `out_ready` is held at 1 for the whole run and
-  `pix_valid` is held at 1 until the last pixel byte is accepted. Both are
-  *asserted*, not assumed (`CycleHost.out_stalls` / `.pix_gaps`).
+  `pix_valid` is held at 1 until the last pixel byte is accepted. The holds
+  are structural (drive code); what is *observed* is the DUT side:
+  `pix_valid && !pix_ready` (input backpressure the DUT imposed on a host
+  that never stalls) and `out_valid && !out_ready`.
+* Where the cycles go (issue #119): one sampler coroutine classifies, per
+  clock edge of the frame window, every stage-boundary handshake as stalled
+  (`valid && !ready`), starved (`!valid && ready`), transferred
+  (`valid && ready`) or idle, plus the `m0_en` / `m1_en` / `m2_en` port
+  occupancy and the arbitration-request stalls (`hf_m1_req && !hf_m1_gnt`,
+  `hf_m2_req && !hf_m2_gnt`, `qa_pend && !qa_gnt`). The window is frame
+  start to the `out_last` beat, inclusive, so each boundary's four buckets
+  sum to exactly the sampled edge count. That count is the true
+  integer-cycle figure between the two edges; `cycles_to_out_last` floors
+  the float-ns quotient of the same interval and can land one cycle low on
+  a row carrying accumulated clock drift (sub-picosecond), so both numbers
+  are recorded.
 * `status_error` is 0 at the end of the frame.
 * The output decodes in Pillow 10.2.0 with warnings fatal, at size
   (640, 480) and mode RGB.
@@ -54,6 +68,7 @@ import json
 import os
 import sys
 import time
+from collections import deque
 
 import cocotb
 from cocotb.triggers import RisingEdge
@@ -88,6 +103,42 @@ CYCLE_CEILING = FRAME_PERIOD
 OUT_JSON = os.environ.get("FRAME_CYCLES_JSON") or os.path.join(
     HERE, "sim_build", "frame_cycles.json")
 
+# Stage boundaries: valid/ready handshake pairs on top-level wires of
+# `jpeg_codec_top`, so cocotb hierarchical reads count them with no RTL
+# change. Producer -> consumer, named after decision record 0005 section 7's
+# stage rows.
+BOUNDARIES = {
+    "pix": ("pix_valid", "pix_ready"),   # host -> jc_downsample
+    "s2": ("s2_valid", "s2_ready"),      # jc_downsample -> jc_mb_ctrl
+    "s3": ("s3_valid", "s3_ready"),      # jc_mb_ctrl -> jc_dct
+    "s4": ("s4_valid", "s4_ready"),      # jc_dct -> jc_zigzag
+    "s5": ("s5_valid", "s5_ready"),      # jc_zigzag -> jc_quant
+    "s6": ("s6_valid", "s6_ready"),      # jc_quant -> jc_huff
+    "s7": ("s7_valid", "s7_ready"),      # jc_huff -> jc_bitpack
+    "bp": ("bp_valid", "bp_ready"),      # jc_bitpack -> jc_out_mux
+    "out": ("out_valid", "out_ready"),   # jc_out_mux -> host
+}
+
+# The record 0005 section 7 memory rows: SRAM port enable occupancy, and
+# arbitration-request stalls. `hf_m1` (jc_huff) and `qa` (the quantizer's
+# request holder) share M1 through `u_arb1`, so `hf_m1` stalls separate
+# arbitration contention from jc_huff's own FSM cost.
+SRAM_PORTS = ("m0_en", "m1_en", "m2_en")
+ARB_PAIRS = {
+    "hf_m1": ("hf_m1_req", "hf_m1_gnt"),
+    "hf_m2": ("hf_m2_req", "hf_m2_gnt"),
+    "qa": ("qa_pend", "qa_gnt"),
+}
+
+
+def _bit(sig):
+    """0/1 of a one-bit signal; X/Z reads as 0 (must not occur in-window)."""
+    try:
+        return int(sig.value)
+    except ValueError:
+        return 0
+
+
 _ROWS = []
 
 
@@ -103,17 +154,26 @@ class CycleHost(Host):
     record names both reference points.
 
     `run_frame` below mirrors `Host.run_frame` with the random gaps removed
-    (this bench is the no-stall case by definition) and the two stall counters
-    added. `in_gap` / `out_gap` are pinned at 0.
+    (this bench is the no-stall case by definition), the `out_last`
+    timestamp kept, and one `stage_sampler` coroutine added alongside: it
+    counts the per-boundary stalled/starved/transferred/idle cycles of
+    issue #119 over exactly the `cycles_to_out_last` window.
+    `in_gap` / `out_gap` are pinned at 0.
     """
 
     def __init__(self, dut, seed=1):
         super().__init__(dut, in_gap=0.0, out_gap=0.0, seed=seed)
         self.start_ns = None
         self.last_ns = None
-        self.out_stalls = 0
-        self.pix_gaps = 0
         self.drive_cycles = 0
+        self.start_ps = None
+        self.beat_ps = None
+        self.stage_counts = None
+        self.sram_occupancy = None
+        self.arb_stalls = None
+        self.stage_sample_cycles = None
+        self.sampler_stop = False
+        self.sampler_deadline_ps = None
 
     async def out_monitor(self):
         """Hold `out_ready` high for the whole run and timestamp `out_last`."""
@@ -121,44 +181,155 @@ class CycleHost(Host):
         while True:
             d.out_ready.value = 1
             await RisingEdge(d.clk)
-            if d.out_ready.value != 1:
-                self.out_stalls += 1
             if d.out_valid.value == 1 and d.out_ready.value == 1:
                 self.out.append(int(d.out_data.value))
                 if d.out_last.value == 1 and self.last_ns is None:
                     self.last_ns = cocotb.utils.get_sim_time("ns")
                     self.last_seen = True
+                    # Sample at least three edges past the beat, so the
+                    # sampler has provably covered it whatever the coroutine
+                    # resumption order was; trim_stage_window pops the rest.
+                    # Integer ps, so no float rounding can bite.
+                    self.beat_ps = cocotb.utils.get_sim_time()
+                    self.sampler_deadline_ps = self.beat_ps + 3000
+
+    async def stage_sampler(self):
+        """Classify every boundary handshake once per clock of the frame.
+
+        The window starts at the first edge after `run_frame` captures
+        `start_ns`. Reads use the same convention as `out_monitor` (the
+        values stable in the cycle that ends at each edge), so a boundary's
+        four buckets sum to the window length and `out.transferred` equals
+        the output byte count.
+
+        The stop is deterministic, not racy: `out_monitor` arms a deadline
+        three edges past the beat it timestamps, so this coroutine provably
+        samples every edge up to and including the `out_last` beat whatever
+        the coroutine resumption order on a shared edge, and over-samples a
+        known few edges past it. `run_frame` then calls
+        `trim_stage_window`, which pops every sampled edge after the
+        beat's edge - the same edge that defined `cycles_to_out_last` - so
+        the window is exactly the frame-start-to-`out_last` edge count.
+        (`cycles_to_out_last` itself floors the float-ns quotient of that
+        interval and can land one cycle low on a drifted row; the integer
+        count here is the exact one.)
+
+        Two artifacts of a long cocotb session are filtered explicitly,
+        both invisible to the DUT (whose cycle counts stay exact):
+        each test's `reset()` starts another `Clock` driver, and a
+        no-change clock post can re-fire `RisingEdge` without the DUT
+        seeing a transition; and the fork-time edge can fire on the step
+        `start_ps` was captured. Real clock edges are ~10 ns apart, so any
+        fire less than 9.5 ns after the last counted edge - or at or
+        before `start_ps` - is skipped and tallied in the row as
+        `stage_phantom_edges_skipped`. All times are integer picoseconds.
+        """
+        d = self.dut
+        counts = {n: {"stalled": 0, "starved": 0, "transferred": 0, "idle": 0}
+                  for n in BOUNDARIES}
+        sram = {p: 0 for p in SRAM_PORTS}
+        arb = {a: 0 for a in ARB_PAIRS}
+        hist = deque(maxlen=8)
+        self.stage_counts = counts
+        self.sram_occupancy = sram
+        self.arb_stalls = arb
+        self._edge_hist = hist
+        self.stage_sample_cycles = 0
+        self._phantom = 0
+        self.sampler_first_ps = None
+        prev_ps = None
+        while True:
+            await RisingEdge(d.clk)
+            now = cocotb.utils.get_sim_time()
+            if now <= self.start_ps:
+                # Fork-time edge: start_soon runs this body in the same step
+                # `run_frame` captured start_ps, and the edge registered there
+                # can fire on that same step. It is not a frame cycle.
+                continue
+            if prev_ps is not None and now - prev_ps < 9_500:
+                # A real clock edge is ~10 ns after the last one; a re-fire
+                # inside a period is a no-change-post artifact the DUT does
+                # not see a transition on.
+                self._phantom += 1
+                continue
+            if self.sampler_stop or (
+                    self.sampler_deadline_ps is not None
+                    and now > self.sampler_deadline_ps):
+                break
+            prev_ps = now
+            if self.sampler_first_ps is None:
+                self.sampler_first_ps = now
+            self.stage_sample_cycles += 1
+            codes = {}
+            for name, (v, r) in BOUNDARIES.items():
+                valid, ready = _bit(getattr(d, v)), _bit(getattr(d, r))
+                bucket = ("transferred" if valid and ready else
+                          "stalled" if valid else
+                          "starved" if ready else "idle")
+                counts[name][bucket] += 1
+                codes[name] = bucket
+            sram_set = tuple(p for p in SRAM_PORTS if _bit(getattr(d, p)))
+            for p in sram_set:
+                sram[p] += 1
+            arb_set = tuple(a for a, (req, gnt) in ARB_PAIRS.items()
+                            if _bit(getattr(d, req)) and not _bit(getattr(d, gnt)))
+            for a in arb_set:
+                arb[a] += 1
+            hist.append((now, codes, sram_set, arb_set))
+            if (_bit(d.out_valid) and _bit(d.out_ready) and _bit(d.out_last)):
+                break
+
+    def trim_stage_window(self, beat_ps):
+        """Pop sampled edges later than the `out_last` beat (see sampler)."""
+        while self._edge_hist and self._edge_hist[-1][0] > beat_ps:
+            _, codes, sram_set, arb_set = self._edge_hist.pop()
+            for name, bucket in codes.items():
+                self.stage_counts[name][bucket] -= 1
+            for p in sram_set:
+                self.sram_occupancy[p] -= 1
+            for a in arb_set:
+                self.arb_stalls[a] -= 1
+            self.stage_sample_cycles -= 1
+        assert self._edge_hist and self._edge_hist[-1][0] == beat_ps, (
+            "sampler window ends at %s, out_last beat is at %s"
+            % (self._edge_hist[-1][0] if self._edge_hist else None, beat_ps))
 
     async def run_frame(self, mode, w, h, stream):
         d = self.dut
         self.out, self.last_seen = [], False
         self.start_ns = self.last_ns = None
-        self.out_stalls = self.pix_gaps = self.drive_cycles = 0
+        self.drive_cycles = 0
+        self.sampler_stop = False
+        self.beat_ps = None
+        self.sampler_deadline_ps = None
         await self.configure(mode, w, h)
         await self.cfg_write(REG_CMD, 1)
         assert d.status_error.value == 0, "start raised an error: cause %d" % int(
             d.err_cause.value)
         self.start_ns = cocotb.utils.get_sim_time("ns")
-        i = 0
-        for cyc in range(CAP):
-            feeding = i < len(stream)
-            if feeding:
-                d.pix_valid.value = 1
-                d.pix_data.value = stream[i]
+        self.start_ps = cocotb.utils.get_sim_time()
+        cocotb.start_soon(self.stage_sampler())
+        try:
+            i = 0
+            for cyc in range(CAP):
+                feeding = i < len(stream)
+                if feeding:
+                    d.pix_valid.value = 1
+                    d.pix_data.value = stream[i]
+                else:
+                    d.pix_valid.value = 0
+                await RisingEdge(d.clk)
+                if d.pix_valid.value == 1 and d.pix_ready.value == 1:
+                    i += 1
+                if self.last_seen and i == len(stream):
+                    self.drive_cycles = cyc + 1
+                    break
             else:
-                d.pix_valid.value = 0
-            await RisingEdge(d.clk)
-            if feeding and d.pix_valid.value != 1:
-                self.pix_gaps += 1
-            if d.pix_valid.value == 1 and d.pix_ready.value == 1:
-                i += 1
-            if self.last_seen and i == len(stream):
-                self.drive_cycles = cyc + 1
-                break
-        else:
-            raise AssertionError(
-                "frame did not finish: sent %d of %d pixel bytes, %d output bytes"
-                % (i, len(stream), len(self.out)))
+                raise AssertionError(
+                    "frame did not finish: sent %d of %d pixel bytes, %d output bytes"
+                    % (i, len(stream), len(self.out)))
+        finally:
+            self.sampler_stop = True
         d.pix_valid.value = 0
         await self.wait_idle()
         self.cycles = int((cocotb.utils.get_sim_time("ns") - self.start_ns) / 10)
@@ -174,13 +345,25 @@ class CycleHost(Host):
 def _write_rows():
     os.makedirs(os.path.dirname(OUT_JSON) or ".", exist_ok=True)
     doc = {
-        "schema_version": 1,
+        "schema_version": 2,
         "kind": "frame-cycle-count",
-        "issue": 113,
+        "issue": 119,
         "note": ("Simulated cycle counts, never measured (spec/codec.md section 9, "
                  "CLAUDE.md). Icarus + cocotb, RTL with sram_macro_model.v, no host "
-                 "stalls."),
+                 "stalls. schema_version 2 adds the issue #119 per-boundary "
+                 "stage counters."),
         "testbench": "verification/rtl/test_top_frame_cycles.py",
+        "stage_boundaries": {
+            "pix": "host -> jc_downsample",
+            "s2": "jc_downsample -> jc_mb_ctrl",
+            "s3": "jc_mb_ctrl -> jc_dct",
+            "s4": "jc_dct -> jc_zigzag",
+            "s5": "jc_zigzag -> jc_quant",
+            "s6": "jc_quant -> jc_huff",
+            "s7": "jc_huff -> jc_bitpack",
+            "bp": "jc_bitpack -> jc_out_mux",
+            "out": "jc_out_mux -> host",
+        },
         "signoff_clock_hz": CLOCK_HZ,
         "frames_per_s": FRAMES_PER_S,
         "frame_period_cycles": FRAME_PERIOD,
@@ -209,6 +392,7 @@ async def frame_cycle_case(dut, name, quality):
     got = await host.run_frame(0, W, H, stream)
 
     cycles = host.out_last_cycles
+    host.trim_stage_window(host.beat_ps)
     want = jpeg_golden.encode(list(rgb), W, H, "colour", q_luma, q_chroma)
     im = decode_jpeg(got)
 
@@ -227,8 +411,15 @@ async def frame_cycle_case(dut, name, quality):
         "golden_match": got == want,
         "golden_bytes": len(want),
         "decode": {"size": list(im.size), "mode": im.mode},
-        "out_ready_stall_cycles": host.out_stalls,
-        "pix_valid_gap_cycles": host.pix_gaps,
+        "pix_valid_not_ready_cycles": host.stage_counts["pix"]["stalled"],
+        "out_valid_not_ready_cycles": host.stage_counts["out"]["stalled"],
+        "stage_counts": host.stage_counts,
+        "sram_occupancy_cycles": host.sram_occupancy,
+        "arb_stall_cycles": host.arb_stalls,
+        "stage_sample_cycles": host.stage_sample_cycles,
+        "stage_sample_window_ns": [host.sampler_first_ps / 1000,
+                                   host._edge_hist[-1][0] / 1000],
+        "stage_phantom_edges_skipped": host._phantom,
         "drive_cycles": host.drive_cycles,
         "wall_time_s": round(time.monotonic() - t0, 3),
     }
@@ -242,9 +433,33 @@ async def frame_cycle_case(dut, name, quality):
         100.0 * cycles / FRAME_PERIOD, FRAME_PERIOD,
         100.0 * cycles / RECORD_0005_BOUND, host.cycles)
 
-    # Host-stall freedom is enforced, not assumed.
-    assert host.out_stalls == 0, "out_ready was deasserted for %d cycles" % host.out_stalls
-    assert host.pix_gaps == 0, "pix_valid was gapped for %d cycles" % host.pix_gaps
+    # The no-stall hold is structural (out_ready driven 1 on every cycle), so
+    # the DUT-side observation below cannot be nonzero unless the bench broke
+    # its own guarantee. `pix_valid && !pix_ready` is a real DUT observation
+    # (input backpressure) and is recorded, never asserted.
+    assert host.stage_counts["out"]["stalled"] == 0, (
+        "out_valid was not accepted for %d cycles" % host.stage_counts["out"]["stalled"])
+    # The sampler must have covered exactly the frame window: the true
+    # integer cycle count between the frame-start edge and the out_last
+    # edge. `cycles_to_out_last` floors the float-ns quotient of the same
+    # interval, which on a row carrying accumulated clock drift (sub-ps
+    # edge offsets, see stage_sample_window_ns) lands one cycle low; the
+    # §9 figures keep that committed formula unchanged, so on drifted rows
+    # stage_sample_cycles is one higher and is the exact count.
+    true_cycles = (host.beat_ps - host.start_ps) // 10_000
+    assert host.stage_sample_cycles == true_cycles, (
+        "sampler window %d != integer cycle count %d"
+        % (host.stage_sample_cycles, true_cycles))
+    assert host.stage_counts["pix"]["transferred"] == len(stream), (
+        "pix transferred %d != stream %d"
+        % (host.stage_counts["pix"]["transferred"], len(stream)))
+    assert host.stage_counts["out"]["transferred"] == len(got), (
+        "out transferred %d != output bytes %d"
+        % (host.stage_counts["out"]["transferred"], len(got)))
+    for name, c in host.stage_counts.items():
+        assert sum(c.values()) == host.stage_sample_cycles, (
+            "boundary %s buckets %d != window %d"
+            % (name, sum(c.values()), host.stage_sample_cycles))
     # Decodability is an independent check, never a substitute for byte-exactness.
     assert im.size == (W, H), im.size
     assert im.mode == "RGB", im.mode
