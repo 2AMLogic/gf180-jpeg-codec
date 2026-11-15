@@ -13,6 +13,7 @@ Ratified specification and decision records. See the repo README for scope.
 | [decision-records/0005-item6-row-accounting.md](decision-records/0005-item6-row-accounting.md) | §11 accounts for every §1 row (T1 item 6) | Decided, 2026-10-27 |
 | [decision-records/0005-rtl-microarchitecture.md](decision-records/0005-rtl-microarchitecture.md) | RTL microarchitecture: module split, pin-level interface, memory access, cycle budget | Decided, 2026-10-27 |
 | [decision-records/0006-odd-size-padding.md](decision-records/0006-odd-size-padding.md) | Odd-size padding versus libjpeg-turbo | Decided, option A (operator ruling, 2026-10-30) |
+| [decision-records/0007-pre-route-setup-shortfall.md](decision-records/0007-pre-route-setup-shortfall.md) | Pre-route setup shortfall response: pipelining direction, per-module depth targets, cycle cost | Decided, 2026-11-14 |
 | [decision-records/0008-huff-cycle-budget.md](decision-records/0008-huff-cycle-budget.md) | Huffman cycle budget: the counted `jc_huff` binding stage; §7 row 4 does not bound the design | Decided, option A (2026-11-15, issue #119) |
 
 Recorded statuses are transcribed from each record's status line as
