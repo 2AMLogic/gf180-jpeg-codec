@@ -134,8 +134,8 @@ per pixel on `noise_64x48` (seed 7), whole frame and steady state, against
 
 ## Top-level smoke bench (issue #48)
 
-`verification/rtl/test_top_smoke.py` drives `jpeg_codec_top` (all of `rtl/`
-except the placeholder) with `sram_macro_model.v`, a pin-accurate model of the
+`verification/rtl/test_top_smoke.py` drives `jpeg_codec_top` (all of
+`rtl/`) with `sram_macro_model.v`, a pin-accurate model of the
 `gf180-sram` 256 x 32 macro (`CEN`/`GWEN` active low, per-bit `WEN`, one-cycle
 read latency). It configures the chip through the configuration port, feeds
 block-ordered pixels, and checks: colour (32 x 16, and 20 x 18 with host edge
@@ -164,10 +164,17 @@ python3 verification/rtl/run_top_smoke_gl.py --inject-fault --testcase test_grey
 python3 verification/rtl/run_top_smoke_gl.py --klt-request OUT --testcase ...             # klt request
 ```
 
-Four of the five tests pass at gate level; `test_qoi_decodes` diverges (it never
-finishes) and, with no `--testcase`, the run only ends at the bench's 4 000 000
-cycle cap, about an hour. Keep it out of any required job. Evidence:
-`verification/records/20261105T053856Z-24bab41/`.
+Four of the five tests pass at gate level on the netlist this run recorded
+(`verification/records/20261105T053856Z-24bab41/`, netlist sha256
+`871dc5df…` — a netlist no longer in the tree); `test_qoi_decodes` diverges
+there (it never finishes) and, with no `--testcase`, the run only ends at the
+bench's 4 000 000 cycle cap, about an hour. Keep it out of any required job.
+That gate-level X was filed as #93 and fixed by PR #95; no record re-runs this
+smoke bench on the current netlist. The current netlist (`e32b0e8b…`, the
+committed `flow/netlist/jpeg_codec_top_synth.v`) is covered at gate level by
+the 180-case golden record
+`verification/records/20261106T1803Z-golden-gl-e32b0e8/`: all 180 cases pass,
+QOI included.
 
 ## Top-level golden comparison (issue #88, functional half of T1 item 5)
 
