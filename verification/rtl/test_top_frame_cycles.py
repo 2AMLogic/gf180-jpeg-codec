@@ -205,9 +205,17 @@ class CycleHost(Host):
         known few edges past it. `run_frame` then calls
         `trim_stage_window`, which pops every sampled edge after the
         beat's edge - the same edge that defined `cycles_to_out_last` - so
-        the window is exactly [frame start, `out_last`]. All times are
-        integer picoseconds, and any same-time re-fire is skipped, so no
-        float rounding or callback artifact can bend the window.
+        the window is exactly [frame start, `out_last`].
+
+        Two artifacts of a long cocotb session are filtered explicitly,
+        both invisible to the DUT (whose cycle counts stay exact):
+        each test's `reset()` starts another `Clock` driver, and a
+        no-change clock post can re-fire `RisingEdge` without the DUT
+        seeing a transition; and the fork-time edge can fire on the step
+        `start_ps` was captured. Real clock edges are ~10 ns apart, so any
+        fire less than 9.5 ns after the last counted edge - or at or
+        before `start_ps` - is skipped and tallied in the row as
+        `stage_phantom_edges_skipped`. All times are integer picoseconds.
         """
         d = self.dut
         counts = {n: {"stalled": 0, "starved": 0, "transferred": 0, "idle": 0}
@@ -220,6 +228,9 @@ class CycleHost(Host):
         self.arb_stalls = arb
         self._edge_hist = hist
         self.stage_sample_cycles = 0
+        self._phantom = 0
+        self.sampler_first_ps = None
+        prev_ps = None
         while True:
             await RisingEdge(d.clk)
             now = cocotb.utils.get_sim_time()
@@ -228,13 +239,19 @@ class CycleHost(Host):
                 # `run_frame` captured start_ps, and the edge registered there
                 # can fire on that same step. It is not a frame cycle.
                 continue
-            if hist and hist[-1][0] == now:
-                # Same-time re-fire: not another clock cycle.
+            if prev_ps is not None and now - prev_ps < 9_500:
+                # A real clock edge is ~10 ns after the last one; a re-fire
+                # inside a period is a no-change-post artifact the DUT does
+                # not see a transition on.
+                self._phantom += 1
                 continue
             if self.sampler_stop or (
                     self.sampler_deadline_ps is not None
                     and now > self.sampler_deadline_ps):
                 break
+            prev_ps = now
+            if self.sampler_first_ps is None:
+                self.sampler_first_ps = now
             self.stage_sample_cycles += 1
             codes = {}
             for name, (v, r) in BOUNDARIES.items():
@@ -393,8 +410,9 @@ async def frame_cycle_case(dut, name, quality):
         "sram_occupancy_cycles": host.sram_occupancy,
         "arb_stall_cycles": host.arb_stalls,
         "stage_sample_cycles": host.stage_sample_cycles,
-        "stage_sample_window_ns": [host._edge_hist[0][0] / 1000,
+        "stage_sample_window_ns": [host.sampler_first_ps / 1000,
                                    host._edge_hist[-1][0] / 1000],
+        "stage_phantom_edges_skipped": host._phantom,
         "drive_cycles": host.drive_cycles,
         "wall_time_s": round(time.monotonic() - t0, 3),
     }
