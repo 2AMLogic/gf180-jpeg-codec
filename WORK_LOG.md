@@ -3,6 +3,21 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-11-14
+
+- **Issue #115** (closed): Record a synthesis-only size estimate for decision 0004's option C (standard-cell RAM)
+- **PR #125**: flow: size the three 256x32 memories in standard cells and record the result
+- **Issue #122** (closed): Remove the dead TB constant in run_tb.py: it names the directory #96 deleted and breaks the runner's documented invocation
+- **PR #129**: fix(verification): remove the dead TB constant; require --test-dir in run_tb.py
+- **Issue #121** (closed): test_top_frame_cycles: the two host-stall counters read back the bench's own writes, so they cannot fail
+- **Issue #113** (closed): Count cycles per frame in simulation on the two named 640 x 480 images (spec §9)
+- **PR #120**: test: count cycles per frame at 640 x 480 on the two named spec §12 images
+- **Issue #114** (closed): Pre-route timing of the synthesized netlist at the five spec §10 views, macros black-boxed
+- **PR #123**: flow: time the synthesized netlist pre-route at the five spec §10 views
+- **Issue #116** (closed): Consolidate the two identical top-level run_*.py wrappers into run_stage.py's table
+- **PR #118**: refactor(verification): fold the two top-level bench wrappers into run_stage.py
+- **PR #111**: docs: roadmap as of 2026-11-13
+
 ### 2026-11-12
 
 - **PR #107**: Bump Repo Skills 0.25.10 -> 0.26.1

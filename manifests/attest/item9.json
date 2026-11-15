@@ -80,7 +80,7 @@
         "role": "testbench",
         "path": "verification/rtl/test_top_frame_cycles.py",
         "passed": true,
-        "content_hash": "sha256:ef9ffff62d3b4c87257759867196e65058f5ba521bb4d67132efdc2869ae6935"
+        "content_hash": "sha256:2d13fbe90131b7c95835196efbbc56233a6d1367191a4beb963f71caeca7337e"
       },
       {
         "check": "present",
