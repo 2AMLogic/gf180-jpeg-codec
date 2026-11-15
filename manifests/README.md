@@ -17,8 +17,8 @@ output: the machine-readable state of the
 - **`codec-item6-statement.json`** - one entry per spec row stating why it is
   not statistical (spec §11, decision record 0005).
 - **`attest/item1.inventory.json`** / **`attest/item1.json`** - the item-1
-  (design sources) inventory and its envelope: the committed RTL under `rtl/`
-  (the placeholder excluded), the synthesis request and the SRAM black-box
+  (design sources) inventory and its envelope: the committed RTL under `rtl/`,
+  the synthesis request and the SRAM black-box
   declaration, plus the derived gate-level netlist `flow/netlist/` with its
   freshness command (`flow/synthesize.sh --check`, marked `local_only`
   because it needs yosys and the PDK; CI carries the committed outcome).
