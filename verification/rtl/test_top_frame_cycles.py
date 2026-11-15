@@ -162,12 +162,14 @@ class CycleHost(Host):
         self.start_ns = None
         self.last_ns = None
         self.drive_cycles = 0
+        self.start_ps = None
+        self.beat_ps = None
         self.stage_counts = None
         self.sram_occupancy = None
         self.arb_stalls = None
         self.stage_sample_cycles = None
         self.sampler_stop = False
-        self.sampler_deadline_ns = None
+        self.sampler_deadline_ps = None
 
     async def out_monitor(self):
         """Hold `out_ready` high for the whole run and timestamp `out_last`."""
@@ -183,7 +185,9 @@ class CycleHost(Host):
                     # Sample at least three edges past the beat, so the
                     # sampler has provably covered it whatever the coroutine
                     # resumption order was; trim_stage_window pops the rest.
-                    self.sampler_deadline_ns = self.last_ns + 30
+                    # Integer ps, so no float rounding can bite.
+                    self.beat_ps = cocotb.utils.get_sim_time()
+                    self.sampler_deadline_ps = self.beat_ps + 3000
 
     async def stage_sampler(self):
         """Classify every boundary handshake once per clock of the frame.
@@ -201,7 +205,9 @@ class CycleHost(Host):
         known few edges past it. `run_frame` then calls
         `trim_stage_window`, which pops every sampled edge after the
         beat's edge - the same edge that defined `cycles_to_out_last` - so
-        the window is exactly [frame start, `out_last`].
+        the window is exactly [frame start, `out_last`]. All times are
+        integer picoseconds, and any same-time re-fire is skipped, so no
+        float rounding or callback artifact can bend the window.
         """
         d = self.dut
         counts = {n: {"stalled": 0, "starved": 0, "transferred": 0, "idle": 0}
@@ -216,15 +222,18 @@ class CycleHost(Host):
         self.stage_sample_cycles = 0
         while True:
             await RisingEdge(d.clk)
-            now = cocotb.utils.get_sim_time("ns")
-            if now <= self.start_ns:
+            now = cocotb.utils.get_sim_time()
+            if now <= self.start_ps:
                 # Fork-time edge: start_soon runs this body in the same step
-                # `run_frame` captured start_ns, and the edge registered there
+                # `run_frame` captured start_ps, and the edge registered there
                 # can fire on that same step. It is not a frame cycle.
                 continue
-            deadline = self.sampler_deadline_ns
+            if hist and hist[-1][0] == now:
+                # Same-time re-fire: not another clock cycle.
+                continue
             if self.sampler_stop or (
-                    deadline is not None and now > deadline):
+                    self.sampler_deadline_ps is not None
+                    and now > self.sampler_deadline_ps):
                 break
             self.stage_sample_cycles += 1
             codes = {}
@@ -242,13 +251,13 @@ class CycleHost(Host):
                             if _bit(getattr(d, req)) and not _bit(getattr(d, gnt)))
             for a in arb_set:
                 arb[a] += 1
-            hist.append((cocotb.utils.get_sim_time("ns"), codes, sram_set, arb_set))
+            hist.append((now, codes, sram_set, arb_set))
             if (_bit(d.out_valid) and _bit(d.out_ready) and _bit(d.out_last)):
                 break
 
-    def trim_stage_window(self, last_ns):
+    def trim_stage_window(self, beat_ps):
         """Pop sampled edges later than the `out_last` beat (see sampler)."""
-        while self._edge_hist and self._edge_hist[-1][0] > last_ns:
+        while self._edge_hist and self._edge_hist[-1][0] > beat_ps:
             _, codes, sram_set, arb_set = self._edge_hist.pop()
             for name, bucket in codes.items():
                 self.stage_counts[name][bucket] -= 1
@@ -257,9 +266,9 @@ class CycleHost(Host):
             for a in arb_set:
                 self.arb_stalls[a] -= 1
             self.stage_sample_cycles -= 1
-        assert self._edge_hist and self._edge_hist[-1][0] == last_ns, (
+        assert self._edge_hist and self._edge_hist[-1][0] == beat_ps, (
             "sampler window ends at %s, out_last beat is at %s"
-            % (self._edge_hist[-1][0] if self._edge_hist else None, last_ns))
+            % (self._edge_hist[-1][0] if self._edge_hist else None, beat_ps))
 
     async def run_frame(self, mode, w, h, stream):
         d = self.dut
@@ -267,11 +276,14 @@ class CycleHost(Host):
         self.start_ns = self.last_ns = None
         self.drive_cycles = 0
         self.sampler_stop = False
+        self.beat_ps = None
+        self.sampler_deadline_ps = None
         await self.configure(mode, w, h)
         await self.cfg_write(REG_CMD, 1)
         assert d.status_error.value == 0, "start raised an error: cause %d" % int(
             d.err_cause.value)
         self.start_ns = cocotb.utils.get_sim_time("ns")
+        self.start_ps = cocotb.utils.get_sim_time()
         cocotb.start_soon(self.stage_sampler())
         try:
             i = 0
@@ -356,7 +368,7 @@ async def frame_cycle_case(dut, name, quality):
     got = await host.run_frame(0, W, H, stream)
 
     cycles = host.out_last_cycles
-    host.trim_stage_window(host.last_ns)
+    host.trim_stage_window(host.beat_ps)
     want = jpeg_golden.encode(list(rgb), W, H, "colour", q_luma, q_chroma)
     im = decode_jpeg(got)
 
@@ -381,6 +393,8 @@ async def frame_cycle_case(dut, name, quality):
         "sram_occupancy_cycles": host.sram_occupancy,
         "arb_stall_cycles": host.arb_stalls,
         "stage_sample_cycles": host.stage_sample_cycles,
+        "stage_sample_window_ns": [host._edge_hist[0][0] / 1000,
+                                   host._edge_hist[-1][0] / 1000],
         "drive_cycles": host.drive_cycles,
         "wall_time_s": round(time.monotonic() - t0, 3),
     }
