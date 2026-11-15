@@ -134,8 +134,8 @@ per pixel on `noise_64x48` (seed 7), whole frame and steady state, against
 
 ## Top-level smoke bench (issue #48)
 
-`verification/rtl/test_top_smoke.py` drives `jpeg_codec_top` (all of `rtl/`
-except the placeholder) with `sram_macro_model.v`, a pin-accurate model of the
+`verification/rtl/test_top_smoke.py` drives `jpeg_codec_top` (all of
+`rtl/`) with `sram_macro_model.v`, a pin-accurate model of the
 `gf180-sram` 256 x 32 macro (`CEN`/`GWEN` active low, per-bit `WEN`, one-cycle
 read latency). It configures the chip through the configuration port, feeds
 block-ordered pixels, and checks: colour (32 x 16, and 20 x 18 with host edge
@@ -164,10 +164,17 @@ python3 verification/rtl/run_top_smoke_gl.py --inject-fault --testcase test_grey
 python3 verification/rtl/run_top_smoke_gl.py --klt-request OUT --testcase ...             # klt request
 ```
 
-Four of the five tests pass at gate level; `test_qoi_decodes` diverges (it never
-finishes) and, with no `--testcase`, the run only ends at the bench's 4 000 000
-cycle cap, about an hour. Keep it out of any required job. Evidence:
-`verification/records/20261105T053856Z-24bab41/`.
+Four of the five tests pass at gate level on the netlist this run recorded
+(`verification/records/20261105T053856Z-24bab41/`, netlist sha256
+`871dc5df…` — a netlist no longer in the tree); `test_qoi_decodes` diverges
+there (it never finishes) and, with no `--testcase`, the run only ends at the
+bench's 4 000 000 cycle cap, about an hour. Keep it out of any required job.
+That gate-level X was filed as #93 and fixed by PR #95; no record re-runs this
+smoke bench on the current netlist. The current netlist (`e32b0e8b…`, the
+committed `flow/netlist/jpeg_codec_top_synth.v`) is covered at gate level by
+the 180-case golden record
+`verification/records/20261106T1803Z-golden-gl-e32b0e8/`: all 180 cases pass,
+QOI included.
 
 ## Top-level golden comparison (issue #88, functional half of T1 item 5)
 
@@ -237,14 +244,17 @@ Why its own module: the 180-case golden suite's committed records rest on a
 touched. The one new mechanism is the `out_last` timestamp — `Host.cycles` in
 `test_top_smoke.py` is frame start to `status_idle`, a strict superset — so a
 `CycleHost` subclass inside the new module times that beat and also pins
-`in_gap` / `out_gap` at 0 and asserts the host never stalled.
+`in_gap` / `out_gap` at 0. The host's no-stall freedom is structural there
+(`out_ready` held at 1, `pix_valid` held while a byte is pending), and the
+DUT side is observed, not assumed (see the per-stage attribution below).
 
 Each row additionally checks the image sha256 against `SHA256SUMS`, that the
 pixel stream is exactly 921,600 bytes, that `status_error` is 0, that the
 output decodes in Pillow 10.2.0 at (640, 480) mode RGB, and that it is
 byte-identical to `jpeg_golden.encode`. A count outside the mechanical range
 [921,600, 1,666,667] fails the run as a finding to file, never something to
-tune away. Takes about 8 minutes of simulator time for the three rows, so it
+tune away. Takes about 11 minutes of simulator time for the three rows (the
+per-stage sampler's per-edge signal reads slow the simulation ~35%), so it
 is deliberately in no CI or required job.
 
 Evidence: `verification/records/20261114T0551Z-frame-cycles-62d88e1/`
@@ -253,3 +263,36 @@ functional-verification` verdict). Simulated cycles, never measurements. The
 run found that `noise_max_entropy` at q95 needs 1,740,070 cycles, 104.4% of
 the 1,666,667-cycle frame period — filed as #119; the §9 target row is met at
 the reset-default q50 on both images §9 names.
+
+### Per-stage attribution (issue #119)
+
+The same bench also answers *where the cycles go*. One sampler coroutine
+classifies, per clock edge of the frame window (frame start to the
+`out_last` beat, inclusive), every stage-boundary handshake of
+`jpeg_codec_top` — `pix`, `s2` … `s7`, `bp`, `out`, read as top-level wires,
+no RTL change — as stalled (`valid && !ready`), starved (`!valid && ready`),
+transferred or idle, plus the `m0_en` / `m1_en` / `m2_en` port occupancy and
+the `hf_m1_req && !hf_m1_gnt`, `hf_m2_req && !hf_m2_gnt`,
+`qa_pend && !qa_gnt` arbitration-stall counts, all as new machine-written
+keys in `cycles.json` (schema_version 2). The two former stall counters —
+`out_ready_stall_cycles` and `pix_valid_gap_cycles` — each read back a
+signal the bench itself drove one statement earlier and could never fail;
+they are replaced by DUT-side observations (`pix_valid && !pix_ready`, real
+input backpressure; `out_valid && !out_ready`, 0 by construction here). The
+no-stall guarantee itself is unchanged and structural: `out_ready` is held
+at 1 and `pix_valid` at 1 while a byte is pending.
+
+Instrumentation is non-intrusive: the three rows' committed cycle and byte
+figures reproduce exactly. One measurement-definition note: `cycles_to_out_last`
+floors the float-ns quotient of start-to-beat, which on a row carrying
+accumulated simulator clock drift (~1 ps over earlier tests) lands one cycle
+low; the sampler records the true integer edge count
+(`stage_sample_cycles`) beside it, and both are in the record. The finding:
+the binding stage at q95 is **`jc_huff`** (`s6` stalls 1,268,261 of
+1,740,071 true cycles, 72.9%; `s7`/`bp`/`out` stalls are ~0), confirming the
+predicted 1448.2 cycles/MCU FSM floor within 0.13% and contradicting record
+0005 §7's Huffman budget row (952 cycles/MCU, ~2.1 cycles per symbol priced,
+against a real ≥4). Arbitration and M1 access time are exonerated. Decision
+record `spec/decision-records/0008-huff-cycle-budget.md` disposes of the
+finding; evidence in
+`verification/records/20261115T0046Z-frame-stages-61644ee/`.
