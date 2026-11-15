@@ -1,0 +1,20 @@
+# Macro-free top-level children of jpeg_codec_top, derived from the committed
+# netlist by flow/sta-preroute.sh --update-modules. TAB-separated:
+#   <filesystem-safe slug><TAB><verilog module name>
+# Every other child of jpeg_codec_top is jc_sram_wrap, which carries the
+# gf180_sram_256x32 macro and cannot be linked without its LEF (#31).
+paramod_jc_sram_arb_N_s32_00000000000000000000000000000010	$paramod\jc_sram_arb\N=s32'00000000000000000000000000000010
+paramod_jc_sram_arb_N_s32_00000000000000000000000000000011	$paramod\jc_sram_arb\N=s32'00000000000000000000000000000011
+paramod_jc_sram_arb_N_s32_00000000000000000000000000000100	$paramod\jc_sram_arb\N=s32'00000000000000000000000000000100
+jc_bitpack	jc_bitpack
+jc_cfg_regs	jc_cfg_regs
+jc_dct	jc_dct
+jc_downsample	jc_downsample
+jc_header_gen	jc_header_gen
+jc_huff	jc_huff
+jc_mb_ctrl	jc_mb_ctrl
+jc_out_mux	jc_out_mux
+jc_qoi	jc_qoi
+jc_quant	jc_quant
+jc_table_load	jc_table_load
+jc_zigzag	jc_zigzag

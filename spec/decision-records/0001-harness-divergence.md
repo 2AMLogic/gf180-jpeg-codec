@@ -35,3 +35,19 @@ now has empty `SOURCES`, `TOPLEVEL` and `TEST_MODULE` defaults and exits 2
 (did not run) if a caller supplies none; every wrapper in `verification/rtl/`
 already sets all three. Further divergence from polysynth, same record. The
 item-9 attestation is re-issued (earlier versions stay in git history).
+
+## Addendum 2026-11-14 (issue #122): TB removed
+
+The `TB` constant named `verification/tb`, the directory the addendum above
+deleted, and outlived it: both surviving wrappers overwrote it, the runner's
+own usage text reached it through the `--test-dir` default and could not run,
+and `build_dir` was derived from it, so any run resurrected the deleted
+directory (invisible to `git status`, since `.gitignore` carries
+`sim_build/`). `TB` is removed; `--test-dir` joins `SOURCES`, `TOPLEVEL` and
+`TEST_MODULE` with no default (absent it, exit 2, did not run), `build_dir`
+is derived from the resolved test directory, and `TB` is dropped from the
+`sys.path`/`PYTHONPATH` lists. The wrappers pass the test directory as
+`run_tb.TEST_DIR`. The divergence table's "`TB` is `verification/tb`" entry
+is superseded by this addendum; the exit-code contract and the cocotb 2.1
+`PYTHONPATH` workaround are unchanged. The item-9 attestation is re-issued
+(`run_tb.py` is attested evidence; earlier versions stay in git history).

@@ -2,9 +2,7 @@
 
 Run (toplevel jc_dct):
 
-    python3 verification/common/run_tb.py --toplevel jc_dct --test-module test_dct \
-        --test-dir verification/rtl \
-        --source jc_dct.v --source jc_dct1d.v --source jc_xpose_rf.v
+    python3 verification/rtl/run_stage.py dct
 
 The reference below is transcribed from decision record 0003 and is
 independent of verification/golden/. Every node asserts that it fits the
