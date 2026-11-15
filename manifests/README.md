@@ -90,6 +90,17 @@ any member — any `rtl/*.v` file, `flow/synthesize.json`,
 
 That obligation is the point of the change: the item-1 citation now detects a
 design-source edit instead of staying `met` while the sources move.
+
+The item-10 hygiene set carries the same same-PR obligation, and it covers
+files nearly every PR touches: `attest/item10.json` embeds the content
+hashes of `README.md`, `LICENSE`, `.github/workflows/ci.yml` and
+`.github/workflows/signoff.yml`, so editing any of the four without
+regenerating the envelope in the same PR —
+`klt signoff --attest 10 --inventory manifests/attest/item10.inventory.json -o manifests/attest/item10.json`,
+under the pinned release — fails the `signoff` job's `--attest 10 --check`
+step with `status: drifted`. The envelope binds the inventory file alone,
+so the manifest row needs no edit unless the inventory itself changed.
+
 Run it from the repository root with exactly these arguments: the record
 embeds the `--tiers-doc` path and the klt build. Exit `3` (some T1 item
 unmet) is the expected result today; `0` means every item is met. Any other
