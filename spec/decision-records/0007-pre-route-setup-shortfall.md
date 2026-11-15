@@ -2,7 +2,7 @@
 
 **Status**: Decided, 2026-11-14
 **Resolves**: issue #127 (pre-route setup shortfall in `jc_dct`, `jc_downsample` and `jc_quant`)
-**Spec**: `spec/codec.md` §9 (throughput), §10 (signoff clock, library, supply and corners); records 0003, 0005
+**Spec**: `spec/codec.md` §9 (throughput), §10 (signoff clock, library, supply and corners); records 0003, 0005, 0008
 
 ## Question
 
@@ -131,7 +131,7 @@ Pre-route, cell-only, at the signoff view:
 |---|---|---|---|
 | `jc_dct1d` (in `jc_dct`) | 51.07 ns (−31.0688) | 3.83x | setup slack **≥ +6.7 ns** at `ss_125C_3v00` |
 | `colour_convert` (paths parent-scoped in `jc_downsample`) | 51.04 ns (−31.0417) | 3.83x | " |
-| `jc_quant_core` (paths parent-scoped in `jc_quant`) | 50.20 ns (−30.1985) | 3.77x | " |
+| `jc_quant_core` (paths parent-scoped in `jc_quant`) | 50.20 ns (−30.1985) | 3.76x | " |
 
 and **≥ 0 ns at every one of the five §10 views** — this half is
 assumption-free and mechanically checkable by re-running the same per-module
@@ -160,20 +160,30 @@ width or table change.
 ### 4. Cycle cost: schedule 8 → 10, authorized to 12
 
 Record 0005 §7 budgets stage 2 (DCT) at 140 cycles/block = **840 per MCU**
-against §9's **1388.9**, with the binding stage at worst-case content being
-stage 5 (bit pack) at **1249**. Throughput is set by the slowest stage, so
-the DCT engine could grow from 8 to **12.26 cycles/vector**
-(`(1249/6 − 12)/16`) before stage 5 stops binding, and to **13.72**
-(`(1388.9/6 − 12)/16`) before 30 frames/s is missed outright on the derived
-budgets alone.
+against §9's **1388.9**, naming stage 5 (bit pack) at **1249** the binding
+stage at worst-case content. Record 0008 has since corrected that premise
+from the per-stage count: the binder at worst-case content is stage 4
+(`jc_huff`), whose FSM floor is priced at **1448.2 cycles/MCU** at q95
+(1,737,840 over 1200 MCUs, within 0.13% of the counted 1,740,070) against a
+budgeted row of 952 that 0008 declares broken (its re-pricing is #136's,
+targeting ~1448–1460). Throughput is set by the slowest stage, so the
+binding constraint on the DCT engine's depth is the §9 budget itself:
+**13.72 cycles/vector** (`(1388.9/6 − 12)/16`) before 30 frames/s is missed
+outright. Against the counted `jc_huff` floor, stage 2 would need
+`6 x (16n + 12) ≥ 1448.2`, i.e. **n ≥ 14.3 cycles/vector**
+(`(1448.2/6 − 12)/16`), to become the binder — the depth margin to the
+binder is wider than §7's rows suggested.
 
 **Decided**: the `jc_dct1d` schedule moves from 8 to **10 cycles/vector**
 (concrete shape: register the butterfly outputs once per vector; keep
 mux → multiply → product register as the multiply cycle; register the
 30-bit combine; the descale/variable shift moves behind its own register).
 **Authorized band**: up to **12 cycles/vector** if a measured path needs one
-more stage; beyond 12 requires a new record, because stage 5 would stop
-binding at worst-case content. `jc_quant_core`'s pipeline gains one stage at
+more stage — at the cap stage 2 is 1224 cycles/MCU, still below the counted
+`jc_huff` floor of 1448.2 (stage 2 would not bind until 14.3) and below the
+§9 budget that 13.72 exhausts; beyond 12 requires a new record, because the
+remaining margin to both bounds is what #136's corrected row 4 and #137's
+`jc_huff` remedy must also spend. `jc_quant_core`'s pipeline gains one stage at
 the ROM/multiply boundary, optionally two; throughput stays one coefficient
 per cycle. `colour_convert`'s pipeline gains one stage; pixel acceptance
 stays one pixel per 3 beats.
@@ -186,16 +196,22 @@ Re-derived §7 rows under the decided depths (per 4:2:0 MCU, colour, at
 | 1 Ingest, convert, downsample | 768 | **768** — unchanged: the added stage costs latency, not throughput | 55.3 |
 | 2 M0 read, DCT (both passes) | 840 | 16 vectors x 10 + 12 fill/drain = 172 per block → **1032** | 74.3 |
 | 3 Zig-zag, quantize | 432 | 64 + 9 latency = 73 per block → **438** | 31.5 |
-| 4 Huffman symbol path | 952 | **952** — untouched | 68.5 |
+| 4 Huffman symbol path | 952 | **952** — untouched by this record's retiming; **broken budget** per record 0008 (counted `jc_huff` floor 1448.2 at q95; re-pricing is #136's) | 68.5 |
 | 5 Bit pack, worst-case content | 1249 | **1249** — untouched | 89.9 |
 | M0 / M1 / M2 ports | 384 / 708 / 252 | unchanged (A = 2 untouched) | — |
 
 At the authorized 12 cycles/vector, stage 2 becomes 16 x 12 + 12 = 204 per
-block → **1224** (88.1%) — still below stage 5's 1249, so the binding stage
-at worst-case content is unchanged for any depth in the band. Frame bound at
-the target: worst-case content unchanged at 1,503,668 cycles (90.2% of the
-1,666,667-cycle period); the typical-content bound becomes
-1200 x 1032 + 4241 + 627 = **1,243,268** (74.6%; was 60.8% at 840).
+block → **1224** (88.1%) — still below the counted `jc_huff` floor of
+1448.2 (record 0008), so stage 2 does not become the binder for any depth
+in the band; overtaking it would take ≥ 14.3 cycles/vector. Frame bound at
+the target: the first-MCU latency under the re-derived rows is
+768 + 1032 + 438 + 952 + 1249 = **4439** (0005 §7's 4241 re-derived), so
+the typical-content bound becomes 1200 x 1032 + 4439 + 627 = **1,243,466**
+(74.6%; was 60.8% at 840) and the §7-row worst-case bound becomes
+1200 x 1249 + 4439 + 627 = **1,503,866** (90.2%). That worst-case bound
+still prices the binder as §7's row 5; under 0008 the counted
+worst-case-content figure is the q95 row — 1,740,070 cycles, **104.4%** of
+the period — and closing it is #137's, not settled by this record.
 
 ### 5. What this record settles — and what it does not
 
@@ -204,8 +220,11 @@ The counted cycles (record
 PR #120 merged 2026-11-14) bound what the retiming may add. The increment is
 at most +192 cycles/MCU (stage 2, 840 → 1032) plus +6 (quant latency) =
 **+198**, landing fully only if the DCT or quant stage binds the counted
-run; if the binder is elsewhere, pipeline overlap absorbs it. Against the
-counted figures:
+run. Record 0008's per-stage count answers that condition for q95: the
+binder there is `jc_huff` (`s6` stalled 1,268,261 of 1,740,071 frame
+cycles; `s7` stalled 9 and `bp`/`out` stalled 0), so the +198 is absorbed
+by pipeline overlap at q95 and the q95 column below is the pessimistic end,
+not the expected result. Against the counted figures:
 
 | Row (counted) | Today | Worst case after retiming | §9 target row (30 frames/s) |
 |---|---|---|---|
@@ -214,11 +233,18 @@ counted figures:
 | `noise_max_entropy` q95 — 1450.06 | 104.4% | 104.4% – **118.7%** (1,740,070 – 1,977,670) | **not met today; not settled here** |
 
 **This record settles the clock-period response only.** It does **not**
-settle #119's q95 cycle gap: the q95 row already exceeds every §7 stage
-budget, the stage that binds at q95 is unidentified (that count is #119's
-question), and the retiming can worsen the q95 total by up to +198 cycles/MCU
-while leaving it unchanged if the binder is elsewhere. #119's decision record
-must carry this record's chosen depths against its own counted figures.
+settle the q95 cycle gap: record 0008 — resolving #119 from the per-stage
+count committed in this tree
+(`verification/records/20261115T0046Z-frame-stages-61644ee/`) — identified
+the q95 binder as `jc_huff` (boundary `s6` stalled 1,268,261 of the
+1,740,071 frame cycles; `s7` stalled 9 and `bp`/`out` stalled 0), priced
+its FSM floor at 1448.2 cycles/MCU, and declared §7's row 4 a broken
+budget. The remedy is filed as **#137** (removing `jc_huff`'s per-symbol
+cycle floor), and #137 and this record are explicitly co-decided: retiming
+`jc_huff` spends the cycle budget that this record's chosen depths (§4)
+define, so this record supplies the depth side of #137's decision and #137's
+counted cycle cost (the 1448.2 floor above, ~1448–1460 after #136's
+re-pricing) is the figure both records must carry.
 
 ## Rejected alternatives
 
@@ -263,7 +289,11 @@ must carry this record's chosen depths against its own counted figures.
 - **0005 §6 and §7 are superseded for these modules**: the "one vector per
   8 cycles" sentence and the stage-2 and stage-3 rows are replaced by §4
   above. Record 0005 itself is not edited; a reader of 0005 follows its own
-  rule and finds the new schedule here.
+  rule and finds the new schedule here. §7's row 4 is separately corrected
+  by record 0008 (the binder at worst-case content is `jc_huff`; counted
+  floor 1448.2 cycles/MCU at q95) via #136, and the q95 gap's RTL remedy is
+  #137, co-decided with this record's depths (§4) — this record re-prices
+  neither row 4 nor the q95 closure.
 - **W is provisional.** The +6.7 ns target inherits the W = 0.5 assumption
   with its re-derivation clause; the first wire-aware measurement re-derives
   it. A follow-up issue that met +6.7 ns is re-checked, not re-opened,
