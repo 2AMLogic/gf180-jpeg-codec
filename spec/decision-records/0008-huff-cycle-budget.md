@@ -1,4 +1,4 @@
-# Decision record 0008: the Huffman cycle budget versus the measured `jc_huff` floor
+# Decision record 0008: the Huffman cycle budget versus the counted `jc_huff` floor
 
 **Status**: Decided, option A (agent-decidable; 2026-11-15, issue #119)
 **Resolves**: #119 (the per-stage count and its disposition; the q95 gap's closure is deferred to #137)
@@ -35,11 +35,11 @@ committed cycle and byte figures reproduce exactly; every figure below is
 - The cost is `jc_huff`'s four-state blocking FSM, not memory: every symbol
   pays `ST_IN` → `ST_ISSUE` → `ST_WAIT` → `ST_OUT`, at least 4 cycles, plus
   1 cycle per in-run zero. A golden-model tally predicts a floor of
-  1448.2 cycles/MCU at q95 (1,737,840 cycles over 1200 MCUs); the measured
+  1448.2 cycles/MCU at q95 (1,737,840 cycles over 1200 MCUs); the counted
   true frame count is 1,740,071 — the floor plus 2,231 cycles (0.13%) of
   header, fill and drain. Confirmed.
 - Record 0005 §7 row 4 ("Huffman symbol path", 952 cycles/MCU) prices about
-  2.1 cycles per symbol — roughly half the FSM's real cost. The measured q95
+  2.1 cycles per symbol — roughly half the FSM's real cost. The counted q95
   frame is 1450.06 cycles/MCU, 1.52x the budgeted row. **The row does not
   bound the design: it is a broken budget.**
 - Memory and arbitration are exonerated: `m1_en` occupancy at q95 is
@@ -80,7 +80,7 @@ this record one measurement plus one decision): re-derive §7 row 4 from the
 FSM floor (content-dependent, ~1448–1460 cycles/MCU at worst-case content),
 name stage 4 the binding stage at worst-case content, and restate the frame
 bound honestly — with the corrected row, the worst-case-content budget
-exceeds the §9 1388.9 cycles/MCU budget, which is the measured truth. §9's
+exceeds the §9 1388.9 cycles/MCU budget, which is the counted truth. §9's
 ratified target row is untouched. The q95 gap stays open and owned: #137
 (RTL remedy, co-decided with #127); if #137's direction fails or #127's
 depth decision makes it uneconomical, an operator ruling on a §9

@@ -13,6 +13,13 @@ port occupancy and the arbitration-request stalls
 (`hf_m1_req && !hf_m1_gnt`, `hf_m2_req && !hf_m2_gnt`, `qa_pend && !qa_gnt`).
 All figures below are **simulated**, never measured (spec §9, CLAUDE.md).
 
+Provenance: bench, RTL and `sram_macro_model.v` at commit `61644ee` (branch
+`feature/issue-119`; `rtl/` identical to main `d7bf183`). Every generated
+image was sha256-checked against `verification/images/SHA256SUMS` before
+encoding (`load_image`, shared with `test_top_golden.py`); the pixel stream
+was exactly 921,600 bytes (1200 MCUs x 768) and `status_error` was 0 at the
+end of each frame.
+
 ## Non-intrusiveness first
 
 Same seed (1), same images, same driver: the three rows' pinned figures are
@@ -76,7 +83,7 @@ coefficient inside a run costs one cycle in `ST_IN`): a throughput floor of
 4 × symbols + in-run zeros = **1448.2 cycles/MCU**, i.e. 1,737,840 cycles
 over 1200 MCUs.
 
-Measured: the true frame count is **1,740,071** cycles — the predicted floor
+Counted in simulation: the true frame count is **1,740,071** cycles — the predicted floor
 plus 2,231 cycles (0.13%), which is the 627-byte header, first-MCU fill and
 final drain. **Confirmed.** The prediction is a golden-model tally; this
 count is RTL simulation; both now exist and agree. (The `s7` transferred
@@ -95,14 +102,14 @@ true simulated frame count:
 
 ## Which row of record 0005 §7 this contradicts
 
-Row 4, "Huffman symbol path", budget **952 cycles/MCU**. The measured q95
+Row 4, "Huffman symbol path", budget **952 cycles/MCU**. The counted q95
 frame is 1450.06 cycles/MCU (1,740,070/1200; the true count gives 1450.06
 rounded the same) — **1.52× the budgeted row**. The row's derivation
 ("Y block: 80 M1 accesses x A = 160 + 10 fill; Cb/Cr block: 63 M2 accesses x
 2 = 126 + 10; 4 x 170 + 2 x 136") prices ~2.1 cycles per symbol, about half
 what the four-state FSM actually costs. The access count is not the problem:
 the §7 M1 port row ("354 accesses x 2 = 708") budgets 708 cycles/MCU of M1
-occupancy, and the measured `m1_en` occupancy at q95 is 411,326 cycles/frame
+occupancy, and the counted `m1_en` occupancy at q95 is 411,326 cycles/frame
 = 342.8/MCU — the row is loose, not broken. Arbitration is exonerated too:
 `hf_m1_req && !hf_m1_gnt` stalls 9 cycles at q95 (221 / 3,050 on the other
 rows) and the quantizer holder's `qa_pend && !qa_gnt` 4,826 — jc_huff and
