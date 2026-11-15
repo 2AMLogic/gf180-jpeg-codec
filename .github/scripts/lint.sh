@@ -68,6 +68,11 @@ if git ls-files \
   bad "the files above contain an absolute host path"
 fi
 
+step "7. run_tb.py contract test (no cocotb or simulator needed)"
+# The runner is the verdict gate for every cocotb bench; this pins its
+# exit-code contract and executed-test counting without cocotb installed.
+python3 verification/common/test_run_tb.py || bad "run_tb.py contract test"
+
 echo
 if [ "$fail" -ne 0 ]; then echo "lint FAILED"; exit 1; fi
 echo "lint OK"
