@@ -68,7 +68,29 @@ if git ls-files \
   bad "the files above contain an absolute host path"
 fi
 
-step "7. run_tb.py contract test (no cocotb or simulator needed)"
+step "7. spec/README.md indexes every tracked decision record"
+# Filename-keyed, both directions: two records share 0001 and two share
+# 0005, so record numbers cannot key the match, and the `codec.md` row
+# (which links `(codec.md)`, not into decision-records/) is excluded by the
+# `decision-records/` anchor. Both loops are fed by process substitution,
+# never a pipe: `bad()` sets `fail` in the parent shell, and under
+# `set -uo pipefail` without `lastpipe` a piped `while` loop would print
+# FAIL lines from a subshell and still exit 0.
+idx=spec/README.md
+rec_n=0
+while IFS= read -r -d '' f; do
+  rec_n=$((rec_n + 1))
+  grep -qF "(decision-records/$(basename "$f"))" "$idx" \
+    || bad "no index row in $idx for record: $f"
+done < <(git ls-files -z 'spec/decision-records/*.md')
+[ "$rec_n" -eq 0 ] && echo "skipped: no tracked records under spec/decision-records/"
+while IFS= read -r target; do
+  git ls-files --error-unmatch -- "spec/decision-records/$target" > /dev/null 2>&1 \
+    || bad "index row links a file that is not tracked: spec/decision-records/$target"
+done < <(grep -oE '\(decision-records/[^)]+\)' "$idx" \
+         | sed -e 's#^(decision-records/##' -e 's#)$##')
+
+step "8. run_tb.py contract test (no cocotb or simulator needed)"
 # The runner is the verdict gate for every cocotb bench; this pins its
 # exit-code contract and executed-test counting without cocotb installed.
 python3 verification/common/test_run_tb.py || bad "run_tb.py contract test"

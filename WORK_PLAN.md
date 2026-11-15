@@ -20,50 +20,58 @@ _None._
 `loom:important`; taken before unlabelled work.
 
 - **#31**: T1 item 2 (layout): place-and-route the encoder with the three SRAM macros to a committed routed GDS
-- **#119**: Finding: 640 x 480 colour at q95 needs 1,740,070 cycles, 104.4% of the 30 frames/s frame period
-- **#127**: Decide what to do about the pre-route setup shortfall in jc_dct, jc_downsample and jc_quant
+- **#131**: Retime jc_dct1d: pipeline the butterfly/multiply/combine chain to the record 0007 depth target
+- **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
+- **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor
 
 ## Ready
 
 Human-approved issues ready for implementation (`loom:issue`).
 
-_None._
+- **#131**: Retime jc_dct1d: pipeline the butterfly/multiply/combine chain to the record 0007 depth target
+- **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
 
 ## In Progress
 
 Issues currently being built (`loom:building`).
 
-- **#112**: Bring README, spec/README and verification/README status text in line with main
-- **#119**: Finding: 640 x 480 colour at q95 needs 1,740,070 cycles, 104.4% of the 30 frames/s frame period
 - **#124**: Consolidate the configuration address map and host driver duplicated across the three top-level benches
-- **#126**: Remove flow/netlist/synth_jpeg_codec_top.run.ys: a committed machine-local duplicate the file itself says not to commit
-- **#127**: Decide what to do about the pre-route setup shortfall in jc_dct, jc_downsample and jc_quant
+- **#130**: run_tb.py: a --testcase that matches no test exits 0 and prints "N/N passed" — a filtered run can certify nothing
+- **#133**: Retime jc_quant_core: pipeline the reciprocal-ROM multiply to the record 0007 depth target
+- **#136**: Correct record 0005 section 7's Huffman budget row to the counted jc_huff floor
+- **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor
+- **#141**: Two wording inaccuracies left by #138: a "measured" slip in spec/README.md and the stage sampler stop-margin comments
+- **#142**: Refresh the item-1 attestation under a pinned klt 0.9.2: the committed 0.8.0 evidence does not bind the design sources (klayout-tools#4764)
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
 - **#128**: refactor: consolidate the cfg address map and port driver into cfg_host.py
-- **#134**: docs: decide the pre-route setup shortfall response in decision record 0007
-- **#135**: chore(flow): untrack machine-local synth_jpeg_codec_top.run.ys and ignore regenerates
-- **#138**: Count per-stage boundary cycles at 640x480; decision record 0008 corrects the jc_huff budget
-- **#139**: docs: bring README, spec/README and verification/README status text in line with the tree
+- **#143**: docs: correct the stage sampler stop-margin comments in the frame-cycles bench
+- **#147**: Pin klt 0.9.2 and refresh the item-1 attestation to the whole-input-set binding
 
 ## Approved (Awaiting Merge)
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-_None._
+- **#149**: docs: re-derive 0005 §7 row 4 from the jc_huff FSM floor per record 0008
 
 ## Proposed
 
 Issues carrying `loom:curated`.
 
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
-- **#112**: Bring README, spec/README and verification/README status text in line with main *(curated)*
-- **#119**: Finding: 640 x 480 colour at q95 needs 1,740,070 cycles, 104.4% of the 30 frames/s frame period *(curated)*
-- **#127**: Decide what to do about the pre-route setup shortfall in jc_dct, jc_downsample and jc_quant *(curated)*
 - **#130**: run_tb.py: a --testcase that matches no test exits 0 and prints "N/N passed" — a filtered run can certify nothing *(curated)*
+- **#131**: Retime jc_dct1d: pipeline the butterfly/multiply/combine chain to the record 0007 depth target *(curated)*
+- **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target *(curated)*
+- **#133**: Retime jc_quant_core: pipeline the reciprocal-ROM multiply to the record 0007 depth target *(curated)*
+- **#136**: Correct record 0005 section 7's Huffman budget row to the counted jc_huff floor *(curated)*
+- **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor *(curated)*
+- **#141**: Two wording inaccuracies left by #138: a "measured" slip in spec/README.md and the stage sampler stop-margin comments *(curated)*
+- **#142**: Refresh the item-1 attestation under a pinned klt 0.9.2: the committed 0.8.0 evidence does not bind the design sources (klayout-tools#4764) *(curated)*
+- **#144**: Record 0007 §4: publish an authorized depth for colour_convert and jc_quant_core, and price the two-stage quant case *(curated)*
+- **#150**: lint leg 7 false-positives on a decision-record link carrying an #anchor or a link title *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -79,12 +87,12 @@ _None._
 |------|-------|
 | Operator merge-risk holds | 0 |
 | Very important | 1 |
-| Important | 3 |
-| Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 5 |
-| PRs awaiting review | 5 |
-| Approved PRs awaiting merge | 0 |
-| Curated | 5 |
+| Important | 4 |
+| Ready (`loom:issue`) | 2 |
+| In Progress (`loom:building`) | 7 |
+| PRs awaiting review | 3 |
+| Approved PRs awaiting merge | 1 |
+| Curated | 11 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
