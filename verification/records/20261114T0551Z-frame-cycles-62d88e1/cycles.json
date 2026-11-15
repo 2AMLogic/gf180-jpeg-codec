@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "kind": "frame-cycle-count",
+  "issue": 113,
+  "note": "Simulated cycle counts, never measured (spec/codec.md section 9, CLAUDE.md). Icarus + cocotb, RTL with sram_macro_model.v, no host stalls.",
+  "testbench": "verification/rtl/test_top_frame_cycles.py",
+  "signoff_clock_hz": 50000000,
+  "frames_per_s": 30,
+  "frame_period_cycles": 1666667,
+  "record_0005_bound_cycles": 1503668,
+  "cycle_floor": 921600,
+  "cycle_ceiling": 1666667,
+  "rows": [
+    {
+      "image": "scene_fbm",
+      "width": 640,
+      "height": 480,
+      "mode": "colour",
+      "quality": 50,
+      "output_bytes": 18616,
+      "cycles_to_out_last": 982471,
+      "cycles_to_status_idle": 982473,
+      "fraction_of_frame_period": 0.589482,
+      "fraction_of_record_0005_bound": 0.653383,
+      "within_floor_ceiling": true,
+      "golden_match": true,
+      "golden_bytes": 18616,
+      "decode": {
+        "size": [
+          640,
+          480
+        ],
+        "mode": "RGB"
+      },
+      "out_ready_stall_cycles": 0,
+      "pix_valid_gap_cycles": 0,
+      "drive_cycles": 982472,
+      "wall_time_s": 157.696
+    },
+    {
+      "image": "noise_max_entropy",
+      "width": 640,
+      "height": 480,
+      "mode": "colour",
+      "quality": 50,
+      "output_bytes": 126543,
+      "cycles_to_out_last": 1103167,
+      "cycles_to_status_idle": 1103169,
+      "fraction_of_frame_period": 0.6619,
+      "fraction_of_record_0005_bound": 0.733651,
+      "within_floor_ceiling": true,
+      "golden_match": true,
+      "golden_bytes": 126543,
+      "decode": {
+        "size": [
+          640,
+          480
+        ],
+        "mode": "RGB"
+      },
+      "out_ready_stall_cycles": 0,
+      "pix_valid_gap_cycles": 0,
+      "drive_cycles": 1103169,
+      "wall_time_s": 164.482
+    },
+    {
+      "image": "noise_max_entropy",
+      "width": 640,
+      "height": 480,
+      "mode": "colour",
+      "quality": 95,
+      "output_bytes": 360997,
+      "cycles_to_out_last": 1740070,
+      "cycles_to_status_idle": 1740072,
+      "fraction_of_frame_period": 1.044042,
+      "fraction_of_record_0005_bound": 1.157217,
+      "within_floor_ceiling": false,
+      "golden_match": true,
+      "golden_bytes": 360997,
+      "decode": {
+        "size": [
+          640,
+          480
+        ],
+        "mode": "RGB"
+      },
+      "out_ready_stall_cycles": 0,
+      "pix_valid_gap_cycles": 0,
+      "drive_cycles": 1740072,
+      "wall_time_s": 173.451
+    }
+  ]
+}
