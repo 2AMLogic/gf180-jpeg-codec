@@ -5,6 +5,7 @@ Maintained by the Guide triage role.
 
 ### 2026-11-15
 
+- **Issue #155** (closed): yosys 0.67 ABC pass deadlocks on the AWS worker: yosys and yosys-abc block on each other's pipes (any design)
 - **Issue #140** (closed): no lint leg asserts spec/README.md indexes every file in spec/decision-records/
 - **PR #148**: lint: assert spec/README.md indexes every decision record, both directions
 - **Issue #126** (closed): Remove flow/netlist/synth_jpeg_codec_top.run.ys: a committed machine-local duplicate the file itself says not to commit
