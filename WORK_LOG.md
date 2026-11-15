@@ -5,6 +5,9 @@ Maintained by the Guide triage role.
 
 ### 2026-11-15
 
+- **Issue #126** (closed): Remove flow/netlist/synth_jpeg_codec_top.run.ys: a committed machine-local duplicate the file itself says not to commit
+- **PR #135**: chore(flow): untrack machine-local synth_jpeg_codec_top.run.ys and ignore regenerates
+
 - **Issue #127** (closed): Decide what to do about the pre-route setup shortfall in jc_dct, jc_downsample and jc_quant
 - **PR #134**: docs: decide the pre-route setup shortfall response in decision record 0007
 - **Issue #112** (closed): Bring README, spec/README and verification/README status text in line with main
