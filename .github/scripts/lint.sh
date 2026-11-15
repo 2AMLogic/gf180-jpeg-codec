@@ -72,7 +72,11 @@ step "7. spec/README.md indexes every tracked decision record"
 # Filename-keyed, both directions: two records share 0001 and two share
 # 0005, so record numbers cannot key the match, and the `codec.md` row
 # (which links `(codec.md)`, not into decision-records/) is excluded by the
-# `decision-records/` anchor. Both loops are fed by process substitution,
+# `decision-records/` anchor. The reverse loop strips a trailing `#anchor`
+# and then any link title (anchor first: a title may itself contain `#`)
+# before the tracked-file check, so an anchored or titled prose link is not
+# a false "not tracked" — while index rows must still be bare paths. Both
+# loops are fed by process substitution,
 # never a pipe: `bad()` sets `fail` in the parent shell, and under
 # `set -uo pipefail` without `lastpipe` a piped `while` loop would print
 # FAIL lines from a subshell and still exit 0.
@@ -88,7 +92,8 @@ while IFS= read -r target; do
   git ls-files --error-unmatch -- "spec/decision-records/$target" > /dev/null 2>&1 \
     || bad "index row links a file that is not tracked: spec/decision-records/$target"
 done < <(grep -oE '\(decision-records/[^)]+\)' "$idx" \
-         | sed -e 's#^(decision-records/##' -e 's#)$##')
+         | sed -e 's#^(decision-records/##' -e 's#)$##' \
+              -e 's/#.*$//' -e 's/[[:space:]].*$//')
 
 echo
 if [ "$fail" -ne 0 ]; then echo "lint FAILED"; exit 1; fi
