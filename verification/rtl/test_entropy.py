@@ -425,3 +425,81 @@ async def test_random_blocks(dut):
     # grey-style stream: only comp 0, many frames of one block
     singles = [[rand_block(rng, 0)] for _ in range(60)]
     await check(dut, singles, rng)
+
+
+def count_symbols(blocks):
+    """Symbols of the spec section 6 stream: DC + AC + ZRL + EOB per block."""
+    n = 0
+    for _, zz in blocks:
+        n += 1                                  # the DC symbol
+        run = 0
+        for k in range(1, 64):
+            if zz[k] == 0:
+                run += 1
+                continue
+            while run >= 16:
+                n += 1                          # ZRL
+                run -= 16
+            n += 1                              # the AC symbol
+            run = 0
+        if run > 0:
+            n += 1                              # EOB
+    return n
+
+
+@cocotb.test()
+async def test_throughput(dut):
+    """Fully dense blocks sustain <= 2 cycles per symbol, memory unstalled.
+
+    The pipelined symbol path (record 0009) issues one lookup per two
+    cycles, the A = 2 grant cadence of the memory port, and absorbs in-run
+    zeros into the cycles the back end spends on the previous symbol. Dense
+    blocks (no zeros, no EOB) pin the pure per-symbol rate: the frame must
+    finish within 2 cycles per symbol plus a small fixed fill/drain term.
+    Byte-exactness is asserted against the reference as in every other test.
+    """
+    await reset(dut)
+    rng = random.Random(11)
+    blocks = []
+    for i in range(48):
+        comp = (0, 0, 0, 0, 1, 2)[i % 6]
+        # 63 non-zero coefficients per block, all small: the point is the
+        # per-symbol rate of jc_huff, not the packer's byte drain, so the
+        # symbols must average under 8 bits (the packer emits 1 byte per
+        # cycle; the q95 row of test_top_frame_cycles averages 6.78).
+        zz = [rng.choice((-3, -2, -1, 1, 2, 3)) for _ in range(64)]
+        zz[0] = rng.randint(-16, 16)
+        blocks.append((comp, zz))
+    # Sustained-rate probe on jc_huff's own input port: the first beat the
+    # entropy stage accepts and the last one bound the symbol stream, so
+    # (last_acc - first_acc) is the pure pipelined rate with the unit
+    # bench's zig-zag first-block fill excluded.
+    from cocotb.triggers import RisingEdge as _RE
+    acc = {"n": 0, "first": None, "last": None}
+
+    async def probe():
+        while True:
+            await _RE(dut.clk)
+            acc["n"] += 1
+            if dut.u_huff.in_valid.value == 1 and dut.u_huff.in_ready.value == 1:
+                if acc["first"] is None:
+                    acc["first"] = acc["n"]
+                acc["last"] = acc["n"]
+
+    pb = cocotb.start_soon(probe())
+    got, cycles = await run_frames(dut, [blocks], rng,
+                                   in_gap=0.0, out_stall=0.0, mem_stall=0.0)
+    pb.kill()
+    assert got[0] == ref_scan(blocks)
+    syms = count_symbols(blocks)
+    span = acc["last"] - acc["first"]
+    assert span <= 2 * (syms - 1), (
+        f"sustained rate {span} cycles for {syms} symbols "
+        f"= {span / (syms - 1):.3f} cycles/symbol, above 2")
+    assert cycles <= 2 * syms + 128, (
+        f"frame took {cycles} cycles for {syms} symbols "
+        f"= {cycles / syms:.3f} cycles/symbol")
+    dut._log.info("dense frame: %d symbols in %d cycles (%.3f incl. fill/drain), "
+                  "sustained span %d cycles = %.3f cycles/symbol",
+                  syms, cycles, cycles / syms, span, span / (syms - 1))
+
