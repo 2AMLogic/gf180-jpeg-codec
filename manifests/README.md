@@ -54,7 +54,7 @@ inventory.
 ## Regenerate (cold start)
 
 ```console
-pip install klayout-tools==0.8.0        # provides the `klt` command
+pip install klayout-tools==0.9.2        # provides the `klt` command
 flow/synthesize.sh                      # item 1 only: regenerate flow/netlist/ after any RTL edit
 klt signoff --attest 1 --inventory manifests/attest/item1.inventory.json \
             -o manifests/attest/item1.json
@@ -69,8 +69,27 @@ klt signoff --manifest manifests/gf180-jpeg-codec.json \
 
 The attestation envelopes hash the files their inventories list (item 1: the RTL, the
 synthesis request and the netlist; item 10: README, LICENSE, both workflows;
-item 9: the testbenches), so regenerate it after editing any of them; update
-the manifest's `content_hash` only if the inventory itself changed.
+item 9: the testbenches), so regenerate it after editing any of them. For
+items 9 and 10 the envelope binds the inventory file alone: update the
+manifest's `content_hash` only if the inventory itself changed. **Item 1 is
+different since the klt 0.9.2 pin
+([decision record 0009](../spec/decision-records/0009-klt-pin-and-attest-binding.md))**:
+its envelope binds the whole 24-file input set
+(`provenance.input.paths` plus a combined `input_set_digest`,
+[2AMLogic/klayout-tools#4764](https://github.com/2AMLogic/klayout-tools/issues/4764)),
+and the manifest's item-1 `content_hash` pins that combined digest. Editing
+any member — any `rtl/*.v` file, `flow/synthesize.json`,
+`flow/sram_blackbox.v`, or the regenerated
+`flow/netlist/jpeg_codec_top_synth.v` — therefore grades item 1
+`stale_evidence` until all three are regenerated **in the same PR**:
+
+1. `klt signoff --attest 1 --inventory manifests/attest/item1.inventory.json -o manifests/attest/item1.json`
+2. the manifest's item-1 `content_hash` updated to the fresh envelope's
+   `provenance.input.content_hash`
+3. the record `manifests/gf180-jpeg-codec.signoff.json`, with the command below
+
+That obligation is the point of the change: the item-1 citation now detects a
+design-source edit instead of staying `met` while the sources move.
 Run it from the repository root with exactly these arguments: the record
 embeds the `--tiers-doc` path and the klt build. Exit `3` (some T1 item
 unmet) is the expected result today; `0` means every item is met. Any other
