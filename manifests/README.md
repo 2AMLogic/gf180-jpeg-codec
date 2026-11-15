@@ -110,6 +110,12 @@ exit is an error.
 verdict: new evidence, a manifest edit, a vendored-doc bump, or a klt pin
 bump.
 
+**Test-plan step for any PR that edits a file under `manifests/`**: before
+pushing, re-run the `klt signoff --manifest …` command above (pinned klt, from
+the repo root) and `cmp -s` the output against the committed record — the same
+byte-comparison CI makes. If they differ, regenerate and commit the record in
+the same push (see [`../.github/workflows/signoff.yml`](../.github/workflows/signoff.yml)).
+
 ## Freshness is CI-enforced
 
 [`.github/workflows/signoff.yml`](../.github/workflows/signoff.yml) re-runs
