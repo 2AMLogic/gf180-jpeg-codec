@@ -51,6 +51,8 @@ STAGES = {
             RTL / "jc_quant.v",
             RTL / "jc_quant_core.v",
             RTL / "jc_quant_recip.v",
+            RTL / "jc_quant_rom_rows.v",
+            RTL / "jc_quant_sum_windows.v",
             RTL / "jc_quant_mul.v",
             RTL / "jc_quant_clamp.v",
         ],

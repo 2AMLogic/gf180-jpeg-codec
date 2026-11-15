@@ -189,10 +189,10 @@ async def test_random_blocks_and_backpressure(dut):
 
 @cocotb.test()
 async def test_cycles_per_block(dut):
-    """Budget (0005 section 7, stage 3; re-derived by record 0007 section 4):
-    at most 74 cycles per block at M1 latency 2 with the two-stage pipeline
-    (73 at one stage, 444 per MCU), and far below the 231.5 per-block limit of
-    spec 9."""
+    """Budget (0005 section 7, stage 3; re-derived by record 0007 section 4
+    and amended to the five-stage depth by record 0009): at most 77 cycles
+    per block at M1 latency 2 with the five-stage pipeline (73 at one stage,
+    462 per MCU), and far below the 231.5 per-block limit of spec 9."""
     await start(dut)
     rnd = random.Random(7)
     tabs = [[rnd.randint(1, 255) for _ in range(64)] for _ in range(2)]
@@ -202,4 +202,4 @@ async def test_cycles_per_block(dut):
     total = (spans[-1][1] - spans[0][0]) / 10 / len(blocks)
     dut._log.info(f"cycles per block (back-to-back, M1 latency 2): {total:.1f}; Q requests: {stats['reqs']}")
     assert stats["reqs"] == 16 * len(blocks)
-    assert total <= 74, total
+    assert total <= 77, total

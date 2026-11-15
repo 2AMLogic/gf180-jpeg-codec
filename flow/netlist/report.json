@@ -4,111 +4,215 @@
   "engine_version": "0.67+post",
   "hdl_toplevel": "jpeg_codec_top",
   "parameters": {},
+  "defines": {},
   "run_id": "netlist",
   "status": "ok",
-  "instance_count": 31341,
-  "area_um2": 1118900.9664,
-  "sequential_area_um2": 394661.8368,
+  "instance_count": 35664,
+  "area_um2": 1216601.1648,
+  "sequential_area_um2": 439470.2592,
   "instance_counts_by_type": {
     "gf180_sram_256x32": 3,
-    "gf180mcu_fd_sc_mcu9t5v0__and2_1": 612,
-    "gf180mcu_fd_sc_mcu9t5v0__and2_2": 11,
+    "gf180mcu_fd_sc_mcu9t5v0__and2_1": 624,
+    "gf180mcu_fd_sc_mcu9t5v0__and2_2": 10,
     "gf180mcu_fd_sc_mcu9t5v0__and2_4": 3,
-    "gf180mcu_fd_sc_mcu9t5v0__and3_1": 171,
+    "gf180mcu_fd_sc_mcu9t5v0__and3_1": 177,
     "gf180mcu_fd_sc_mcu9t5v0__and3_2": 6,
     "gf180mcu_fd_sc_mcu9t5v0__and3_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__and4_1": 63,
-    "gf180mcu_fd_sc_mcu9t5v0__and4_2": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi211_1": 298,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi211_2": 8,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi211_4": 4,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi21_1": 1416,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi21_2": 69,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi21_4": 32,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi221_1": 170,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi221_4": 7,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi222_1": 78,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi22_1": 348,
+    "gf180mcu_fd_sc_mcu9t5v0__and4_1": 82,
+    "gf180mcu_fd_sc_mcu9t5v0__and4_2": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi211_1": 318,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi211_2": 9,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi211_4": 3,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi21_1": 1548,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi21_2": 58,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi21_4": 33,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi221_1": 172,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi221_2": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi221_4": 5,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi222_1": 147,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi22_1": 444,
     "gf180mcu_fd_sc_mcu9t5v0__aoi22_2": 6,
-    "gf180mcu_fd_sc_mcu9t5v0__buf_1": 1072,
-    "gf180mcu_fd_sc_mcu9t5v0__buf_2": 46,
-    "gf180mcu_fd_sc_mcu9t5v0__buf_3": 4,
-    "gf180mcu_fd_sc_mcu9t5v0__buf_4": 3,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_1": 1299,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_2": 26,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_3": 5,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_4": 2,
     "gf180mcu_fd_sc_mcu9t5v0__buf_8": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__clkbuf_1": 431,
+    "gf180mcu_fd_sc_mcu9t5v0__clkbuf_1": 445,
     "gf180mcu_fd_sc_mcu9t5v0__clkbuf_2": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__clkbuf_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__clkinv_1": 1495,
-    "gf180mcu_fd_sc_mcu9t5v0__dffq_1": 4994,
+    "gf180mcu_fd_sc_mcu9t5v0__clkinv_1": 1540,
+    "gf180mcu_fd_sc_mcu9t5v0__dffq_1": 5561,
     "gf180mcu_fd_sc_mcu9t5v0__dlya_1": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__inv_1": 40,
-    "gf180mcu_fd_sc_mcu9t5v0__inv_2": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__inv_8": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__mux2_1": 5308,
-    "gf180mcu_fd_sc_mcu9t5v0__mux2_2": 10,
-    "gf180mcu_fd_sc_mcu9t5v0__mux4_1": 680,
-    "gf180mcu_fd_sc_mcu9t5v0__nand2_1": 3226,
-    "gf180mcu_fd_sc_mcu9t5v0__nand2_2": 7,
-    "gf180mcu_fd_sc_mcu9t5v0__nand2_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__nand3_1": 681,
-    "gf180mcu_fd_sc_mcu9t5v0__nand3_2": 5,
-    "gf180mcu_fd_sc_mcu9t5v0__nand4_1": 259,
-    "gf180mcu_fd_sc_mcu9t5v0__nand4_2": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__nor2_1": 2597,
-    "gf180mcu_fd_sc_mcu9t5v0__nor2_2": 19,
-    "gf180mcu_fd_sc_mcu9t5v0__nor3_1": 293,
-    "gf180mcu_fd_sc_mcu9t5v0__nor3_2": 9,
-    "gf180mcu_fd_sc_mcu9t5v0__nor3_4": 3,
-    "gf180mcu_fd_sc_mcu9t5v0__nor4_1": 109,
-    "gf180mcu_fd_sc_mcu9t5v0__nor4_2": 4,
-    "gf180mcu_fd_sc_mcu9t5v0__oai211_1": 297,
-    "gf180mcu_fd_sc_mcu9t5v0__oai211_2": 9,
-    "gf180mcu_fd_sc_mcu9t5v0__oai211_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__oai21_1": 1241,
-    "gf180mcu_fd_sc_mcu9t5v0__oai21_2": 63,
-    "gf180mcu_fd_sc_mcu9t5v0__oai21_4": 19,
-    "gf180mcu_fd_sc_mcu9t5v0__oai221_1": 128,
-    "gf180mcu_fd_sc_mcu9t5v0__oai221_2": 6,
+    "gf180mcu_fd_sc_mcu9t5v0__inv_1": 39,
+    "gf180mcu_fd_sc_mcu9t5v0__mux2_1": 5306,
+    "gf180mcu_fd_sc_mcu9t5v0__mux2_2": 11,
+    "gf180mcu_fd_sc_mcu9t5v0__mux4_1": 665,
+    "gf180mcu_fd_sc_mcu9t5v0__nand2_1": 4362,
+    "gf180mcu_fd_sc_mcu9t5v0__nand2_2": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__nand3_1": 1044,
+    "gf180mcu_fd_sc_mcu9t5v0__nand3_2": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__nand4_1": 304,
+    "gf180mcu_fd_sc_mcu9t5v0__nand4_2": 3,
+    "gf180mcu_fd_sc_mcu9t5v0__nor2_1": 2507,
+    "gf180mcu_fd_sc_mcu9t5v0__nor2_2": 17,
+    "gf180mcu_fd_sc_mcu9t5v0__nor3_1": 271,
+    "gf180mcu_fd_sc_mcu9t5v0__nor3_2": 7,
+    "gf180mcu_fd_sc_mcu9t5v0__nor3_4": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__nor4_1": 107,
+    "gf180mcu_fd_sc_mcu9t5v0__nor4_2": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__oai211_1": 301,
+    "gf180mcu_fd_sc_mcu9t5v0__oai211_2": 6,
+    "gf180mcu_fd_sc_mcu9t5v0__oai21_1": 1253,
+    "gf180mcu_fd_sc_mcu9t5v0__oai21_2": 51,
+    "gf180mcu_fd_sc_mcu9t5v0__oai21_4": 22,
+    "gf180mcu_fd_sc_mcu9t5v0__oai221_1": 134,
+    "gf180mcu_fd_sc_mcu9t5v0__oai221_2": 5,
     "gf180mcu_fd_sc_mcu9t5v0__oai221_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__oai222_1": 5,
-    "gf180mcu_fd_sc_mcu9t5v0__oai22_1": 212,
+    "gf180mcu_fd_sc_mcu9t5v0__oai222_1": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__oai22_1": 183,
     "gf180mcu_fd_sc_mcu9t5v0__oai22_2": 5,
-    "gf180mcu_fd_sc_mcu9t5v0__oai31_1": 238,
-    "gf180mcu_fd_sc_mcu9t5v0__oai31_2": 10,
-    "gf180mcu_fd_sc_mcu9t5v0__oai31_4": 15,
-    "gf180mcu_fd_sc_mcu9t5v0__oai32_1": 74,
-    "gf180mcu_fd_sc_mcu9t5v0__oai32_2": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__oai32_4": 3,
-    "gf180mcu_fd_sc_mcu9t5v0__oai33_1": 38,
-    "gf180mcu_fd_sc_mcu9t5v0__oai33_2": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__oai33_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__or2_1": 486,
-    "gf180mcu_fd_sc_mcu9t5v0__or2_2": 6,
+    "gf180mcu_fd_sc_mcu9t5v0__oai31_1": 210,
+    "gf180mcu_fd_sc_mcu9t5v0__oai31_2": 7,
+    "gf180mcu_fd_sc_mcu9t5v0__oai31_4": 14,
+    "gf180mcu_fd_sc_mcu9t5v0__oai32_1": 94,
+    "gf180mcu_fd_sc_mcu9t5v0__oai32_2": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__oai32_4": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__oai33_1": 9,
+    "gf180mcu_fd_sc_mcu9t5v0__oai33_4": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__or2_1": 557,
+    "gf180mcu_fd_sc_mcu9t5v0__or2_2": 5,
     "gf180mcu_fd_sc_mcu9t5v0__or2_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__or3_1": 51,
+    "gf180mcu_fd_sc_mcu9t5v0__or3_1": 52,
     "gf180mcu_fd_sc_mcu9t5v0__or3_2": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__or3_4": 3,
+    "gf180mcu_fd_sc_mcu9t5v0__or3_4": 1,
     "gf180mcu_fd_sc_mcu9t5v0__or4_1": 25,
-    "gf180mcu_fd_sc_mcu9t5v0__or4_2": 4,
-    "gf180mcu_fd_sc_mcu9t5v0__or4_4": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__tieh": 113,
-    "gf180mcu_fd_sc_mcu9t5v0__tiel": 516,
-    "gf180mcu_fd_sc_mcu9t5v0__xnor2_1": 1452,
-    "gf180mcu_fd_sc_mcu9t5v0__xnor2_2": 45,
-    "gf180mcu_fd_sc_mcu9t5v0__xnor3_1": 542,
-    "gf180mcu_fd_sc_mcu9t5v0__xnor3_2": 19,
-    "gf180mcu_fd_sc_mcu9t5v0__xor2_1": 824,
-    "gf180mcu_fd_sc_mcu9t5v0__xor2_2": 99,
-    "gf180mcu_fd_sc_mcu9t5v0__xor3_1": 153,
-    "gf180mcu_fd_sc_mcu9t5v0__xor3_2": 16
+    "gf180mcu_fd_sc_mcu9t5v0__or4_2": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__tieh": 127,
+    "gf180mcu_fd_sc_mcu9t5v0__tiel": 2256,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor2_1": 1418,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor2_2": 47,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor3_1": 557,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor3_2": 14,
+    "gf180mcu_fd_sc_mcu9t5v0__xor2_1": 821,
+    "gf180mcu_fd_sc_mcu9t5v0__xor2_2": 103,
+    "gf180mcu_fd_sc_mcu9t5v0__xor2_4": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__xor3_1": 165,
+    "gf180mcu_fd_sc_mcu9t5v0__xor3_2": 19
   },
+  "macros": [],
+  "macro_instance_counts_by_type": {},
+  "macro_instance_count": 0,
+  "cells_without_area": [
+    "gf180_sram_256x32"
+  ],
   "leakage_power_nw": null,
   "leakage_by_type_nw": null,
   "timing": {
     "source": "abc_stime",
     "wire_load": null,
     "critical_path_ps": 48058.32,
-    "delay_target_ps": 20000
+    "delay_target_ps": 20000,
+    "regions": [
+      {
+        "module": "jc_qoi",
+        "critical_path_ps": 19315.82
+      },
+      {
+        "module": "jc_out_mux",
+        "critical_path_ps": 6728.19
+      },
+      {
+        "module": "jc_header_gen",
+        "critical_path_ps": 19742.04
+      },
+      {
+        "module": "jc_table_load_rom",
+        "critical_path_ps": 9887.14
+      },
+      {
+        "module": "jc_table_load",
+        "critical_path_ps": 19787.59
+      },
+      {
+        "module": "jc_cfg_regs",
+        "critical_path_ps": 11590.86
+      },
+      {
+        "module": "jc_bitpack",
+        "critical_path_ps": 19176.05
+      },
+      {
+        "module": "jc_huff",
+        "critical_path_ps": 19891.76
+      },
+      {
+        "module": "jc_quant_sum_windows",
+        "critical_path_ps": 14246.72
+      },
+      {
+        "module": "jc_quant_rom_rows",
+        "critical_path_ps": 7181.99
+      },
+      {
+        "module": "$paramod\\jc_sram_arb\\N=s32",
+        "critical_path_ps": 4267.04
+      },
+      {
+        "module": "jc_quant_mul",
+        "critical_path_ps": 11810.1
+      },
+      {
+        "module": "$paramod\\jc_sram_arb\\N=s32",
+        "critical_path_ps": 5963.07
+      },
+      {
+        "module": "jc_quant_clamp",
+        "critical_path_ps": 7342.9
+      },
+      {
+        "module": "jc_quant",
+        "critical_path_ps": 16723.22
+      },
+      {
+        "module": "jc_zigzag",
+        "critical_path_ps": 13841.18
+      },
+      {
+        "module": "jc_xpose_rf",
+        "critical_path_ps": 9692.53
+      },
+      {
+        "module": "jc_dct1d",
+        "critical_path_ps": 48058.32
+      },
+      {
+        "module": "jc_dct",
+        "critical_path_ps": 6783.2
+      },
+      {
+        "module": "colour_convert",
+        "critical_path_ps": 36337.3
+      },
+      {
+        "module": "jc_mb_ctrl",
+        "critical_path_ps": 10731.53
+      },
+      {
+        "module": "jc_downsample",
+        "critical_path_ps": 19720.22
+      },
+      {
+        "module": "$paramod\\jc_sram_arb\\N=s32",
+        "critical_path_ps": 5804.68
+      },
+      {
+        "module": "jc_sram_wrap",
+        "critical_path_ps": 364.39
+      },
+      {
+        "module": "jpeg_codec_top",
+        "critical_path_ps": 3171.51
+      }
+    ]
   },
   "clock_targets": {
     "clocks": [],
@@ -134,10 +238,23 @@
     "validated": null,
     "engine_supports_dont_use": null
   },
+  "abc_constr": {
+    "source": "builtin",
+    "driving_cell": "gf180mcu_fd_sc_mcu9t5v0__buf_4",
+    "load_ff": 13.43
+  },
   "warnings": {
-    "total": 0,
-    "by_category": {},
-    "representatives": []
+    "total": 1,
+    "by_category": {
+      "cells_without_liberty_area": 1
+    },
+    "representatives": [
+      {
+        "category": "cells_without_liberty_area",
+        "count": 1,
+        "text": "area_um2 excludes instantiated cell type(s) with no liberty area: gf180_sram_256x32"
+      }
+    ]
   },
   "memory_mapping": {
     "status": "lowered_to_logic",
@@ -160,7 +277,7 @@
         "final_memories": 0
       },
       {
-        "module": "jc_quant_core",
+        "module": "jc_quant_rom_rows",
         "status": "lowered_to_logic",
         "elaborated_memories": 1,
         "elaborated_memory_bits": 5120,
@@ -204,7 +321,7 @@
     "path": "flow/netlist/jpeg_codec_top_synth.v",
     "scope": "repo"
   },
-  "netlist_sha256": "e32b0e8b820d07887a6b19d81b3beb63bffe334dabdcd66c04c8f7d227d8c3ee",
+  "netlist_sha256": "60e82960dd2fceab1dc7afcca47833b728bf51babb9ae3e09326e06211b784d4",
   "script_path": {
     "path": "flow/netlist/synth_jpeg_codec_top.ys",
     "scope": "repo"
@@ -214,8 +331,10 @@
     "scope": "repo"
   },
   "provenance": {
-    "klt_version": "0.8.0",
-    "klayout_version": "0.30.12",
+    "klt_version": "0.9.3.dev16+gdcf18e2e0c03",
+    "klt_git_commit": "dcf18e2e0c0330742eb46cd7b54059612f627cca",
+    "klt_reinstall_spec": "klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@dcf18e2e0c0330742eb46cd7b54059612f627cca",
+    "klayout_version": "0.30.13",
     "pdk": {
       "name": "gf180mcuD",
       "source": "PDK_ROOT environment variable",
@@ -230,10 +349,11 @@
       "released": false
     },
     "input": {
-      "content_hash": "sha256:dea335637de5cef6dae0371e07c97eefa6af8a9011b73b932d8cf20a5ef7a3a5",
+      "content_hash": "sha256:bc1bd7d72264afa59543d51ee9a8ff4f8109b21193c2e3690d6183d5814f9de8",
       "role": "source"
     },
-    "parameters": {}
+    "parameters": {},
+    "defines": {}
   },
   "equivalence": null,
   "restructuring": null,
