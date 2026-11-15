@@ -20,9 +20,8 @@ _None._
 `loom:important`; taken before unlabelled work.
 
 - **#31**: T1 item 2 (layout): place-and-route the encoder with the three SRAM macros to a committed routed GDS
-- **#113**: Count cycles per frame in simulation on the two named 640 x 480 images (spec §9)
-- **#114**: Pre-route timing of the synthesized netlist at the five spec §10 views, macros black-boxed
-- **#115**: Record a synthesis-only size estimate for decision 0004's option C (standard-cell RAM)
+- **#119**: Finding: 640 x 480 colour at q95 needs 1,740,070 cycles, 104.4% of the 30 frames/s frame period
+- **#127**: Decide what to do about the pre-route setup shortfall in jc_dct, jc_downsample and jc_quant
 
 ## Ready
 
@@ -34,13 +33,21 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-_None._
+- **#112**: Bring README, spec/README and verification/README status text in line with main
+- **#119**: Finding: 640 x 480 colour at q95 needs 1,740,070 cycles, 104.4% of the 30 frames/s frame period
+- **#124**: Consolidate the configuration address map and host driver duplicated across the three top-level benches
+- **#126**: Remove flow/netlist/synth_jpeg_codec_top.run.ys: a committed machine-local duplicate the file itself says not to commit
+- **#127**: Decide what to do about the pre-route setup shortfall in jc_dct, jc_downsample and jc_quant
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
-_None._
+- **#128**: refactor: consolidate the cfg address map and port driver into cfg_host.py
+- **#134**: docs: decide the pre-route setup shortfall response in decision record 0007
+- **#135**: chore(flow): untrack machine-local synth_jpeg_codec_top.run.ys and ignore regenerates
+- **#138**: Count per-stage boundary cycles at 640x480; decision record 0008 corrects the jc_huff budget
+- **#139**: docs: bring README, spec/README and verification/README status text in line with the tree
 
 ## Approved (Awaiting Merge)
 
@@ -53,13 +60,14 @@ _None._
 Issues carrying `loom:curated`.
 
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
-- **#113**: Count cycles per frame in simulation on the two named 640 x 480 images (spec §9) *(curated)*
-- **#114**: Pre-route timing of the synthesized netlist at the five spec §10 views, macros black-boxed *(curated)*
-- **#115**: Record a synthesis-only size estimate for decision 0004's option C (standard-cell RAM) *(curated)*
+- **#112**: Bring README, spec/README and verification/README status text in line with main *(curated)*
+- **#119**: Finding: 640 x 480 colour at q95 needs 1,740,070 cycles, 104.4% of the 30 frames/s frame period *(curated)*
+- **#127**: Decide what to do about the pre-route setup shortfall in jc_dct, jc_downsample and jc_quant *(curated)*
+- **#130**: run_tb.py: a --testcase that matches no test exits 0 and prints "N/N passed" — a filtered run can certify nothing *(curated)*
 
 ## Proposed (Architect / Hermit)
 
-- **#116**: Consolidate the two identical top-level run_*.py wrappers into run_stage.py's table *(hermit)*
+_None._
 
 ## Epics
 
@@ -71,12 +79,12 @@ _None._
 |------|-------|
 | Operator merge-risk holds | 0 |
 | Very important | 1 |
-| Important | 4 |
+| Important | 3 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 0 |
-| PRs awaiting review | 0 |
+| In Progress (`loom:building`) | 5 |
+| PRs awaiting review | 5 |
 | Approved PRs awaiting merge | 0 |
-| Curated | 4 |
-| Architect / Hermit proposals | 1 |
+| Curated | 5 |
+| Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
