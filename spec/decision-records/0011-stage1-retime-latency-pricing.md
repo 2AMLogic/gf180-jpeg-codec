@@ -52,11 +52,11 @@ this record rather than silence.
 
 ## Decision
 
-1. **Stage 1's pricing is corrected to `L` cycles of first-MCU latency per
-   MCU.** Each beat of inserted chroma-lane latency adds `L` cycles, because
-   stage 1's row is one raster ingest of the whole 16×16 MCU per MCU
-   (3 beats × 256 pixels), not six per-block passes. The `× 6` factor is
-   stage 3's, and stays correct there.
+1. **Stage 1's pricing is corrected to `L` cycles of first-MCU latency.**
+   Each beat of inserted chroma-lane latency adds 1 cycle, so `L` beats add
+   `L` cycles, because stage 1's row is one raster ingest of the whole
+   16×16 MCU per MCU (3 beats × 256 pixels), not six per-block passes. The
+   `× 6` factor is stage 3's, and stays correct there.
 2. **No bound changes.** `L ≤ 47` is derived from the 48-beat
    `acc_cb`/`acc_cr` row-carry recurrence, not from this pricing, so the
    ceiling stands untouched. Stage 1's row staying 768 — "the added depth
@@ -91,9 +91,10 @@ this record rather than silence.
 
 - **A reader of 0010 §3's stage-1 bullet follows the amendment pointer** to
   this record; the bullet's original text is not edited.
-- **Any future record or budget that prices stage-1 latency uses `L` per
-  beat of inserted chroma-lane depth** — including #132's measured-retime
-  record and any frame-bound derivation that consumes its result.
+- **Any future record or budget that prices stage-1 latency uses 1 cycle
+  per beat of inserted chroma-lane depth (`L` cycles for `L` beats)** —
+  including #132's measured-retime record and any frame-bound derivation
+  that consumes its result.
 - **No RTL, netlist, golden-model, `flow/records/` or
   `verification/records/` file changes**: `rtl/jc_downsample.v` is cited as
   evidence only, and `flow/records/` is append-only — this record appends
