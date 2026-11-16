@@ -5,8 +5,13 @@
   "testbenches": [
     "verification/common/run_tb.py",
     "verification/golden/test_jpeg_golden.py",
+    "verification/golden/jpeg_golden.py",
+    "verification/golden/qoi_golden.py",
     "verification/golden/crosscheck_libjpeg.py",
+    "verification/images/gen_images.py",
+    "verification/images/SHA256SUMS",
     "verification/rtl/test_top_golden.py",
+    "verification/rtl/test_top_smoke.py",
     "verification/rtl/cfg_host.py",
     "verification/rtl/run_stage.py",
     "verification/rtl/test_top_frame_cycles.py",
@@ -20,6 +25,6 @@
   },
   "pins": {
     "pdk": {"name": "gf180mcuD", "revision": "f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7"},
-    "tools": {"cocotb": "2.1.0", "icarus": "14.0", "klt": "0.8.0", "verilator": "5.053"}
+    "tools": {"cocotb": "2.1.0", "icarus": "14.0", "klt": "0.9.2", "verilator": "5.053"}
   }
 }
