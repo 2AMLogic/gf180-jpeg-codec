@@ -189,10 +189,11 @@ async def test_random_blocks_and_backpressure(dut):
 
 @cocotb.test()
 async def test_cycles_per_block(dut):
-    """Budget (0005 section 7, stage 3; re-derived by record 0007 section 4
-    and amended to the five-stage depth by record 0009): at most 77 cycles
-    per block at M1 latency 2 with the five-stage pipeline (73 at one stage,
-    462 per MCU), and far below the 231.5 per-block limit of spec 9."""
+    """Budget (0005 section 7, stage 3): at most 77 cycles per block at M1
+    latency 2 with the five-stage pipeline (73 at one stage, 462 per MCU) —
+    the row 0010 section 3 prices as (72+k)*6, at the depth 0011 records as
+    the measured outcome for the quantizer retime — and far below the 231.5
+    per-block limit of spec 9."""
     await start(dut)
     rnd = random.Random(7)
     tabs = [[rnd.randint(1, 255) for _ in range(64)] for _ in range(2)]
