@@ -77,7 +77,11 @@ step "7. spec/README.md indexes every tracked decision record"
 # `decision-records/` anchor. The reverse loop strips a trailing `#anchor`
 # and then any link title (anchor first: a title may itself contain `#`)
 # before the tracked-file check, so an anchored or titled prose link is not
-# a false "not tracked" — while index rows must still be bare paths. Both
+# a false "not tracked" — while index rows must still be bare paths. A row
+# whose path strips to empty (an anchor-only link, a bare-directory row, or
+# leading whitespace) names no file at all, and the empty path is itself a
+# failure rather than a pass: `git ls-files --error-unmatch` would otherwise
+# be satisfied by the bare-directory pathspec. Both
 # loops are fed by process substitution,
 # never a pipe: `bad()` sets `fail` in the parent shell, and under
 # `set -uo pipefail` without `lastpipe` a piped `while` loop would print
@@ -91,9 +95,13 @@ while IFS= read -r -d '' f; do
 done < <(git ls-files -z 'spec/decision-records/*.md')
 [ "$rec_n" -eq 0 ] && echo "skipped: no tracked records under spec/decision-records/"
 while IFS= read -r target; do
+  if [ -z "$target" ]; then
+    bad "index row names no decision-record file (empty path after anchor/title/whitespace strips)"
+    continue
+  fi
   git ls-files --error-unmatch -- "spec/decision-records/$target" > /dev/null 2>&1 \
     || bad "index row links a file that is not tracked: spec/decision-records/$target"
-done < <(grep -oE '\(decision-records/[^)]+\)' "$idx" \
+done < <(grep -oE '\(decision-records/[^)]*\)' "$idx" \
          | sed -e 's#^(decision-records/##' -e 's#)$##' \
               -e 's/#.*$//' -e 's/[[:space:]].*$//')
 
