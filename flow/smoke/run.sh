@@ -11,6 +11,12 @@ cd "$(dirname "$0")"
 . ../pdk.env || exit 2
 
 KLT="${KLT:-klt}"
+# klt-watchdog.sh bounds every stage (issue #156) -- all six are "$KLT" calls
+# funnelled through stage(). A stage that exceeds KLT_TIMEOUT (default 900 s)
+# is recorded with rc=124 and the flow carries on, matching this script's
+# record-failures-and-continue contract.
+# shellcheck source=../klt-watchdog.sh
+. ../klt-watchdog.sh
 TOP=smoke_counter
 LIB=gf180mcu_fd_sc_mcu9t5v0
 SHA=$(git rev-parse --short HEAD)
@@ -19,9 +25,15 @@ mkdir -p "$REC"
 rc=0
 
 stage() {  # stage <name> <command...>; the JSON report is stdout, stderr kept beside it
-  local name="$1"; shift
+  local name="$1" s=0
+  shift
   echo "=== $name"
-  "$@" > "$REC/$name.json" 2> "$REC/$name.stderr" || { echo "--- $name FAILED (rc=$?)" >&2; rc=1; }
+  klt_bounded "$REC/$name.json" "$REC/$name.stderr" "$REC/$name.watchdog.diag.txt" \
+    "$@" || s=$?
+  if [ "$s" -ne 0 ]; then
+    echo "--- $name FAILED (rc=$s)" >&2
+    rc=1
+  fi
 }
 
 stage synthesize "$KLT" synthesize synthesize.json --format json
@@ -46,7 +58,12 @@ stage sta "$KLT" sta sta.json --format json
 } > "$REC/versions.txt"
 
 # Reports carry absolute host paths; make them repo-relative before they are committed.
+# The per-record watchdog diags only exist after an expiry, but a timed-out
+# run must not commit host paths or fd tables either.
 ROOT=$(git rev-parse --show-toplevel)
 sed -i "s#$ROOT/#./#g; s#$HOME#~#g" "$REC"/*.json "$REC"/*.stderr
+for f in "$REC"/*.watchdog.diag.txt; do
+  [ -e "$f" ] && sed -i "s#$ROOT/#./#g; s#$HOME#~#g" "$f"
+done
 echo "records in flow/smoke/$REC"
 exit $rc

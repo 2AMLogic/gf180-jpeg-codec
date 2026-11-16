@@ -31,6 +31,11 @@ cd "$(dirname "$0")" || exit 2
 . ./pdk.env || exit 2
 
 KLT="${KLT:-klt}"
+# klt-watchdog.sh bounds every "$KLT" call in run_one() below (issue #156):
+# KLT_TIMEOUT seconds, default 900; expiry returns 124, which the negative
+# control treats as a failure -- never as the expected ORD-2013 non-linkage.
+# shellcheck source=klt-watchdog.sh
+. ./klt-watchdog.sh
 BASE=sta-preroute.json
 MODULE_LIST=sta-preroute.modules
 TOP=jpeg_codec_top
@@ -164,8 +169,11 @@ run_one() {  # run_one <hdl_toplevel> <output basename>
   jq --arg t "$top" '.hdl_toplevel = $t' "$BASE" > "$tmp" || return 1
   cp "$tmp" "$REC/$name.request.json"
   # </dev/null: klt would otherwise consume the caller's stdin, which is the
-  # module list this loop is reading from.
-  "$KLT" sta "$tmp" --format json > "$REC/$name.json" 2> "$REC/$name.stderr" </dev/null
+  # module list this loop is reading from. A timeout surfaces as rc=124 and
+  # an engine failure as its own status; the callers below treat both as a
+  # failed run, never as the negative control's expected outcome.
+  klt_bounded "$REC/$name.json" "$REC/$name.stderr" "$REC/$name.watchdog.diag.txt" \
+    "$KLT" sta "$tmp" --format json </dev/null
   r=$?
   if [ $r -ne 0 ]; then
     echo "--- $name exited $r (recorded as it ran)" >&2
@@ -188,10 +196,24 @@ done
 
 # Negative control: the macro-bearing top is expected NOT to link. Its failure
 # envelope is the evidence that pre-route timing of jpeg_codec_top is
-# unreachable while #31 is open, so a zero exit here is the surprise.
+# unreachable while #31 is open, so a zero exit here is the surprise -- and a
+# watchdog timeout (124) is the opposite of evidence: a wedged run must fail
+# the script, never masquerade as the expected ORD-2013 outcome (issue #156).
 if [ ${#ONLY[@]} -eq 0 ]; then
-  if run_one "$TOP" "negative-control-$TOP"; then
+  ncr=0
+  run_one "$TOP" "negative-control-$TOP" || ncr=$?
+  if [ "$ncr" -eq 0 ]; then
     echo "!!! $TOP linked unexpectedly -- the macro LEF gap may be closed" >&2
+    rc=1
+  elif [ "$ncr" -eq 124 ]; then
+    echo "!!! negative-control run hit the watchdog bound (rc=124) -- a" >&2
+    echo "    wedged run is not ORD-2013 evidence; see the .watchdog.diag.txt" >&2
+    echo "    beside the record" >&2
+    rc=1
+  elif [ "$ncr" -eq 2 ]; then
+    echo "!!! negative-control run failed inside the watchdog (rc=2: setsid" >&2
+    echo "    missing, or the engine refused to leave this group) -- not" >&2
+    echo "    ORD-2013 evidence either" >&2
     rc=1
   else
     echo "    (expected: ORD-2013, no LEF master for gf180_sram_256x32)"
