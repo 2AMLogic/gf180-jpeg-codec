@@ -20,9 +20,10 @@ spec/decision-records/0001-harness-divergence.md for what differs).
 Exit status is the test verdict, and the two failure codes are not
 interchangeable:
 
-    0  every test passed
-    1  the suite ran and at least one test failed
-    2  the suite did not run -- no results XML, or it contains no tests
+    0  every test that executed passed
+    1  the suite ran and at least one executed test failed
+    2  the suite did not run -- no results XML, or no test executed
+       (an empty XML, or every test filtered out by --testcase)
 
 Anything that asserts a run *should* fail (the injected-bug negative controls)
 must require 1, never merely non-zero: a build or import error also exits
@@ -34,6 +35,7 @@ from __future__ import annotations
 import argparse
 import os
 import sys
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent
@@ -50,7 +52,44 @@ TIMESCALE = ("1ns", "1ps")
 
 EXIT_OK = 0
 EXIT_FAILED = 1          # the suite ran, tests failed
-EXIT_DID_NOT_RUN = 2     # no verdict exists: build error, import error, empty XML
+EXIT_DID_NOT_RUN = 2     # no verdict exists: build/import error, empty XML, nothing executed
+
+
+def count_executed(results_xml: Path) -> tuple[int, int, int]:
+    """Count the tests that actually executed in a cocotb results XML.
+
+    Returns (executed, failed, skipped): executed counts the <testcase>
+    entries that ran to a verdict; failed counts the executed ones carrying
+    <failure/> or <error/>; skipped counts the entries carrying <skipped/> --
+    tests that were filtered out and never ran. Test names may be cocotb
+    parametrizations ("test_x/case=3"), so the name attribute is never parsed.
+
+    cocotb's own get_results() reads the <testsuite> attributes instead, and
+    two cocotb behaviours make that wrong for a verdict: up to 2.0.x it
+    records every test filtered out by --testcase as a <skipped/> entry while
+    still counting it under `tests` (#130 -- a filtered run that executed
+    nothing reported "N/N passed" and exited 0), and any cocotb version can
+    mark a test skipped at runtime. Neither a skipped nor a never-listed test
+    is a pass, so the verdict here is computed from this count.
+
+    Raises RuntimeError when the file is missing or unparseable, so a read
+    error can never degrade into a verdict of zero tests.
+    """
+    if not Path(results_xml).is_file():
+        raise RuntimeError(f"results file {results_xml} not found")
+    try:
+        root = ET.parse(results_xml).getroot()
+    except ET.ParseError as exc:
+        raise RuntimeError(f"results file {results_xml} is unparseable: {exc}") from exc
+    executed = failed = skipped = 0
+    for testcase in root.iter("testcase"):
+        if testcase.find("skipped") is not None:
+            skipped += 1
+            continue
+        executed += 1
+        if testcase.find("failure") is not None or testcase.find("error") is not None:
+            failed += 1
+    return executed, failed, skipped
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -75,19 +114,23 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--waves", action="store_true")
     args = ap.parse_args(argv)
 
+    # Argument check before anything else -- deliberately before the cocotb
+    # import below, so a malformed invocation is refused with EXIT_DID_NOT_RUN
+    # even where cocotb is not installed (the contract test relies on this).
+    sources = [RTL / f for f in args.source] if args.source else SOURCES
+    if not sources or not args.toplevel or not args.test_module or not args.test_dir:
+        print("run_tb: no sources, toplevel, test module or test dir given "
+              "(use --source, --toplevel, --test-module, --test-dir or a wrapper)", file=sys.stderr)
+        return EXIT_DID_NOT_RUN
+
     # Imported here so --help works without cocotb installed.
-    from cocotb_tools.runner import get_results, get_runner
+    from cocotb_tools.runner import get_runner
 
     defines: dict[str, object] = {}
     for item in args.define:
         name, _, value = item.partition("=")
         defines[name] = value or 1
 
-    sources = [RTL / f for f in args.source] if args.source else SOURCES
-    if not sources or not args.toplevel or not args.test_module or not args.test_dir:
-        print("run_tb: no sources, toplevel, test module or test dir given "
-              "(use --source, --toplevel, --test-module, --test-dir or a wrapper)", file=sys.stderr)
-        return EXIT_DID_NOT_RUN
     test_dir = Path(args.test_dir).resolve()
     build_dir = test_dir / "sim_build" / args.sim / args.toplevel
     runner = get_runner(args.sim)
@@ -151,14 +194,21 @@ def main(argv: list[str] | None = None) -> int:
     # treats "non-zero" as "the testbench caught it" -- which is exactly what
     # a negative control does -- passes for the wrong reason when the suite
     # cannot start.
+    # Count the tests that actually executed, not the XML entries: a test
+    # cocotb skipped or filtered out with --testcase is not a pass (#130).
     try:
-        num_tests, num_failed = get_results(Path(results_xml))
+        executed, num_failed, num_skipped = count_executed(Path(results_xml))
     except (RuntimeError, OSError) as exc:
         print(f"{args.sim}: the suite produced no results: {exc}", file=sys.stderr)
         return EXIT_DID_NOT_RUN
-    print(f"{args.sim}: {num_tests - num_failed}/{num_tests} passed", file=sys.stderr)
-    if num_tests == 0:
-        print(f"{args.sim}: results XML contains no tests", file=sys.stderr)
+    skipped_note = f", {num_skipped} skipped" if num_skipped else ""
+    print(f"{args.sim}: {executed - num_failed}/{executed} passed{skipped_note}", file=sys.stderr)
+    if executed == 0:
+        if num_skipped:
+            print(f"{args.sim}: no test executed -- {num_skipped} skipped "
+                  "(filtered out by --testcase)", file=sys.stderr)
+        else:
+            print(f"{args.sim}: results XML contains no tests", file=sys.stderr)
         return EXIT_DID_NOT_RUN
     return EXIT_FAILED if num_failed else EXIT_OK
 
