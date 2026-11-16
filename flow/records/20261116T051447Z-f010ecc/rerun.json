@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "error": {
+    "command": "synthesize",
+    "message": "yosys did not complete within 300.0s (script '/home/ubuntu/GitHub/gf180-jpeg-codec/.loom/worktrees/issue-165/flow/.klt/synthesize/run-dafef3427ef04c5d8615acd9e059a28c/synth_jpeg_codec_top.run.ys') -- process killed"
+  }
+}
