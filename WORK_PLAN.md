@@ -22,39 +22,42 @@ _None._
 - **#31**: T1 item 2 (layout): place-and-route the encoder with the three SRAM macros to a committed routed GDS
 - **#131**: Retime jc_dct1d: pipeline the butterfly/multiply/combine chain to the record 0007 depth target
 - **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
+- **#133**: Retime jc_quant_core: pipeline the reciprocal-ROM multiply to the record 0007 depth target
 - **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor
 
 ## Ready
 
 Human-approved issues ready for implementation (`loom:issue`).
 
-- **#131**: Retime jc_dct1d: pipeline the butterfly/multiply/combine chain to the record 0007 depth target
 - **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
+- **#160**: Record 0010 §3: the stage-1 latency pricing multiplies L by 6 blocks, but stage 1's row is per-MCU not per-block
+- **#163**: lint leg 7: an index row whose path strips to empty passes the tracked-file check
 
 ## In Progress
 
 Issues currently being built (`loom:building`).
 
-- **#124**: Consolidate the configuration address map and host driver duplicated across the three top-level benches
 - **#130**: run_tb.py: a --testcase that matches no test exits 0 and prints "N/N passed" — a filtered run can certify nothing
+- **#131**: Retime jc_dct1d: pipeline the butterfly/multiply/combine chain to the record 0007 depth target
 - **#133**: Retime jc_quant_core: pipeline the reciprocal-ROM multiply to the record 0007 depth target
 - **#136**: Correct record 0005 section 7's Huffman budget row to the counted jc_huff floor
 - **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor
 - **#141**: Two wording inaccuracies left by #138: a "measured" slip in spec/README.md and the stage sampler stop-margin comments
-- **#142**: Refresh the item-1 attestation under a pinned klt 0.9.2: the committed 0.8.0 evidence does not bind the design sources (klayout-tools#4764)
+- **#154**: Item-9 attestation inventory omits test_top_smoke.py, which the attested golden bench imports
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
-- **#128**: refactor: consolidate the cfg address map and port driver into cfg_host.py
-- **#143**: docs: correct the stage sampler stop-margin comments in the frame-cycles bench
-- **#147**: Pin klt 0.9.2 and refresh the item-1 attestation to the whole-input-set binding
+- **#145**: fix: run_tb.py verdicts count executed tests, not filtered-out XML entries
+- **#164**: dct: retime jc_dct1d to a 12-cycle vector schedule (record 0007 s4)
+- **#168**: fix(attest): bind item-9 inventory import closure; pin klt 0.9.2
 
 ## Approved (Awaiting Merge)
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
+- **#143**: docs: correct the stage sampler stop-margin comments in the frame-cycles bench
 - **#149**: docs: re-derive 0005 §7 row 4 from the jc_huff FSM floor per record 0008
 
 ## Proposed
@@ -69,9 +72,10 @@ Issues carrying `loom:curated`.
 - **#136**: Correct record 0005 section 7's Huffman budget row to the counted jc_huff floor *(curated)*
 - **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor *(curated)*
 - **#141**: Two wording inaccuracies left by #138: a "measured" slip in spec/README.md and the stage sampler stop-margin comments *(curated)*
-- **#142**: Refresh the item-1 attestation under a pinned klt 0.9.2: the committed 0.8.0 evidence does not bind the design sources (klayout-tools#4764) *(curated)*
-- **#144**: Record 0007 §4: publish an authorized depth for colour_convert and jc_quant_core, and price the two-stage quant case *(curated)*
-- **#150**: lint leg 7 false-positives on a decision-record link carrying an #anchor or a link title *(curated)*
+- **#154**: Item-9 attestation inventory omits test_top_smoke.py, which the attested golden bench imports *(curated)*
+- **#160**: Record 0010 §3: the stage-1 latency pricing multiplies L by 6 blocks, but stage 1's row is per-MCU not per-block *(curated)*
+- **#163**: lint leg 7: an index row whose path strips to empty passes the tracked-file check *(curated)*
+- **#165**: re-verify healthy synthesize byte-identity on a wedge-free window (blocked during #156 by the yosys/ABC wedge) *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -87,12 +91,12 @@ _None._
 |------|-------|
 | Operator merge-risk holds | 0 |
 | Very important | 1 |
-| Important | 4 |
-| Ready (`loom:issue`) | 2 |
+| Important | 5 |
+| Ready (`loom:issue`) | 3 |
 | In Progress (`loom:building`) | 7 |
 | PRs awaiting review | 3 |
-| Approved PRs awaiting merge | 1 |
-| Curated | 11 |
+| Approved PRs awaiting merge | 2 |
+| Curated | 12 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
