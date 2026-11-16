@@ -301,9 +301,11 @@ async def test_backpressure(dut):
 
 @cocotb.test()
 async def test_cycle_budget(dut):
-    """0005 section 7 stage 2: at most 140 cycles per block, first S3 beat
-    accepted to last S4 beat, stall-free (s3_valid high whenever data is
-    ready to send, s4_ready always high), one block after reset."""
+    """Record 0007 section 4 stage 2 (supersedes the 0005 section 7 row for
+    this stage): at most 204 cycles per block = 16 vectors x 12 cycles/vector
+    + 12 fill/drain, first S3 beat accepted to last S4 beat, stall-free
+    (s3_valid high whenever data is ready to send, s4_ready always high), one
+    block after reset."""
     await setup(dut)
     rng = random.Random(3)
     blk = [(T81[:], 0, True)]
@@ -312,7 +314,7 @@ async def test_cycle_budget(dut):
     n = lastc - first + 1
     dut._log.info("cycles per block (first S3 accept to last S4 beat, inclusive) = %d; "
                   "conditions: s3_valid held high, s4_ready held high, single block", n)
-    assert n <= 140, f"{n} cycles per block exceeds the 140 budget"
+    assert n <= 204, f"{n} cycles per block exceeds the 204 budget (record 0007 section 4)"
 
 
 @cocotb.test()

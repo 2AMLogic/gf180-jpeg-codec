@@ -23,6 +23,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check attestation inventory import closure
+        # klt hashes only the literal paths an inventory lists; this repo-local
+        # guard fails when an inventoried .py member imports first-party code
+        # the inventory does not bind (2AMLogic/klayout-tools#5850).
+        run: |
+          python3 .github/scripts/check_inventory_closure.py \
+            manifests/attest/item1.inventory.json \
+            manifests/attest/item9.inventory.json \
+            manifests/attest/item10.inventory.json
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.10"

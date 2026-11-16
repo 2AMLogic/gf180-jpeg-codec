@@ -18,7 +18,7 @@
 // while the current four coefficients are consumed, so with a response
 // latency of 1 to 2 cycles (A = 2 in 0005) the stage accepts one coefficient
 // per cycle after a start-up of about 3 cycles per block (about 67 cycles per
-// block against the 77 budgeted for stage 3 by record 0011 at the five-stage
+// block against the 77 budgeted for stage 3 by record 0012 at the five-stage
 // depth, and the 231.5 per-block limit). Cycles are counted in simulation by
 // test_quantizer.py.
 //

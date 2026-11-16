@@ -191,7 +191,7 @@ async def test_random_blocks_and_backpressure(dut):
 async def test_cycles_per_block(dut):
     """Budget (0005 section 7, stage 3): at most 77 cycles per block at M1
     latency 2 with the five-stage pipeline (73 at one stage, 462 per MCU) —
-    the row 0010 section 3 prices as (72+k)*6, at the depth 0011 records as
+    the row 0010 section 3 prices as (72+k)*6, at the depth 0012 records as
     the measured outcome for the quantizer retime — and far below the 231.5
     per-block limit of spec 9."""
     await start(dut)

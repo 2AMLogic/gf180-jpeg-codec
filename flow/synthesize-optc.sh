@@ -25,6 +25,11 @@ cd "$(dirname "$0")"
 . ./pdk.env
 
 KLT="${KLT:-klt}"
+# klt-watchdog.sh bounds the timed run below (issue #156): KLT_TIMEOUT
+# seconds, default 900; the watchdog wraps /usr/bin/time -v itself, so the
+# whole group (time -> klt -> yosys -> abc) is what gets killed on expiry.
+# shellcheck source=klt-watchdog.sh
+. ./klt-watchdog.sh
 
 rm -rf netlist-optc
 tmp=$(mktemp)
@@ -32,9 +37,12 @@ err=$(mktemp)
 trap 'rm -f "$tmp" "$err"' EXIT
 
 # /usr/bin/time -v supplies the wall clock and peak RSS the record quotes; klt's
-# own stderr lands in the same file so a failure is recorded as it ran.
-if ! /usr/bin/time -v "$KLT" synthesize synthesize-optc.json --format json \
-        > "$tmp" 2> "$err"; then
+# own stderr lands in the same file so a failure is recorded as it ran. Bounded
+# by the watchdog (issue #156): on expiry it returns 124, the failure path below
+# records it and exits non-zero, and the diagnostic names every process the
+# group kill took down.
+if ! klt_bounded "$tmp" "$err" "klt-watchdog-optc-$$.diag.txt" \
+        /usr/bin/time -v "$KLT" synthesize synthesize-optc.json --format json; then
     mkdir -p netlist-optc
     cp "$err" netlist-optc/run.stderr
     cp "$tmp" netlist-optc/report.json

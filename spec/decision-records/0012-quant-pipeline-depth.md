@@ -1,4 +1,4 @@
-# Decision record 0011: the `jc_quant_core` pipeline depth, measured
+# Decision record 0012: the `jc_quant_core` pipeline depth, measured
 
 **Status**: Decided, agent-decidable (2026-11-15, issue #133)
 **Resolves**: #133 (the `jc_quant_core` retiming follow-up)
@@ -8,7 +8,7 @@ measured depth for the `jc_quant_core` retime under
 measurement-bounded allowance, and prices 0010 §3's formulas at that
 measured depth (0005 §7 row 3, 0007 §5's increment term)
 
-Filed as 0011, not 0009: the 0009 slot was claimed in flight by #142's
+Filed as 0012, not 0009: the 0009 slot was claimed in flight by #142's
 `0009-klt-pin-and-attest-binding.md` (merged via #147), and the §4 amendment
 this measurement initially framed itself against was landed as record 0010
 (issue #144, merged via #158) while the measurement ran. Per 0010's

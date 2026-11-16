@@ -3,21 +3,28 @@
   "kind": "generic",
   "status": "pass",
   "t1_item": 9,
-  "summary": "T1 item 9 (Testbenches shipped): 14/14 attestation checks passed (klt signoff --attest)",
+  "summary": "T1 item 9 (Testbenches shipped): 21/21 attestation checks passed (klt signoff --attest)",
   "source": "manifests/attest/item9.inventory.json",
   "attestation": {
     "producer": "klt signoff --attest",
     "inventory_schema_version": 1,
     "hash_algorithm": "sha256-raw-bytes",
-    "check_count": 14,
-    "passed_count": 14,
+    "check_count": 21,
+    "passed_count": 21,
     "checks": [
       {
         "check": "present",
         "role": "testbench",
         "path": "verification/common/run_tb.py",
         "passed": true,
-        "content_hash": "sha256:c083f19a207e92892b23bc3e46688ce8915e57feab21ad520d70f0fd32a229a5"
+        "content_hash": "sha256:c1dedafd47dfc7a116b676e2d249182cbd705fdc2832253825d5f25b40d5b331"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/common/test_run_tb.py",
+        "passed": true,
+        "content_hash": "sha256:59b3731eae7075985cd46b98610a15d75b929b3f2f619e9bc37b27ed13e20d2e"
       },
       {
         "check": "present",
@@ -29,9 +36,44 @@
       {
         "check": "present",
         "role": "testbench",
+        "path": "verification/golden/diag_odd_size.py",
+        "passed": true,
+        "content_hash": "sha256:708e3da41970fa2501acc35cbaef396dc1b08ada118f7791e7ea85534295fc35"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/golden/jpeg_golden.py",
+        "passed": true,
+        "content_hash": "sha256:b48594ff9ba68b29c1ad127701732e3560a9e6f6478048d43ee142028805b777"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/golden/qoi_golden.py",
+        "passed": true,
+        "content_hash": "sha256:a2d90fc093abc13e51dd0fe389e10947d366d6eceef8487050934401a37466d4"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
         "path": "verification/golden/test_jpeg_golden.py",
         "passed": true,
         "content_hash": "sha256:45f2ef842a1c06b2123858d996d2b1def9ae4c9a25b8b355b291e747b5e3545e"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/images/SHA256SUMS",
+        "passed": true,
+        "content_hash": "sha256:a79268453b7ab9c85dec991901515b7f16dba2d040e65c6d3fdd8589be31cc63"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/images/gen_images.py",
+        "passed": true,
+        "content_hash": "sha256:2c4d6189b574c39388f74773daf2b97199d95690ec28e8ac88afef02d1108489"
       },
       {
         "check": "present",
@@ -80,7 +122,7 @@
         "role": "testbench",
         "path": "verification/rtl/test_top_frame_cycles.py",
         "passed": true,
-        "content_hash": "sha256:2d13fbe90131b7c95835196efbbc56233a6d1367191a4beb963f71caeca7337e"
+        "content_hash": "sha256:47f29fd3f41f24d72fd6ac5846d7d4f02de2d6df7cccf84a2b0bc8f70947c5d1"
       },
       {
         "check": "present",
@@ -88,6 +130,13 @@
         "path": "verification/rtl/test_top_golden.py",
         "passed": true,
         "content_hash": "sha256:295fd483f05f2891d2e42f95baad21145362e6086b7e98e4e77e59db99363746"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/rtl/test_top_smoke.py",
+        "passed": true,
+        "content_hash": "sha256:fb609e8632a2f2ffa3f686296d59314c536f5d4765fbc94ecdee78eb53182f67"
       },
       {
         "check": "command",
@@ -122,14 +171,14 @@
         "value": {
           "cocotb": "2.1.0",
           "icarus": "14.0",
-          "klt": "0.8.0",
+          "klt": "0.9.2",
           "verilator": "5.053"
         }
       }
     ]
   },
   "provenance": {
-    "klt_version": "0.8.0",
+    "klt_version": "0.9.2",
     "klayout_version": null,
     "pdk": null,
     "deck": null,
@@ -138,7 +187,7 @@
         "path": "manifests/attest/item9.inventory.json",
         "scope": "repo"
       },
-      "content_hash": "sha256:6ca37c3263cf93cce48504f50a530f3edb571d3fa66d668e64dd6b2072faea1d"
+      "content_hash": "sha256:af085bf7b89cb08625207545b101ffb6141bf096c5f51a535da028cad48cf0bc"
     }
   }
 }
