@@ -32,7 +32,9 @@
 #     failure that also exits non-zero.
 #
 # Callers must not enable job control (set -m): with job control on, setsid
-# forks and the watchdog cannot learn the new group (it fails loudly instead).
+# forks and the watchdog cannot learn the new group. klt_bounded checks $-
+# and refuses (rc 2) in that case, rather than silently returning success
+# while the engine runs on unbounded and orphaned.
 # Diagnostics read /proc, so this is Linux-only -- every host this repo's flow
 # runs on is Linux.
 # shellcheck shell=bash
@@ -51,6 +53,16 @@ klt_bounded() {
       return 2
       ;;
   esac
+  case $- in
+    *m*)
+      # With job control on, a background job IS a group leader, so setsid
+      # forks: $! is the short-lived setsid, not the engine, and the fast
+      # exit path below would reap it and report success while the engine
+      # runs on unbounded and orphaned -- silently. Refuse instead.
+      echo "klt-watchdog: job control (set -m) is on; setsid would fork and the engine's group would be unlearnable, leaving the run unbounded -- refusing" >&2
+      return 2
+      ;;
+  esac
   if ! command -v setsid > /dev/null 2>&1; then
     echo "klt-watchdog: setsid not found; cannot start a bounded process group" >&2
     return 2
@@ -58,13 +70,21 @@ klt_bounded() {
 
   mypgid=$(ps -o pgid= -p "$$" 2> /dev/null | tr -d '[:space:]' || true)
 
-  if [ "$out" = "-" ]; then out=/dev/fd/1; fi
-  if [ "$err" = "-" ]; then err=/dev/fd/2; fi
+  # "-" passes the caller's own descriptors through by DUPLICATING them, not
+  # by reopening /dev/fd/N: a fresh open(2) of a regular file applies O_TRUNC
+  # (truncating the caller's log), resets the offset and drops O_APPEND, and
+  # two "-" streams would each reopen the same file at offset 0 and collide.
+  # Dups share the caller's open file description, so offset and O_APPEND
+  # survive and the two "-" streams stay distinct.
+  if [ "$out" = "-" ]; then exec 3>&1; else exec 3>"$out" || { echo "klt-watchdog: cannot open stdout target '$out'" >&2; return 2; } fi
+  if [ "$err" = "-" ]; then exec 4>&2; else exec 4>"$err" || { exec 3>&-; echo "klt-watchdog: cannot open stderr target '$err'" >&2; return 2; } fi
   # setsid: the child leaves the wrapper's process group. Without job control
-  # (none of the callers use set -m) a background job is not a group leader,
-  # so setsid execs in place and $! stays the command's pid AND the new group.
-  setsid "$@" > "$out" 2> "$err" &
+  # (klt_bounded refuses when set -m is on) a background job is not a group
+  # leader, so setsid execs in place and $! stays the command's pid AND the
+  # new group.
+  setsid "$@" >&3 2>&4 &
   pid=$!
+  exec 3>&- 4>&-
 
   pgid=$(ps -o pgid= -p "$pid" 2> /dev/null | tr -d '[:space:]' || true)
   if [ "$pgid" = "$mypgid" ]; then
@@ -141,8 +161,8 @@ klt_bounded() {
     echo "bound: ${bound}s (KLT_TIMEOUT=${KLT_TIMEOUT-<unset>}, default $KLT_TIMEOUT_DEFAULT)"
     echo "leader: pid $pid process group $pgid"
     echo
-    local p pp st
-    while read -r p pp st; do
+    local p pp _ st
+    while read -r p pp _ st; do
       [ -n "$p" ] || continue
       echo "=== pid $p  ppid $pp  stat $st"
       echo "cmdline: $(tr '\0' ' ' < /proc/"$p"/cmdline 2>&1 || true)"

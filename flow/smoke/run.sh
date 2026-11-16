@@ -58,7 +58,12 @@ stage sta "$KLT" sta sta.json --format json
 } > "$REC/versions.txt"
 
 # Reports carry absolute host paths; make them repo-relative before they are committed.
+# The per-record watchdog diags only exist after an expiry, but a timed-out
+# run must not commit host paths or fd tables either.
 ROOT=$(git rev-parse --show-toplevel)
 sed -i "s#$ROOT/#./#g; s#$HOME#~#g" "$REC"/*.json "$REC"/*.stderr
+for f in "$REC"/*.watchdog.diag.txt; do
+  [ -e "$f" ] && sed -i "s#$ROOT/#./#g; s#$HOME#~#g" "$f"
+done
 echo "records in flow/smoke/$REC"
 exit $rc

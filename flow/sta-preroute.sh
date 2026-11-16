@@ -210,6 +210,11 @@ if [ ${#ONLY[@]} -eq 0 ]; then
     echo "    wedged run is not ORD-2013 evidence; see the .watchdog.diag.txt" >&2
     echo "    beside the record" >&2
     rc=1
+  elif [ "$ncr" -eq 2 ]; then
+    echo "!!! negative-control run failed inside the watchdog (rc=2: setsid" >&2
+    echo "    missing, or the engine refused to leave this group) -- not" >&2
+    echo "    ORD-2013 evidence either" >&2
+    rc=1
   else
     echo "    (expected: ORD-2013, no LEF master for gf180_sram_256x32)"
   fi

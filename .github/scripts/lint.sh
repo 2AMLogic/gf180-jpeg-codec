@@ -148,6 +148,7 @@ if [ "$mode" = pass ]; then
   exit 0
 fi
 if [ "$mode" = fail ]; then
+  echo "stub deliberate failure"
   echo "stub deliberate failure" >&2
   exit 7
 fi
@@ -224,6 +225,23 @@ STUB
   grep -qx 'caller-survived rc=7' "$wd/chkf.out" \
     || bad "--check fail: exit status 7 not propagated (tail: $(tail -n 1 "$wd/chkf.out"))"
 
+  # --check with "-" against a regular caller file: klt_bounded must
+  # DUPLICATE the caller's descriptors, not reopen /dev/fd/N (a fresh open
+  # applies O_TRUNC, resets the offset, drops O_APPEND, and the two "-"
+  # streams would collide at offset 0). With both caller streams merged into
+  # one file, the pre-wrapper line, the stub's stdout line, the stub's
+  # stderr line and the post-wrapper status must all survive, in order.
+  {
+    echo "PRE-wrapper-line"
+    env PDK_ROOT="$wd/pdk" KLT_TIMEOUT=2 KLT="$wd/bin/stub" \
+        STUB_MODE=fail KLT_STUB_PIDFILE="$wd/last-pids" \
+        timeout 60 bash flow/synthesize.sh --check
+    echo "POST-wrapper-line rc=$?"
+  } > "$wd/redir.out" 2>&1
+  tr '\n' '|' < "$wd/redir.out" \
+    | grep -q 'PRE-wrapper-line|stub deliberate failure|stub deliberate failure|POST-wrapper-line rc=7|' \
+    || bad "--check redir: '-' passthrough truncated, collided or reordered the caller's file (cat: $(cat "$wd/redir.out"))"
+
   # Main path hang: bounded, 124, no descendant left.
   wd_run hang "$wd/main" bash flow/synthesize.sh
   grep -qx 'caller-survived rc=124' "$wd/main.out" \
@@ -235,10 +253,13 @@ STUB
   wd_no_survivors "synthesize hang"
   rm -f flow/klt-watchdog-[0-9]*.diag.txt
 
-  # Main path, stub fails fast: the watchdog must not mask the real status.
+  # Main path, stub fails fast: the watchdog must not mask the real status,
+  # and the main path's "-" stderr must carry the stub's failure line.
   wd_run fail "$wd/mainf" bash flow/synthesize.sh
   grep -qx 'caller-survived rc=7' "$wd/mainf.out" \
     || bad "synthesize fail: stub's exit status 7 was not propagated unchanged (tail: $(tail -n 1 "$wd/mainf.out"))"
+  grep -q 'stub deliberate failure' "$wd/mainf.err" \
+    || bad "synthesize fail: stub stderr did not reach the caller's stderr via '-'"
 
   # Main path, stub exits 0 fast, well inside the bound: exit 0, no
   # diagnostics, no watchdog output at all.
