@@ -29,7 +29,7 @@ Done and evidenced on `main`:
   after the fix of a gate-level X on the QOI path (#93, PR #95).
 
 Against the T1 checklist tracked in #4, the committed verdict
-(`manifests/gf180-jpeg-codec.signoff.json`, klt 0.8.0) reads 3 met, 1 not
+(`manifests/gf180-jpeg-codec.signoff.json`, klt 0.9.2) reads 3 met, 1 not
 applicable, 7 unmet of 11:
 
 | Item | State | Evidence or blocker |

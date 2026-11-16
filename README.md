@@ -117,7 +117,7 @@ mechanically by `manifests/` (see [manifests/README.md](manifests/README.md)).
 bash .github/scripts/lint.sh            # PDK-free lint, same as CI
 python3 -m unittest discover -s verification/golden -p 'test_*.py'
                                         # item 9 cold start (stdlib only, no simulator)
-pip install klayout-tools==0.8.0        # then regenerate the item-9 and item-10 attestations:
+pip install klayout-tools==0.9.2        # then regenerate the item-9 and item-10 attestations:
 klt signoff --attest 9 --inventory manifests/attest/item9.inventory.json \
             -o manifests/attest/item9.json
 klt signoff --attest 10 --inventory manifests/attest/item10.inventory.json \
