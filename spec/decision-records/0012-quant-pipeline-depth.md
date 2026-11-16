@@ -46,6 +46,7 @@ count could not reach the target:
 | `20261115T213727Z-8ecbcd0` | k = 4 (close-out split from the trees; carry-select-shaped multiplies and final sum) | −2.3806 | no |
 | `20261115T215642Z-8ecbcd0` | k = 5 with the close-out's carries folded as +1-select muxes | −3.1547 | no (regressed: the mapper re-derives a flat SOP from the selected increments) |
 | `20261115T221343Z-8ecbcd0` (**decided shape**) | k = 5, close-out as raw slice adds with the carries folded in the NEXT segment as one flat add | **+0.5827** | **yes** |
+| `20261116T193852Z-db213da` (**decided shape, re-timed on the shipped netlist**) | same RTL as the row above; netlist `sha256:9e6a2f97…` as committed (the `…221343Z` record timed the pre-merge netlist `60e82960…`) | **+0.5827** | **yes** (slacks identical at all five views) |
 
 The decided shape's five views, worst setup slack ns: `ss_125C_3v00` **+0.5827**,
 `ss_n40C_3v00` +6.9596, `tt_025C_3v30` +10.4752, `ff_n40C_3v60` +14.4273,
@@ -116,7 +117,7 @@ re-derived rows becomes 768 + 1032 + 462 + 952 + 1249 = **4463** (was 4439
 before this depth; +24 = 4 added latency cycles × 6 blocks); the
 typical-content frame bound becomes 1200 × 1032 + 4463 + 627 =
 **1,243,490** (74.6%, unchanged at two decimals) and the §7-row worst-case
-bound 1200 × 1249 + 4463 + 627 = **1,504,090** (90.2%, was 90.2%). No
+bound 1200 × 1249 + 4463 + 627 = **1,503,890** (90.2%, was 90.2%). No
 conclusion moves.
 
 ### 3. §5 increment accounting for the quant latency term
@@ -185,8 +186,11 @@ classification changed.)
 - `verification/rtl/test_quantizer.py`'s `test_cycles_per_block` asserts the
   **77**-cycle row and cites this record; the logged counted figure is
   67.4 cycles per block at M1 latency 2.
-- `flow/records/` carries the seven directories named above (append-only);
-  the decided shape's record is `20261115T221343Z-8ecbcd0`.
+- `flow/records/` carries the eight directories named above (append-only);
+  the decided shape was first timed in `20261115T221343Z-8ecbcd0` and is
+  re-timed on the committed netlist (`sha256:9e6a2f97…`) in
+  `20261116T193852Z-db213da`, which is the record that describes the shipped
+  artifact.
 - #133 closes on this record: it supplies the measured depth 0010's
   Consequences reserve for this issue; #144 itself is already closed by
   0010 and needs nothing from here.

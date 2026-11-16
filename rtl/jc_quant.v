@@ -3,8 +3,8 @@
 // S5 in : 15-bit signed coefficient in zig-zag order, 64 per block, tag
 //         {last, comp[1:0]}. Position 0 of a block is the DC value.
 // S6 out: 12-bit signed quantized value, same order, tag {last, comp[1:0]}.
-// Valid/ready on both; a five-stage pipeline (record 0007 section 4 as
-// amended by 0009) plus one registered output slot.
+// Valid/ready on both; a five-stage pipeline (record 0012, published under
+// record 0010 section 1) plus one registered output slot.
 //
 // Q words (record 0005 section 4, "one word per four coefficients, 16 per
 // block"): entry 4w + k of the zig-zag table sits in byte lane k (bits
@@ -73,7 +73,7 @@ module jc_quant (
     wire       adv   = fire && (lane == 2'd3) && (cnt != 6'd63);
     wire [1:0] comp_use = (cnt == 6'd0 && !cur_ok) ? s5_tag[1:0] : blk_comp;
 
-    // Five-stage pipeline (record 0007 section 4 as amended by 0009; both
+    // Five-stage pipeline (record 0012, published under record 0010 section 1; both
     // operands of each segment cut are delayed by the same cycle):
     //   p1: ROM level-1 rows + the qv[7:4] decode + the s5 capture
     //   p2: n, recip (level-2 combine + front end)
