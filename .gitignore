@@ -122,3 +122,6 @@ results.xml
 
 # klt sta scratch from flow/sta-preroute.sh (records/ keeps the evidence)
 flow/.klt/
+# watchdog diagnostics from a timed-out klt run (flow/klt-watchdog.sh, #156);
+# runs that write into a records/ directory keep their diag there instead
+flow/klt-watchdog-*.diag.txt

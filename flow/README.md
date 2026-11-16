@@ -6,6 +6,33 @@ Library `gf180mcu_fd_sc_mcu9t5v0`, corner `tt_025C_3v30` (spec §10), 20 ns cloc
 PDN as in `smoke/place-and-route.json`. The `smoke/` flow is separate and is not
 evidence about the codec.
 
+## Watchdog (issue #156)
+
+Every `klt` invocation in the flow scripts runs under a watchdog
+(`flow/klt-watchdog.sh`, sourced by each wrapper): `synthesize.sh` (both the
+main run and `--check`, which no longer `exec`s for exactly that reason),
+`synthesize-optc.sh` (the watchdog wraps the whole `/usr/bin/time -v` run),
+`sta-preroute.sh`'s per-module `klt sta`, and all six `smoke/run.sh` stages
+via its `stage()` helper.
+
+The bound is `KLT_TIMEOUT` seconds, default **900** — generous against the
+measured 27 s full synthesis and 12 s single-module STA, so a healthy run
+never reaches it and its output is byte-identical to an unbounded one.
+Override the variable for slow hosts.
+
+On expiry the watchdog: writes per-process diagnostics — pid, cmdline,
+`wchan` and fd listing for every process still in the run's process group —
+to `<...>.watchdog.diag.txt`, then SIGTERMs and SIGKILLs that group (the one
+it created with `setsid`, never the wrapper's own), then exits **124**
+(`timeout(1)`'s convention) having named the diagnostic file on stderr. 124
+distinguishes a timed-out run from an engine failure that also exits
+non-zero: `sta-preroute.sh`'s negative control treats a timed-out run as a
+failure, never as the expected ORD-2013 non-linkage, and `smoke/run.sh`
+records a timed-out stage with rc=124 and carries on with the remaining
+stages. Diagnostics from ad-hoc runs land in `flow/klt-watchdog-*.diag.txt`
+(gitignored); runs that write into a record directory keep the diag beside
+that run's other artifacts.
+
 ## Cold start
 
 ```sh

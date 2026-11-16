@@ -3,8 +3,22 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-11-16
+
+- **PR #166**: fix(flow): bound every klt call with a process-group watchdog
+- **Issue #156** (closed): flow/*.sh have no watchdog: an intermittent yosys/ABC wedge hangs the wrapper unbounded and leaks orphaned yosys-abc
+
 ### 2026-11-15
 
+- **PR #162**: fix: strip #anchor and link title from decision-record links in lint leg 7
+- **Issue #150** (closed): lint leg 7 false-positives on a decision-record link carrying an #anchor or a link title
+- **Issue #159** (closed): item9.inventory.json pins.tools.klt still declares 0.8.0 after decision record 0009 pinned klt 0.9.2
+- **PR #128**: refactor: consolidate the cfg address map and port driver into cfg_host.py
+- **Issue #124** (closed): Consolidate the configuration address map and host driver duplicated across the three top-level benches
+- **PR #158**: docs: record 0010 — measurement-bounded retime depth allowance for colour_convert and jc_quant_core
+- **Issue #144** (closed): Record 0007 §4: publish an authorized depth for colour_convert and jc_quant_core, and price the two-stage quant case
+- **PR #147**: Pin klt 0.9.2 and refresh the item-1 attestation to the whole-input-set binding
+- **Issue #142** (closed): Refresh the item-1 attestation under a pinned klt 0.9.2: the committed 0.8.0 evidence does not bind the design sources (klayout-tools#4764)
 - **Issue #155** (closed): yosys 0.67 ABC pass deadlocks on the AWS worker: yosys and yosys-abc block on each other's pipes (any design)
 - **Issue #140** (closed): no lint leg asserts spec/README.md indexes every file in spec/decision-records/
 - **PR #148**: lint: assert spec/README.md indexes every decision record, both directions
