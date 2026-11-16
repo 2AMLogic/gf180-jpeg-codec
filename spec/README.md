@@ -17,6 +17,7 @@ Ratified specification and decision records. See the repo README for scope.
 | [decision-records/0008-huff-cycle-budget.md](decision-records/0008-huff-cycle-budget.md) | Huffman cycle budget: the counted `jc_huff` binding stage; §7 row 4 does not bound the design | Decided, option A (2026-11-15, issue #119) |
 | [decision-records/0009-klt-pin-and-attest-binding.md](decision-records/0009-klt-pin-and-attest-binding.md) | klt pin and the item-1 attestation binding | proposed |
 | [decision-records/0010-retime-depth-allowance.md](decision-records/0010-retime-depth-allowance.md) | Retime depth allowance: measurement-bounded depth for `colour_convert` and `jc_quant_core`, retime span, band pricing; §5's q95 column classified | Decided, 2026-11-15 (issue #144) |
+| [decision-records/0011-stage1-retime-latency-pricing.md](decision-records/0011-stage1-retime-latency-pricing.md) | Stage 1's retime latency pricing: `L` beats of inserted chroma-lane latency cost `L` cycles of first-MCU latency, not `6L`; 0010 §3's price corrected, no bound changes | Decided, 2026-11-16 (issue #160) |
 
 Recorded statuses are transcribed from each record's status line as
 committed; changing a record's status is its own decision record, not an edit

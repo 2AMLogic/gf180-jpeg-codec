@@ -203,6 +203,15 @@ The allowance is finite, with the ceiling named and priced so that
   1's row stays 768 — the added depth costs latency, not throughput (0007
   §4's row-1 note).
 
+  **Amended by record 0011**
+  (`spec/decision-records/0011-stage1-retime-latency-pricing.md`): the
+  stage-1 price above is corrected to **`L` cycles** of first-MCU latency
+  per MCU, not `L × 6` — stage 1's 768-cycle row is one raster ingest of
+  the whole 16×16 MCU (3 beats × 256 pixels, 0007 §4's row 1), not six
+  per-block passes. The `L ≤ 47` ceiling and every other bound in this
+  record stand; the old figure over-stated the cost (conservative
+  direction).
+
 Both ceilings sit far beyond any depth the Evidence table demands
 (`k` = 3–4 expected), so the **operative bound is the measured STA**; the
 ceilings exist to bound the allowance, not to predict the depth.
