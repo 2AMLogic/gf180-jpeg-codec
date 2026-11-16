@@ -35,13 +35,13 @@ if HERE not in sys.path:
 import gen_images  # noqa: E402
 import jpeg_golden  # noqa: E402
 import qoi_golden  # noqa: E402
+from cfg_host import commit, write_table  # noqa: E402
 from test_top_smoke import (  # noqa: E402
-    Host, REG_CMD, colour_stream, grey_stream,
+    Host, colour_stream, grey_stream,
 )
 
 SIZES = ((64, 48), (16, 16))
 QUALITIES = (10, 50, 75, 95)
-DQT0, DQT1 = 0x040, 0x080
 SUMS = os.path.join(HERE, "..", "images", "SHA256SUMS")
 
 _SUMS = None
@@ -80,12 +80,9 @@ def first_diff(a, b):
 
 
 async def load_quant(host, q_luma, q_chroma):
-    for i, v in enumerate(q_luma):
-        await host.cfg_write(DQT0 + i, v)
-    for i, v in enumerate(q_chroma):
-        await host.cfg_write(DQT1 + i, v)
-    await host.cfg_write(REG_CMD, 2)          # commit tables
-    await host.wait_idle()
+    await write_table(host.dut, "q0", bytes(q_luma))
+    await write_table(host.dut, "q1", bytes(q_chroma))
+    await commit(host.dut)
     assert host.dut.status_error.value == 0, "table commit raised an error"
 
 
