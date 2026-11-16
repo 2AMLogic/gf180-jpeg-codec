@@ -5,6 +5,8 @@ Maintained by the Guide triage role.
 
 ### 2026-11-16
 
+- **PR #161**: rtl: retime jc_quant_core to a five-stage slice-window pipeline at the measured 0007 depth
+- **Issue #133** (closed): Retime jc_quant_core: pipeline the reciprocal-ROM multiply to the record 0007 depth target
 - **PR #178**: feat(attest): bind record 0006's evidence script in the item-9 inventory
 - **PR #175**: chore(loom): resync installed Loom to v0.19.1302
 - **Issue #176** (closed): item-9 inventory does not bind diag_odd_size.py, the script record 0006's evidence rests on
