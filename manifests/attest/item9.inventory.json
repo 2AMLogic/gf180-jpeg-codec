@@ -4,6 +4,7 @@
   "t1_item": 9,
   "testbenches": [
     "verification/common/run_tb.py",
+    "verification/common/test_run_tb.py",
     "verification/golden/test_jpeg_golden.py",
     "verification/golden/jpeg_golden.py",
     "verification/golden/qoi_golden.py",

@@ -186,10 +186,15 @@ class CycleHost(Host):
                 if d.out_last.value == 1 and self.last_ns is None:
                     self.last_ns = cocotb.utils.get_sim_time("ns")
                     self.last_seen = True
-                    # Sample at least three edges past the beat, so the
-                    # sampler has provably covered it whatever the coroutine
-                    # resumption order was; trim_stage_window pops the rest.
-                    # Integer ps, so no float rounding can bite.
+                    # Arm the sampler's backstop deadline a fraction of one
+                    # clock period past the beat. The sampler's primary stop
+                    # is its own `out_last` handshake check, so this deadline
+                    # only has to let the sampler, resuming on the same
+                    # simulation step as this monitor, still sample the beat
+                    # edge: the deadline test is strict and the next real
+                    # edge is a full period away, so any margin shorter than
+                    # one period is the same program. Integer ps, so no
+                    # float rounding can bite.
                     self.beat_ps = cocotb.utils.get_sim_time()
                     self.sampler_deadline_ps = self.beat_ps + 3000
 
@@ -202,11 +207,14 @@ class CycleHost(Host):
         four buckets sum to the window length and `out.transferred` equals
         the output byte count.
 
-        The stop is deterministic, not racy: `out_monitor` arms a deadline
-        three edges past the beat it timestamps, so this coroutine provably
-        samples every edge up to and including the `out_last` beat whatever
-        the coroutine resumption order on a shared edge, and over-samples a
-        known few edges past it. `run_frame` then calls
+        The stop is deterministic, not racy. This coroutine's primary stop
+        is its own `out_last` handshake check at the bottom of the loop,
+        which breaks on the beat edge itself; the deadline `out_monitor`
+        arms a fraction of one clock period past the beat is only a
+        backstop. The deadline test is strict, so that margin admits no
+        extra edges: it exists so that the sampler, resuming on the same
+        simulation step as `out_monitor`, still samples the beat edge.
+        `run_frame` then calls
         `trim_stage_window`, which pops every sampled edge after the
         beat's edge - the same edge that defined `cycles_to_out_last` - so
         the window is exactly the frame-start-to-`out_last` edge count.

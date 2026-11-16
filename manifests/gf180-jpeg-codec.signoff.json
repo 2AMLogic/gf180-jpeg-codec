@@ -34,13 +34,13 @@
         "command": null,
         "kind": "generic",
         "check_status": "pass",
-        "content_hash": "sha256:0150f021938cccc7722edd94b7b3979ade0ed79bf5ed84e23ab911b8c35baaa3",
+        "content_hash": "sha256:1ede00ce7a0c6a98b44afdc7d382e34b7cd82f2e2b541077a1e8f4e0ccc9d02f",
         "input_verified": true,
         "exit_status": 0,
         "artifact_binding": {
           "t1_item": 1,
           "path": null,
-          "content_hash": "sha256:0150f021938cccc7722edd94b7b3979ade0ed79bf5ed84e23ab911b8c35baaa3",
+          "content_hash": "sha256:1ede00ce7a0c6a98b44afdc7d382e34b7cd82f2e2b541077a1e8f4e0ccc9d02f",
           "input_verified": true,
           "members": [
             {
@@ -48,7 +48,7 @@
                 "path": "flow/netlist/jpeg_codec_top_synth.v",
                 "scope": "repo"
               },
-              "content_hash": "sha256:e32b0e8b820d07887a6b19d81b3beb63bffe334dabdcd66c04c8f7d227d8c3ee",
+              "content_hash": "sha256:4a41ab30e61a165db1522cb3b7c7dbb91cc786aed387e7206ea2d8de807daf0d",
               "status": "verified"
             },
             {
@@ -112,7 +112,7 @@
                 "path": "rtl/jc_dct1d.v",
                 "scope": "repo"
               },
-              "content_hash": "sha256:b9f5a42858e7cd82e8f9212645341ca3de863d11f50aab3b8d1ed971c8489423",
+              "content_hash": "sha256:4eb5e280a3e9095c69805a4fe721f336a093079d1abf06a8e95dab0f97d98a57",
               "status": "verified"
             },
             {
@@ -399,7 +399,7 @@
         "command": null,
         "kind": "generic",
         "check_status": "pass",
-        "content_hash": "sha256:b108b9bfefb004f7fbc71494f702e2dd59d7bab0a545a02a00ec9979224c037d",
+        "content_hash": "sha256:e309e0d96285c1298eac498144b9512eaf98e91c68d9c9273291477291559d81",
         "input_verified": true,
         "exit_status": 0,
         "artifact_binding": {
@@ -408,15 +408,15 @@
             "path": "manifests/attest/item9.inventory.json",
             "scope": "repo"
           },
-          "content_hash": "sha256:b108b9bfefb004f7fbc71494f702e2dd59d7bab0a545a02a00ec9979224c037d",
+          "content_hash": "sha256:e309e0d96285c1298eac498144b9512eaf98e91c68d9c9273291477291559d81",
           "input_verified": true,
-          "summary": "T1 item 9 (Testbenches shipped): 19/19 attestation checks passed (klt signoff --attest)",
+          "summary": "T1 item 9 (Testbenches shipped): 20/20 attestation checks passed (klt signoff --attest)",
           "source": "manifests/attest/item9.inventory.json",
           "attestation": {
             "producer": "klt signoff --attest",
             "inventory_schema_version": 1,
-            "check_count": 19,
-            "passed_count": 19
+            "check_count": 20,
+            "passed_count": 20
           }
         }
       }

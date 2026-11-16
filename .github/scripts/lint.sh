@@ -4,7 +4,7 @@
 #   bash .github/scripts/lint.sh
 #
 # Needs python3 and, for the RTL leg, verilator (skipped with a message when
-# absent). Needs no PDK and no klt: step 8 drives the flow wrappers with a
+# absent). Needs no PDK and no klt: step 9 drives the flow wrappers with a
 # stub KLT (plus jq; skipped with a message when absent) and fabricates the
 # one SOURCES file flow/pdk.env insists on, in a scratch PDK_ROOT.
 #
@@ -97,7 +97,12 @@ done < <(grep -oE '\(decision-records/[^)]+\)' "$idx" \
          | sed -e 's#^(decision-records/##' -e 's#)$##' \
               -e 's/#.*$//' -e 's/[[:space:]].*$//')
 
-step "8. flow watchdog bounds every klt call (stub-driven, PDK-free; issue #156)"
+step "8. run_tb.py contract test (no cocotb or simulator needed)"
+# The runner is the verdict gate for every cocotb bench; this pins its
+# exit-code contract and executed-test counting without cocotb installed.
+python3 verification/common/test_run_tb.py || bad "run_tb.py contract test"
+
+step "9. flow watchdog bounds every klt call (stub-driven, PDK-free; issue #156)"
 # Every "$KLT" call in the flow wrappers is bounded by flow/klt-watchdog.sh.
 # Driven here with a stub klt that records its pids and hangs (or exits) on
 # command, so no engine, no PDK and no klt install is involved. pdk.env
@@ -130,7 +135,7 @@ else
 
   cat > "$wd/bin/stub" <<'STUB'
 #!/usr/bin/env bash
-# Test double for klt (lint step 8, issue #156). Mode via STUB_MODE:
+# Test double for klt (lint step 9, issue #156). Mode via STUB_MODE:
 #   hang       always hang (default): spawn a sleeping child and wait on it
 #   synthesize hang only when $1 is synthesize (smoke's later stages run on)
 #   negctl     hang only when the request's hdl_toplevel is jpeg_codec_top
