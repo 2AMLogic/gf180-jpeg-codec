@@ -94,14 +94,14 @@
         "role": "testbench",
         "path": "verification/klt/top_golden.negative_control.request.json",
         "passed": true,
-        "content_hash": "sha256:31d1a8b6c733016e36f47e58c68b0c85c8fb083f9b47ac232855c58ddb9b8548"
+        "content_hash": "sha256:55c0665edbab2632abc47354ce3fe09c9034be158b7c7d3f945c878e6a4dbeea"
       },
       {
         "check": "present",
         "role": "testbench",
         "path": "verification/klt/top_golden.request.json",
         "passed": true,
-        "content_hash": "sha256:9d99632673d4c0bb07263b59c06a66b5e1a334851a7fd3891258c45216048a63"
+        "content_hash": "sha256:57cfae4f63c61c9fa6de7e7e9fed82c4a6041a3cf5d66b60d9ee239d1b35816e"
       },
       {
         "check": "present",
@@ -115,7 +115,7 @@
         "role": "testbench",
         "path": "verification/rtl/run_stage.py",
         "passed": true,
-        "content_hash": "sha256:4035ce1c91310348d2c364bf3dbf05a844309f43210ff63c02462a02825cb79c"
+        "content_hash": "sha256:35ab4f12fbf3d217f5a00d97151f8e9a3fa7663cef7c0dbe65e012862c85c8d7"
       },
       {
         "check": "present",

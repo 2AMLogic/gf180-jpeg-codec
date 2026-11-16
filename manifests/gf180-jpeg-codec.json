@@ -4,7 +4,7 @@
   "evidence": {
     "1": {
       "file": "manifests/attest/item1.json",
-      "content_hash": "sha256:1ede00ce7a0c6a98b44afdc7d382e34b7cd82f2e2b541077a1e8f4e0ccc9d02f"
+      "content_hash": "sha256:74d626008432c924b2e3f3886a856b3627ead74196b1132b3327de7b63eadb54"
     },
     "6": {
       "not_applicable": {

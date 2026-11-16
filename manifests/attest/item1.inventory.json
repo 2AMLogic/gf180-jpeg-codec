@@ -16,6 +16,8 @@
     "rtl/jc_qoi.v",
     "rtl/jc_quant.v",
     "rtl/jc_quant_core.v",
+    "rtl/jc_quant_rom_rows.v",
+    "rtl/jc_quant_sum_windows.v",
     "rtl/jc_sram_arb.v",
     "rtl/jc_sram_wrap.v",
     "rtl/jc_table_load.v",

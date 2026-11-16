@@ -11,7 +11,12 @@ read_verilog rtl/jc_dct1d.v
 read_verilog rtl/jc_xpose_rf.v
 read_verilog rtl/jc_zigzag.v
 read_verilog rtl/jc_quant.v
+read_verilog rtl/jc_quant_clamp.v
 read_verilog rtl/jc_quant_core.v
+read_verilog rtl/jc_quant_mul.v
+read_verilog rtl/jc_quant_recip.v
+read_verilog rtl/jc_quant_rom_rows.v
+read_verilog rtl/jc_quant_sum_windows.v
 read_verilog rtl/jc_huff.v
 read_verilog rtl/jc_bitpack.v
 read_verilog rtl/jc_cfg_regs.v
