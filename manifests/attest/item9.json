@@ -3,14 +3,14 @@
   "kind": "generic",
   "status": "pass",
   "t1_item": 9,
-  "summary": "T1 item 9 (Testbenches shipped): 15/15 attestation checks passed (klt signoff --attest)",
+  "summary": "T1 item 9 (Testbenches shipped): 20/20 attestation checks passed (klt signoff --attest)",
   "source": "manifests/attest/item9.inventory.json",
   "attestation": {
     "producer": "klt signoff --attest",
     "inventory_schema_version": 1,
     "hash_algorithm": "sha256-raw-bytes",
-    "check_count": 15,
-    "passed_count": 15,
+    "check_count": 20,
+    "passed_count": 20,
     "checks": [
       {
         "check": "present",
@@ -36,9 +36,37 @@
       {
         "check": "present",
         "role": "testbench",
+        "path": "verification/golden/jpeg_golden.py",
+        "passed": true,
+        "content_hash": "sha256:b48594ff9ba68b29c1ad127701732e3560a9e6f6478048d43ee142028805b777"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/golden/qoi_golden.py",
+        "passed": true,
+        "content_hash": "sha256:a2d90fc093abc13e51dd0fe389e10947d366d6eceef8487050934401a37466d4"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
         "path": "verification/golden/test_jpeg_golden.py",
         "passed": true,
         "content_hash": "sha256:45f2ef842a1c06b2123858d996d2b1def9ae4c9a25b8b355b291e747b5e3545e"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/images/SHA256SUMS",
+        "passed": true,
+        "content_hash": "sha256:a79268453b7ab9c85dec991901515b7f16dba2d040e65c6d3fdd8589be31cc63"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/images/gen_images.py",
+        "passed": true,
+        "content_hash": "sha256:2c4d6189b574c39388f74773daf2b97199d95690ec28e8ac88afef02d1108489"
       },
       {
         "check": "present",
@@ -97,6 +125,13 @@
         "content_hash": "sha256:295fd483f05f2891d2e42f95baad21145362e6086b7e98e4e77e59db99363746"
       },
       {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/rtl/test_top_smoke.py",
+        "passed": true,
+        "content_hash": "sha256:fb609e8632a2f2ffa3f686296d59314c536f5d4765fbc94ecdee78eb53182f67"
+      },
+      {
         "check": "command",
         "role": "cold_start",
         "argv": [
@@ -129,7 +164,7 @@
         "value": {
           "cocotb": "2.1.0",
           "icarus": "14.0",
-          "klt": "0.8.0",
+          "klt": "0.9.2",
           "verilator": "5.053"
         }
       }
@@ -145,7 +180,7 @@
         "path": "manifests/attest/item9.inventory.json",
         "scope": "repo"
       },
-      "content_hash": "sha256:112d0353860795f925fa67d70c5fd4b53d5127f84cc4288d7f5b85b895666b06"
+      "content_hash": "sha256:e309e0d96285c1298eac498144b9512eaf98e91c68d9c9273291477291559d81"
     }
   }
 }
