@@ -21,7 +21,6 @@ _None._
 
 - **#31**: T1 item 2 (layout): place-and-route the encoder with the three SRAM macros to a committed routed GDS
 - **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
-- **#133**: Retime jc_quant_core: pipeline the reciprocal-ROM multiply to the record 0007 depth target
 - **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor
 - **#169**: jc_dct1d depth: successor decision needed — §2 timing target unreachable in the record 0007 §4 band (PR #164 measured evidence)
 
@@ -36,7 +35,6 @@ Human-approved issues ready for implementation (`loom:issue`).
 
 Issues currently being built (`loom:building`).
 
-- **#133**: Retime jc_quant_core: pipeline the reciprocal-ROM multiply to the record 0007 depth target
 - **#172**: check_inventory_closure.py reports OK after checking zero members when run outside the repo root
 
 ## PRs Awaiting Review
@@ -57,7 +55,6 @@ Issues carrying `loom:curated`.
 
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
 - **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target *(curated)*
-- **#133**: Retime jc_quant_core: pipeline the reciprocal-ROM multiply to the record 0007 depth target *(curated)*
 - **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor *(curated)*
 - **#165**: re-verify healthy synthesize byte-identity on a wedge-free window (blocked during #156 by the yosys/ABC wedge) *(curated)*
 - **#172**: check_inventory_closure.py reports OK after checking zero members when run outside the repo root *(curated)*
@@ -76,12 +73,12 @@ _None._
 |------|-------|
 | Operator merge-risk holds | 0 |
 | Very important | 1 |
-| Important | 5 |
+| Important | 4 |
 | Ready (`loom:issue`) | 2 |
-| In Progress (`loom:building`) | 2 |
+| In Progress (`loom:building`) | 1 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
-| Curated | 6 |
+| Curated | 5 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
