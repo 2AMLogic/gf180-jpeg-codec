@@ -33,6 +33,11 @@ jobs:
             manifests/attest/item9.inventory.json \
             manifests/attest/item10.inventory.json
 
+      - name: Test the inventory closure guard
+        # Guards the guard: a wrong cwd or misspelled member must fail
+        # loudly, never check zero members and report OK (issue #172).
+        run: python3 -I .github/scripts/test_check_inventory_closure.py
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.10"

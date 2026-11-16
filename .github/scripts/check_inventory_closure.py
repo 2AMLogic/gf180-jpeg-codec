@@ -20,7 +20,9 @@
 #   python3 .github/scripts/check_inventory_closure.py \
 #     manifests/attest/item9.inventory.json [more.inventory.json ...]
 #
-# Exit 0 = every import closes; exit 1 = at least one violation.
+# Exit 0 = every member resolved and every import closes; exit 1 = at
+# least one violation, including a member that resolves to no file under
+# the current directory (a wrong cwd must never yield a zero-member OK).
 
 import ast
 import json
@@ -33,11 +35,16 @@ THIRD_PARTY = {"cocotb", "cocotb_tools", "PIL"}
 
 
 def inventory_py_members(inv_path):
-    """Every string in the inventory JSON that names an existing .py file.
+    """Every non-glob .py-suffixed string in the inventory JSON.
 
     Walks all strings rather than one schema key so the guard keeps working
     across the item schemas (testbenches / sources / hygiene). Globs
-    (cold_start patterns) and nonexistent paths are not members to scan.
+    (cold_start patterns) are patterns, not files to scan. Existence is NOT
+    checked here: a non-glob member that resolves to no file under the
+    working directory (wrong cwd, misspelled path) is reported as a failure
+    by main(), never silently skipped (issue #172) -- a zero-member "OK"
+    from a wrong directory is a guard that did not run looking like one
+    that did.
     """
     found = []
 
@@ -45,7 +52,7 @@ def inventory_py_members(inv_path):
         if isinstance(node, str):
             # Members are repo-root-relative, matching how klt is invoked
             # from the repository root.
-            if node.endswith(".py") and "*" not in node and (Path.cwd() / node).is_file():
+            if node.endswith(".py") and "*" not in node:
                 found.append(node)
         elif isinstance(node, dict):
             for v in node.values():
@@ -104,6 +111,14 @@ def main(argv):
         members = inventory_py_members(inv_path)
         inventoried = {str(p) for p in members}
         for member in members:
+            if not (root / member).is_file():
+                print(
+                    f"FAIL {arg}: member '{member}' does not resolve to a "
+                    "file under the current directory; run the guard from "
+                    "the repository root (or fix the member path)"
+                )
+                fail = 1
+                continue
             for mod in sorted(imported_modules(root / member)):
                 if mod in sys.stdlib_module_names or mod in THIRD_PARTY:
                     continue
