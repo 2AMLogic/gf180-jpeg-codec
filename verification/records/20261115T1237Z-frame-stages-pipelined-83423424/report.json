@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "engine": "icarus",
+  "hdl_toplevel": "jpeg_codec_top",
+  "testbench": "test_top_frame_cycles",
+  "status": "pass",
+  "test_count": 3,
+  "passed_count": 3,
+  "failed_count": 0,
+  "skipped_count": 0,
+  "tests": [
+    {
+      "name": "test_scene_fbm_q50",
+      "status": "passed",
+      "sim_time_ns": 9857390.0,
+      "real_time_s": 150.977
+    },
+    {
+      "name": "test_noise_max_entropy_q50",
+      "status": "passed",
+      "sim_time_ns": 9857429.999999998,
+      "real_time_s": 170.193
+    },
+    {
+      "name": "test_noise_max_entropy_q95",
+      "status": "passed",
+      "sim_time_ns": 10921650.0,
+      "real_time_s": 236.706
+    }
+  ],
+  "coverage": null,
+  "trace": null,
+  "environment": {
+    "engine": "icarus",
+    "engine_version": "13.0",
+    "cocotb_version": "2.1.0",
+    "results_xml": "/tmp/fc137/klt-out/results_icarus.xml",
+    "test_log": "/tmp/fc137/klt-out/test_icarus.log",
+    "build_log": "/tmp/fc137/klt-out/build_icarus.log",
+    "random_seed": 1,
+    "source_defines": {},
+    "initial_state": null,
+    "sdf": null
+  }
+}

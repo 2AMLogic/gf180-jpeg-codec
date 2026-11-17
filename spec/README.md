@@ -15,6 +15,7 @@ Ratified specification and decision records. See the repo README for scope.
 | [decision-records/0006-odd-size-padding.md](decision-records/0006-odd-size-padding.md) | Odd-size padding versus libjpeg-turbo | Decided, option A (operator ruling, 2026-10-30) |
 | [decision-records/0007-pre-route-setup-shortfall.md](decision-records/0007-pre-route-setup-shortfall.md) | Pre-route setup shortfall response: pipelining direction, per-module depth targets, cycle cost | Decided, 2026-11-14 |
 | [decision-records/0008-huff-cycle-budget.md](decision-records/0008-huff-cycle-budget.md) | Huffman cycle budget: the counted `jc_huff` binding stage; §7 row 4 does not bound the design | Decided, option A (2026-11-15, issue #119) |
+| [decision-records/0009-huff-symbol-path-pipelining.md](decision-records/0009-huff-symbol-path-pipelining.md) | Pipelining the `jc_huff` symbol path: the q95 frame-rate remedy, §7 row 4 re-derived | Decided, 2026-11-15, issue #137 |
 | [decision-records/0009-klt-pin-and-attest-binding.md](decision-records/0009-klt-pin-and-attest-binding.md) | klt pin and the item-1 attestation binding | proposed |
 | [decision-records/0010-retime-depth-allowance.md](decision-records/0010-retime-depth-allowance.md) | Retime depth allowance: measurement-bounded depth for `colour_convert` and `jc_quant_core`, retime span, band pricing; §5's q95 column classified | Decided, 2026-11-15 (issue #144) |
 | [decision-records/0011-stage1-retime-latency-pricing.md](decision-records/0011-stage1-retime-latency-pricing.md) | Stage 1's retime latency pricing: `L` beats of inserted chroma-lane latency cost `L` cycles of first-MCU latency, not `6L`; 0010 §3's price corrected, no bound changes | Decided, 2026-11-16 (issue #160) |
@@ -22,6 +23,7 @@ Ratified specification and decision records. See the repo README for scope.
 
 Recorded statuses are transcribed from each record's status line as
 committed; changing a record's status is its own decision record, not an edit
-here. Two records carry the number `0001` and two carry `0005` — the
+here. Two records carry the number `0001`, two carry `0005`, and two carry
+`0009` — the
 filenames disambiguate them. A change to a ratified row needs a new decision
 record, not an edit.
