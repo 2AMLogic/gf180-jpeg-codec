@@ -5,6 +5,11 @@ Maintained by the Guide triage role.
 
 ### 2026-11-16
 
+- **PR #161**: rtl: retime jc_quant_core to a five-stage slice-window pipeline at the measured 0007 depth
+- **Issue #133** (closed): Retime jc_quant_core: pipeline the reciprocal-ROM multiply to the record 0007 depth target
+- **PR #178**: feat(attest): bind record 0006's evidence script in the item-9 inventory
+- **PR #175**: chore(loom): resync installed Loom to v0.19.1302
+- **Issue #176** (closed): item-9 inventory does not bind diag_odd_size.py, the script record 0006's evidence rests on
 - **PR #174**: flow: record the wedged issue #165 step-1 synthesize rerun attempt (20261116T051447Z)
 - **PR #173**: fix: fail lint leg 7 when an index row's decision-record path strips to empty
 - **PR #171**: docs: correct stage 1's retime latency pricing to L cycles per MCU, not 6L

@@ -45,9 +45,17 @@ STAGES = {
         "jc_dct",
         "test_dct",
     ),
-    # jc_quant, jc_quant_core (issue #44)
+    # jc_quant, jc_quant_core and its combinational halves (issues #44, #133)
     "quantizer": (
-        [RTL / "jc_quant.v", RTL / "jc_quant_core.v"],
+        [
+            RTL / "jc_quant.v",
+            RTL / "jc_quant_core.v",
+            RTL / "jc_quant_recip.v",
+            RTL / "jc_quant_rom_rows.v",
+            RTL / "jc_quant_sum_windows.v",
+            RTL / "jc_quant_mul.v",
+            RTL / "jc_quant_clamp.v",
+        ],
         "jc_quant",
         "test_quantizer",
     ),

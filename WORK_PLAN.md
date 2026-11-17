@@ -20,62 +20,44 @@ _None._
 `loom:important`; taken before unlabelled work.
 
 - **#31**: T1 item 2 (layout): place-and-route the encoder with the three SRAM macros to a committed routed GDS
-- **#131**: Retime jc_dct1d: pipeline the butterfly/multiply/combine chain to the record 0007 depth target
 - **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
-- **#133**: Retime jc_quant_core: pipeline the reciprocal-ROM multiply to the record 0007 depth target
 - **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor
+- **#169**: jc_dct1d depth: successor decision needed — §2 timing target unreachable in the record 0007 §4 band (PR #164 measured evidence)
 
 ## Ready
 
 Human-approved issues ready for implementation (`loom:issue`).
 
 - **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
-- **#160**: Record 0010 §3: the stage-1 latency pricing multiplies L by 6 blocks, but stage 1's row is per-MCU not per-block
-- **#163**: lint leg 7: an index row whose path strips to empty passes the tracked-file check
+- **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor
 
 ## In Progress
 
 Issues currently being built (`loom:building`).
 
-- **#130**: run_tb.py: a --testcase that matches no test exits 0 and prints "N/N passed" — a filtered run can certify nothing
-- **#131**: Retime jc_dct1d: pipeline the butterfly/multiply/combine chain to the record 0007 depth target
-- **#133**: Retime jc_quant_core: pipeline the reciprocal-ROM multiply to the record 0007 depth target
-- **#136**: Correct record 0005 section 7's Huffman budget row to the counted jc_huff floor
-- **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor
-- **#141**: Two wording inaccuracies left by #138: a "measured" slip in spec/README.md and the stage sampler stop-margin comments
-- **#154**: Item-9 attestation inventory omits test_top_smoke.py, which the attested golden bench imports
+- **#172**: check_inventory_closure.py reports OK after checking zero members when run outside the repo root
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
-- **#145**: fix: run_tb.py verdicts count executed tests, not filtered-out XML entries
-- **#164**: dct: retime jc_dct1d to a 12-cycle vector schedule (record 0007 s4)
-- **#168**: fix(attest): bind item-9 inventory import closure; pin klt 0.9.2
+_None._
 
 ## Approved (Awaiting Merge)
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-- **#143**: docs: correct the stage sampler stop-margin comments in the frame-cycles bench
-- **#149**: docs: re-derive 0005 §7 row 4 from the jc_huff FSM floor per record 0008
+_None._
 
 ## Proposed
 
 Issues carrying `loom:curated`.
 
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
-- **#130**: run_tb.py: a --testcase that matches no test exits 0 and prints "N/N passed" — a filtered run can certify nothing *(curated)*
-- **#131**: Retime jc_dct1d: pipeline the butterfly/multiply/combine chain to the record 0007 depth target *(curated)*
 - **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target *(curated)*
-- **#133**: Retime jc_quant_core: pipeline the reciprocal-ROM multiply to the record 0007 depth target *(curated)*
-- **#136**: Correct record 0005 section 7's Huffman budget row to the counted jc_huff floor *(curated)*
 - **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor *(curated)*
-- **#141**: Two wording inaccuracies left by #138: a "measured" slip in spec/README.md and the stage sampler stop-margin comments *(curated)*
-- **#154**: Item-9 attestation inventory omits test_top_smoke.py, which the attested golden bench imports *(curated)*
-- **#160**: Record 0010 §3: the stage-1 latency pricing multiplies L by 6 blocks, but stage 1's row is per-MCU not per-block *(curated)*
-- **#163**: lint leg 7: an index row whose path strips to empty passes the tracked-file check *(curated)*
 - **#165**: re-verify healthy synthesize byte-identity on a wedge-free window (blocked during #156 by the yosys/ABC wedge) *(curated)*
+- **#172**: check_inventory_closure.py reports OK after checking zero members when run outside the repo root *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -91,12 +73,12 @@ _None._
 |------|-------|
 | Operator merge-risk holds | 0 |
 | Very important | 1 |
-| Important | 5 |
-| Ready (`loom:issue`) | 3 |
-| In Progress (`loom:building`) | 7 |
-| PRs awaiting review | 3 |
-| Approved PRs awaiting merge | 2 |
-| Curated | 12 |
+| Important | 4 |
+| Ready (`loom:issue`) | 2 |
+| In Progress (`loom:building`) | 1 |
+| PRs awaiting review | 0 |
+| Approved PRs awaiting merge | 0 |
+| Curated | 5 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
