@@ -21,21 +21,22 @@ _None._
 
 - **#31**: T1 item 2 (layout): place-and-route the encoder with the three SRAM macros to a committed routed GDS *(held)*
 - **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
-- **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor
-- **#169**: jc_dct1d depth: successor decision needed — §2 timing target unreachable in the record 0007 §4 band (PR #164 measured evidence)
+- **#169**: jc_dct1d depth: successor decision needed — §2 timing target unreachable in the record 0007 §4 band (PR #164 measured evidence) *(held)*
+- **#194**: test_top_frame_cycles.py cannot run on main: ImportError REG_CMD from test_top_smoke
 
 ## Ready
 
 Human-approved issues ready for implementation (`loom:issue`).
 
-- **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
-- **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor
+- **#196**: Record 0010 still cites the pre-0009 frame bound (90.2% at every depth) against the merged 0005 s7
 
 ## In Progress
 
 Issues currently being built (`loom:building`).
 
-_None._
+- **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
+- **#186**: Quantizer exhaustive proof covers jc_quant_core, which the chip does not instantiate
+- **#194**: test_top_frame_cycles.py cannot run on main: ImportError REG_CMD from test_top_smoke
 
 ## PRs Awaiting Review
 
@@ -55,8 +56,10 @@ Issues carrying `loom:curated`.
 
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
 - **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target *(curated)*
-- **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor *(curated)*
 - **#165**: re-verify healthy synthesize byte-identity on a wedge-free window (blocked during #156 by the yosys/ABC wedge) *(curated)* *(held)*
+- **#186**: Quantizer exhaustive proof covers jc_quant_core, which the chip does not instantiate *(curated)*
+- **#194**: test_top_frame_cycles.py cannot run on main: ImportError REG_CMD from test_top_smoke *(curated)*
+- **#196**: Record 0010 still cites the pre-0009 frame bound (90.2% at every depth) against the merged 0005 s7 *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -73,11 +76,11 @@ _None._
 | Operator merge-risk holds | 0 |
 | Very important | 1 |
 | Important | 4 |
-| Ready (`loom:issue`) | 2 |
-| In Progress (`loom:building`) | 0 |
+| Ready (`loom:issue`) | 1 |
+| In Progress (`loom:building`) | 3 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
-| Curated | 4 |
+| Curated | 6 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
