@@ -129,7 +129,7 @@
         "role": "testbench",
         "path": "verification/rtl/tb_quantizer_equiv.v",
         "passed": true,
-        "content_hash": "sha256:1f3517631a811ff742e4a327d7538db7eef0791e73cf1ad2fc7ad618cf6e263f"
+        "content_hash": "sha256:a1830982a74acdf1228ffc0047f79ce3c8af0b13a0e33f02d87d9490bcaac5f6"
       },
       {
         "check": "present",

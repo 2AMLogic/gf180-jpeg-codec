@@ -28,7 +28,10 @@
 //     +/-8192; the rounding half points |x| = (8k-4)Q for k = 1..3 with
 //     their +/-1 neighbours; the AC clamp edge, target |q| = 1022..1024, at
 //     +/-1 around (8k-4)Q for k = 1022..1024 (saturated to +/-8192, exact
-//     at Q = 1); plus a seeded pseudo-random fill at positions 31..63;
+//     at Q = 1); the DC clamp edge at Q = 1 (position 0 = +8192: the only
+//     quality factor whose DC coefficient can exceed the AC clamp bound, so
+//     the clamp's is_ac exemption is exercised); plus a seeded pseudo-random
+//     fill at positions 31..63;
 //   - qm response latency 2 cycles (blocks 0..126), 1 cycle (127..254),
 //     pseudo-random 1/2 (blocks 255..262, random Q);
 //   - s6_ready pseudo-random deassertion in the latter two phases, so the
@@ -193,9 +196,15 @@ module tb_quantizer_equiv;
             end
             blk_q[comp_r] = q_sel;
 
-            // position 0: DC -- literals, the half point and its neighbours
+            // position 0: DC -- literals, the half point and its neighbours.
+            // Q = 1 gets the DC clamp edge instead of the zero literal: at
+            // that Q a DC coefficient can exceed the AC clamp bound (|x| =
+            // 8192 maps to |q| = 8192), and Q = 1 is the only Q that can, so
+            // the clamp decision's is_ac exemption is checked, not inherited
+            // from a schedule accident.
             k = bi % 9;
-            if (k == 0)      blk_stim[0] = 15'sd0;
+            if (q_sel == 1)  blk_stim[0] = 15'sd8192;
+            else if (k == 0) blk_stim[0] = 15'sd0;
             else if (k == 1) blk_stim[0] = 15'sd8192;
             else if (k == 2) blk_stim[0] = -15'sd8192;
             else if (k == 3) blk_stim[0] = sat15(4 * q_sel);
