@@ -30,7 +30,7 @@ with `golden_match` true, and the byte counts equal the depth-8 re-count's
 (18,616 / 126,543 / 360,997) — the depth-12 retiming moves cycles, not
 bytes. Derived frame rates at the §9 signoff clock of 50 MHz
 (`50e6 / cycles per frame`, **simulated**, never measured): **36.1 frames/s**
-on every row (36.146 at q50, 36.144 at q95) against the 30 frames/s target —
+on every row (36.145 at q50, 36.144 at q95) against the 30 frames/s target —
 a 1.20x margin, §9 met.
 
 ## Provenance
@@ -61,7 +61,9 @@ cycle lower. This record's committed count settles it: the machine-written
 `cycles_to_out_last` is **1,383,369**, and the run's separate stage-window
 sampler counter (`stage_sample_cycles`, an edge-counting coroutine stopped at
 the same beat) reads **1,383,370** — the +1 is the sampler's edge alignment
-relative to the `out_last` timestamp, not run-to-run variance. The quoted
+relative to the `out_last` timestamp, not run-to-run variance (+1 on two of
+the three rows, 0 on `scene_fbm` q50, where both counters read 1,383,316 —
+all three pairs are in `cycles.json`). The quoted
 1,383,370 and this record's 1,383,369 are therefore the same run read off two
 counters; the operative figure for `cycles_to_out_last` on the merged tree is
 **1,383,369**, and both quoted transcriptions are superseded by this
