@@ -5,6 +5,10 @@ Maintained by the Guide triage role.
 
 ### 2026-11-17
 
+- **PR #202**: test(quant): check the pipelined jc_quant equivalent to jc_quant_core
+- **Issue #186** (closed): Quantizer exhaustive proof covers jc_quant_core, which the chip does not instantiate
+- **PR #201**: docs: record 0013 replaces the pre-0009 90.2% frame bound with the merged 0005 §7 per-depth rows
+- **Issue #196** (closed): Record 0010 still cites the pre-0009 frame bound (90.2% at every depth) against the merged 0005 s7
 - **Issue #203** (closed): Reconcile the one-cycle q95 §9 frame-cycle delta: decision records say 1,383,370, the restored bench reports 1,383,369
 - **PR #200**: fix: import REG_CMD from cfg_host in the frame-cycle bench
 - **Issue #194** (closed): test_top_frame_cycles.py cannot run on main: ImportError REG_CMD from test_top_smoke
