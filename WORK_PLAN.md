@@ -35,7 +35,7 @@ Human-approved issues ready for implementation (`loom:issue`).
 
 Issues currently being built (`loom:building`).
 
-- **#172**: check_inventory_closure.py reports OK after checking zero members when run outside the repo root
+_None._
 
 ## PRs Awaiting Review
 
@@ -57,7 +57,6 @@ Issues carrying `loom:curated`.
 - **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target *(curated)*
 - **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor *(curated)*
 - **#165**: re-verify healthy synthesize byte-identity on a wedge-free window (blocked during #156 by the yosys/ABC wedge) *(curated)*
-- **#172**: check_inventory_closure.py reports OK after checking zero members when run outside the repo root *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -75,10 +74,10 @@ _None._
 | Very important | 1 |
 | Important | 4 |
 | Ready (`loom:issue`) | 2 |
-| In Progress (`loom:building`) | 1 |
+| In Progress (`loom:building`) | 0 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
-| Curated | 5 |
+| Curated | 4 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

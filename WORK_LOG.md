@@ -3,6 +3,11 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-11-17
+
+- **PR #179**: fix: fail inventory closure guard on unresolved .py members
+- **Issue #172** (closed): check_inventory_closure.py reports OK after checking zero members when run outside the repo root
+
 ### 2026-11-16
 
 - **PR #161**: rtl: retime jc_quant_core to a five-stage slice-window pipeline at the measured 0007 depth
