@@ -11,6 +11,7 @@
 #                                (what manifests/attest/item1.inventory.json runs)
 #
 # Needs klt, yosys and the pinned PDK (see pdk.env).
+# Dispatch hosts: run with TMPDIR=/tmp (a deep ambient TMPDIR can stall this run until the watchdog fires, rc=124) -- see README.md "TMPDIR on dispatch hosts" (klayout-tools#6076).
 set -euo pipefail
 cd "$(dirname "$0")"
 # shellcheck source=pdk.env

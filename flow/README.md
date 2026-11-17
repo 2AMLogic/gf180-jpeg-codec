@@ -33,6 +33,22 @@ stages. Diagnostics from ad-hoc runs land in `flow/klt-watchdog-*.diag.txt`
 (gitignored); runs that write into a record directory keep the diag beside
 that run's other artifacts.
 
+## TMPDIR on dispatch hosts (klayout-tools#6076)
+
+On a dispatch host a session inherits a deep per-session temp directory
+(`TMPDIR=/tmp/loom-nt/<uuid>/...`), and under it `klt synthesize` can wedge in
+the yosys->abc handshake: a silent ~15-minute stall until the watchdog fires
+(`KLT_TIMEOUT`, default 900 s), ending in rc=124 with a `*.watchdog.diag.txt`.
+The suspected cause is long abc temp paths; the diagnosis is upstream's
+(klayout-tools#6076) and is not verified here. Until that issue is fixed, run
+the synthesis wrappers with a short temp directory:
+
+```sh
+TMPDIR=/tmp flow/synthesize.sh
+```
+
+Remove this section once klayout-tools#6076 is fixed.
+
 ## Cold start
 
 ```sh
