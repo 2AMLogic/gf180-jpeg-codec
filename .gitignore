@@ -21,10 +21,12 @@ flow/build/
 # machine-local rehydration of the commit-safe .ys (PDK root substituted); klt synthesize regenerates it -- the .ys is the artifact of record
 flow/netlist/*.run.ys
 # option-C size-estimate run directory (flow/synthesize-optc.sh, issue #115):
-# ~8 MB of generated Verilog, reproducible from flow/synthesize-optc.json
-# (records/ keeps the committed evidence). The black-box baseline
-# flow/netlist/ stays committed as T1 item 1 evidence.
+# ~8 MB of generated Verilog, reproducible from flow/synthesize.json via the
+# derivation in the script (records/ keeps the committed evidence). The
+# derived request is a run-time artifact too, never committed. The black-box
+# baseline flow/netlist/ stays committed as T1 item 1 evidence.
 flow/netlist-optc/
+flow/synthesize-optc.request.json
 # klt scratch and extracted spice from the smoke flow (records/ keeps the evidence)
 flow/smoke/.klt/
 flow/smoke/*.spice

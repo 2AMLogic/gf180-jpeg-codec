@@ -1,5 +1,5 @@
 // Synthesis-only standard-cell body for the gf180-sram 256 x 32 1RW macro,
-// used ONLY by flow/synthesize-optc.json to size decision record 0004's
+// used ONLY by flow/synthesize-optc.sh to size decision record 0004's
 // option C (standard-cell RAM). It is never compiled for simulation and never
 // used by flow/synthesize.json, which keeps the black box in
 // flow/sram_blackbox.v.

@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 # Synthesis-only size estimate of decision record 0004's option C: the three
 # gf180_sram_256x32 memories implemented in standard cells instead of left as
-# black boxes (issue #115). Runs `klt synthesize synthesize-optc.json`, which
-# differs from synthesize.json in exactly two fields -- sram_blackbox.v becomes
-# sram_stdcell.v, and outputs.dir becomes netlist-optc -- so the figures are
-# comparable with the committed black-box baseline in netlist/report.json.
+# black boxes (issue #115). The request is derived from synthesize.json at run
+# time into synthesize-optc.request.json (gitignored) with exactly two fields
+# overridden -- sram_blackbox.v becomes sram_stdcell.v, and outputs.dir becomes
+# netlist-optc -- so the figures are comparable with the committed black-box
+# baseline in netlist/report.json and the derived request cannot drift the way
+# a hand-maintained copy did (issue #183).
 #
 #   flow/synthesize-optc.sh      write flow/netlist-optc/ and print the headline
 #                                numbers beside the committed baseline
@@ -13,7 +15,8 @@
 # mode. The committed baseline's `flow/synthesize.sh --check` is the only
 # freshness contract in this directory, and this run does not touch it.
 # flow/netlist-optc/ is gitignored -- the generated netlist is ~8 MB and is
-# reproducible from the committed request. Copy report.json and run.stderr into
+# reproducible from synthesize.json via the derivation below. Copy report.json
+# and run.stderr into
 # a new flow/records/<timestamp>Z-<short sha>/ directory to record a run
 # (records are append-only; never overwrite an existing one).
 #
@@ -36,13 +39,37 @@ tmp=$(mktemp)
 err=$(mktemp)
 trap 'rm -f "$tmp" "$err"' EXIT
 
+# The option-C request is derived, not committed (issue #183): a hand-maintained
+# copy of synthesize.json drifted as soon as the quantizer split added sources.
+# Writing it into this directory keeps every other field inherited verbatim and
+# the relative source paths resolving exactly as synthesize.json's own do. The
+# guard makes a future rename of sram_blackbox.v in synthesize.json fail loudly
+# here instead of silently synthesizing the committed baseline under the
+# option-C banner.
+python3 - <<'PYEOF'
+import json
+
+req = json.load(open('synthesize.json'))
+if 'sram_blackbox.v' not in req['sources']:
+    raise SystemExit(
+        'synthesize.json no longer lists sram_blackbox.v; the option-C '
+        'derivation in synthesize-optc.sh has nothing to swap -- update it')
+req['sources'] = ['sram_stdcell.v' if s == 'sram_blackbox.v' else s
+                  for s in req['sources']]
+req['outputs']['dir'] = 'netlist-optc'
+with open('synthesize-optc.request.json', 'w') as fh:
+    json.dump(req, fh, indent=2)
+    fh.write('\n')
+PYEOF
+
 # /usr/bin/time -v supplies the wall clock and peak RSS the record quotes; klt's
 # own stderr lands in the same file so a failure is recorded as it ran. Bounded
 # by the watchdog (issue #156): on expiry it returns 124, the failure path below
 # records it and exits non-zero, and the diagnostic names every process the
 # group kill took down.
 if ! klt_bounded "$tmp" "$err" "klt-watchdog-optc-$$.diag.txt" \
-        /usr/bin/time -v "$KLT" synthesize synthesize-optc.json --format json; then
+        /usr/bin/time -v "$KLT" synthesize synthesize-optc.request.json \
+        --format json; then
     mkdir -p netlist-optc
     cp "$err" netlist-optc/run.stderr
     cp "$tmp" netlist-optc/report.json
