@@ -5,6 +5,8 @@ Maintained by the Guide triage role.
 
 ### 2026-11-17
 
+- **PR #152**: rtl: pipeline the jc_huff symbol path to close the q95 frame gap
+- **Issue #137** (closed): Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor
 - **PR #191**: chore(loom): resync installed Loom to v0.19.1306
 - **PR #189**: docs: record TMPDIR=/tmp workaround for klt synthesize on dispatch hosts
 - **Issue #188** (closed): flow/: record the TMPDIR path-length workaround for klt synthesize runs
