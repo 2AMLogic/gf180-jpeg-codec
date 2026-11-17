@@ -1,0 +1,9 @@
+klt:      klt 0.9.2
+openroad: 26Q3-1510-g6cb3f2b704 
+pdk:      gf180mcuD, open_pdks f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7 (ciel 2.6.1)
+git:      db213daee0d0f424f7f925a96551287865465a0c
+netlist:  flow/netlist/jpeg_codec_top_synth.v sha256:9e6a2f978f225c9b064f6e491d86a0e237290d756553653266967dd9adf09d7d
+request:  flow/sta-preroute.json (verilog mode, no macros[]; no gf180_sram_256x32 LEF published)
+
+# As reported by the responses themselves, not recomputed here:
+  jc_quant                           klt 0.9.2 / engine 26Q3-1510-g6cb3f2b704 / pdk open_pdks f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7 / input sha256:9e6a2f978f225c9b064f6e491d86a0e237290d756553653266967dd9adf09d7d (netlist)

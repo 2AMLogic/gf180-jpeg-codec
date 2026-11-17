@@ -4,111 +4,225 @@
   "engine_version": "0.67+post",
   "hdl_toplevel": "jpeg_codec_top",
   "parameters": {},
+  "defines": {},
   "run_id": "netlist",
   "status": "ok",
-  "instance_count": 31341,
-  "area_um2": 1118900.9664,
-  "sequential_area_um2": 394661.8368,
+  "instance_count": 36544,
+  "area_um2": 1263450.1824,
+  "sequential_area_um2": 480722.4576,
   "instance_counts_by_type": {
     "gf180_sram_256x32": 3,
-    "gf180mcu_fd_sc_mcu9t5v0__and2_1": 612,
-    "gf180mcu_fd_sc_mcu9t5v0__and2_2": 11,
-    "gf180mcu_fd_sc_mcu9t5v0__and2_4": 3,
-    "gf180mcu_fd_sc_mcu9t5v0__and3_1": 171,
+    "gf180mcu_fd_sc_mcu9t5v0__and2_1": 626,
+    "gf180mcu_fd_sc_mcu9t5v0__and2_2": 12,
+    "gf180mcu_fd_sc_mcu9t5v0__and2_4": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__and3_1": 227,
     "gf180mcu_fd_sc_mcu9t5v0__and3_2": 6,
-    "gf180mcu_fd_sc_mcu9t5v0__and3_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__and4_1": 63,
-    "gf180mcu_fd_sc_mcu9t5v0__and4_2": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi211_1": 298,
+    "gf180mcu_fd_sc_mcu9t5v0__and3_4": 8,
+    "gf180mcu_fd_sc_mcu9t5v0__and4_1": 74,
+    "gf180mcu_fd_sc_mcu9t5v0__and4_2": 5,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi211_1": 348,
     "gf180mcu_fd_sc_mcu9t5v0__aoi211_2": 8,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi211_4": 4,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi21_1": 1416,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi21_2": 69,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi21_4": 32,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi221_1": 170,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi221_4": 7,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi222_1": 78,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi22_1": 348,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi22_2": 6,
-    "gf180mcu_fd_sc_mcu9t5v0__buf_1": 1072,
-    "gf180mcu_fd_sc_mcu9t5v0__buf_2": 46,
-    "gf180mcu_fd_sc_mcu9t5v0__buf_3": 4,
-    "gf180mcu_fd_sc_mcu9t5v0__buf_4": 3,
-    "gf180mcu_fd_sc_mcu9t5v0__buf_8": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__clkbuf_1": 431,
-    "gf180mcu_fd_sc_mcu9t5v0__clkbuf_2": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__clkbuf_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__clkinv_1": 1495,
-    "gf180mcu_fd_sc_mcu9t5v0__dffq_1": 4994,
-    "gf180mcu_fd_sc_mcu9t5v0__dlya_1": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__inv_1": 40,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi211_4": 3,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi21_1": 1468,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi21_2": 30,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi21_4": 23,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi221_1": 177,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi221_2": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi221_4": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi222_1": 150,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi22_1": 491,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi22_2": 10,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi22_4": 3,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_1": 1397,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_12": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_2": 33,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_3": 5,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_4": 8,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_8": 6,
+    "gf180mcu_fd_sc_mcu9t5v0__clkbuf_1": 419,
+    "gf180mcu_fd_sc_mcu9t5v0__clkbuf_4": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__clkinv_1": 1594,
+    "gf180mcu_fd_sc_mcu9t5v0__clkinv_2": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__dffq_1": 6083,
+    "gf180mcu_fd_sc_mcu9t5v0__inv_1": 35,
     "gf180mcu_fd_sc_mcu9t5v0__inv_2": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__inv_8": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__mux2_1": 5308,
-    "gf180mcu_fd_sc_mcu9t5v0__mux2_2": 10,
-    "gf180mcu_fd_sc_mcu9t5v0__mux4_1": 680,
-    "gf180mcu_fd_sc_mcu9t5v0__nand2_1": 3226,
-    "gf180mcu_fd_sc_mcu9t5v0__nand2_2": 7,
+    "gf180mcu_fd_sc_mcu9t5v0__inv_3": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__inv_4": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__mux2_1": 5615,
+    "gf180mcu_fd_sc_mcu9t5v0__mux2_2": 5,
+    "gf180mcu_fd_sc_mcu9t5v0__mux4_1": 646,
+    "gf180mcu_fd_sc_mcu9t5v0__nand2_1": 4611,
+    "gf180mcu_fd_sc_mcu9t5v0__nand2_2": 9,
     "gf180mcu_fd_sc_mcu9t5v0__nand2_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__nand3_1": 681,
-    "gf180mcu_fd_sc_mcu9t5v0__nand3_2": 5,
-    "gf180mcu_fd_sc_mcu9t5v0__nand4_1": 259,
-    "gf180mcu_fd_sc_mcu9t5v0__nand4_2": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__nor2_1": 2597,
-    "gf180mcu_fd_sc_mcu9t5v0__nor2_2": 19,
-    "gf180mcu_fd_sc_mcu9t5v0__nor3_1": 293,
-    "gf180mcu_fd_sc_mcu9t5v0__nor3_2": 9,
-    "gf180mcu_fd_sc_mcu9t5v0__nor3_4": 3,
-    "gf180mcu_fd_sc_mcu9t5v0__nor4_1": 109,
-    "gf180mcu_fd_sc_mcu9t5v0__nor4_2": 4,
-    "gf180mcu_fd_sc_mcu9t5v0__oai211_1": 297,
-    "gf180mcu_fd_sc_mcu9t5v0__oai211_2": 9,
+    "gf180mcu_fd_sc_mcu9t5v0__nand3_1": 1062,
+    "gf180mcu_fd_sc_mcu9t5v0__nand3_2": 6,
+    "gf180mcu_fd_sc_mcu9t5v0__nand4_1": 316,
+    "gf180mcu_fd_sc_mcu9t5v0__nand4_2": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__nand4_4": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__nor2_1": 2342,
+    "gf180mcu_fd_sc_mcu9t5v0__nor2_2": 7,
+    "gf180mcu_fd_sc_mcu9t5v0__nor2_4": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__nor3_1": 307,
+    "gf180mcu_fd_sc_mcu9t5v0__nor3_2": 7,
+    "gf180mcu_fd_sc_mcu9t5v0__nor3_4": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__nor4_1": 91,
+    "gf180mcu_fd_sc_mcu9t5v0__nor4_2": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__nor4_4": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__oai211_1": 299,
+    "gf180mcu_fd_sc_mcu9t5v0__oai211_2": 5,
     "gf180mcu_fd_sc_mcu9t5v0__oai211_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__oai21_1": 1241,
-    "gf180mcu_fd_sc_mcu9t5v0__oai21_2": 63,
-    "gf180mcu_fd_sc_mcu9t5v0__oai21_4": 19,
-    "gf180mcu_fd_sc_mcu9t5v0__oai221_1": 128,
-    "gf180mcu_fd_sc_mcu9t5v0__oai221_2": 6,
-    "gf180mcu_fd_sc_mcu9t5v0__oai221_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__oai222_1": 5,
-    "gf180mcu_fd_sc_mcu9t5v0__oai22_1": 212,
-    "gf180mcu_fd_sc_mcu9t5v0__oai22_2": 5,
-    "gf180mcu_fd_sc_mcu9t5v0__oai31_1": 238,
-    "gf180mcu_fd_sc_mcu9t5v0__oai31_2": 10,
-    "gf180mcu_fd_sc_mcu9t5v0__oai31_4": 15,
+    "gf180mcu_fd_sc_mcu9t5v0__oai21_1": 1242,
+    "gf180mcu_fd_sc_mcu9t5v0__oai21_2": 43,
+    "gf180mcu_fd_sc_mcu9t5v0__oai21_4": 21,
+    "gf180mcu_fd_sc_mcu9t5v0__oai221_1": 132,
+    "gf180mcu_fd_sc_mcu9t5v0__oai221_2": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__oai221_4": 3,
+    "gf180mcu_fd_sc_mcu9t5v0__oai222_1": 3,
+    "gf180mcu_fd_sc_mcu9t5v0__oai22_1": 223,
+    "gf180mcu_fd_sc_mcu9t5v0__oai31_1": 343,
+    "gf180mcu_fd_sc_mcu9t5v0__oai31_2": 6,
+    "gf180mcu_fd_sc_mcu9t5v0__oai31_4": 14,
     "gf180mcu_fd_sc_mcu9t5v0__oai32_1": 74,
     "gf180mcu_fd_sc_mcu9t5v0__oai32_2": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__oai32_4": 3,
-    "gf180mcu_fd_sc_mcu9t5v0__oai33_1": 38,
+    "gf180mcu_fd_sc_mcu9t5v0__oai32_4": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__oai33_1": 14,
     "gf180mcu_fd_sc_mcu9t5v0__oai33_2": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__oai33_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__or2_1": 486,
-    "gf180mcu_fd_sc_mcu9t5v0__or2_2": 6,
-    "gf180mcu_fd_sc_mcu9t5v0__or2_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__or3_1": 51,
-    "gf180mcu_fd_sc_mcu9t5v0__or3_2": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__or3_4": 3,
-    "gf180mcu_fd_sc_mcu9t5v0__or4_1": 25,
-    "gf180mcu_fd_sc_mcu9t5v0__or4_2": 4,
-    "gf180mcu_fd_sc_mcu9t5v0__or4_4": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__tieh": 113,
-    "gf180mcu_fd_sc_mcu9t5v0__tiel": 516,
-    "gf180mcu_fd_sc_mcu9t5v0__xnor2_1": 1452,
-    "gf180mcu_fd_sc_mcu9t5v0__xnor2_2": 45,
-    "gf180mcu_fd_sc_mcu9t5v0__xnor3_1": 542,
-    "gf180mcu_fd_sc_mcu9t5v0__xnor3_2": 19,
-    "gf180mcu_fd_sc_mcu9t5v0__xor2_1": 824,
-    "gf180mcu_fd_sc_mcu9t5v0__xor2_2": 99,
-    "gf180mcu_fd_sc_mcu9t5v0__xor3_1": 153,
-    "gf180mcu_fd_sc_mcu9t5v0__xor3_2": 16
+    "gf180mcu_fd_sc_mcu9t5v0__or2_1": 439,
+    "gf180mcu_fd_sc_mcu9t5v0__or2_2": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__or2_4": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__or3_1": 48,
+    "gf180mcu_fd_sc_mcu9t5v0__or3_2": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__or4_1": 20,
+    "gf180mcu_fd_sc_mcu9t5v0__or4_2": 3,
+    "gf180mcu_fd_sc_mcu9t5v0__tieh": 127,
+    "gf180mcu_fd_sc_mcu9t5v0__tiel": 2256,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor2_1": 1305,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor2_2": 15,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor2_4": 6,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor3_1": 518,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor3_2": 6,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor3_4": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__xor2_1": 789,
+    "gf180mcu_fd_sc_mcu9t5v0__xor2_2": 50,
+    "gf180mcu_fd_sc_mcu9t5v0__xor2_4": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__xor3_1": 202,
+    "gf180mcu_fd_sc_mcu9t5v0__xor3_2": 12
   },
+  "macros": [],
+  "macro_instance_counts_by_type": {},
+  "macro_instance_count": 0,
+  "cells_without_area": [
+    "gf180_sram_256x32"
+  ],
   "leakage_power_nw": null,
   "leakage_by_type_nw": null,
   "timing": {
     "source": "abc_stime",
     "wire_load": null,
-    "critical_path_ps": 48058.32,
-    "delay_target_ps": 20000
+    "critical_path_ps": 37474.45,
+    "delay_target_ps": 20000,
+    "regions": [
+      {
+        "module": "jc_qoi",
+        "critical_path_ps": 19315.82
+      },
+      {
+        "module": "jc_out_mux",
+        "critical_path_ps": 6728.19
+      },
+      {
+        "module": "jc_header_gen",
+        "critical_path_ps": 19742.04
+      },
+      {
+        "module": "jc_table_load_rom",
+        "critical_path_ps": 10031.8
+      },
+      {
+        "module": "jc_table_load",
+        "critical_path_ps": 19787.59
+      },
+      {
+        "module": "jc_cfg_regs",
+        "critical_path_ps": 11590.86
+      },
+      {
+        "module": "jc_bitpack",
+        "critical_path_ps": 19176.05
+      },
+      {
+        "module": "jc_huff",
+        "critical_path_ps": 19891.76
+      },
+      {
+        "module": "jc_quant_sum_windows",
+        "critical_path_ps": 14246.72
+      },
+      {
+        "module": "jc_quant_rom_rows",
+        "critical_path_ps": 7181.99
+      },
+      {
+        "module": "$paramod\\jc_sram_arb\\N=s32",
+        "critical_path_ps": 4267.04
+      },
+      {
+        "module": "jc_quant_mul",
+        "critical_path_ps": 11810.1
+      },
+      {
+        "module": "$paramod\\jc_sram_arb\\N=s32",
+        "critical_path_ps": 5963.07
+      },
+      {
+        "module": "jc_quant_clamp",
+        "critical_path_ps": 7342.9
+      },
+      {
+        "module": "jc_quant",
+        "critical_path_ps": 16723.22
+      },
+      {
+        "module": "jc_zigzag",
+        "critical_path_ps": 13072.11
+      },
+      {
+        "module": "jc_xpose_rf",
+        "critical_path_ps": 9692.53
+      },
+      {
+        "module": "jc_dct1d",
+        "critical_path_ps": 30334.43
+      },
+      {
+        "module": "jc_dct",
+        "critical_path_ps": 6783.2
+      },
+      {
+        "module": "colour_convert",
+        "critical_path_ps": 37474.45
+      },
+      {
+        "module": "jc_mb_ctrl",
+        "critical_path_ps": 10731.53
+      },
+      {
+        "module": "jc_downsample",
+        "critical_path_ps": 19433.15
+      },
+      {
+        "module": "$paramod\\jc_sram_arb\\N=s32",
+        "critical_path_ps": 5804.68
+      },
+      {
+        "module": "jc_sram_wrap",
+        "critical_path_ps": 364.39
+      },
+      {
+        "module": "jpeg_codec_top",
+        "critical_path_ps": 3171.51
+      }
+    ]
   },
   "clock_targets": {
     "clocks": [],
@@ -134,10 +248,23 @@
     "validated": null,
     "engine_supports_dont_use": null
   },
+  "abc_constr": {
+    "source": "builtin",
+    "driving_cell": "gf180mcu_fd_sc_mcu9t5v0__buf_4",
+    "load_ff": 13.43
+  },
   "warnings": {
-    "total": 0,
-    "by_category": {},
-    "representatives": []
+    "total": 1,
+    "by_category": {
+      "cells_without_liberty_area": 1
+    },
+    "representatives": [
+      {
+        "category": "cells_without_liberty_area",
+        "count": 1,
+        "text": "area_um2 excludes instantiated cell type(s) with no liberty area: gf180_sram_256x32"
+      }
+    ]
   },
   "memory_mapping": {
     "status": "lowered_to_logic",
@@ -160,7 +287,7 @@
         "final_memories": 0
       },
       {
-        "module": "jc_quant_core",
+        "module": "jc_quant_rom_rows",
         "status": "lowered_to_logic",
         "elaborated_memories": 1,
         "elaborated_memory_bits": 5120,
@@ -204,7 +331,7 @@
     "path": "flow/netlist/jpeg_codec_top_synth.v",
     "scope": "repo"
   },
-  "netlist_sha256": "e32b0e8b820d07887a6b19d81b3beb63bffe334dabdcd66c04c8f7d227d8c3ee",
+  "netlist_sha256": "9e6a2f978f225c9b064f6e491d86a0e237290d756553653266967dd9adf09d7d",
   "script_path": {
     "path": "flow/netlist/synth_jpeg_codec_top.ys",
     "scope": "repo"
@@ -214,8 +341,10 @@
     "scope": "repo"
   },
   "provenance": {
-    "klt_version": "0.8.0",
-    "klayout_version": "0.30.12",
+    "klt_version": "0.9.2",
+    "klt_git_commit": "046ba74652fc096bd97071fc3237f7159dd40183",
+    "klt_reinstall_spec": "klayout-tools==0.9.2",
+    "klayout_version": "0.30.13",
     "pdk": {
       "name": "gf180mcuD",
       "source": "PDK_ROOT environment variable",
@@ -230,10 +359,11 @@
       "released": false
     },
     "input": {
-      "content_hash": "sha256:dea335637de5cef6dae0371e07c97eefa6af8a9011b73b932d8cf20a5ef7a3a5",
+      "content_hash": "sha256:934eb6a1394adce3f0abd291f32f5218539384e3cbf1aa5ca338a867630ebd65",
       "role": "source"
     },
-    "parameters": {}
+    "parameters": {},
+    "defines": {}
   },
   "equivalence": null,
   "restructuring": null,

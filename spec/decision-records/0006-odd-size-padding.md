@@ -64,3 +64,11 @@ edge behaviours above are libjpeg's, not the §2 contract's.
 Follow-up (`Part of #59`, a separate change): adapt `crosscheck_libjpeg.py` to
 pad for libjpeg, add the odd sizes to `SIZES`, and record the passing run under
 `verification/records/`.
+
+## Binding note
+
+The evidence script above, `verification/golden/diag_odd_size.py`, is bound by
+the item-9 attestation (`manifests/attest/item9.inventory.json`, added
+2026-11-16, issue #176): any edit to it changes the recorded hash until
+`manifests/attest/item9.json` and the signoff record are regenerated under the
+pinned klt release. The evidence text above is unchanged by that binding.

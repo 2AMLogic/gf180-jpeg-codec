@@ -188,6 +188,12 @@ the ROM/multiply boundary, optionally two; throughput stays one coefficient
 per cycle. `colour_convert`'s pipeline gains one stage; pixel acceptance
 stays one pixel per 3 beats.
 
+**Amended by record 0010** (`spec/decision-records/0010-retime-depth-allowance.md`):
+the two register-count clauses above are superseded by a measurement-bounded
+allowance (§4's counts cannot reach §2's target by the pigeonhole bound on
+the committed STA record; the depth is the follow-up issue's measured
+outcome, subject to named, priced latency ceilings).
+
 Re-derived §7 rows under the decided depths (per 4:2:0 MCU, colour, at
 50 MHz):
 
@@ -224,7 +230,13 @@ run. Record 0008's per-stage count answers that condition for q95: the
 binder there is `jc_huff` (`s6` stalled 1,268,261 of 1,740,071 frame
 cycles; `s7` stalled 9 and `bp`/`out` stalled 0), so the +198 is absorbed
 by pipeline overlap at q95 and the q95 column below is the pessimistic end,
-not the expected result. Against the counted figures:
+not the expected result. **Amended by record 0010**
+(`spec/decision-records/0010-retime-depth-allowance.md`): the +198 prices
+the **decided** depths (dct 10, quant 1); the corner of §4's band as
+ratified is **+396** (dct 12, quant 2), and the additive q95 column is
+classified there as a **sensitivity** on the counted q95 frame — 0005 §7
+ratifies max-stage throughput, under which the frame bound is 90.2% at
+every depth in the band. Against the counted figures:
 
 | Row (counted) | Today | Worst case after retiming | §9 target row (30 frames/s) |
 |---|---|---|---|

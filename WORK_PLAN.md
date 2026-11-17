@@ -20,34 +20,28 @@ _None._
 `loom:important`; taken before unlabelled work.
 
 - **#31**: T1 item 2 (layout): place-and-route the encoder with the three SRAM macros to a committed routed GDS
-- **#119**: Finding: 640 x 480 colour at q95 needs 1,740,070 cycles, 104.4% of the 30 frames/s frame period
-- **#127**: Decide what to do about the pre-route setup shortfall in jc_dct, jc_downsample and jc_quant
+- **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
+- **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor
+- **#169**: jc_dct1d depth: successor decision needed — §2 timing target unreachable in the record 0007 §4 band (PR #164 measured evidence)
 
 ## Ready
 
 Human-approved issues ready for implementation (`loom:issue`).
 
-_None._
+- **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
+- **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor
 
 ## In Progress
 
 Issues currently being built (`loom:building`).
 
-- **#112**: Bring README, spec/README and verification/README status text in line with main
-- **#119**: Finding: 640 x 480 colour at q95 needs 1,740,070 cycles, 104.4% of the 30 frames/s frame period
-- **#124**: Consolidate the configuration address map and host driver duplicated across the three top-level benches
-- **#126**: Remove flow/netlist/synth_jpeg_codec_top.run.ys: a committed machine-local duplicate the file itself says not to commit
-- **#127**: Decide what to do about the pre-route setup shortfall in jc_dct, jc_downsample and jc_quant
+_None._
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
-- **#128**: refactor: consolidate the cfg address map and port driver into cfg_host.py
-- **#134**: docs: decide the pre-route setup shortfall response in decision record 0007
-- **#135**: chore(flow): untrack machine-local synth_jpeg_codec_top.run.ys and ignore regenerates
-- **#138**: Count per-stage boundary cycles at 640x480; decision record 0008 corrects the jc_huff budget
-- **#139**: docs: bring README, spec/README and verification/README status text in line with the tree
+_None._
 
 ## Approved (Awaiting Merge)
 
@@ -60,10 +54,9 @@ _None._
 Issues carrying `loom:curated`.
 
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
-- **#112**: Bring README, spec/README and verification/README status text in line with main *(curated)*
-- **#119**: Finding: 640 x 480 colour at q95 needs 1,740,070 cycles, 104.4% of the 30 frames/s frame period *(curated)*
-- **#127**: Decide what to do about the pre-route setup shortfall in jc_dct, jc_downsample and jc_quant *(curated)*
-- **#130**: run_tb.py: a --testcase that matches no test exits 0 and prints "N/N passed" — a filtered run can certify nothing *(curated)*
+- **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target *(curated)*
+- **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor *(curated)*
+- **#165**: re-verify healthy synthesize byte-identity on a wedge-free window (blocked during #156 by the yosys/ABC wedge) *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -79,12 +72,12 @@ _None._
 |------|-------|
 | Operator merge-risk holds | 0 |
 | Very important | 1 |
-| Important | 3 |
-| Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 5 |
-| PRs awaiting review | 5 |
+| Important | 4 |
+| Ready (`loom:issue`) | 2 |
+| In Progress (`loom:building`) | 0 |
+| PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
-| Curated | 5 |
+| Curated | 4 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

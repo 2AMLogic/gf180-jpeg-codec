@@ -1,0 +1,25 @@
+Finding unused cells or wires in module \jc_cfg_regs..
+Finding unused cells or wires in module \jc_bitpack..
+Finding unused cells or wires in module \jc_huff..
+Finding unused cells or wires in module \jc_quant_core..
+Finding unused cells or wires in module \jc_quant..
+Finding unused cells or wires in module \jc_zigzag..
+Finding unused cells or wires in module \jc_xpose_rf..
+Finding unused cells or wires in module \jc_dct1d..
+Finding unused cells or wires in module \jc_dct..
+Finding unused cells or wires in module \colour_convert..
+Finding unused cells or wires in module \jc_mb_ctrl..
+Finding unused cells or wires in module \jc_downsample..
+Finding unused cells or wires in module $paramod\jc_sram_arb\N=s32'00000000000000000000000000000010..
+Finding unused cells or wires in module \jc_sram_wrap..
+Finding unused cells or wires in module \jpeg_codec_top..
+Removed 0 unused cells and 21 unused wires.
+<suppressed ~5 debug messages>
+
+24.21.10. Finished fast OPT passes.
+
+24.22. Executing ABC pass (technology mapping using ABC).
+
+24.22.1. Extracting gate netlist of module `$paramod\jc_sram_arb\N=s32'00000000000000000000000000000100' to `<abc-temp-dir>/input.blif'..
+
+[stderr]

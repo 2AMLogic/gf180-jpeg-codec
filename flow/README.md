@@ -6,6 +6,49 @@ Library `gf180mcu_fd_sc_mcu9t5v0`, corner `tt_025C_3v30` (spec §10), 20 ns cloc
 PDN as in `smoke/place-and-route.json`. The `smoke/` flow is separate and is not
 evidence about the codec.
 
+## Watchdog (issue #156)
+
+Every `klt` invocation in the flow scripts runs under a watchdog
+(`flow/klt-watchdog.sh`, sourced by each wrapper): `synthesize.sh` (both the
+main run and `--check`, which no longer `exec`s for exactly that reason),
+`synthesize-optc.sh` (the watchdog wraps the whole `/usr/bin/time -v` run),
+`sta-preroute.sh`'s per-module `klt sta`, and all six `smoke/run.sh` stages
+via its `stage()` helper.
+
+The bound is `KLT_TIMEOUT` seconds, default **900** — generous against the
+measured 27 s full synthesis and 12 s single-module STA, so a healthy run
+never reaches it and its output is byte-identical to an unbounded one.
+Override the variable for slow hosts.
+
+On expiry the watchdog: writes per-process diagnostics — pid, cmdline,
+`wchan` and fd listing for every process still in the run's process group —
+to `<...>.watchdog.diag.txt`, then SIGTERMs and SIGKILLs that group (the one
+it created with `setsid`, never the wrapper's own), then exits **124**
+(`timeout(1)`'s convention) having named the diagnostic file on stderr. 124
+distinguishes a timed-out run from an engine failure that also exits
+non-zero: `sta-preroute.sh`'s negative control treats a timed-out run as a
+failure, never as the expected ORD-2013 non-linkage, and `smoke/run.sh`
+records a timed-out stage with rc=124 and carries on with the remaining
+stages. Diagnostics from ad-hoc runs land in `flow/klt-watchdog-*.diag.txt`
+(gitignored); runs that write into a record directory keep the diag beside
+that run's other artifacts.
+
+## TMPDIR on dispatch hosts (klayout-tools#6076)
+
+On a dispatch host a session inherits a deep per-session temp directory
+(`TMPDIR=/tmp/loom-nt/<uuid>/...`), and under it `klt synthesize` can wedge in
+the yosys->abc handshake: a silent ~15-minute stall until the watchdog fires
+(`KLT_TIMEOUT`, default 900 s), ending in rc=124 with a `*.watchdog.diag.txt`.
+The suspected cause is long abc temp paths; the diagnosis is upstream's
+(klayout-tools#6076) and is not verified here. Until that issue is fixed, run
+the synthesis wrappers with a short temp directory:
+
+```sh
+TMPDIR=/tmp flow/synthesize.sh
+```
+
+Remove this section once klayout-tools#6076 is fixed.
+
 ## Cold start
 
 ```sh
@@ -19,13 +62,15 @@ a single OpenROAD job, not a grid.
 
 ## Option C size estimate (decision 0004, issue #115)
 
-`synthesize-optc.json` + `synthesize-optc.sh` + `sram_stdcell.v` size decision
-record 0004's **option C** (standard-cell RAM), whose options table leaves the
-9-track area "not estimated here (unverified)". The request is
-`synthesize.json` with two fields changed -- `sram_blackbox.v` becomes
+`synthesize-optc.sh` + `sram_stdcell.v` size decision record 0004's **option
+C** (standard-cell RAM), whose options table leaves the 9-track area "not
+estimated here (unverified)". The script derives its request from
+`synthesize.json` at run time into the gitignored `synthesize-optc.request.json`,
+with two fields changed -- `sram_blackbox.v` becomes
 `sram_stdcell.v`, and `outputs.dir` becomes `netlist-optc` -- so the figures are
 like-for-like on library (`gf180mcu_fd_sc_mcu9t5v0`), corner (`ss_125C_3v00`)
-and clock (20 ns). Nothing under `rtl/` changes: `jc_sram_wrap.v` instantiates
+and clock (20 ns), and the derived request cannot drift from the baseline it is
+compared against. Nothing under `rtl/` changes: `jc_sram_wrap.v` instantiates
 `gf180_sram_256x32` by module name, so giving that name a synthesizable body is
 the whole substitution.
 
@@ -52,8 +97,9 @@ before quoting any number from it.
 maturity rung. **It does not invoke decision 0004's fallback gate**: 0004 still
 adopts option A, `netlist/` is untouched (`synthesize.sh --check` exits 0 after
 an option-C run), `manifests/` is unchanged, and switching to option C would
-still need a new decision record. The option-C netlist is not committed; it is
-reproducible from the committed request.
+still need a new decision record. The option-C netlist and its derived request
+are not committed; the request is regenerated from `synthesize.json` on each
+run.
 
 ## Status: item 2 is NOT met
 

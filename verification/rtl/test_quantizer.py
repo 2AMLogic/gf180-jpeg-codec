@@ -1,4 +1,5 @@
-"""Directed test of the quantizer stage (jc_quant, jc_quant_core), issue #44.
+"""Directed test of the quantizer stage (jc_quant, jc_quant_core and its
+combinational halves jc_quant_recip, jc_quant_mul, jc_quant_clamp), issue #44.
 
 Run (toplevel jc_quant):
 
@@ -188,8 +189,11 @@ async def test_random_blocks_and_backpressure(dut):
 
 @cocotb.test()
 async def test_cycles_per_block(dut):
-    """Budget (0005 section 7, stage 3): at most 72 cycles per block at M1
-    latency 2, and far below the 231.5 per-block limit of spec 9."""
+    """Budget (0005 section 7, stage 3): at most 77 cycles per block at M1
+    latency 2 with the five-stage pipeline (73 at one stage, 462 per MCU) —
+    the row 0010 section 3 prices as (72+k)*6, at the depth 0012 records as
+    the measured outcome for the quantizer retime — and far below the 231.5
+    per-block limit of spec 9."""
     await start(dut)
     rnd = random.Random(7)
     tabs = [[rnd.randint(1, 255) for _ in range(64)] for _ in range(2)]
@@ -199,4 +203,4 @@ async def test_cycles_per_block(dut):
     total = (spans[-1][1] - spans[0][0]) / 10 / len(blocks)
     dut._log.info(f"cycles per block (back-to-back, M1 latency 2): {total:.1f}; Q requests: {stats['reqs']}")
     assert stats["reqs"] == 16 * len(blocks)
-    assert total <= 72, total
+    assert total <= 77, total

@@ -3,7 +3,57 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-11-17
+
+- **PR #191**: chore(loom): resync installed Loom to v0.19.1306
+- **PR #189**: docs: record TMPDIR=/tmp workaround for klt synthesize on dispatch hosts
+- **Issue #188** (closed): flow/: record the TMPDIR path-length workaround for klt synthesize runs
+- **PR #187**: flow: derive option-C synthesize request from synthesize.json at run time
+- **Issue #183** (closed): Derive synthesize-optc request from synthesize.json (copy is stale after quantizer split)
+- **PR #179**: fix: fail inventory closure guard on unresolved .py members
+- **Issue #172** (closed): check_inventory_closure.py reports OK after checking zero members when run outside the repo root
+
+### 2026-11-16
+
+- **PR #161**: rtl: retime jc_quant_core to a five-stage slice-window pipeline at the measured 0007 depth
+- **Issue #133** (closed): Retime jc_quant_core: pipeline the reciprocal-ROM multiply to the record 0007 depth target
+- **PR #178**: feat(attest): bind record 0006's evidence script in the item-9 inventory
+- **PR #175**: chore(loom): resync installed Loom to v0.19.1302
+- **Issue #176** (closed): item-9 inventory does not bind diag_odd_size.py, the script record 0006's evidence rests on
+- **PR #174**: flow: record the wedged issue #165 step-1 synthesize rerun attempt (20261116T051447Z)
+- **PR #173**: fix: fail lint leg 7 when an index row's decision-record path strips to empty
+- **PR #171**: docs: correct stage 1's retime latency pricing to L cycles per MCU, not 6L
+- **PR #168**: fix(attest): bind item-9 inventory import closure; pin klt 0.9.2
+- **PR #164**: dct: retime jc_dct1d to a 12-cycle vector schedule (record 0007 s4)
+- **PR #149**: docs: re-derive 0005 §7 row 4 from the jc_huff FSM floor per record 0008
+- **PR #145**: fix: run_tb.py verdicts count executed tests, not filtered-out XML entries
+- **PR #143**: docs: correct the stage sampler stop-margin comments in the frame-cycles bench
+- **Issue #163** (closed): lint leg 7: an index row whose path strips to empty passes the tracked-file check
+- **Issue #160** (closed): Record 0010 §3: the stage-1 latency pricing multiplies L by 6 blocks, but stage 1's row is per-MCU not per-block
+- **Issue #154** (closed): Item-9 attestation inventory omits test_top_smoke.py, which the attested golden bench imports
+- **Issue #141** (closed): Two wording inaccuracies left by #138: a "measured" slip in spec/README.md and the stage sampler stop-margin comments
+- **Issue #136** (closed): Correct record 0005 section 7's Huffman budget row to the counted jc_huff floor
+- **Issue #131** (closed): Retime jc_dct1d: pipeline the butterfly/multiply/combine chain to the record 0007 depth target
+- **Issue #130** (closed): run_tb.py: a --testcase that matches no test exits 0 and prints "N/N passed" — a filtered run can certify nothing
+- **PR #166**: fix(flow): bound every klt call with a process-group watchdog
+- **Issue #156** (closed): flow/*.sh have no watchdog: an intermittent yosys/ABC wedge hangs the wrapper unbounded and leaks orphaned yosys-abc
+
 ### 2026-11-15
+
+- **PR #162**: fix: strip #anchor and link title from decision-record links in lint leg 7
+- **Issue #150** (closed): lint leg 7 false-positives on a decision-record link carrying an #anchor or a link title
+- **Issue #159** (closed): item9.inventory.json pins.tools.klt still declares 0.8.0 after decision record 0009 pinned klt 0.9.2
+- **PR #128**: refactor: consolidate the cfg address map and port driver into cfg_host.py
+- **Issue #124** (closed): Consolidate the configuration address map and host driver duplicated across the three top-level benches
+- **PR #158**: docs: record 0010 — measurement-bounded retime depth allowance for colour_convert and jc_quant_core
+- **Issue #144** (closed): Record 0007 §4: publish an authorized depth for colour_convert and jc_quant_core, and price the two-stage quant case
+- **PR #147**: Pin klt 0.9.2 and refresh the item-1 attestation to the whole-input-set binding
+- **Issue #142** (closed): Refresh the item-1 attestation under a pinned klt 0.9.2: the committed 0.8.0 evidence does not bind the design sources (klayout-tools#4764)
+- **Issue #155** (closed): yosys 0.67 ABC pass deadlocks on the AWS worker: yosys and yosys-abc block on each other's pipes (any design)
+- **Issue #140** (closed): no lint leg asserts spec/README.md indexes every file in spec/decision-records/
+- **PR #148**: lint: assert spec/README.md indexes every decision record, both directions
+- **Issue #126** (closed): Remove flow/netlist/synth_jpeg_codec_top.run.ys: a committed machine-local duplicate the file itself says not to commit
+- **PR #135**: chore(flow): untrack machine-local synth_jpeg_codec_top.run.ys and ignore regenerates
 
 - **Issue #127** (closed): Decide what to do about the pre-route setup shortfall in jc_dct, jc_downsample and jc_quant
 - **PR #134**: docs: decide the pre-route setup shortfall response in decision record 0007
