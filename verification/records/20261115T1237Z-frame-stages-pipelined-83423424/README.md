@@ -62,7 +62,7 @@ components, is `2 x 425,695` symbols + `hf_m1` arbitration waits 39,211 +
 `s7` back-pressure 3,624 = 894,225 cycles = **745.2 cycles/MCU**, below the
 768-cycle input row: stage 4 has stopped binding at any content or quality,
 which is the goal band (≤ 2.08 cycles/symbol) of record 0009's threshold
-table. The unit-level sustained rate is measured directly by
+table. The unit-level sustained rate is counted directly by
 `test_entropy.py::test_throughput`: **2.000 cycles/symbol** (6141 cycles
 over 3071 symbol intervals of fully dense blocks, byte-exact against the
 spec §6 reference).
