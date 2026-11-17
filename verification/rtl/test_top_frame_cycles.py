@@ -82,8 +82,9 @@ if HERE not in sys.path:
     sys.path.insert(0, HERE)
 
 import jpeg_golden  # noqa: E402
+from cfg_host import REG_CMD  # noqa: E402
 from test_top_smoke import (  # noqa: E402
-    Host, REG_CMD, CAP, colour_stream, decode_jpeg,
+    Host, CAP, colour_stream, decode_jpeg,
 )
 from test_top_golden import first_diff, load_image, load_quant  # noqa: E402
 
