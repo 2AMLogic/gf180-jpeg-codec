@@ -150,7 +150,7 @@
         "role": "testbench",
         "path": "verification/rtl/test_top_smoke.py",
         "passed": true,
-        "content_hash": "sha256:fb609e8632a2f2ffa3f686296d59314c536f5d4765fbc94ecdee78eb53182f67"
+        "content_hash": "sha256:fd9b92615377eca499e33fc6eb0e6a2d05397d4a97d684d427feb61280de2c43"
       },
       {
         "check": "command",
