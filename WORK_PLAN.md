@@ -35,7 +35,7 @@ Issues currently being built (`loom:building`).
 
 - **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
 - **#169**: jc_dct1d depth: successor decision needed — §2 timing target unreachable in the record 0007 §4 band (PR #164 measured evidence)
-- **#197**: Record 0009 follow-ups: re-count the three frame rows on the merged depth-12 tree, and drop 'measured' for two simulated figures
+- **#211**: Two other benches still derive cycle figures from float-ns spans (same class as #208)
 
 ## PRs Awaiting Review
 
@@ -57,7 +57,7 @@ Issues carrying `loom:curated`.
 - **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target *(curated)*
 - **#165**: re-verify healthy synthesize byte-identity on a wedge-free window (blocked during #156 by the yosys/ABC wedge) *(curated)* *(held)*
 - **#169**: jc_dct1d depth: successor decision needed — §2 timing target unreachable in the record 0007 §4 band (PR #164 measured evidence) *(curated)*
-- **#197**: Record 0009 follow-ups: re-count the three frame rows on the merged depth-12 tree, and drop 'measured' for two simulated figures *(curated)*
+- **#211**: Two other benches still derive cycle figures from float-ns spans (same class as #208) *(curated)*
 
 ## Proposed (Architect / Hermit)
 

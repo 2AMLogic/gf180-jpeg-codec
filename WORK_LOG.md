@@ -5,6 +5,10 @@ Maintained by the Guide triage role.
 
 ### 2026-11-17
 
+- **PR #209**: fix: count frame cycles in integer ps so the count is position-independent
+- **Issue #208** (closed): test_top_frame_cycles reports a cycles_to_out_last that shifts by one depending on the test's position in the simulation
+- **PR #205**: records: commit the depth-12 frame re-count; say simulated, not measured
+- **Issue #197** (closed): Record 0009 follow-ups: re-count the three frame rows on the merged depth-12 tree, and drop 'measured' for two simulated figures
 - **PR #202**: test(quant): check the pipelined jc_quant equivalent to jc_quant_core
 - **Issue #186** (closed): Quantizer exhaustive proof covers jc_quant_core, which the chip does not instantiate
 - **PR #201**: docs: record 0013 replaces the pre-0009 90.2% frame bound with the merged 0005 §7 per-depth rows
