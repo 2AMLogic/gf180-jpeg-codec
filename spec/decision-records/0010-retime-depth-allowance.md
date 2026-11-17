@@ -136,6 +136,16 @@ sensitivity on the counted q95 frame, not a throughput bound — 0007 §5
 already labels it "the pessimistic end, not the expected result"; this
 record says so formally and re-prices it to the band corner.
 
+**Amended by record 0013**
+(`spec/decision-records/0013-post-0009-frame-bound.md`): the "90.2% at
+every depth in the band" here and in §4 below price the pre-0009 §7 row 5
+(1249) as the binder with row 4 at 952; under
+`0009-huff-symbol-path-pipelining.md` the binder at worst-case content is
+stage 2 (96d + 72 cycles/MCU), and merged `0005-rtl-microarchitecture.md`
+§7's per-depth rows give 60.8% (depth 8) – 88.4% (depth 12). The
+measured-depth allowance and §4's classification of the additive column
+stand.
+
 ## Decision
 
 ### 1. Authorized depth: measurement-bounded, not a register count

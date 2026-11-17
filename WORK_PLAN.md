@@ -21,22 +21,21 @@ _None._
 
 - **#31**: T1 item 2 (layout): place-and-route the encoder with the three SRAM macros to a committed routed GDS *(held)*
 - **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
-- **#169**: jc_dct1d depth: successor decision needed — §2 timing target unreachable in the record 0007 §4 band (PR #164 measured evidence) *(held)*
-- **#194**: test_top_frame_cycles.py cannot run on main: ImportError REG_CMD from test_top_smoke
+- **#169**: jc_dct1d depth: successor decision needed — §2 timing target unreachable in the record 0007 §4 band (PR #164 measured evidence)
 
 ## Ready
 
-Human-approved issues ready for implementation (`loom:issue`).
+Human-approved issues (`loom:issue`) ready for implementation — excluding held (`loom:blocked`/`loom:operator`/`loom:frozen`), `loom:building`, and issues closed by an open `loom:pr` PR (listed under Approved).
 
-- **#196**: Record 0010 still cites the pre-0009 frame bound (90.2% at every depth) against the merged 0005 s7
+_None._
 
 ## In Progress
 
 Issues currently being built (`loom:building`).
 
 - **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
-- **#186**: Quantizer exhaustive proof covers jc_quant_core, which the chip does not instantiate
-- **#194**: test_top_frame_cycles.py cannot run on main: ImportError REG_CMD from test_top_smoke
+- **#169**: jc_dct1d depth: successor decision needed — §2 timing target unreachable in the record 0007 §4 band (PR #164 measured evidence)
+- **#197**: Record 0009 follow-ups: re-count the three frame rows on the merged depth-12 tree, and drop 'measured' for two simulated figures
 
 ## PRs Awaiting Review
 
@@ -57,9 +56,8 @@ Issues carrying `loom:curated`.
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
 - **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target *(curated)*
 - **#165**: re-verify healthy synthesize byte-identity on a wedge-free window (blocked during #156 by the yosys/ABC wedge) *(curated)* *(held)*
-- **#186**: Quantizer exhaustive proof covers jc_quant_core, which the chip does not instantiate *(curated)*
-- **#194**: test_top_frame_cycles.py cannot run on main: ImportError REG_CMD from test_top_smoke *(curated)*
-- **#196**: Record 0010 still cites the pre-0009 frame bound (90.2% at every depth) against the merged 0005 s7 *(curated)*
+- **#169**: jc_dct1d depth: successor decision needed — §2 timing target unreachable in the record 0007 §4 band (PR #164 measured evidence) *(curated)*
+- **#197**: Record 0009 follow-ups: re-count the three frame rows on the merged depth-12 tree, and drop 'measured' for two simulated figures *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -75,12 +73,12 @@ _None._
 |------|-------|
 | Operator merge-risk holds | 0 |
 | Very important | 1 |
-| Important | 4 |
-| Ready (`loom:issue`) | 1 |
+| Important | 3 |
+| Ready (`loom:issue`, net of holds/building/merge-pending) | 0 |
 | In Progress (`loom:building`) | 3 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
-| Curated | 6 |
+| Curated | 5 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
