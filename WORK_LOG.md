@@ -5,6 +5,9 @@ Maintained by the Guide triage role.
 
 ### 2026-11-17
 
+- **Issue #203** (closed): Reconcile the one-cycle q95 §9 frame-cycle delta: decision records say 1,383,370, the restored bench reports 1,383,369
+- **PR #200**: fix: import REG_CMD from cfg_host in the frame-cycle bench
+- **Issue #194** (closed): test_top_frame_cycles.py cannot run on main: ImportError REG_CMD from test_top_smoke
 - **PR #152**: rtl: pipeline the jc_huff symbol path to close the q95 frame gap
 - **Issue #137** (closed): Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor
 - **PR #191**: chore(loom): resync installed Loom to v0.19.1306
