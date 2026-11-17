@@ -19,7 +19,7 @@ _None._
 
 `loom:important`; taken before unlabelled work.
 
-- **#31**: T1 item 2 (layout): place-and-route the encoder with the three SRAM macros to a committed routed GDS
+- **#31**: T1 item 2 (layout): place-and-route the encoder with the three SRAM macros to a committed routed GDS *(held)*
 - **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
 - **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor
 - **#169**: jc_dct1d depth: successor decision needed — §2 timing target unreachable in the record 0007 §4 band (PR #164 measured evidence)
@@ -56,7 +56,7 @@ Issues carrying `loom:curated`.
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
 - **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target *(curated)*
 - **#137**: Close the section 9 q95 frame-rate gap: remove jc_huff's per-symbol cycle floor *(curated)*
-- **#165**: re-verify healthy synthesize byte-identity on a wedge-free window (blocked during #156 by the yosys/ABC wedge) *(curated)*
+- **#165**: re-verify healthy synthesize byte-identity on a wedge-free window (blocked during #156 by the yosys/ABC wedge) *(curated)* *(held)*
 
 ## Proposed (Architect / Hermit)
 
