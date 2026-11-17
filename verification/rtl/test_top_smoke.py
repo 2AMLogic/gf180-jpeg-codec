@@ -143,7 +143,7 @@ class Host:
         await self.configure(mode, w, h)
         await self.cfg_write(cfg_host.REG_CMD, 1)
         assert d.status_error.value == 0, "start raised an error: cause %d" % int(d.err_cause.value)
-        start = cocotb.utils.get_sim_time("ns")
+        start_ps = cocotb.utils.get_sim_time()
         i = 0
         for cyc in range(CAP):
             if i < len(stream) and self.rng.random() >= self.in_gap:
@@ -161,7 +161,7 @@ class Host:
                                  % (i, len(stream), len(self.out)))
         d.pix_valid.value = 0
         await self.wait_idle()
-        self.cycles = int((cocotb.utils.get_sim_time("ns") - start) / 10)
+        self.cycles = (cocotb.utils.get_sim_time() - start_ps) // 10_000
         assert d.status_error.value == 0
         return bytes(self.out)
 
