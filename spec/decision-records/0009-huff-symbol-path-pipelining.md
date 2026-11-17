@@ -110,7 +110,9 @@ symbol at formation from the same beat tag the FSM latched. Verified by the
 full entropy suite (`test_entropy.py`, 11 tests including randomized memory
 stalls to 0.8 and output stalls to 0.97 — byte-exact at any grant latency)
 and by the re-count's `golden_match` on all three rows with unchanged byte
-counts; the committed golden records (180 cases) are re-checked by CI.
+counts; the committed golden records (180 cases) are re-checked when the
+golden suite is run locally — no CI job runs it (the re-count record's
+README states this).
 
 **Rejected alternatives** (unchanged from the issue's curation, restated for
 the record):
@@ -132,9 +134,11 @@ the record):
 
 **Row 4 re-derived** (`spec/decision-records/0005-rtl-microarchitecture.md`
 §7, amended by this record): the Huffman symbol path costs **2 cycles per
-symbol (the A = 2 grant cadence) x symbols + 1 cycle per in-run zero**, plus
-arbitration and S7 back-pressure — content-dependent, like the FSM floor it
-replaces. At the q95 row of the §12 image the counted-derived figure is
+symbol (the A = 2 grant cadence) x symbols**, plus arbitration and S7
+back-pressure — content-dependent, like the FSM floor it replaces (the
+in-run zeros are absorbed into cycles the back end already spends; the
+`+ 1 per in-run zero` term belongs to the blocking FSM's floor this path
+replaces). At the q95 row of the §12 image the counted-derived figure is
 745.2 cycles/MCU (53.7% of the 1388.9 budget row), against the blocking
 FSM's 1448.2 (record 0008) and the row's original M1/M2 access pricing of
 952, which undercounted the stage at ~2.1 cycles per symbol.
@@ -146,14 +150,25 @@ sum: `1200 x max(stage) + first-MCU latency + header`. With stage 4 at
 
 | DCT depth (record 0007 §4 band) | Stage 2 row | Binder | Frame cycles | % of period | frames/s simulated |
 |---|---|---|---|---|---|
-| 8 (today's RTL) | 840 | stage 2 | 1,012,661 derived; **1,088,887 counted** (qa term, above) | 60.8% derived / **65.3% counted** | 49.4 / **45.9** |
+| 8 (RTL at the re-count) | 840 | stage 2 | 1,012,661 derived; **1,088,887 counted** (qa term, above) | 60.8% derived / **65.3% counted** | 49.4 / **45.9** |
 | 10 (0007 §4 decided) | 1032 | stage 2 | 1,243,259 | 74.6% | 40.2 |
 | 12 (0007 §4 band edge) | 1224 | stage 2 | 1,473,851 | 88.4% | 33.9 |
+
+**Provenance of the depth-8 row.** Its counted figures (1,088,887 / 65.3% /
+45.9 frames/s simulated) were counted before the depth-12 `jc_dct1d`
+retiming (record 0007 §4's band edge) merged into this branch, so at the
+tree as merged the operative row is the depth-12 one (1,473,851, 88.4%); a
+counted re-run on the merged tree, reported as Judge-side evidence on
+PR #152, gave 1,383,370 cycles to `out_last` (83.0% of the period, 36.1
+frames/s simulated, `golden_match` true, byte counts unchanged), consistent
+with that row.
 
 The depth-10 and depth-12 rows use `0007-pre-route-setup-shortfall.md` §4's
 re-derived stage rows (1032 / 1224 cycles/MCU) with this record's per-depth
 latency term (first-MCU latency = serial stage sum 768 + 1032/1224 + 438 +
-745.2 + 1249, plus the 627-byte header). They sit 207 cycles under 0007 §4's
+745.2 + 1249, plus the 627-byte header; stage 3 = 438 is record 0007 §4's
+re-derived row, which supersedes 0005 §7's 432 — the two table rows above
+are computed on this term). They sit 207 cycles under 0007 §4's
 published 1,243,466 at depth 10 (the pre-0009 row 4, 952, priced into the
 latency term) and 15 cycles under its published 1,473,866 at depth 12 —
 that published figure reuses the depth-10 latency term, which under-counts

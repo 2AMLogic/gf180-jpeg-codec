@@ -253,7 +253,7 @@ reported only as the bound on first-MCU latency.
 | 1 Ingest, convert, downsample | input-bound: 3 beats x 256 pixels; §9 row "Input-bus cycles per MCU: 768 (55%)" | 768 | 55.3 |
 | 2 M0 read, DCT (both passes) | per block 16 vectors x 8 cycles + 12 fill/drain = 140, 6 blocks; against §9 231.5 per block | 840 | 60.5 |
 | 3 Zig-zag, quantize | 64 coefficients at 1 per cycle + 8 latency = 72 per block; against §9 231.5 per block | 432 | 31.1 |
-| 4 Huffman symbol path | record 0009's pipelined path: 2 cycles per symbol (the A = 2 grant cadence) x symbols + 1 per in-run zero, plus arbitration and S7 back-pressure — content-dependent; at the q95 row of the §12 image, counted-derived (2 x 425,695 + 35,105 + 39,211 + 3,624) / 1200 = 745.2 (record 0009). The replaced blocking FSM cost 1448.2 counted (record 0008); the original M1/M2 access pricing here undercounted the stage at ~2.1 cycles per symbol | 745.2 | 53.7 |
+| 4 Huffman symbol path | record 0009's pipelined path: 2 cycles per symbol (the A = 2 grant cadence) x symbols, plus arbitration and S7 back-pressure — content-dependent; in-run zeros are absorbed into cycles the back end already spends (at q95, 2 x 425,695 = 851,390 ≥ the 460,800 formed beats), so at the q95 row of the §12 image, counted-derived (2 x 425,695 + 39,211 + 3,624) / 1200 = 745.2 (record 0009). The replaced blocking FSM cost 1448.2 counted (record 0008); the original M1/M2 access pricing here undercounted the stage at ~2.1 cycles per symbol | 745.2 | 53.7 |
 | 5 Bit pack and byte out, **worst-case content** | 6 x 1665 bits (§3 per-block bound) = 9990 bits = 1248.75 bytes at 1 byte per cycle; §3 "44.96 MB/s under 50 MB/s" | 1249 | 89.9 |
 | M0 port | (96 writes + 96 reads) x A = 2; §9 "192 port cycles", worst tolerable A is 7 | 384 | 27.6 |
 | M1 port | 354 accesses x 2 | 708 | 51.0 |
@@ -266,7 +266,7 @@ pipelined `jc_huff` sits at a counted-derived 745.2 cycles/MCU, below the
 (the blocking FSM it replaced counted 1448.2 — record 0008 — and was the
 binder at q95). Stage 5's 1249 row remains the §3 theoretical per-block
 bound at hypothetical all-max-symbol content; on the named §12 images the
-scan output counts 300.8 bytes/block at q95 and that stage does not bind.
+scan output counts 300.8 bytes/MCU at q95 and that stage does not bind.
 At typical content (`scene_fbm_640x480`) the slowest stage is also stage 2,
 at 840. All figures are budgets or counted simulations, never measurements;
 the cycles per frame are counted in simulation on those images (item 5).
@@ -280,7 +280,16 @@ of the frame period 50e6 / 30 = 1,666,667. Counted in simulation (record
 record 0009): the q95 row needs 1,088,887 cycles to `out_last`, 65.3% of
 the period (45.9 frames/s simulated) — the ~76,000-cycle difference from
 the derived bound is the quantizer's M1 contention behind `jc_huff`'s
-lookup rate (`qa` stalls 407,647, reported in record 0009). Record 0007
+lookup rate (`qa` stalls 407,647, reported in record 0009). **Provenance
+of these current figures:** the stage-2-at-840 statements above and the
+counted 1,088,887 row were both produced at DCT depth 8 — before the
+depth-12 `jc_dct1d` retiming (record 0007 §4's band edge) merged into
+this branch — so at the tree as merged the operative figure is the
+depth-12 row derived below: 1,473,851 cycles, 88.4% of the period. A
+counted re-run on the merged tree, reported as Judge-side evidence on
+PR #152, gave 1,383,370 cycles to `out_last` (83.0% of the period, 36.1
+frames/s simulated, `golden_match` true, byte counts unchanged),
+consistent with that row and within §9. Record 0007
 (`0007-pre-route-setup-shortfall.md`) re-derives stage 2 across its depth
 band: at the decided depth 10 (1032 cycles/MCU) the same slowest-stage
 model gives 1,243,259 (74.6%), at the band edge depth 12 (1224) 1,473,851
