@@ -5,6 +5,7 @@ Maintained by the Guide triage role.
 
 ### 2026-11-17
 
+- **PR #191**: chore(loom): resync installed Loom to v0.19.1306
 - **PR #189**: docs: record TMPDIR=/tmp workaround for klt synthesize on dispatch hosts
 - **Issue #188** (closed): flow/: record the TMPDIR path-length workaround for klt synthesize runs
 - **PR #187**: flow: derive option-C synthesize request from synthesize.json at run time
