@@ -50,6 +50,18 @@ is made to look safer than it is. Nonetheless it is wrong, and a published
 price is exactly the kind of figure a later record cites as a bound — hence
 this record rather than silence.
 
+**Amended by record 0013**
+(`spec/decision-records/0013-post-0009-frame-bound.md`): the 90.2% figure
+and the 4439 latency sum cited in this record's header, Evidence and
+Decision are the pre-0009 pricing (§7 row 5 as binder, row 4 at 952); under
+`0009-huff-symbol-path-pipelining.md` the merged
+`0005-rtl-microarchitecture.md` §7 rows carry the operative sums (4034 /
+4232 / 4424 at depths 8 / 10 / 12) and bounds 60.8% (depth 8) – 88.4%
+(depth 12). This record's subject — stage 1 priced at `L`, not `6L` —
+stands, and the conservative-direction finding remains true against the
+corrected bound (the ≤ 235-cycle over-statement is still < 0.02% of
+1,243,259).
+
 ## Decision
 
 1. **Stage 1's pricing is corrected to `L` cycles of first-MCU latency.**

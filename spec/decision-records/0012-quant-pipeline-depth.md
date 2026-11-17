@@ -120,6 +120,17 @@ typical-content frame bound becomes 1200 × 1032 + 4463 + 627 =
 bound 1200 × 1249 + 4463 + 627 = **1,503,890** (90.2%, was 90.2%). No
 conclusion moves.
 
+**Amended by record 0013**
+(`spec/decision-records/0013-post-0009-frame-bound.md`): the §7-row
+worst-case bound here (1,503,890, 90.2%) prices the pre-0009 §7 row 5
+(1249) as the binder with row 4 at 952; under
+`0009-huff-symbol-path-pipelining.md` the binder at worst-case content is
+stage 2 and merged `0005-rtl-microarchitecture.md` §7's per-depth rows give
+74.6% at the decided depth 10 and 88.4% at the band edge (depth 12). The
+measured quant depth and the re-priced §5 increment stand; this record's
+74.6% typical-content row already matched the corrected model at two
+decimals, so its "no conclusion moves" verdict survives.
+
 ### 3. §5 increment accounting for the quant latency term
 
 0007 §5 prices the retiming increment as +192 cycles/MCU (stage 2) plus the

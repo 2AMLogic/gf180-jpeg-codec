@@ -219,6 +219,15 @@ still prices the binder as §7's row 5; under 0008 the counted
 worst-case-content figure is the q95 row — 1,740,070 cycles, **104.4%** of
 the period — and closing it is #137's, not settled by this record.
 
+**Amended by record 0013**
+(`spec/decision-records/0013-post-0009-frame-bound.md`): both 90.2%
+statements here (§4's 1,503,866 above and §5's "at every depth in the band"
+below) price the pre-0009 §7 row 5 (1249) as the binder with row 4 at 952;
+under `0009-huff-symbol-path-pipelining.md` the binder at worst-case
+content is stage 2, and merged `0005-rtl-microarchitecture.md` §7's
+per-depth rows give 60.8% (depth 8) – 88.4% (depth 12). The retiming
+decision and the §2 target stand.
+
 ### 5. What this record settles — and what it does not
 
 The counted cycles (record

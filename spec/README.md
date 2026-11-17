@@ -20,6 +20,7 @@ Ratified specification and decision records. See the repo README for scope.
 | [decision-records/0010-retime-depth-allowance.md](decision-records/0010-retime-depth-allowance.md) | Retime depth allowance: measurement-bounded depth for `colour_convert` and `jc_quant_core`, retime span, band pricing; §5's q95 column classified | Decided, 2026-11-15 (issue #144) |
 | [decision-records/0011-stage1-retime-latency-pricing.md](decision-records/0011-stage1-retime-latency-pricing.md) | Stage 1's retime latency pricing: `L` beats of inserted chroma-lane latency cost `L` cycles of first-MCU latency, not `6L`; 0010 §3's price corrected, no bound changes | Decided, 2026-11-16 (issue #160) |
 | [decision-records/0012-quant-pipeline-depth.md](decision-records/0012-quant-pipeline-depth.md) | The `jc_quant_core` pipeline depth, measured: five stages under 0010 §1's allowance, row 3 and the §5 increment priced at the measured depth; the mapper carry-select-collapse finding | Decided, 2026-11-15 (issue #133) |
+| [decision-records/0013-post-0009-frame-bound.md](decision-records/0013-post-0009-frame-bound.md) | The frame bound after `jc_huff` pipelining: the merged 0005 §7 slowest-stage rows (60.8% at depth 8 to 88.4% at depth 12 at worst-case content) replace the pre-0009 90.2%-at-every-depth figure; 0007/0010/0011/0012's citations scoped by pointer | Decided, 2026-11-17 (issue #196) |
 
 Recorded statuses are transcribed from each record's status line as
 committed; changing a record's status is its own decision record, not an edit
