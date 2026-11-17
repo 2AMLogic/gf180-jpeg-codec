@@ -5,6 +5,10 @@ Maintained by the Guide triage role.
 
 ### 2026-11-17
 
+- **PR #189**: docs: record TMPDIR=/tmp workaround for klt synthesize on dispatch hosts
+- **Issue #188** (closed): flow/: record the TMPDIR path-length workaround for klt synthesize runs
+- **PR #187**: flow: derive option-C synthesize request from synthesize.json at run time
+- **Issue #183** (closed): Derive synthesize-optc request from synthesize.json (copy is stale after quantizer split)
 - **PR #179**: fix: fail inventory closure guard on unresolved .py members
 - **Issue #172** (closed): check_inventory_closure.py reports OK after checking zero members when run outside the repo root
 
