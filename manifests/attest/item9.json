@@ -136,7 +136,7 @@
         "role": "testbench",
         "path": "verification/rtl/test_top_frame_cycles.py",
         "passed": true,
-        "content_hash": "sha256:13678bf7371968a76114918b2667b89c69210a4f353fc548ee6a36fceb587e49"
+        "content_hash": "sha256:1c930c677cd2c590500645a0802f38a11379a1921946efcaf4f2c04be5578c43"
       },
       {
         "check": "present",
