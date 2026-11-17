@@ -26,8 +26,12 @@
 // jc_quant_recip, jc_quant_mul, jc_quant_sum_windows and jc_quant_clamp
 // (record 0007 section 1). For timing this stage instantiates the datapath's
 // pieces directly with a five-stage pipeline through them, which is pure
-// retiming: every quotient is identical by construction, and the exhaustive
-// bench proves the combinational network unchanged. The cut points are the
+// retiming: the exhaustive bench proves the combinational network unchanged,
+// and run_quantizer_equiv.sh checks this pipelined stage equivalent to
+// jc_quant_core over a bounded sweep (issue #186), so the inline glue --
+// the level-2 ROM combine, the magnitude front end, the quotient sum and
+// the clamp decision -- cannot drift from the proven core. The cut points
+// are the
 // measured ones (issue #133; flow/records/20261115T201735Z-8ecbcd0,
 // flow/records/20261115T203655Z-8ecbcd0, flow/records/20261115T212649Z-8ecbcd0
 // and flow/records/20261115T213727Z-8ecbcd0 traced successive cuts at
@@ -152,7 +156,7 @@ module jc_quant (
                         .lo_s(lo_s_c), .lo_c(lo_c_c), .hi_s(hi_s_c), .hi_c(hi_c_c));
 
     // p3 -> p4: the raw slice adds and their carries (identical to
-    // jc_quant_core's)
+    // jc_quant_core's; run_quantizer_equiv.sh checks the composition)
     wire [14:0] phi150_c;
     wire [9:0]  plo16b0_c;
     wire        c10_c;
@@ -163,7 +167,8 @@ module jc_quant (
                                    .phi150(phi150_c), .plo16b0(plo16b0_c),
                                    .c10(c10_c), .c16lo(c16lo_c), .c16f(c16f_c));
 
-    // p4 -> p5: the quotient (identical to jc_quant_core's):
+    // p4 -> p5: the quotient (identical to jc_quant_core's, checked by
+    // run_quantizer_equiv.sh):
     // prod[30:16] = phi150 + plo16b0 + c10 + c16lo + c16f
     /* verilator lint_off UNUSEDSIGNAL */  // mqv_c[15] is the proven-zero
     // pad of the quotient width
