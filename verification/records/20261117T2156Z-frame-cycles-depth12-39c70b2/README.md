@@ -18,6 +18,10 @@ exit 0, **3/3 pass**), three rows, colour 4:2:0 at 640 x 480 (exactly 1200
 MCUs, no host padding). Machine-written figures are in `cycles.json`; the
 bench's `"issue": 119` field inside it is the schema-2 stage-counter
 provenance and stays as the bench wrote it — this run is issue #197's.
+Cycle counts are machine-written and exact to ±1 as this bench computes
+them (position-dependent within a simulation — see "Disposition of the
+quoted 1,383,370" below); the rounded percentages and frame rates are
+unaffected.
 
 | Image | Quality | Output bytes | Cycles to `out_last` | % of frame period (1,666,667) | % of record 0005 bound (1,503,668) | Byte-exact vs golden |
 |---|---|---|---|---|---|---|
@@ -57,17 +61,32 @@ simulated and cite the engine they came from.
 The provenance paragraphs of record 0005 §7 and record 0009 quote a
 Judge-side run on PR #152 giving **1,383,370** cycles to `out_last`; the PR
 #200 evaluation later reported the restored bench giving **1,383,369**, one
-cycle lower. This record's committed count settles it: the machine-written
-`cycles_to_out_last` is **1,383,369**, and the run's separate stage-window
-sampler counter (`stage_sample_cycles`, an edge-counting coroutine stopped at
-the same beat) reads **1,383,370** — the +1 is the sampler's edge alignment
-relative to the `out_last` timestamp, not run-to-run variance (+1 on two of
-the three rows, 0 on `scene_fbm` q50, where both counters read 1,383,316 —
-all three pairs are in `cycles.json`). The quoted
-1,383,370 and this record's 1,383,369 are therefore the same run read off two
-counters; the operative figure for `cycles_to_out_last` on the merged tree is
-**1,383,369**, and both quoted transcriptions are superseded by this
-committed count.
+cycle lower, and this record's committed q95 count is that lower reading
+(1,383,369, third test in the simulation). Re-running this bench with the
+q95 row first (at the PR head `e89c1bb`, whose only RTL delta from the
+recorded `39c70b2` is comment-only in `jc_quant.v`; same seed, same engine)
+writes **1,383,370** for the same frame — so the two quoted
+figures are the **same beat** read through a floor-sensitive timestamp, not
+two counters disagreeing and not variance in the RTL. Every residue-free
+counter is identical across positions: the edge-counted stage-sampler
+window (1,383,370 edges over 13,833,690.000 ns at q95, 1,383,316 edges over
+13,833,150.000 ns at q50), `drive_cycles` (1,383,371 / 1,383,317), all nine
+stages' four `stage_counts`, the arbiter and SRAM occupancy counters,
+`output_bytes`, and `golden_match`. As this bench computes it —
+`cycles_to_out_last` floors a nanosecond timestamp rather than counting
+edges (filed as #208) — the figure is exact to **±1**, and the ±1 is
+**positional**, not a per-row property: the `stage_sample_window_ns` starts
+in this run's `cycles.json` (32760.000, 13898700.001, 27764670.002 ns)
+accumulate a sub-nanosecond residue per preceding test, and
+`stage_sample_cycles` − `cycles_to_out_last` follows the same order — 0 on
+the first test of a simulation, +1 on any later one (`scene_fbm` q50 here
+ran first and reproduces exactly; the `noise_max_entropy` rows ran later
+and carry the +1). The operative statement for the merged tree is therefore
+the **1,383,369 / 1,383,370 pair over the residue-free counters above**,
+not a single exact count; both quoted transcriptions sit inside that pair,
+and the records citing this count (`0005` §7, `0009`, `0013`) carry the ±1
+resolution. The rounded §9 figures — 83.0% of the period, 92.0% of the
+0005 bound, 36.1 frames/s simulated — are unchanged under this resolution.
 
 ## Counted vs the derived depth-12 row
 

@@ -161,8 +161,11 @@ tree as merged the operative row is the depth-12 one (1,473,851, 88.4%); a count
 re-run on the merged tree is committed as
 `verification/records/20261117T2156Z-frame-cycles-depth12-39c70b2/`
 (issue #197): 1,383,369 cycles to `out_last` (83.0% of the period, 36.1
-frames/s simulated, `golden_match` true, byte counts unchanged), consistent
-with that row.
+frames/s simulated, `golden_match` true, byte counts unchanged) — exact to
+±1 as that bench computes `cycles_to_out_last`, position-dependent within a
+simulation (the same frame reads 1,383,370 with the test run first; the
+record's "Disposition of the quoted 1,383,370" § carries the resolution),
+consistent with that row.
 
 The depth-10 and depth-12 rows use `0007-pre-route-setup-shortfall.md` §4's
 re-derived stage rows (1032 / 1224 cycles/MCU) with this record's per-depth
