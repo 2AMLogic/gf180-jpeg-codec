@@ -46,13 +46,15 @@ a single OpenROAD job, not a grid.
 
 ## Option C size estimate (decision 0004, issue #115)
 
-`synthesize-optc.json` + `synthesize-optc.sh` + `sram_stdcell.v` size decision
-record 0004's **option C** (standard-cell RAM), whose options table leaves the
-9-track area "not estimated here (unverified)". The request is
-`synthesize.json` with two fields changed -- `sram_blackbox.v` becomes
+`synthesize-optc.sh` + `sram_stdcell.v` size decision record 0004's **option
+C** (standard-cell RAM), whose options table leaves the 9-track area "not
+estimated here (unverified)". The script derives its request from
+`synthesize.json` at run time into the gitignored `synthesize-optc.request.json`,
+with two fields changed -- `sram_blackbox.v` becomes
 `sram_stdcell.v`, and `outputs.dir` becomes `netlist-optc` -- so the figures are
 like-for-like on library (`gf180mcu_fd_sc_mcu9t5v0`), corner (`ss_125C_3v00`)
-and clock (20 ns). Nothing under `rtl/` changes: `jc_sram_wrap.v` instantiates
+and clock (20 ns), and the derived request cannot drift from the baseline it is
+compared against. Nothing under `rtl/` changes: `jc_sram_wrap.v` instantiates
 `gf180_sram_256x32` by module name, so giving that name a synthesizable body is
 the whole substitution.
 
@@ -79,8 +81,9 @@ before quoting any number from it.
 maturity rung. **It does not invoke decision 0004's fallback gate**: 0004 still
 adopts option A, `netlist/` is untouched (`synthesize.sh --check` exits 0 after
 an option-C run), `manifests/` is unchanged, and switching to option C would
-still need a new decision record. The option-C netlist is not committed; it is
-reproducible from the committed request.
+still need a new decision record. The option-C netlist and its derived request
+are not committed; the request is regenerated from `synthesize.json` on each
+run.
 
 ## Status: item 2 is NOT met
 
