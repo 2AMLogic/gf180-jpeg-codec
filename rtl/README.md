@@ -17,11 +17,14 @@ Module names, ports and stream widths are fixed by
 | `jpeg_codec_top.v` | top level: port list of record 0005 section 3, all stages, three memory instances, mode fan-out | #48 |
 | `jc_sram_wrap.v` | one `gf180-sram` 256 x 32 macro behind `{en, we, addr, wdata, rdata}`; the macro is a black box in synthesis (`flow/sram_blackbox.v`) | #48 |
 | `jc_sram_arb.v` | fixed-priority N-requester arbiter in front of one wrap, enforces access time A = 2 | #48 |
-| `jc_downsample.v` | pixel ingest, `colour_convert`, 2 x 2 chroma average, word packing into S2 writes | #48 (see note) |
+| `jc_downsample.v` | pixel ingest, `jc_cc_pipe` colour conversion, 2 x 2 chroma average, word packing into S2 writes | #48 (see note) |
+| `jc_cc_pipe.v` | pipelined RGB to YCbCr converter (eight-cycle latency) built from the `jc_cc_*` sub-networks; the converter the datapath instantiates | #132 |
+| `colour_convert.v` | combinational RGB to YCbCr reference; not instantiated by any RTL, kept as the bit-identical reference for `test_colour.py` via `verification/rtl/colour_tb_top.v` (still listed in the attested source inventory) | #42 |
 | `jc_mb_ctrl.v` | macroblock buffers A/B, M0 write-before-read arbitration, S3 read sequencing | #48 (see note) |
 
 Note: record 0005 section 2 assigns `jc_downsample` and `jc_mb_ctrl` to #42, but
 #42 delivered only the combinational `colour_convert`,
-so the sequential ingest stage that connects it to M0 was written with the
-integration in #48. `colour_convert` is used under its #42 name rather than
-`jc_color_convert`.
+so the sequential ingest stage that connects a converter to M0 was written with
+the integration in #48. Since #132, `jc_downsample` instantiates the pipelined
+`jc_cc_pipe` rather than `colour_convert`; `colour_convert` keeps its #42 name
+rather than `jc_color_convert` and is retained only as the test reference.
