@@ -1,0 +1,58 @@
+# transcript: python3 verification/rtl/run_stage.py dct
+# date: 2026-11-18T11:09:04Z host: loom-worker-4
+# iverilog: Icarus Verilog version 14.0 (devel) (s20260301-451-gc9ed76463-dirty)
+# cocotb: 2.1.0
+# git: 7e6f48014e66d95f2282db6f7d8b832cb26f1650 (rtl/jc_dct1d.v sha256:edde7aa71e7966e9481cb6fb0ed0483203a775cd587868497165a2718c65f950)
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:242  in gpi_load_users                  Loaded entry library: '/usr/lib/x86_64-linux-gnu/libpython3.12.so.1.0'
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:233  in gpi_load_users                  Running entry func 'initialize' from loaded library '/home/ubuntu/GitHub/gf180-jpeg-codec/.loom/worktrees/issue-169/.venv/lib/python3.12/site-packages/cocotb/simulator.cpython-312-x86_64-linux-gnu.so'
+     -.--ns INFO     pygpi                              ..ib/pygpi/embed.cpp:114  in initialize                      Using Python 3.12.12 interpreter at /home/ubuntu/GitHub/gf180-jpeg-codec/.loom/worktrees/issue-169/.venv/bin/python3
+     -.--ns ERROR    pygpi                              ..ib/pygpi/embed.cpp:168  in initialize                      Unexpected sys.executable value (expected '/home/ubuntu/GitHub/gf180-jpeg-codec/.loom/worktrees/issue-169/.venv/bin/python3', got '/home/ubuntu/oss-cad-suite/bin/tabbypy3')
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:74   in gpi_print_registered_impl       GPI: VPI support registered
+     0.00ns INFO     cocotb.initialize                  Seeding Python random module with 1
+     0.00ns INFO     cocotb.initialize                  Initialized cocotb v2.1.0 from /home/ubuntu/GitHub/gf180-jpeg-codec/.loom/worktrees/issue-169/.venv/lib/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb.initialize                  Running on Icarus Verilog version 14.0 (devel)
+     0.00ns INFO     cocotb.regression                  Running tests
+     0.00ns INFO     cocotb.regression                  running test_dct.test_worked_examples (1/7)
+                                                            T.81 block (0003 and codec.md section 5 DCT rows), flat 255, flat 0, and
+  8565.00ns INFO     cocotb.jc_dct                      worked examples match: row [-2088, -163, -64, -76, 80, -35, -8, 27], block rows [-3323, -241, -489, 218, 449, -160, -19, 4, 36, -174, -486, 82, 105, -57, -68, 39]
+  8565.00ns INFO     cocotb.regression                  test_dct.test_worked_examples passed
+  8565.00ns INFO     cocotb.regression                  running test_dct.test_directed_blocks (2/7)
+283260.00ns INFO     cocotb.jc_dct                      132 directed blocks match
+283260.00ns INFO     cocotb.regression                  test_dct.test_directed_blocks passed
+283260.00ns INFO     cocotb.regression                  running test_dct.test_random_blocks (3/7)
+                                                            2400 seeded random blocks, back to back, stall-free.
+5275395.00ns INFO     cocotb.jc_dct                      2400 random blocks match; 208.0 cycles/block streamed
+5275395.00ns INFO     cocotb.regression                  test_dct.test_random_blocks passed
+5275395.00ns INFO     cocotb.regression                  running test_dct.test_golden_crosscheck (4/7)
+                                                            The RTL against the committed golden model, not only the record 0003
+5899530.00ns INFO     cocotb.jc_dct                      300 random blocks match the golden model fdct_block
+5899530.00ns INFO     cocotb.regression                  test_dct.test_golden_crosscheck passed
+5899530.00ns INFO     cocotb.regression                  running test_dct.test_backpressure (5/7)
+                                                            Random stalls on S3 valid and S4 ready change nothing.
+6039215.00ns INFO     cocotb.jc_dct                      p_in=0.50 p_out=0.50: 60 blocks match
+6333655.00ns INFO     cocotb.jc_dct                      p_in=0.90 p_out=0.15: 60 blocks match
+6477365.00ns INFO     cocotb.jc_dct                      p_in=0.15 p_out=0.90: 60 blocks match
+7260715.00ns INFO     cocotb.jc_dct                      p_in=1.00 p_out=0.05: 60 blocks match
+7260715.00ns INFO     cocotb.regression                  test_dct.test_backpressure passed
+7260715.00ns INFO     cocotb.regression                  running test_dct.test_cycle_budget (6/7)
+                                                            Record 0014 section (proposed) stage 2 row: at most 220 cycles per
+7262930.00ns INFO     cocotb.jc_dct                      cycles per block (first S3 accept to last S4 beat, inclusive) = 218; conditions: s3_valid held high, s4_ready held high, single block
+7262930.00ns INFO     cocotb.regression                  test_dct.test_cycle_budget passed
+7262930.00ns INFO     cocotb.regression                  running test_dct.test_synthesis_no_latches (7/7)
+                                                            Yosys on the three files: transpose file is flops, no latch, no macro.
+7262930.01ns INFO     cocotb.jc_dct                      yosys cells: {'wires': 7414, 'ports': 10, 'cells': 15294, '$_ANDNOT_': 710, '$_AND_': 3168, '$_DFFE_PP_': 3598, '$_MUX_': 1207, '$_NAND_': 1092, '$_NOR_': 241, '$_NOT_': 301, '$_ORNOT_': 94, '$_OR_': 1431, '$_SDFFCE_PN0P_': 4, '$_SDFFE_PN0P_': 14, '$_SDFFE_PP0P_': 3, '$_SDFF_PN0_': 5, '$_XNOR_': 1088, '$_XOR_': 2336, '$scopeinfo': 2}
+7262930.01ns INFO     cocotb.regression                  test_dct.test_synthesis_no_latches passed
+7262930.01ns INFO     cocotb.regression                  ********************************************************************************************
+                                                        ** TEST                                STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ********************************************************************************************
+                                                        ** test_dct.test_worked_examples        PASS        8565.00           0.05     178102.95  **
+                                                        ** test_dct.test_directed_blocks        PASS      274695.00           1.44     191072.58  **
+                                                        ** test_dct.test_random_blocks          PASS     4992135.00          30.53     163521.78  **
+                                                        ** test_dct.test_golden_crosscheck      PASS      624135.00           3.84     162552.71  **
+                                                        ** test_dct.test_backpressure           PASS     1361185.00           6.99     194639.94  **
+                                                        ** test_dct.test_cycle_budget           PASS        2215.00           0.01     188134.05  **
+                                                        ** test_dct.test_synthesis_no_latches   PASS           0.00           2.72          0.00  **
+                                                        ********************************************************************************************
+                                                        ** TESTS=7 PASS=7 FAIL=0 SKIP=0                  7262930.01          45.58     159339.84  **
+                                                        ********************************************************************************************
+icarus: 7/7 passed

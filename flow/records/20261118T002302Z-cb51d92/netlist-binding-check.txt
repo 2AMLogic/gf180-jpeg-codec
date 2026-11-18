@@ -1,0 +1,27 @@
+# netlist binding: rtl/jc_dct1d.v -> flow/netlist/jpeg_codec_top_synth.v -> STA record
+# date: 2026-11-18T11:14:21Z host: loom-worker-4
+# git: 7e6f48014e66d95f2282db6f7d8b832cb26f1650 (rtl/jc_dct1d.v sha256:edde7aa71e7966e9481cb6fb0ed0483203a775cd587868497165a2718c65f950)
+
+$ flow/synthesize.sh   # klt synthesize (TMPDIR=/tmp)
+netlist in flow/netlist/jpeg_codec_top_synth.v
+$ sha256sum flow/netlist/jpeg_codec_top_synth.v
+61cdd7a3db699a3e8331c47eea825ba6b57f8adc1f5eb7746f52a5e03b01e2dd  flow/netlist/jpeg_codec_top_synth.v
+  == the netlist every record directory in this trail cites and STA timed
+
+$ flow/synthesize.sh --check
+report: netlist/report.json
+status: match
+  [OK] provenance.input.content_hash
+  [OK] provenance.deck.content_hash
+  [OK] parameters
+  [OK] defines
+  [OK] netlist_sha256
+
+Note: the committed report.json from the measured run recorded input bundle
+sha256:be18d64f68f0248137f6c81c02228a190540e71779103f0546860598f6387aa7; the
+current tree hashes sha256:820eb173be3e603fe1d09ff0e86a0af7afb3fc208abfa9f032a5c0a0b42b458d.
+The rtl/jc_dct1d.v file itself also differs from the earlier prose citation
+(sha256:532857f192abc4f55a50c3b4f1f68d4916fa6be2eaa14df1402953e49ed24ee2). The
+regeneration above proves those differences are synthesis-invisible: the fresh
+netlist is byte-identical to the measured one, so the RTL -> netlist -> STA
+chain binds to the committed rtl/jc_dct1d.v (sha256:edde7aa71e7966e9481cb6fb0ed0483203a775cd587868497165a2718c65f950).

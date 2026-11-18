@@ -2,7 +2,11 @@
 
 This record measures the candidate that closes §2's assumption-free half:
 `rtl/jc_dct1d.v` at this branch's head (sha256
-`532857f192abc4f55a50c3b4f1f68d4916fa6be2eaa14df1402953e49ed24ee2`),
+`edde7aa71e7966e9481cb6fb0ed0483203a775cd587868497165a2718c65f950`; an
+earlier citation here said `532857f1…` — the file was edited after the
+measured run, and `netlist-binding-check.txt` beside this README shows the
+edit synthesis-invisible: regenerating the netlist from the committed sha
+reproduces the netlist this run timed byte for byte),
 synthesized by `flow/synthesize.sh` into the netlist this run timed (input
 sha256 `61cdd7a3db699a3e8331c47eea825ba6b57f8adc1f5eb7746f52a5e03b01e2dd`,
 pinned in `versions.txt`). `spec/decision-records/0014-jc-dct1d-datapath-restructure.md`
