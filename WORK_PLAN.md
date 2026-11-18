@@ -27,15 +27,13 @@ _None._
 
 Human-approved issues (`loom:issue`) ready for implementation — excluding held (`loom:blocked`/`loom:operator`/`loom:frozen`), `loom:building`, and issues closed by an open `loom:pr` PR (listed under Approved).
 
-_None._
+- **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
 
 ## In Progress
 
 Issues currently being built (`loom:building`).
 
-- **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
 - **#169**: jc_dct1d depth: successor decision needed — §2 timing target unreachable in the record 0007 §4 band (PR #164 measured evidence)
-- **#211**: Two other benches still derive cycle figures from float-ns spans (same class as #208)
 
 ## PRs Awaiting Review
 
@@ -57,7 +55,6 @@ Issues carrying `loom:curated`.
 - **#132**: Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target *(curated)*
 - **#165**: re-verify healthy synthesize byte-identity on a wedge-free window (blocked during #156 by the yosys/ABC wedge) *(curated)* *(held)*
 - **#169**: jc_dct1d depth: successor decision needed — §2 timing target unreachable in the record 0007 §4 band (PR #164 measured evidence) *(curated)*
-- **#211**: Two other benches still derive cycle figures from float-ns spans (same class as #208) *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -74,11 +71,11 @@ _None._
 | Operator merge-risk holds | 0 |
 | Very important | 1 |
 | Important | 3 |
-| Ready (`loom:issue`, net of holds/building/merge-pending) | 0 |
-| In Progress (`loom:building`) | 3 |
+| Ready (`loom:issue`, net of holds/building/merge-pending) | 1 |
+| In Progress (`loom:building`) | 1 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
-| Curated | 5 |
+| Curated | 4 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
