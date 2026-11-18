@@ -287,6 +287,41 @@ async def test_random_blocks(dut):
 
 
 @cocotb.test()
+async def test_golden_crosscheck(dut):
+    """The RTL against the committed golden model, not only the record 0003
+    transcription: seeded random blocks (plain, word-length stress, spaced,
+    small-delta) compared coefficient-for-coefficient against
+    verification/golden/jpeg_golden.py fdct_block. Record 0014's
+    bit-exactness obligation for the restructured jc_dct1d datapath."""
+    import jpeg_golden
+    await setup(dut)
+    rng = random.Random(0x169)
+    blocks = []
+    for i in range(300):
+        kind = i % 4
+        if kind == 0:
+            s = [rng.randrange(256) for _ in range(64)]
+        elif kind == 1:
+            s = [rng.choice((0, 255)) for _ in range(64)]
+        elif kind == 2:
+            s = spaced(rng, 64)
+        else:
+            base = rng.randrange(256)
+            s = [min(255, max(0, base + rng.randrange(-12, 13))) for _ in range(64)]
+        blocks.append((s, rng.randrange(3), i == 299))
+    out, _, _ = await run_blocks(dut, blocks, rng)
+    for bi, (samples, comp, last) in enumerate(blocks):
+        exp = jpeg_golden.fdct_block(samples)
+        got = out[64 * bi: 64 * bi + 64]
+        for k, (idx, coef, ocomp, olast) in enumerate(got):
+            r, c = idx // 8, idx % 8
+            # S4 emits column by column: beat k of a block holds idx order[k]
+            assert coef == exp[idx], (
+                f"golden mismatch block {bi} idx {idx}: rtl {coef} golden {exp[idx]}")
+    dut._log.info("%d random blocks match the golden model fdct_block", len(blocks))
+
+
+@cocotb.test()
 async def test_backpressure(dut):
     """Random stalls on S3 valid and S4 ready change nothing."""
     await setup(dut)
@@ -301,11 +336,12 @@ async def test_backpressure(dut):
 
 @cocotb.test()
 async def test_cycle_budget(dut):
-    """Record 0007 section 4 stage 2 (supersedes the 0005 section 7 row for
-    this stage): at most 204 cycles per block = 16 vectors x 12 cycles/vector
-    + 12 fill/drain, first S3 beat accepted to last S4 beat, stall-free
-    (s3_valid high whenever data is ready to send, s4_ready always high), one
-    block after reset."""
+    """Record 0014 section (proposed) stage 2 row: at most 220 cycles per
+    block = 16 vectors x 13 cycles/vector + 12 fill/drain, first S3 beat
+    accepted to last S4 beat, stall-free (s3_valid high whenever data is
+    ready to send, s4_ready always high), one block after reset. Supersedes
+    the record 0007 section 4 line (204 = 16 x 12 + 12) for the restructured
+    jc_dct1d datapath."""
     await setup(dut)
     rng = random.Random(3)
     blk = [(T81[:], 0, True)]
@@ -314,7 +350,7 @@ async def test_cycle_budget(dut):
     n = lastc - first + 1
     dut._log.info("cycles per block (first S3 accept to last S4 beat, inclusive) = %d; "
                   "conditions: s3_valid held high, s4_ready held high, single block", n)
-    assert n <= 204, f"{n} cycles per block exceeds the 204 budget (record 0007 section 4)"
+    assert n <= 220, f"{n} cycles per block exceeds the 220 budget (record 0014)"
 
 
 @cocotb.test()
