@@ -30,6 +30,9 @@ module jc_quant_mul (
     output wire [26:0] hi_c    // carry-save carry of n[10:6] * recip (<< 1)
 );
     /* verilator lint_off UNUSEDSIGNAL */  // m[26] and the S/C top bits are the proven-zero pad of the product width
+    /* verilator lint_off VARHIDDEN */  // the a/b/c args shadow colour_convert's same-named ports once
+        // that module becomes a bench-only lint top (issue #132's split left it
+        // instantiated only by colour_tb_top, outside this hierarchy)
     // 3:2 compressor: sum and carry (carry pre-shifted left by 1)
     function [26:0] csa_s3;
         input [26:0] a;
@@ -48,6 +51,7 @@ module jc_quant_mul (
         end
     endfunction
     /* verilator lint_on UNUSEDSIGNAL */
+    /* verilator lint_on VARHIDDEN */
 
     // partial rows, zero-extended to 27 bits with the shift folded in
     wire [26:0] l0 = {27{n[0]}}  & {7'b0, recip};

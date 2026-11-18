@@ -39,6 +39,8 @@ python3 verification/rtl/run_stage.py <name> [run_tb.py flags]
 | Name | Bench | Top level |
 |---|---|---|
 | `colour` | `test_colour.py` | `colour_tb_top` |
+| `colour_pipe` | `test_colour_pipe.py` (#132) | `colour_pipe_tb_top` |
+| `downsample` | `test_downsample.py` (#132) | `tb_downsample_top` |
 | `dct` | `test_dct.py` (#43) | `jc_dct` |
 | `quantizer` | `test_quantizer.py` (#44) | `jc_quant` |
 | `config_header` | `test_config_header.py` (#46) | `tb_config_top` |

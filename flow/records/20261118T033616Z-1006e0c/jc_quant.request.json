@@ -1,0 +1,21 @@
+{
+  "schema": "klt.sta.request/1",
+  "verilog": "netlist/jpeg_codec_top_synth.v",
+  "hdl_toplevel": "jc_quant",
+  "pdk": {
+    "cell_library": "gf180mcu_fd_sc_mcu9t5v0",
+    "corners": [
+      "ss_125C_3v00",
+      "ss_n40C_3v00",
+      "tt_025C_3v30",
+      "ff_n40C_3v60",
+      "ff_125C_3v60"
+    ]
+  },
+  "constraints": {
+    "clock_port": "clk",
+    "clock_period_ns": 20.0,
+    "input_delay_ns": 2.0,
+    "output_delay_ns": 2.0
+  }
+}

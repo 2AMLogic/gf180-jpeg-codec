@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "error": {
+    "command": "sta",
+    "message": "openroad sta run failed: Error: sta_jpeg_codec_top_synth__ss_125C_3v00.tcl, 5 can't read \"paramod\": no such variable -- openroad invocation: {\"directory\": {\"path\": \"flow/.klt/sta/openroad-logs/e2a609f924564d3f91d669d925b350cd\", \"scope\": \"repo\"}, \"invocation_id\": \"e2a609f924564d3f91d669d925b350cd\", \"metadata_path\": {\"path\": \"flow/.klt/sta/openroad-logs/e2a609f924564d3f91d669d925b350cd/invocation.json\", \"scope\": \"repo\"}, \"metrics_path\": {\"path\": \"flow/.klt/sta/jpeg_codec_top_synth__ss_125C_3v00_metrics.json\", \"scope\": \"repo\"}, \"outcome\": \"exited\", \"retention_errors\": [], \"returncode\": 1, \"script_name\": \"sta_jpeg_codec_top_synth__ss_125C_3v00.tcl\", \"script_path\": {\"path\": \"flow/.klt/sta/sta_jpeg_codec_top_synth__ss_125C_3v00.tcl\", \"scope\": \"repo\"}, \"script_sha256\": \"7c6aad47a5cae52a05a8b5ed8a2d9fd5b7e75939c6fc0517b3b9fb2707831fe3\", \"stderr_path\": {\"path\": \"flow/.klt/sta/openroad-logs/e2a609f924564d3f91d669d925b350cd/stderr.log\", \"scope\": \"repo\"}, \"stdout_path\": {\"path\": \"flow/.klt/sta/openroad-logs/e2a609f924564d3f91d669d925b350cd/stdout.log\", \"scope\": \"repo\"}}"
+  }
+}

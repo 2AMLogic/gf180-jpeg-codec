@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "error": {
+    "command": "sta",
+    "message": "openroad sta run failed: [ERROR STA-1390] $paramod\\jc_sram_arb\\N=s32'00000000000000000000000000000010 is not a verilog module. -- openroad invocation: {\"directory\": {\"path\": \"flow/.klt/sta/openroad-logs/f5e3e6b9856c4b7c909f350607041bee\", \"scope\": \"repo\"}, \"invocation_id\": \"f5e3e6b9856c4b7c909f350607041bee\", \"metadata_path\": {\"path\": \"flow/.klt/sta/openroad-logs/f5e3e6b9856c4b7c909f350607041bee/invocation.json\", \"scope\": \"repo\"}, \"metrics_path\": {\"path\": \"flow/.klt/sta/jpeg_codec_top_synth__ss_125C_3v00_metrics.json\", \"scope\": \"repo\"}, \"outcome\": \"exited\", \"retention_errors\": [], \"returncode\": 1, \"script_name\": \"sta_jpeg_codec_top_synth__ss_125C_3v00.tcl\", \"script_path\": {\"path\": \"flow/.klt/sta/sta_jpeg_codec_top_synth__ss_125C_3v00.tcl\", \"scope\": \"repo\"}, \"script_sha256\": \"4eca381dd9754e3ab8997bbad5c834a002582575f9990fe1d0cc2bea402bdb0d\", \"stderr_path\": {\"path\": \"flow/.klt/sta/openroad-logs/f5e3e6b9856c4b7c909f350607041bee/stderr.log\", \"scope\": \"repo\"}, \"stdout_path\": {\"path\": \"flow/.klt/sta/openroad-logs/f5e3e6b9856c4b7c909f350607041bee/stdout.log\", \"scope\": \"repo\"}}"
+  }
+}
