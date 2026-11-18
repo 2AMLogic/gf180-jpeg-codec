@@ -90,11 +90,18 @@ module jc_downsample (
   reg [1:0]  nset;                     // sets occupying the slots
   reg [1:0]  inflight;                 // sets committed, not yet loaded
   reg        tail;                     // slot the next set loads into
-  wire       head = tail ^ nset[0];
+  // head is the slot of the oldest set, registered (issue #132 retime): it
+  // equals tail ^ nset[0] at every cycle (load advances tail and nset
+  // together, a freed set advances head and retires one from nset), so the
+  // drain decode starts at a flop instead of an xor.
+  reg        head;
   wire       pend_any = (nset != 2'd0);
 
-  // beat that completes a pixel
-  wire last_beat = grey || (beat == 2'd2);
+  // beat that completes a pixel, registered (issue #132 retime): it equals
+  // grey_q || (beat == 2) at every cycle — the next-state expression below
+  // is the same function of next grey and next beat — so the acceptance and
+  // counter-advance cones start at a flop instead of a grey/beat decode.
+  reg        last_beat;
 
   // slot[head] view: valids, drain priority (Y, Cb, Cr) and last-word detect
   wire vhy  = head ? pv_y1  : pv_y0;
@@ -118,6 +125,7 @@ module jc_downsample (
   assign pix_ready = active && !done_all && (!last_beat || occ_lt_2_q);
   wire acc = pix_valid && pix_ready;
   wire pix_done = acc && last_beat;
+  wire [1:0] beat_n = acc ? (last_beat ? 2'd0 : beat + 2'd1) : beat;
 
   // converter: pipelined, bytes eight cycles after the sampled inputs. The
   // mode mux sits inside the pipe's first register (r_reg vs pix), so no
@@ -332,15 +340,16 @@ module jc_downsample (
 
   always @(posedge clk) begin
     if (!rst_n || !active) begin
-      beat <= 2'd0; px <= 4'd0; py <= 4'd0; mcu_c <= 14'd0; mcu_r <= 14'd0;
+      beat <= 2'd0; last_beat <= (mode == 2'd1); px <= 4'd0; py <= 4'd0; mcu_c <= 14'd0; mcu_r <= 14'd0;
       done_all <= 1'b0;
       pv_y0 <= 1'b0; pv_cb0 <= 1'b0; pv_cr0 <= 1'b0;
       pv_y1 <= 1'b0; pv_cb1 <= 1'b0; pv_cr1 <= 1'b0;
       pl_y0 <= 1'b0; pl_cr0 <= 1'b0; pl_y1 <= 1'b0; pl_cr1 <= 1'b0;
-      nset <= 2'd0; inflight <= 2'd0; tail <= 1'b0;
+      nset <= 2'd0; inflight <= 2'd0; tail <= 1'b0; head <= 1'b0;
       base_q <= 3'd0;
     end else begin
-      if (acc) beat <= last_beat ? 2'd0 : beat + 2'd1;
+      beat <= beat_n;
+      last_beat <= (mode == 2'd1) || (beat_n == 2'd2);
       if (pix_done) begin
         px    <= px_n;
         py    <= py_n;
@@ -375,6 +384,7 @@ module jc_downsample (
         end
         tail <= ~tail;
       end
+      head     <= head ^ slot_free;
       nset     <= nset + {1'b0, load_set_d10} - {1'b0, slot_free};
       inflight <= inflight + {1'b0, y_emit} - {1'b0, load_set_d10};
       base_q   <= {1'b0, nset} + {1'b0, inflight} - {2'b0, slot_free};

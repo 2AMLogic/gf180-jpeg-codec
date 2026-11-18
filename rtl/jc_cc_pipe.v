@@ -19,6 +19,10 @@
 // sits behind the first register instead of feeding the multiply network
 // off the `mode` input port.
 //
+// The stage data registers carry no reset: a vector's bytes are only ever
+// consumed behind its delayed en (chroma_valid / the control shadow), and
+// the sync-reset gate sat on the converter's critical segments (issue #132).
+//
 // The stages advance only when `en` (delayed to match each stage) is high:
 // in jc_downsample the converter inputs are only meaningful in a pixel's
 // completing beat, so the intermediate stages must hold between beats rather
@@ -54,9 +58,7 @@ module jc_cc_pipe (
   reg [7:0] q1_r, q1_g, q1_b;
   reg       q1_grey;
   always @(posedge clk) begin
-    if (!rst_n) begin
-      q1_r <= 8'd0; q1_g <= 8'd0; q1_b <= 8'd0; q1_grey <= 1'b0;
-    end else if (en) begin
+    if (en) begin
       q1_r <= grey ? pix : r_reg;
       q1_g <= g_reg;
       q1_b <= pix;
@@ -116,18 +118,7 @@ module jc_cc_pipe (
   reg        q2_grey;
   reg [7:0]  q2_r;
   always @(posedge clk) begin
-    if (!rst_n) begin
-      {q2_ya0, q2_ya1, q2_ya2, q2_ya3, q2_ya4, q2_ya5, q2_ya6, q2_ya7} <= 200'd0;
-      {q2_yb0, q2_yb1, q2_yb2, q2_yb3, q2_yb4, q2_yb5, q2_yb6, q2_yb7} <= 200'd0;
-      {q2_yc0, q2_yc1, q2_yc2, q2_yc3, q2_yc4, q2_yc5, q2_yc6, q2_yc7} <= 200'd0;
-      {q2_cba0, q2_cba1, q2_cba2, q2_cba3, q2_cba4, q2_cba5, q2_cba6, q2_cba7} <= 200'd0;
-      {q2_cbb0, q2_cbb1, q2_cbb2, q2_cbb3, q2_cbb4, q2_cbb5, q2_cbb6, q2_cbb7} <= 200'd0;
-      {q2_cbc0, q2_cbc1, q2_cbc2, q2_cbc3, q2_cbc4, q2_cbc5, q2_cbc6, q2_cbc7} <= 200'd0;
-      {q2_cra0, q2_cra1, q2_cra2, q2_cra3, q2_cra4, q2_cra5, q2_cra6, q2_cra7} <= 200'd0;
-      {q2_crb0, q2_crb1, q2_crb2, q2_crb3, q2_crb4, q2_crb5, q2_crb6, q2_crb7} <= 200'd0;
-      {q2_crc0, q2_crc1, q2_crc2, q2_crc3, q2_crc4, q2_crc5, q2_crc6, q2_crc7} <= 200'd0;
-      q2_grey <= 1'b0; q2_r <= 8'd0;
-    end else if (en_d1) begin
+    if (en_d1) begin
       q2_ya0 <= y_a_r0; q2_ya1 <= y_a_r1; q2_ya2 <= y_a_r2; q2_ya3 <= y_a_r3;
       q2_ya4 <= y_a_r4; q2_ya5 <= y_a_r5; q2_ya6 <= y_a_r6; q2_ya7 <= y_a_r7;
       q2_yb0 <= y_b_r0; q2_yb1 <= y_b_r1; q2_yb2 <= y_b_r2; q2_yb3 <= y_b_r3;
@@ -201,18 +192,7 @@ module jc_cc_pipe (
   reg        q2b_grey;
   reg [7:0]  q2b_r;
   always @(posedge clk) begin
-    if (!rst_n) begin
-      {q2b_yas0, q2b_yas1, q2b_yas2, q2b_yas3} <= 100'd0;
-      {q2b_ybs0, q2b_ybs1, q2b_ybs2, q2b_ybs3} <= 100'd0;
-      {q2b_ycs0, q2b_ycs1, q2b_ycs2, q2b_ycs3} <= 100'd0;
-      {q2b_cbas0, q2b_cbas1, q2b_cbas2, q2b_cbas3} <= 100'd0;
-      {q2b_cbbs0, q2b_cbbs1, q2b_cbbs2, q2b_cbbs3} <= 100'd0;
-      {q2b_cbcs0, q2b_cbcs1, q2b_cbcs2, q2b_cbcs3} <= 100'd0;
-      {q2b_cras0, q2b_cras1, q2b_cras2, q2b_cras3} <= 100'd0;
-      {q2b_crbs0, q2b_crbs1, q2b_crbs2, q2b_crbs3} <= 100'd0;
-      {q2b_crcs0, q2b_crcs1, q2b_crcs2, q2b_crcs3} <= 100'd0;
-      q2b_grey <= 1'b0; q2b_r <= 8'd0;
-    end else if (en_d2) begin
+    if (en_d2) begin
       q2b_yas0 <= y_a_s0; q2b_yas1 <= y_a_s1; q2b_yas2 <= y_a_s2; q2b_yas3 <= y_a_s3;
       q2b_ybs0 <= y_b_s0; q2b_ybs1 <= y_b_s1; q2b_ybs2 <= y_b_s2; q2b_ybs3 <= y_b_s3;
       q2b_ycs0 <= y_c_s0; q2b_ycs1 <= y_c_s1; q2b_ycs2 <= y_c_s2; q2b_ycs3 <= y_c_s3;
@@ -256,12 +236,7 @@ module jc_cc_pipe (
   reg        q3_grey;
   reg [7:0]  q3_r;
   always @(posedge clk) begin
-    if (!rst_n) begin
-      {q3_yas, q3_yac, q3_ybs, q3_ybc, q3_ycs, q3_ycc} <= 150'd0;
-      {q3_cbas, q3_cbac, q3_cbbs, q3_cbbc, q3_cbcs, q3_cbcc} <= 150'd0;
-      {q3_cras, q3_crac, q3_crbs, q3_crbc, q3_crcs, q3_crcc} <= 150'd0;
-      q3_grey <= 1'b0; q3_r <= 8'd0;
-    end else if (en_d3) begin
+    if (en_d3) begin
       q3_yas <= y_a_s; q3_yac <= y_a_c; q3_ybs <= y_b_s;
       q3_ybc <= y_b_c; q3_ycs <= y_c_s; q3_ycc <= y_c_c;
       q3_cbas <= cb_a_s; q3_cbac <= cb_a_c; q3_cbbs <= cb_b_s;
@@ -292,10 +267,7 @@ module jc_cc_pipe (
   reg        q4_grey;
   reg [7:0]  q4_r;
   always @(posedge clk) begin
-    if (!rst_n) begin
-      {q4_ys, q4_yc, q4_cbs, q4_cbc, q4_crs, q4_crc} <= 150'd0;
-      q4_grey <= 1'b0; q4_r <= 8'd0;
-    end else if (en_d4) begin
+    if (en_d4) begin
       q4_ys <= y_ls; q4_yc <= y_lc;
       q4_cbs <= cb_ls; q4_cbc <= cb_lc;
       q4_crs <= cr_ls; q4_crc <= cr_lc;
@@ -303,47 +275,39 @@ module jc_cc_pipe (
     end
   end
 
-  // stage 6: the carry-save window cells
-  wire [12:0] y_lx, cb_lx, cr_lx;
-  wire [12:0] y_lk13, cb_lk13, cr_lk13;
-  wire [11:0] y_hx, cb_hx, cr_hx;
-  wire [11:0] y_hk13, cb_hk13, cr_hk13;
+  // stage 6: the carry-save window cells and the 4-bit nibble partial sums
+  wire [19:0] y_lp, cb_lp, cr_lp;
+  wire [14:0] y_hp, cb_hp, cr_hp;
   jc_cc_t3a u_t3a (
       .y_s(q4_ys),  .y_cc(q4_yc),
       .cb_s(q4_cbs), .cb_cc(q4_cbc),
       .cr_s(q4_crs), .cr_cc(q4_crc),
-      .y_lx(y_lx), .y_lk13(y_lk13), .y_hx(y_hx), .y_hk13(y_hk13),
-      .cb_lx(cb_lx), .cb_lk13(cb_lk13), .cb_hx(cb_hx), .cb_hk13(cb_hk13),
-      .cr_lx(cr_lx), .cr_lk13(cr_lk13), .cr_hx(cr_hx), .cr_hk13(cr_hk13)
+      .y_lp(y_lp), .y_hp(y_hp),
+      .cb_lp(cb_lp), .cb_hp(cb_hp),
+      .cr_lp(cr_lp), .cr_hp(cr_hp)
   );
-  reg [12:0] q5_ylx, q5_ylk, q5_cblx, q5_cblk, q5_crlx, q5_crlk;
-  reg [11:0] q5_yhx, q5_cbhx, q5_crhx;
-  reg [11:0] q5_yhk, q5_cbhk, q5_crhk;
+  reg [19:0] q5_ylp, q5_cblp, q5_crlp;
+  reg [14:0] q5_yhp, q5_cbhp, q5_crhp;
   reg        q5_grey;
   reg [7:0]  q5_r;
   always @(posedge clk) begin
-    if (!rst_n) begin
-      q5_ylx <= 13'd0; q5_ylk <= 13'd0; q5_yhx <= 12'd0; q5_yhk <= 12'd0;
-      q5_cblx <= 13'd0; q5_cblk <= 13'd0; q5_cbhx <= 12'd0; q5_cbhk <= 12'd0;
-      q5_crlx <= 13'd0; q5_crlk <= 13'd0; q5_crhx <= 12'd0; q5_crhk <= 12'd0;
-      q5_grey <= 1'b0; q5_r <= 8'd0;
-    end else if (en_d5) begin
-      q5_ylx <= y_lx; q5_ylk <= y_lk13; q5_yhx <= y_hx; q5_yhk <= y_hk13;
-      q5_cblx <= cb_lx; q5_cblk <= cb_lk13; q5_cbhx <= cb_hx; q5_cbhk <= cb_hk13;
-      q5_crlx <= cr_lx; q5_crlk <= cr_lk13; q5_crhx <= cr_hx; q5_crhk <= cr_hk13;
+    if (en_d5) begin
+      q5_ylp <= y_lp; q5_yhp <= y_hp;
+      q5_cblp <= cb_lp; q5_cbhp <= cb_hp;
+      q5_crlp <= cr_lp; q5_crhp <= cr_hp;
       q5_grey <= q4_grey; q5_r <= q4_r;
     end
   end
 
-  // stage 7: the window plain adds (carry-select) — low window (final bits), hi window raw
+  // stage 7: the nibble carry-select — low window (final bits), hi window raw
   // sum; the low window's two carry bits ride beside them
   wire [12:0] y_lo, cb_lo, cr_lo;
   wire [1:0]  y_lcy, cb_lcy, cr_lcy;
   wire [11:0] y_hi0, cb_hi0, cr_hi0;
   jc_cc_t3b u_t3b (
-      .y_lx(q5_ylx), .y_lk13(q5_ylk), .y_hx(q5_yhx), .y_hk13(q5_yhk),
-      .cb_lx(q5_cblx), .cb_lk13(q5_cblk), .cb_hx(q5_cbhx), .cb_hk13(q5_cbhk),
-      .cr_lx(q5_crlx), .cr_lk13(q5_crlk), .cr_hx(q5_crhx), .cr_hk13(q5_crhk),
+      .y_lp(q5_ylp), .y_hp(q5_yhp),
+      .cb_lp(q5_cblp), .cb_hp(q5_cbhp),
+      .cr_lp(q5_crlp), .cr_hp(q5_crhp),
       .y_lo(y_lo), .y_lcy(y_lcy), .y_hi0(y_hi0),
       .cb_lo(cb_lo), .cb_lcy(cb_lcy), .cb_hi0(cb_hi0),
       .cr_lo(cr_lo), .cr_lcy(cr_lcy), .cr_hi0(cr_hi0)
@@ -354,12 +318,7 @@ module jc_cc_pipe (
   reg        q6_grey;
   reg [7:0]  q6_r;
   always @(posedge clk) begin
-    if (!rst_n) begin
-      q6_ylo <= 13'd0; q6_ylcy <= 2'd0; q6_yhi0 <= 12'd0;
-      q6_cblo <= 13'd0; q6_cblcy <= 2'd0; q6_cbhi0 <= 12'd0;
-      q6_crlo <= 13'd0; q6_crlcy <= 2'd0; q6_crhi0 <= 12'd0;
-      q6_grey <= 1'b0; q6_r <= 8'd0;
-    end else if (en_d6) begin
+    if (en_d6) begin
       q6_ylo <= y_lo; q6_ylcy <= y_lcy; q6_yhi0 <= y_hi0;
       q6_cblo <= cb_lo; q6_cblcy <= cb_lcy; q6_cbhi0 <= cb_hi0;
       q6_crlo <= cr_lo; q6_crlcy <= cr_lcy; q6_crhi0 <= cr_hi0;
@@ -387,9 +346,7 @@ module jc_cc_pipe (
   reg [7:0] q7_y, q7_cb, q7_cr;
   reg       q7_cv;
   always @(posedge clk) begin
-    if (!rst_n) begin
-      q7_y <= 8'd0; q7_cb <= 8'd0; q7_cr <= 8'd0; q7_cv <= 1'b0;
-    end else if (en_d7) begin
+    if (en_d7) begin
       q7_y <= y_w; q7_cb <= cb_w; q7_cr <= cr_w; q7_cv <= cv_w;
     end
   end

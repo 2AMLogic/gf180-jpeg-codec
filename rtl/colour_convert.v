@@ -132,26 +132,24 @@ module colour_convert (
       .cr_s(cr_ls), .cr_cc(cr_lc)
   );
 
-  wire [12:0] y_lx, cb_lx, cr_lx;
-  wire [12:0] y_lk13, cb_lk13, cr_lk13;
-  wire [11:0] y_hx, cb_hx, cr_hx;
-  wire [11:0] y_hk13, cb_hk13, cr_hk13;
+  wire [19:0] y_lp, cb_lp, cr_lp;
+  wire [14:0] y_hp, cb_hp, cr_hp;
   jc_cc_t3a u_t3a (
       .y_s(y_ls), .y_cc(y_lc),
       .cb_s(cb_ls), .cb_cc(cb_lc),
       .cr_s(cr_ls), .cr_cc(cr_lc),
-      .y_lx(y_lx), .y_lk13(y_lk13), .y_hx(y_hx), .y_hk13(y_hk13),
-      .cb_lx(cb_lx), .cb_lk13(cb_lk13), .cb_hx(cb_hx), .cb_hk13(cb_hk13),
-      .cr_lx(cr_lx), .cr_lk13(cr_lk13), .cr_hx(cr_hx), .cr_hk13(cr_hk13)
+      .y_lp(y_lp), .y_hp(y_hp),
+      .cb_lp(cb_lp), .cb_hp(cb_hp),
+      .cr_lp(cr_lp), .cr_hp(cr_hp)
   );
 
   wire [12:0] y_lo, cb_lo, cr_lo;
   wire [1:0]  y_lcy, cb_lcy, cr_lcy;
   wire [11:0] y_hi0, cb_hi0, cr_hi0;
   jc_cc_t3b u_t3b (
-      .y_lx(y_lx), .y_lk13(y_lk13), .y_hx(y_hx), .y_hk13(y_hk13),
-      .cb_lx(cb_lx), .cb_lk13(cb_lk13), .cb_hx(cb_hx), .cb_hk13(cb_hk13),
-      .cr_lx(cr_lx), .cr_lk13(cr_lk13), .cr_hx(cr_hx), .cr_hk13(cr_hk13),
+      .y_lp(y_lp), .y_hp(y_hp),
+      .cb_lp(cb_lp), .cb_hp(cb_hp),
+      .cr_lp(cr_lp), .cr_hp(cr_hp),
       .y_lo(y_lo), .y_lcy(y_lcy), .y_hi0(y_hi0),
       .cb_lo(cb_lo), .cb_lcy(cb_lcy), .cb_hi0(cb_hi0),
       .cr_lo(cr_lo), .cr_lcy(cr_lcy), .cr_hi0(cr_hi0)

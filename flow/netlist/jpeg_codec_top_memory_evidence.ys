@@ -6,9 +6,13 @@ read_verilog rtl/jc_sram_arb.v
 read_verilog rtl/jc_downsample.v
 read_verilog rtl/jc_mb_ctrl.v
 read_verilog rtl/colour_convert.v
-read_verilog rtl/jc_cc_mul.v
+read_verilog rtl/jc_cc_mul_a.v
+read_verilog rtl/jc_cc_mul_b.v
+read_verilog rtl/jc_cc_mul_c.v
 read_verilog rtl/jc_cc_add.v
-read_verilog rtl/jc_cc_t3.v
+read_verilog rtl/jc_cc_t3a.v
+read_verilog rtl/jc_cc_t3b.v
+read_verilog rtl/jc_cc_t4.v
 read_verilog rtl/jc_cc_rnd.v
 read_verilog rtl/jc_cc_pipe.v
 read_verilog rtl/jc_dct.v

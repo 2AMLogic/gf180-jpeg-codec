@@ -3,14 +3,14 @@
   "kind": "generic",
   "status": "pass",
   "t1_item": 1,
-  "summary": "T1 item 1 (Design sources): 26/26 attestation checks passed (klt signoff --attest)",
+  "summary": "T1 item 1 (Design sources): 35/35 attestation checks passed (klt signoff --attest)",
   "source": "manifests/attest/item1.inventory.json",
   "attestation": {
     "producer": "klt signoff --attest",
     "inventory_schema_version": 1,
     "hash_algorithm": "sha256-raw-bytes",
-    "check_count": 26,
-    "passed_count": 26,
+    "check_count": 35,
+    "passed_count": 35,
     "checks": [
       {
         "check": "present",
@@ -24,14 +24,14 @@
         "role": "source",
         "path": "flow/synthesize.json",
         "passed": true,
-        "content_hash": "sha256:9f295cf7eb5fdec20af9df55959edbd2f22a3a9610c9a88265e6644440f62c20"
+        "content_hash": "sha256:0f532b8df0cfa0434cd0377ee6bb8fc3e8801c79d7abee091a2c77ba4a351e39"
       },
       {
         "check": "present",
         "role": "source",
         "path": "rtl/colour_convert.v",
         "passed": true,
-        "content_hash": "sha256:f3cafe02d76549faacb4157bdaccc4fc2a91b5a3627e745032be40e0cf0ffcb8"
+        "content_hash": "sha256:f631f6b90249c9482138f26b2764436e6d6db9ae131c2ddce125d431e9c66de0"
       },
       {
         "check": "present",
@@ -39,6 +39,69 @@
         "path": "rtl/jc_bitpack.v",
         "passed": true,
         "content_hash": "sha256:309dc924f0024dae114e75427106f144ca439fbe3647c4f547db1a551298f23d"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_cc_add.v",
+        "passed": true,
+        "content_hash": "sha256:adf179f93bd97716617c1486aff683c840034f12731794ae5c5334ef901d9f32"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_cc_mul_a.v",
+        "passed": true,
+        "content_hash": "sha256:18a77e7651492a34944bbf096c847f09b67fe7e92ebeaee6aed57275dfb6a117"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_cc_mul_b.v",
+        "passed": true,
+        "content_hash": "sha256:f9c284e27bd11c5f49465fc61f8ec46ce4f58a75f314a1f6f5f74be29a98ffd9"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_cc_mul_c.v",
+        "passed": true,
+        "content_hash": "sha256:1710d267450640ea1879312b50e415b4206f00cced14afeed9ea402c5993142a"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_cc_pipe.v",
+        "passed": true,
+        "content_hash": "sha256:e615caf9533f1ac804f8fd08ac5efc1daefc385098c635b029af0c95c6d4f2b5"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_cc_rnd.v",
+        "passed": true,
+        "content_hash": "sha256:d0ea30853641033502c94bffc55ec6c84b5f935756139b1b9b2d0e4eb9cebae3"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_cc_t3a.v",
+        "passed": true,
+        "content_hash": "sha256:838a6e98f06bd2d4455db6b8a8f6c971f9592ce443208793be5d22eeb131d3b1"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_cc_t3b.v",
+        "passed": true,
+        "content_hash": "sha256:23e83ef168d0c07db799a84780924ae7dedec6494280493d41888b052a3d6cce"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/jc_cc_t4.v",
+        "passed": true,
+        "content_hash": "sha256:8bf1444f6dbf4a8427a03d22b301eefbb241c4c9a9d87680778533b95ff81e04"
       },
       {
         "check": "present",
@@ -66,7 +129,7 @@
         "role": "source",
         "path": "rtl/jc_downsample.v",
         "passed": true,
-        "content_hash": "sha256:884260b30fd94921c2051e7d25dd4490aab865eb85250e3067dd7172c3ce8399"
+        "content_hash": "sha256:b73efe514d071695eacc93de5b2c32c7eee8e6cfc9d04481839673c62afa8b3d"
       },
       {
         "check": "present",
@@ -185,7 +248,7 @@
         "role": "derived",
         "path": "flow/netlist/jpeg_codec_top_synth.v",
         "passed": true,
-        "content_hash": "sha256:d3aafa0f785a8cb37c38445c46cecb3ae2e0c4d4b6ad1cbf7b51928e2efb9922"
+        "content_hash": "sha256:3fc3934ff63ab41f5fb5bfe79c97fda22fbf22a3622174f6456de5dcaac923b5"
       },
       {
         "check": "command",
@@ -215,7 +278,7 @@
             "path": "flow/netlist/jpeg_codec_top_synth.v",
             "scope": "repo"
           },
-          "content_hash": "sha256:d3aafa0f785a8cb37c38445c46cecb3ae2e0c4d4b6ad1cbf7b51928e2efb9922"
+          "content_hash": "sha256:3fc3934ff63ab41f5fb5bfe79c97fda22fbf22a3622174f6456de5dcaac923b5"
         },
         {
           "path": {
@@ -229,21 +292,21 @@
             "path": "flow/synthesize.json",
             "scope": "repo"
           },
-          "content_hash": "sha256:9f295cf7eb5fdec20af9df55959edbd2f22a3a9610c9a88265e6644440f62c20"
+          "content_hash": "sha256:0f532b8df0cfa0434cd0377ee6bb8fc3e8801c79d7abee091a2c77ba4a351e39"
         },
         {
           "path": {
             "path": "manifests/attest/item1.inventory.json",
             "scope": "repo"
           },
-          "content_hash": "sha256:23ffa6d0aeab4777b232c26afaf640799f058a18760999415a7367e4be2874d4"
+          "content_hash": "sha256:47ad9a2d477f692156a223c778749a3c8519901a1985e94218247873f8639aae"
         },
         {
           "path": {
             "path": "rtl/colour_convert.v",
             "scope": "repo"
           },
-          "content_hash": "sha256:f3cafe02d76549faacb4157bdaccc4fc2a91b5a3627e745032be40e0cf0ffcb8"
+          "content_hash": "sha256:f631f6b90249c9482138f26b2764436e6d6db9ae131c2ddce125d431e9c66de0"
         },
         {
           "path": {
@@ -251,6 +314,69 @@
             "scope": "repo"
           },
           "content_hash": "sha256:309dc924f0024dae114e75427106f144ca439fbe3647c4f547db1a551298f23d"
+        },
+        {
+          "path": {
+            "path": "rtl/jc_cc_add.v",
+            "scope": "repo"
+          },
+          "content_hash": "sha256:adf179f93bd97716617c1486aff683c840034f12731794ae5c5334ef901d9f32"
+        },
+        {
+          "path": {
+            "path": "rtl/jc_cc_mul_a.v",
+            "scope": "repo"
+          },
+          "content_hash": "sha256:18a77e7651492a34944bbf096c847f09b67fe7e92ebeaee6aed57275dfb6a117"
+        },
+        {
+          "path": {
+            "path": "rtl/jc_cc_mul_b.v",
+            "scope": "repo"
+          },
+          "content_hash": "sha256:f9c284e27bd11c5f49465fc61f8ec46ce4f58a75f314a1f6f5f74be29a98ffd9"
+        },
+        {
+          "path": {
+            "path": "rtl/jc_cc_mul_c.v",
+            "scope": "repo"
+          },
+          "content_hash": "sha256:1710d267450640ea1879312b50e415b4206f00cced14afeed9ea402c5993142a"
+        },
+        {
+          "path": {
+            "path": "rtl/jc_cc_pipe.v",
+            "scope": "repo"
+          },
+          "content_hash": "sha256:e615caf9533f1ac804f8fd08ac5efc1daefc385098c635b029af0c95c6d4f2b5"
+        },
+        {
+          "path": {
+            "path": "rtl/jc_cc_rnd.v",
+            "scope": "repo"
+          },
+          "content_hash": "sha256:d0ea30853641033502c94bffc55ec6c84b5f935756139b1b9b2d0e4eb9cebae3"
+        },
+        {
+          "path": {
+            "path": "rtl/jc_cc_t3a.v",
+            "scope": "repo"
+          },
+          "content_hash": "sha256:838a6e98f06bd2d4455db6b8a8f6c971f9592ce443208793be5d22eeb131d3b1"
+        },
+        {
+          "path": {
+            "path": "rtl/jc_cc_t3b.v",
+            "scope": "repo"
+          },
+          "content_hash": "sha256:23e83ef168d0c07db799a84780924ae7dedec6494280493d41888b052a3d6cce"
+        },
+        {
+          "path": {
+            "path": "rtl/jc_cc_t4.v",
+            "scope": "repo"
+          },
+          "content_hash": "sha256:8bf1444f6dbf4a8427a03d22b301eefbb241c4c9a9d87680778533b95ff81e04"
         },
         {
           "path": {
@@ -278,7 +404,7 @@
             "path": "rtl/jc_downsample.v",
             "scope": "repo"
           },
-          "content_hash": "sha256:884260b30fd94921c2051e7d25dd4490aab865eb85250e3067dd7172c3ce8399"
+          "content_hash": "sha256:b73efe514d071695eacc93de5b2c32c7eee8e6cfc9d04481839673c62afa8b3d"
         },
         {
           "path": {
@@ -393,7 +519,7 @@
           "content_hash": "sha256:d5e6052f75566aa9217b7d34ba5ec68fe9349cdb7e57a8f848e1f8a57701a31e"
         }
       ],
-      "content_hash": "sha256:8c95642886e673240a7f032489dec18a8dbad16ad19ac26f863563ddb9e032f0"
+      "content_hash": "sha256:0ce63657bd7d8612a8cdcc7a854c58cf002ed2278d7e7b4dc3d3f330e3cd0f36"
     }
   }
 }
