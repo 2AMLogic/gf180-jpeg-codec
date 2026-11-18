@@ -16,6 +16,8 @@
     "verification/rtl/test_top_smoke.py",
     "verification/rtl/cfg_host.py",
     "verification/rtl/run_stage.py",
+    "verification/rtl/run_quantizer_equiv.sh",
+    "verification/rtl/tb_quantizer_equiv.v",
     "verification/rtl/test_top_frame_cycles.py",
     "verification/klt/top_golden.request.json",
     "verification/klt/top_golden.negative_control.request.json",

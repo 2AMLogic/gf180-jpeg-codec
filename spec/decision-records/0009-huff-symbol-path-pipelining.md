@@ -157,11 +157,17 @@ sum: `1200 x max(stage) + first-MCU latency + header`. With stage 4 at
 **Provenance of the depth-8 row.** Its counted figures (1,088,887 / 65.3% /
 45.9 frames/s simulated) were counted before the depth-12 `jc_dct1d`
 retiming (record 0007 §4's band edge) merged into this branch, so at the
-tree as merged the operative row is the depth-12 one (1,473,851, 88.4%); a
-counted re-run on the merged tree, reported as Judge-side evidence on
-PR #152, gave 1,383,370 cycles to `out_last` (83.0% of the period, 36.1
-frames/s simulated, `golden_match` true, byte counts unchanged), consistent
-with that row.
+tree as merged the operative row is the depth-12 one (1,473,851, 88.4%); a counted
+re-run on the merged tree is committed as
+`verification/records/20261117T2156Z-frame-cycles-depth12-39c70b2/`
+(issue #197): 1,383,369 cycles to `out_last` (83.0% of the period, 36.1
+frames/s simulated, `golden_match` true, byte counts unchanged) — ±1 as
+recorded: the pre-#208 bench that produced the record computed
+`cycles_to_out_last` position-dependently within a simulation (the same
+frame reads 1,383,370 with the test run first; the record's "Disposition
+of the quoted 1,383,370" § carries the resolution). Since #208/#209 the
+bench derives the count from integer-ps endpoints and resolves it exactly.
+The figure is consistent with that row.
 
 The depth-10 and depth-12 rows use `0007-pre-route-setup-shortfall.md` §4's
 re-derived stage rows (1032 / 1224 cycles/MCU) with this record's per-depth
@@ -191,7 +197,7 @@ implementation, so it cannot reach ≤ 2.08. Counted: **2.558**
 stage 2 with the `qa` contention term; the target outcome the issue's own
 corrected model describes (frame 1,012,868, `jc_huff` below the input row)
 reads 2.379 on the same ratio. The per-symbol thresholds are therefore
-evaluated on `jc_huff`'s stage window: **2.000 measured sustained** (unit
+evaluated on `jc_huff`'s stage window: **2.000 simulated sustained** (unit
 bench), 745.2 cycles/MCU counted-derived in the frame — **≤ 2.08: `jc_huff`
 never binds again, the goal band**, confirmed by the binder's move to stage
 2 in the re-count.

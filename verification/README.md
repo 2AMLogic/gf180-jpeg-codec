@@ -287,10 +287,12 @@ at 1 and `pix_valid` at 1 while a byte is pending.
 
 Instrumentation is non-intrusive: the three rows' committed cycle and byte
 figures reproduce exactly. One measurement-definition note: `cycles_to_out_last`
-floors the float-ns quotient of start-to-beat, which on a row carrying
-accumulated simulator clock drift (~1 ps over earlier tests) lands one cycle
-low; the sampler records the true integer edge count
-(`stage_sample_cycles`) beside it, and both are in the record. The finding:
+is the integer-ps span of start-to-beat (issue #208: the earlier float-ns
+quotient floored one cycle low on rows carrying accumulated simulator clock
+drift, ~1 ps over earlier tests, so the count shifted with the test's
+position in the simulation); the sampler records the true integer edge count
+(`stage_sample_cycles`) beside it, and the bench asserts the two agree. The
+finding:
 the binding stage at q95 is **`jc_huff`** (`s6` stalls 1,268,261 of
 1,740,071 true cycles, 72.9%; `s7`/`bp`/`out` stalls are ~0), confirming the
 predicted 1448.2 cycles/MCU FSM floor within 0.13% and contradicting record

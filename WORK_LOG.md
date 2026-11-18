@@ -3,8 +3,25 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-11-18
+
+- **PR #216**: fix: divide quantizer per-block average in float to keep the fractional cycle
+- **Issue #215** (closed): test_quantizer: per-block average is floored, losing the fractional cycle against the 0005 §7 budget
+
 ### 2026-11-17
 
+- **PR #214**: docs: reattribute the frame-cycles ±1 caveat to the recorded pre-#208 bench
+- **Issue #210** (closed): Decision records 0005/0009/0013 carry a present-tense +/-1 caveat that goes stale once the #208 bench fix lands
+- **PR #213**: fix: derive smoke and quantizer cycle counts from integer-ps stamps
+- **Issue #211** (closed): Two other benches still derive cycle figures from float-ns spans (same class as #208)
+- **PR #209**: fix: count frame cycles in integer ps so the count is position-independent
+- **Issue #208** (closed): test_top_frame_cycles reports a cycles_to_out_last that shifts by one depending on the test's position in the simulation
+- **PR #205**: records: commit the depth-12 frame re-count; say simulated, not measured
+- **Issue #197** (closed): Record 0009 follow-ups: re-count the three frame rows on the merged depth-12 tree, and drop 'measured' for two simulated figures
+- **PR #202**: test(quant): check the pipelined jc_quant equivalent to jc_quant_core
+- **Issue #186** (closed): Quantizer exhaustive proof covers jc_quant_core, which the chip does not instantiate
+- **PR #201**: docs: record 0013 replaces the pre-0009 90.2% frame bound with the merged 0005 §7 per-depth rows
+- **Issue #196** (closed): Record 0010 still cites the pre-0009 frame bound (90.2% at every depth) against the merged 0005 s7
 - **Issue #203** (closed): Reconcile the one-cycle q95 §9 frame-cycle delta: decision records say 1,383,370, the restored bench reports 1,383,369
 - **PR #200**: fix: import REG_CMD from cfg_host in the frame-cycle bench
 - **Issue #194** (closed): test_top_frame_cycles.py cannot run on main: ImportError REG_CMD from test_top_smoke

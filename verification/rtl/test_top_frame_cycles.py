@@ -34,10 +34,12 @@ What each row checks
   `hf_m2_req && !hf_m2_gnt`, `qa_pend && !qa_gnt`). The window is frame
   start to the `out_last` beat, inclusive, so each boundary's four buckets
   sum to exactly the sampled edge count. That count is the true
-  integer-cycle figure between the two edges; `cycles_to_out_last` floors
-  the float-ns quotient of the same interval and can land one cycle low on
-  a row carrying accumulated clock drift (sub-picosecond), so both numbers
-  are recorded.
+  integer-cycle figure between the two edges; `cycles_to_out_last` is the
+  same interval in integer picoseconds (issue #208: the earlier float-ns
+  quotient floored one cycle low on rows carrying accumulated
+  sub-picosecond clock drift, so the count shifted with the test's
+  position in the simulation), and the bench asserts the two agree on
+  every row.
 * `status_error` is 0 at the end of the frame.
 * The output decodes in Pillow 10.2.0 with warnings fatal, at size
   (640, 480) and mode RGB.
@@ -164,8 +166,6 @@ class CycleHost(Host):
 
     def __init__(self, dut, seed=1):
         super().__init__(dut, in_gap=0.0, out_gap=0.0, seed=seed)
-        self.start_ns = None
-        self.last_ns = None
         self.drive_cycles = 0
         self.start_ps = None
         self.beat_ps = None
@@ -184,10 +184,11 @@ class CycleHost(Host):
             await RisingEdge(d.clk)
             if d.out_valid.value == 1 and d.out_ready.value == 1:
                 self.out.append(int(d.out_data.value))
-                if d.out_last.value == 1 and self.last_ns is None:
-                    self.last_ns = cocotb.utils.get_sim_time("ns")
+                if d.out_last.value == 1 and self.beat_ps is None:
                     self.last_seen = True
-                    # Arm the sampler's backstop deadline a fraction of one
+                    # Integer-ps stamp of the `out_last` beat: it derives
+                    # `cycles_to_out_last` (issue #208) and arms the
+                    # sampler's backstop deadline a fraction of one
                     # clock period past the beat. The sampler's primary stop
                     # is its own `out_last` handshake check, so this deadline
                     # only has to let the sampler, resuming on the same
@@ -203,7 +204,7 @@ class CycleHost(Host):
         """Classify every boundary handshake once per clock of the frame.
 
         The window starts at the first edge after `run_frame` captures
-        `start_ns`. Reads use the same convention as `out_monitor` (the
+        `start_ps`. Reads use the same convention as `out_monitor` (the
         values stable in the cycle that ends at each edge), so a boundary's
         four buckets sum to the window length and `out.transferred` equals
         the output byte count.
@@ -219,9 +220,8 @@ class CycleHost(Host):
         `trim_stage_window`, which pops every sampled edge after the
         beat's edge - the same edge that defined `cycles_to_out_last` - so
         the window is exactly the frame-start-to-`out_last` edge count.
-        (`cycles_to_out_last` itself floors the float-ns quotient of that
-        interval and can land one cycle low on a drifted row; the integer
-        count here is the exact one.)
+        (`cycles_to_out_last` is the same integer-ps interval since
+        issue #208, so the two counts must agree on every row.)
 
         Two artifacts of a long cocotb session are filtered explicitly,
         both invisible to the DUT (whose cycle counts stay exact):
@@ -306,7 +306,6 @@ class CycleHost(Host):
     async def run_frame(self, mode, w, h, stream):
         d = self.dut
         self.out, self.last_seen = [], False
-        self.start_ns = self.last_ns = None
         self.drive_cycles = 0
         self.sampler_stop = False
         self.beat_ps = None
@@ -315,7 +314,6 @@ class CycleHost(Host):
         await self.cfg_write(REG_CMD, 1)
         assert d.status_error.value == 0, "start raised an error: cause %d" % int(
             d.err_cause.value)
-        self.start_ns = cocotb.utils.get_sim_time("ns")
         self.start_ps = cocotb.utils.get_sim_time()
         cocotb.start_soon(self.stage_sampler())
         try:
@@ -341,14 +339,14 @@ class CycleHost(Host):
             self.sampler_stop = True
         d.pix_valid.value = 0
         await self.wait_idle()
-        self.cycles = int((cocotb.utils.get_sim_time("ns") - self.start_ns) / 10)
+        self.cycles = (cocotb.utils.get_sim_time() - self.start_ps) // 10_000
         assert d.status_error.value == 0, "frame ended with status_error set"
         return bytes(self.out)
 
     @property
     def out_last_cycles(self):
-        assert self.last_ns is not None, "out_last was never seen"
-        return int((self.last_ns - self.start_ns) / 10)
+        assert self.beat_ps is not None, "out_last was never seen"
+        return (self.beat_ps - self.start_ps) // 10_000
 
 
 def _write_rows():
@@ -450,15 +448,19 @@ async def frame_cycle_case(dut, name, quality):
         "out_valid was not accepted for %d cycles" % host.stage_counts["out"]["stalled"])
     # The sampler must have covered exactly the frame window: the true
     # integer cycle count between the frame-start edge and the out_last
-    # edge. `cycles_to_out_last` floors the float-ns quotient of the same
-    # interval, which on a row carrying accumulated clock drift (sub-ps
-    # edge offsets, see stage_sample_window_ns) lands one cycle low; the
-    # §9 figures keep that committed formula unchanged, so on drifted rows
-    # stage_sample_cycles is one higher and is the exact count.
+    # edge. `cycles_to_out_last` is the same integer-ps interval (issue
+    # #208 replaced the float-ns quotient, which floored one cycle low on
+    # rows carrying accumulated sub-ps clock drift and so shifted with the
+    # test's position in the simulation), so all three counts must agree
+    # on every row; a regression to float-ns arithmetic shows up as a
+    # one-cycle disagreement on a non-first row.
     true_cycles = (host.beat_ps - host.start_ps) // 10_000
     assert host.stage_sample_cycles == true_cycles, (
         "sampler window %d != integer cycle count %d"
         % (host.stage_sample_cycles, true_cycles))
+    assert cycles == host.stage_sample_cycles, (
+        "cycles_to_out_last %d != sampler window %d (position-dependent count?)"
+        % (cycles, host.stage_sample_cycles))
     assert host.stage_counts["pix"]["transferred"] == len(stream), (
         "pix transferred %d != stream %d"
         % (host.stage_counts["pix"]["transferred"], len(stream)))
