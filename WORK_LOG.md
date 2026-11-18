@@ -5,6 +5,10 @@ Maintained by the Guide triage role.
 
 ### 2026-11-18
 
+- **PR #232**: docs(rtl): name jc_cc_pipe as the instantiated converter in the rtl README
+- **Issue #230** (closed): Remove colour_convert from design source lists and fix stale README: jc_cc_pipe is the instantiated converter
+- **PR #229**: docs(rtl): correct five stale comments and re-pin attestations
+- **Issue #227** (closed): Stale/contradictory latency comments in the #132 retime (jc_downsample.v:36, test_colour_pipe.py docstring)
 - **PR #226**: rtl: retime the colour path to +6.83 ns by nibble-splitting the window adds (record 0007/0010)
 - **Issue #132** (closed): Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
 - **PR #223**: ci: run CI and klt signoff on merge_group checks_requested
