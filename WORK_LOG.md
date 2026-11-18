@@ -5,6 +5,8 @@ Maintained by the Guide triage role.
 
 ### 2026-11-18
 
+- **PR #226**: rtl: retime the colour path to +6.83 ns by nibble-splitting the window adds (record 0007/0010)
+- **Issue #132** (closed): Retime colour_convert: pipeline the RGB-to-YCbCr constant-multiplier sums to the record 0007 depth target
 - **PR #223**: ci: run CI and klt signoff on merge_group checks_requested
 - **Issue #222** (closed): Merge queue: add the merge_group trigger to the required-check workflow(s)
 - **PR #216**: fix: divide quantizer per-block average in float to keep the fractional cycle
