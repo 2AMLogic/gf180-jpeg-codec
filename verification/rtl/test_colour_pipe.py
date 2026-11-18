@@ -1,7 +1,7 @@
 """Section 4 unit tests over the pipelined converter chain (issue #132).
 
 `test_colour.py` proves the combinational composition (`colour_convert`,
-jc_cc_mul_a + jc_cc_mul_b + jc_cc_add + jc_cc_t3 + jc_cc_t4 + jc_cc_rnd) against `ref_ycc`; this bench
+jc_cc_mul_a/_b/_c + jc_cc_add + jc_cc_t3a + jc_cc_t3b + jc_cc_t4 + jc_cc_rnd) against `ref_ycc`; this bench
 proves the *pipelined* chain `jc_cc_pipe` — the instantiation jc_downsample
 actually uses — computes the same values at the pipe latency, from the same
 vector classes: the worked examples, the corners, the R=G=B axis, 100,000
@@ -13,7 +13,7 @@ Timing contract (measured, then pinned): an input written in the timestep of
 edge E is sampled by the pipe's first stage at the next edge and its bytes
 sit in the output registers from the eighth; a read taken when a RisingEdge
 coroutine resumes shows the output registers as of the *previous* edge — so
-a vector becomes readable exactly six driver edges after its `send` tick.
+a vector becomes readable exactly eight driver edges after its `send` tick.
 The driver tracks that offset explicitly (`LATENCY`) and self-checks it on
 every vector: a one-stage misalignment anywhere in jc_cc_pipe fails loudly.
 
@@ -28,7 +28,7 @@ from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge
 
 # Driver edges from a vector's `send` tick to the edge whose read shows its
-# bytes: 8 pipe register stages + 1 for the pre-edge read convention.
+# bytes (measured; includes the pre-edge read convention).
 LATENCY = 8
 
 

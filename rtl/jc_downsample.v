@@ -33,7 +33,7 @@
 //
 // S2 out: word write {frame_last, offset[6:0], word[31:0]}, offset relative to
 // the macroblock buffer base (record 0005 note (a) layout; grey words 0..15).
-// Up to three writes (Y, Cb, Cr) are produced by one pixel; they now load nine
+// Up to three writes (Y, Cb, Cr) are produced by one pixel; they now load ten
 // cycles after the pixel's completing beat, so the pending stage holds two
 // sets (a set = one pixel's Y word alone, or its Y + Cb + Cr together) in a
 // two-slot FIFO drained oldest-first, one word per cycle, Y before Cb before
