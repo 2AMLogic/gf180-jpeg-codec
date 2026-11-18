@@ -5,6 +5,8 @@ Maintained by the Guide triage role.
 
 ### 2026-11-18
 
+- **PR #223**: ci: run CI and klt signoff on merge_group checks_requested
+- **Issue #222** (closed): Merge queue: add the merge_group trigger to the required-check workflow(s)
 - **PR #216**: fix: divide quantizer per-block average in float to keep the fractional cycle
 - **Issue #215** (closed): test_quantizer: per-block average is floored, losing the fractional cycle against the 0005 §7 budget
 
