@@ -3,8 +3,17 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-11-18
+
+- **PR #216**: fix: divide quantizer per-block average in float to keep the fractional cycle
+- **Issue #215** (closed): test_quantizer: per-block average is floored, losing the fractional cycle against the 0005 §7 budget
+
 ### 2026-11-17
 
+- **PR #214**: docs: reattribute the frame-cycles ±1 caveat to the recorded pre-#208 bench
+- **Issue #210** (closed): Decision records 0005/0009/0013 carry a present-tense +/-1 caveat that goes stale once the #208 bench fix lands
+- **PR #213**: fix: derive smoke and quantizer cycle counts from integer-ps stamps
+- **Issue #211** (closed): Two other benches still derive cycle figures from float-ns spans (same class as #208)
 - **PR #209**: fix: count frame cycles in integer ps so the count is position-independent
 - **Issue #208** (closed): test_top_frame_cycles reports a cycles_to_out_last that shifts by one depending on the test's position in the simulation
 - **PR #205**: records: commit the depth-12 frame re-count; say simulated, not measured
