@@ -12,7 +12,7 @@ at risk:
   model of the spec section 4 pipeline (colour conversion from the integer
   reference, 2 x 2 chroma average with the even/odd bias, lane packing,
   offsets, frame_last) — written here, independent of the golden model.
-* **No dropped word under the new interlock.** Writes now load six cycles
+* **No dropped word under the new interlock.** Writes now load ten cycles
   after the pixel's completing beat and the pending stage holds two sets (a
   set = one pixel's Y word alone, or its Y + Cb + Cr together) in a two-slot
   FIFO. The stall scenario below pins `s2_ready` low across the first chroma
@@ -33,11 +33,11 @@ from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge
 
 # jc_downsample's inserted latency: a pixel accepted during cycle T has its
-# writes in the pending slots six cycles later (load edge at the end of
-# T+6), visible from T+7. The bench anchors the first-word check to the
+# writes in the pending slots ten cycles later (load edge at the end of
+# T+10), visible from T+11. The bench anchors the first-word check to the
 # cycle the DUT itself reports for the first lane-3 pixel's completing beat,
 # so the assertion pins the latency, not the feeder's write timing.
-FIRST_WORD_LATENCY = 7  # completing beat of a lane-3 pixel -> its word visible
+FIRST_WORD_LATENCY = 11  # completing beat of a lane-3 pixel -> its word visible
 
 
 def ref_ycc(r, g, b):
@@ -153,10 +153,14 @@ async def run_frame(dut, grey, mcu_cols, mcu_rows, stream, expected_words,
     drain edge. `max_inflight` tracks `nset + inflight` so a stall scenario
     can prove two sets were genuinely in flight.
     """
-    dut.frame_active.value = 1
     dut.mode.value = 1 if grey else 0
     dut.mcu_cols.value = mcu_cols
     dut.mcu_rows.value = mcu_rows
+    # mode is static while a frame is active and is registered once here
+    # (grey_q): settle it before raising frame_active, as the cfg-host
+    # register writes do at the top level
+    await RisingEdge(dut.clk)
+    dut.frame_active.value = 1
 
     words = []
     first_word_cycle = None
@@ -275,7 +279,7 @@ async def test_colour_frame_random_ready(dut):
 async def test_grey_block(dut):
     """Grey 8 x 8: byte pass-through at the same latency, 16 words, the last
     word carrying frame_last. (The two-set interlock backpressures grey
-    slightly — lane-3 sets arrive every 4 beats while the load latency is 6 —
+    slightly — lane-3 sets arrive every 4 beats while the load latency is 10 —
     which the spec's grey budget absorbs; the colour rows in
     test_top_frame_cycles carry the no-added-stall guarantee, and colour
     acceptance is unaffected: its sets arrive every 12 beats.)"""

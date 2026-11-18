@@ -35,22 +35,22 @@ TOP_SOURCES = sorted(RTL.glob("*.v")) + [HERE / "sram_macro_model.v"]
 STAGES = {
     # colour_convert
     "colour": (
-        [RTL / "colour_convert.v", RTL / "jc_cc_mul.v", RTL / "jc_cc_add.v",
-         RTL / "jc_cc_t3.v", RTL / "jc_cc_rnd.v", HERE / "colour_tb_top.v"],
+        [RTL / "colour_convert.v", RTL / "jc_cc_mul_a.v", RTL / "jc_cc_mul_b.v", RTL / "jc_cc_mul_c.v", RTL / "jc_cc_add.v",
+         RTL / "jc_cc_t3a.v", RTL / "jc_cc_t3b.v", RTL / "jc_cc_t4.v", RTL / "jc_cc_rnd.v", HERE / "colour_tb_top.v"],
         "colour_tb_top",
         "test_colour",
     ),
     # pipelined converter chain (issue #132)
     "colour_pipe": (
-        [RTL / "jc_cc_mul.v", RTL / "jc_cc_add.v", RTL / "jc_cc_t3.v",
-         RTL / "jc_cc_rnd.v", RTL / "jc_cc_pipe.v", HERE / "colour_pipe_tb_top.v"],
+        [RTL / "jc_cc_mul_a.v", RTL / "jc_cc_mul_b.v", RTL / "jc_cc_mul_c.v", RTL / "jc_cc_add.v", RTL / "jc_cc_t3a.v", RTL / "jc_cc_t3b.v",
+         RTL / "jc_cc_t4.v", RTL / "jc_cc_rnd.v", RTL / "jc_cc_pipe.v", HERE / "colour_pipe_tb_top.v"],
         "colour_pipe_tb_top",
         "test_colour_pipe",
     ),
     # jc_downsample at its own boundary: the #132 interlock (issue #132)
     "downsample": (
-        [RTL / "jc_downsample.v", RTL / "jc_cc_mul.v", RTL / "jc_cc_add.v",
-         RTL / "jc_cc_t3.v", RTL / "jc_cc_rnd.v", RTL / "jc_cc_pipe.v",
+        [RTL / "jc_downsample.v", RTL / "jc_cc_mul_a.v", RTL / "jc_cc_mul_b.v", RTL / "jc_cc_mul_c.v", RTL / "jc_cc_add.v",
+         RTL / "jc_cc_t3a.v", RTL / "jc_cc_t3b.v", RTL / "jc_cc_t4.v", RTL / "jc_cc_rnd.v", RTL / "jc_cc_pipe.v",
          HERE / "tb_downsample_top.v"],
         "tb_downsample_top",
         "test_downsample",

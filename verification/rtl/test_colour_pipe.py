@@ -1,7 +1,7 @@
 """Section 4 unit tests over the pipelined converter chain (issue #132).
 
 `test_colour.py` proves the combinational composition (`colour_convert`,
-jc_cc_mul + jc_cc_add + jc_cc_t3 + jc_cc_rnd) against `ref_ycc`; this bench
+jc_cc_mul_a + jc_cc_mul_b + jc_cc_add + jc_cc_t3 + jc_cc_t4 + jc_cc_rnd) against `ref_ycc`; this bench
 proves the *pipelined* chain `jc_cc_pipe` — the instantiation jc_downsample
 actually uses — computes the same values at the pipe latency, from the same
 vector classes: the worked examples, the corners, the R=G=B axis, 100,000
@@ -11,9 +11,9 @@ combinational output.
 
 Timing contract (measured, then pinned): an input written in the timestep of
 edge E is sampled by the pipe's first stage at the next edge and its bytes
-sit in the output registers from the fourth; a read taken when a RisingEdge
+sit in the output registers from the eighth; a read taken when a RisingEdge
 coroutine resumes shows the output registers as of the *previous* edge — so
-a vector becomes readable exactly four driver edges after its `send` tick.
+a vector becomes readable exactly six driver edges after its `send` tick.
 The driver tracks that offset explicitly (`LATENCY`) and self-checks it on
 every vector: a one-stage misalignment anywhere in jc_cc_pipe fails loudly.
 
@@ -28,8 +28,8 @@ from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge
 
 # Driver edges from a vector's `send` tick to the edge whose read shows its
-# bytes: 4 pipe register stages + 1 for the pre-edge read convention.
-LATENCY = 4
+# bytes: 8 pipe register stages + 1 for the pre-edge read convention.
+LATENCY = 8
 
 
 def ref_ycc(r, g, b):
@@ -54,9 +54,9 @@ class PipeDriver:
         dut.rst_n.value = 0
         dut.en.value = 1   # back-to-back stream: one valid vector per cycle
         dut.grey.value = 0
-        dut.r.value = 0
-        dut.g.value = 0
-        dut.b.value = 0
+        dut.r_reg.value = 0
+        dut.g_reg.value = 0
+        dut.pix.value = 0
         for _ in range(2):
             await self._tick()
         dut.rst_n.value = 1
@@ -86,9 +86,12 @@ class PipeDriver:
         self._check_due()
         dut = self.dut
         dut.grey.value = grey
-        dut.r.value = r
-        dut.g.value = g
-        dut.b.value = b
+        # jc_downsample's wiring: the completing beat's byte rides `pix` —
+        # the B byte in colour mode, the Y byte itself in grey mode; the
+        # latched bytes are stale colour data the select ignores in grey.
+        dut.r_reg.value = r
+        dut.g_reg.value = g
+        dut.pix.value = r if grey else b
         await self._tick()
         self.pending.append(((grey, exp_y), tag, self.edges))
 
