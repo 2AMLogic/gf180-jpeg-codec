@@ -200,7 +200,7 @@ async def test_cycles_per_block(dut):
     blocks = [(i % 2, [rnd.randint(-8191, 8191) for _ in range(64)]) for i in range(8)]
     outs, spans, stats = await run_blocks(dut, blocks, tabs, latency=2)
     check(blocks, tabs, outs)
-    total = (spans[-1][1] - spans[0][0]) // (10_000 * len(blocks))
+    total = (spans[-1][1] - spans[0][0]) / (10_000 * len(blocks))
     dut._log.info(f"cycles per block (back-to-back, M1 latency 2): {total:.1f}; Q requests: {stats['reqs']}")
     assert stats["reqs"] == 16 * len(blocks)
     assert total <= 77, total
