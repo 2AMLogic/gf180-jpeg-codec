@@ -7,109 +7,105 @@
   "defines": {},
   "run_id": "netlist",
   "status": "ok",
-  "instance_count": 40133,
-  "area_um2": 1405478.9952,
-  "sequential_area_um2": 559512.576,
+  "instance_count": 41590,
+  "area_um2": 1460352.096,
+  "sequential_area_um2": 588278.4768,
   "instance_counts_by_type": {
     "gf180_sram_256x32": 3,
-    "gf180mcu_fd_sc_mcu9t5v0__and2_1": 1348,
-    "gf180mcu_fd_sc_mcu9t5v0__and2_2": 9,
+    "gf180mcu_fd_sc_mcu9t5v0__and2_1": 1741,
+    "gf180mcu_fd_sc_mcu9t5v0__and2_2": 15,
     "gf180mcu_fd_sc_mcu9t5v0__and2_4": 3,
-    "gf180mcu_fd_sc_mcu9t5v0__and3_1": 225,
-    "gf180mcu_fd_sc_mcu9t5v0__and3_2": 22,
-    "gf180mcu_fd_sc_mcu9t5v0__and3_4": 6,
+    "gf180mcu_fd_sc_mcu9t5v0__and3_1": 248,
+    "gf180mcu_fd_sc_mcu9t5v0__and3_2": 8,
+    "gf180mcu_fd_sc_mcu9t5v0__and3_4": 12,
     "gf180mcu_fd_sc_mcu9t5v0__and4_1": 76,
-    "gf180mcu_fd_sc_mcu9t5v0__and4_2": 6,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi211_1": 381,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi211_2": 7,
+    "gf180mcu_fd_sc_mcu9t5v0__and4_2": 5,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi211_1": 382,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi211_2": 8,
     "gf180mcu_fd_sc_mcu9t5v0__aoi211_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi21_1": 1513,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi21_2": 44,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi21_4": 10,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi221_1": 177,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi221_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi222_1": 132,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi22_1": 528,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi22_2": 6,
-    "gf180mcu_fd_sc_mcu9t5v0__aoi22_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__buf_1": 1531,
-    "gf180mcu_fd_sc_mcu9t5v0__buf_2": 29,
-    "gf180mcu_fd_sc_mcu9t5v0__buf_3": 9,
-    "gf180mcu_fd_sc_mcu9t5v0__buf_4": 11,
-    "gf180mcu_fd_sc_mcu9t5v0__buf_8": 4,
-    "gf180mcu_fd_sc_mcu9t5v0__clkbuf_1": 480,
-    "gf180mcu_fd_sc_mcu9t5v0__clkbuf_2": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__clkbuf_8": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__clkinv_1": 1747,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi21_1": 1621,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi21_2": 32,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi21_4": 8,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi221_1": 165,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi221_2": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi221_4": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi222_1": 144,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi222_2": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi22_1": 521,
+    "gf180mcu_fd_sc_mcu9t5v0__aoi22_2": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_1": 1602,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_2": 28,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_3": 5,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_4": 7,
+    "gf180mcu_fd_sc_mcu9t5v0__buf_8": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__clkbuf_1": 481,
+    "gf180mcu_fd_sc_mcu9t5v0__clkinv_1": 1777,
     "gf180mcu_fd_sc_mcu9t5v0__clkinv_2": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__clkinv_8": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__dffq_1": 7080,
-    "gf180mcu_fd_sc_mcu9t5v0__inv_1": 40,
-    "gf180mcu_fd_sc_mcu9t5v0__inv_2": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__dffq_1": 7444,
+    "gf180mcu_fd_sc_mcu9t5v0__inv_1": 18,
+    "gf180mcu_fd_sc_mcu9t5v0__inv_2": 3,
     "gf180mcu_fd_sc_mcu9t5v0__inv_3": 1,
     "gf180mcu_fd_sc_mcu9t5v0__inv_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__mux2_1": 6274,
-    "gf180mcu_fd_sc_mcu9t5v0__mux2_2": 9,
-    "gf180mcu_fd_sc_mcu9t5v0__mux4_1": 633,
-    "gf180mcu_fd_sc_mcu9t5v0__nand2_1": 4676,
-    "gf180mcu_fd_sc_mcu9t5v0__nand2_2": 6,
-    "gf180mcu_fd_sc_mcu9t5v0__nand3_1": 1042,
-    "gf180mcu_fd_sc_mcu9t5v0__nand3_2": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__nand3_4": 3,
-    "gf180mcu_fd_sc_mcu9t5v0__nand4_1": 319,
-    "gf180mcu_fd_sc_mcu9t5v0__nand4_2": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__mux2_1": 6526,
+    "gf180mcu_fd_sc_mcu9t5v0__mux2_2": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__mux4_1": 653,
+    "gf180mcu_fd_sc_mcu9t5v0__nand2_1": 4677,
+    "gf180mcu_fd_sc_mcu9t5v0__nand2_2": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__nand2_4": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__nand3_1": 1058,
+    "gf180mcu_fd_sc_mcu9t5v0__nand3_2": 5,
+    "gf180mcu_fd_sc_mcu9t5v0__nand3_4": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__nand4_1": 299,
+    "gf180mcu_fd_sc_mcu9t5v0__nand4_2": 1,
     "gf180mcu_fd_sc_mcu9t5v0__nand4_4": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__nor2_1": 2566,
-    "gf180mcu_fd_sc_mcu9t5v0__nor2_2": 20,
-    "gf180mcu_fd_sc_mcu9t5v0__nor2_4": 3,
+    "gf180mcu_fd_sc_mcu9t5v0__nor2_1": 2711,
+    "gf180mcu_fd_sc_mcu9t5v0__nor2_2": 21,
+    "gf180mcu_fd_sc_mcu9t5v0__nor2_4": 4,
     "gf180mcu_fd_sc_mcu9t5v0__nor3_1": 306,
-    "gf180mcu_fd_sc_mcu9t5v0__nor3_2": 7,
-    "gf180mcu_fd_sc_mcu9t5v0__nor3_4": 5,
-    "gf180mcu_fd_sc_mcu9t5v0__nor4_1": 105,
-    "gf180mcu_fd_sc_mcu9t5v0__nor4_2": 1,
+    "gf180mcu_fd_sc_mcu9t5v0__nor3_2": 10,
+    "gf180mcu_fd_sc_mcu9t5v0__nor3_4": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__nor4_1": 110,
+    "gf180mcu_fd_sc_mcu9t5v0__nor4_2": 3,
     "gf180mcu_fd_sc_mcu9t5v0__nor4_4": 7,
-    "gf180mcu_fd_sc_mcu9t5v0__oai211_1": 438,
-    "gf180mcu_fd_sc_mcu9t5v0__oai211_2": 12,
-    "gf180mcu_fd_sc_mcu9t5v0__oai211_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__oai21_1": 1356,
-    "gf180mcu_fd_sc_mcu9t5v0__oai21_2": 36,
-    "gf180mcu_fd_sc_mcu9t5v0__oai21_4": 13,
-    "gf180mcu_fd_sc_mcu9t5v0__oai221_1": 134,
-    "gf180mcu_fd_sc_mcu9t5v0__oai221_2": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__oai211_1": 413,
+    "gf180mcu_fd_sc_mcu9t5v0__oai211_2": 15,
+    "gf180mcu_fd_sc_mcu9t5v0__oai211_4": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__oai21_1": 1317,
+    "gf180mcu_fd_sc_mcu9t5v0__oai21_2": 34,
+    "gf180mcu_fd_sc_mcu9t5v0__oai21_4": 8,
+    "gf180mcu_fd_sc_mcu9t5v0__oai221_1": 149,
+    "gf180mcu_fd_sc_mcu9t5v0__oai221_2": 5,
     "gf180mcu_fd_sc_mcu9t5v0__oai221_4": 1,
     "gf180mcu_fd_sc_mcu9t5v0__oai222_1": 3,
-    "gf180mcu_fd_sc_mcu9t5v0__oai22_1": 233,
-    "gf180mcu_fd_sc_mcu9t5v0__oai22_2": 6,
-    "gf180mcu_fd_sc_mcu9t5v0__oai31_1": 354,
-    "gf180mcu_fd_sc_mcu9t5v0__oai31_2": 13,
-    "gf180mcu_fd_sc_mcu9t5v0__oai31_4": 22,
-    "gf180mcu_fd_sc_mcu9t5v0__oai32_1": 83,
-    "gf180mcu_fd_sc_mcu9t5v0__oai32_2": 3,
-    "gf180mcu_fd_sc_mcu9t5v0__oai33_1": 6,
-    "gf180mcu_fd_sc_mcu9t5v0__oai33_2": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__oai33_4": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__or2_1": 409,
-    "gf180mcu_fd_sc_mcu9t5v0__or2_2": 13,
-    "gf180mcu_fd_sc_mcu9t5v0__or2_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__or3_1": 44,
+    "gf180mcu_fd_sc_mcu9t5v0__oai22_1": 222,
+    "gf180mcu_fd_sc_mcu9t5v0__oai22_2": 3,
+    "gf180mcu_fd_sc_mcu9t5v0__oai31_1": 349,
+    "gf180mcu_fd_sc_mcu9t5v0__oai31_2": 5,
+    "gf180mcu_fd_sc_mcu9t5v0__oai31_4": 19,
+    "gf180mcu_fd_sc_mcu9t5v0__oai32_1": 78,
+    "gf180mcu_fd_sc_mcu9t5v0__oai32_2": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__oai32_4": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__oai33_1": 8,
+    "gf180mcu_fd_sc_mcu9t5v0__or2_1": 447,
+    "gf180mcu_fd_sc_mcu9t5v0__or2_2": 7,
+    "gf180mcu_fd_sc_mcu9t5v0__or2_4": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__or3_1": 48,
     "gf180mcu_fd_sc_mcu9t5v0__or3_2": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__or3_4": 1,
-    "gf180mcu_fd_sc_mcu9t5v0__or4_1": 21,
-    "gf180mcu_fd_sc_mcu9t5v0__or4_2": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__or4_1": 15,
+    "gf180mcu_fd_sc_mcu9t5v0__or4_2": 5,
     "gf180mcu_fd_sc_mcu9t5v0__tieh": 130,
-    "gf180mcu_fd_sc_mcu9t5v0__tiel": 2308,
-    "gf180mcu_fd_sc_mcu9t5v0__xnor2_1": 1399,
-    "gf180mcu_fd_sc_mcu9t5v0__xnor2_2": 24,
-    "gf180mcu_fd_sc_mcu9t5v0__xnor2_4": 7,
-    "gf180mcu_fd_sc_mcu9t5v0__xnor3_1": 461,
+    "gf180mcu_fd_sc_mcu9t5v0__tiel": 2459,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor2_1": 1408,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor2_2": 8,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor2_4": 2,
+    "gf180mcu_fd_sc_mcu9t5v0__xnor3_1": 504,
     "gf180mcu_fd_sc_mcu9t5v0__xnor3_2": 2,
-    "gf180mcu_fd_sc_mcu9t5v0__xnor3_4": 7,
-    "gf180mcu_fd_sc_mcu9t5v0__xor2_1": 899,
-    "gf180mcu_fd_sc_mcu9t5v0__xor2_2": 47,
-    "gf180mcu_fd_sc_mcu9t5v0__xor2_4": 11,
-    "gf180mcu_fd_sc_mcu9t5v0__xor3_1": 177,
-    "gf180mcu_fd_sc_mcu9t5v0__xor3_2": 11,
-    "gf180mcu_fd_sc_mcu9t5v0__xor3_4": 6
+    "gf180mcu_fd_sc_mcu9t5v0__xnor3_4": 3,
+    "gf180mcu_fd_sc_mcu9t5v0__xor2_1": 876,
+    "gf180mcu_fd_sc_mcu9t5v0__xor2_2": 46,
+    "gf180mcu_fd_sc_mcu9t5v0__xor2_4": 4,
+    "gf180mcu_fd_sc_mcu9t5v0__xor3_1": 205,
+    "gf180mcu_fd_sc_mcu9t5v0__xor3_2": 4
   },
   "macros": [],
   "macro_instance_counts_by_type": {},
@@ -122,12 +118,12 @@
   "timing": {
     "source": "abc_stime",
     "wire_load": null,
-    "critical_path_ps": 31063.44,
+    "critical_path_ps": 31703.86,
     "delay_target_ps": 20000,
     "regions": [
       {
         "module": "jc_qoi",
-        "critical_path_ps": 19509.74
+        "critical_path_ps": 19532.4
       },
       {
         "module": "jc_out_mux",
@@ -139,15 +135,15 @@
       },
       {
         "module": "jc_table_load_rom",
-        "critical_path_ps": 9887.14
+        "critical_path_ps": 10031.8
       },
       {
         "module": "jc_table_load",
-        "critical_path_ps": 19584.63
+        "critical_path_ps": 19904.15
       },
       {
         "module": "jc_cfg_regs",
-        "critical_path_ps": 11590.86
+        "critical_path_ps": 11226.94
       },
       {
         "module": "jc_bitpack",
@@ -159,11 +155,11 @@
       },
       {
         "module": "jc_quant_sum_windows",
-        "critical_path_ps": 14246.72
+        "critical_path_ps": 14057.3
       },
       {
         "module": "jc_quant_rom_rows",
-        "critical_path_ps": 7181.99
+        "critical_path_ps": 7874.21
       },
       {
         "module": "$paramod\\jc_sram_arb\\N=s32",
@@ -187,7 +183,7 @@
       },
       {
         "module": "jc_zigzag",
-        "critical_path_ps": 13632.13
+        "critical_path_ps": 13888.94
       },
       {
         "module": "jc_xpose_rf",
@@ -195,7 +191,7 @@
       },
       {
         "module": "jc_dct1d",
-        "critical_path_ps": 31063.44
+        "critical_path_ps": 31703.86
       },
       {
         "module": "jc_dct",
@@ -203,7 +199,7 @@
       },
       {
         "module": "jc_cc_pipe",
-        "critical_path_ps": 6594.21
+        "critical_path_ps": 6015.94
       },
       {
         "module": "jc_cc_rnd",
@@ -211,15 +207,15 @@
       },
       {
         "module": "jc_cc_t3",
-        "critical_path_ps": 20017.52
+        "critical_path_ps": 21090.52
       },
       {
         "module": "jc_cc_add",
-        "critical_path_ps": 20017.52
+        "critical_path_ps": 14871.74
       },
       {
         "module": "jc_cc_mul",
-        "critical_path_ps": 22493.92
+        "critical_path_ps": 19049.4
       },
       {
         "module": "$paramod\\jc_sram_arb\\N=s32",
@@ -231,7 +227,7 @@
       },
       {
         "module": "jc_downsample",
-        "critical_path_ps": 19684.03
+        "critical_path_ps": 19621.23
       },
       {
         "module": "jc_sram_wrap",
@@ -350,7 +346,7 @@
     "path": "flow/netlist/jpeg_codec_top_synth.v",
     "scope": "repo"
   },
-  "netlist_sha256": "435595369f07eeea372e0713aedbe16c0eb8644f3b3c2e8ddf1ba025eaa500d9",
+  "netlist_sha256": "12eae0fbcc70bd48ce297bc1c13ace81455ee5ca5c327c1533c97a5f3ed5d2c4",
   "script_path": {
     "path": "flow/netlist/synth_jpeg_codec_top.ys",
     "scope": "repo"
@@ -360,9 +356,9 @@
     "scope": "repo"
   },
   "provenance": {
-    "klt_version": "0.9.3.dev1136+g81926eccba7b",
-    "klt_git_commit": "81926eccba7bb286548dc754eeebf00b06f74fc2",
-    "klt_reinstall_spec": "klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@81926eccba7bb286548dc754eeebf00b06f74fc2",
+    "klt_version": "0.9.3.dev1225+g83912ea29f92",
+    "klt_git_commit": "83912ea29f922c301950412844507426b98b7f0a",
+    "klt_reinstall_spec": "klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@83912ea29f922c301950412844507426b98b7f0a",
     "klayout_version": "0.30.12",
     "pdk": {
       "name": "gf180mcuD",
@@ -378,7 +374,7 @@
       "released": false
     },
     "input": {
-      "content_hash": "sha256:2bc02e64154d188d25f26db435a7848f5ea215c4c47c120c2027fd51821a810b",
+      "content_hash": "sha256:744b0a7a63ed7cc92105a3f1eef350aa10a79207c30739b0d0f7c4d56febf0f2",
       "role": "source"
     },
     "parameters": {},
