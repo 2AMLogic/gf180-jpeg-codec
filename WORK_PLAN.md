@@ -34,6 +34,7 @@ Human-approved issues (`loom:issue`) ready for implementation — excluding held
 Issues currently being built (`loom:building`).
 
 - **#169**: jc_dct1d depth: successor decision needed — §2 timing target unreachable in the record 0007 §4 band (PR #164 measured evidence)
+- **#222**: Merge queue: add the merge_group trigger to the required-check workflow(s)
 
 ## PRs Awaiting Review
 
@@ -72,7 +73,7 @@ _None._
 | Very important | 1 |
 | Important | 3 |
 | Ready (`loom:issue`, net of holds/building/merge-pending) | 1 |
-| In Progress (`loom:building`) | 1 |
+| In Progress (`loom:building`) | 2 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
 | Curated | 4 |
