@@ -367,7 +367,7 @@
     "path": "flow/netlist/jpeg_codec_top_synth.v",
     "scope": "repo"
   },
-  "netlist_sha256": "3fc3934ff63ab41f5fb5bfe79c97fda22fbf22a3622174f6456de5dcaac923b5",
+  "netlist_sha256": "5afc15880d558a7ff8821708b3073bd63b2312d3dc6c3538f502886519a17525",
   "script_path": {
     "path": "flow/netlist/synth_jpeg_codec_top.ys",
     "scope": "repo"
@@ -377,10 +377,10 @@
     "scope": "repo"
   },
   "provenance": {
-    "klt_version": "0.9.3.dev1601+gf6e067c81e5f",
-    "klt_git_commit": "f6e067c81e5f43ceffe7f94ed622046d7611dce7",
-    "klt_reinstall_spec": "klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@f6e067c81e5f43ceffe7f94ed622046d7611dce7",
-    "klayout_version": "0.30.12",
+    "klt_version": "0.9.2",
+    "klt_git_commit": "046ba74652fc096bd97071fc3237f7159dd40183",
+    "klt_reinstall_spec": "klayout-tools==0.9.2",
+    "klayout_version": "0.30.13",
     "pdk": {
       "name": "gf180mcuD",
       "source": "PDK_ROOT environment variable",
@@ -395,7 +395,7 @@
       "released": false
     },
     "input": {
-      "content_hash": "sha256:b5de77c94cb4de6fa5d2feb1b68dce25bbef27b897a9dff56b73ed7b6546249c",
+      "content_hash": "sha256:be0b741592a08983055165a7fa9f68762d67504f916771159e1f496ccd733611",
       "role": "source"
     },
     "parameters": {},

@@ -115,7 +115,7 @@
         "role": "testbench",
         "path": "verification/rtl/colour_pipe_tb_top.v",
         "passed": true,
-        "content_hash": "sha256:4df028a58e0316a1181bb9ce070c0dffe0dcb23377147fdf3392a123ee0c4fe8"
+        "content_hash": "sha256:828d3f9d98c41b8e0de9f6f02ec188457b1f8f0e0d087beedd293077abb1ce43"
       },
       {
         "check": "present",
@@ -150,7 +150,7 @@
         "role": "testbench",
         "path": "verification/rtl/test_colour_pipe.py",
         "passed": true,
-        "content_hash": "sha256:4240f606a04299970848edc840d8dd4701077ad7be0912a1ef7507d912767cdb"
+        "content_hash": "sha256:5eaa29c2b921d66edbb6d27252c1b6af3418011e807b5f91f8cb6d9836a7c3fb"
       },
       {
         "check": "present",

@@ -1,6 +1,6 @@
 // Test-only wrapper so the pipelined-converter bench has a named toplevel for
 // jc_cc_pipe (issue #132). Inputs are sampled on a rising edge; the byte
-// outputs carry that vector from the eighth following edge (the pipe's eighthth
+// outputs carry that vector from the eighth following edge (the pipe's eighth
 // register boundary) until the next one. `pix` carries the completing beat's
 // byte — the B byte in colour mode, the Y byte in grey mode — exactly as
 // jc_downsample feeds it.
