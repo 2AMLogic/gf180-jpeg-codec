@@ -3,6 +3,10 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-11-19
+
+- **Issue #233** (closed): Deferred from #230: move colour_convert.v out of the design source lists (needs item-1 re-attestation)
+
 ### 2026-11-18
 
 - **PR #232**: docs(rtl): name jc_cc_pipe as the instantiated converter in the rtl README
