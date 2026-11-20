@@ -5,6 +5,8 @@ Maintained by the Guide triage role.
 
 ### 2026-11-20
 
+- **PR #268**: test(rtl): build the top-bench colour stream from packed RGB
+- **Issue #253** (closed): Build the RTL colour test stream directly from packed RGB
 - **PR #264**: refactor: share the spec section 4 ref_ycc reference across the colour benches
 - **Issue #261** (closed): Share the spec-derived ref_ycc formula across the three RTL benches
 - **PR #257**: fix: ignore Loom's Codex account ranking file
