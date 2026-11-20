@@ -427,26 +427,6 @@ async def test_random_blocks(dut):
     await check(dut, singles, rng)
 
 
-def count_symbols(blocks):
-    """Symbols of the spec section 6 stream: DC + AC + ZRL + EOB per block."""
-    n = 0
-    for _, zz in blocks:
-        n += 1                                  # the DC symbol
-        run = 0
-        for k in range(1, 64):
-            if zz[k] == 0:
-                run += 1
-                continue
-            while run >= 16:
-                n += 1                          # ZRL
-                run -= 16
-            n += 1                              # the AC symbol
-            run = 0
-        if run > 0:
-            n += 1                              # EOB
-    return n
-
-
 @cocotb.test()
 async def test_throughput(dut):
     """Fully dense blocks sustain <= 2 cycles per symbol, memory unstalled.
@@ -470,6 +450,15 @@ async def test_throughput(dut):
         zz = [rng.choice((-3, -2, -1, 1, 2, 3)) for _ in range(64)]
         zz[0] = rng.randint(-16, 16)
         blocks.append((comp, zz))
+    # Dense-fixture contract for the rate assertions below: each block is 64
+    # coefficients with every AC nonzero, so it emits exactly 64 symbols
+    # (1 DC + 63 AC, no ZRL, no EOB). Fail loudly here so a future sparse
+    # fixture cannot silently change what the measured rate means.
+    for comp, zz in blocks:
+        assert len(zz) == 64, (
+            f"dense fixture broken: comp {comp} block has {len(zz)} coefficients")
+        assert all(zz[k] != 0 for k in range(1, 64)), (
+            f"dense fixture broken: comp {comp} block has a zero AC coefficient")
     # Sustained-rate probe on jc_huff's own input port: the first beat the
     # entropy stage accepts and the last one bound the symbol stream, so
     # (last_acc - first_acc) is the pure pipelined rate with the unit
@@ -491,7 +480,7 @@ async def test_throughput(dut):
                                    in_gap=0.0, out_stall=0.0, mem_stall=0.0)
     pb.kill()
     assert got[0] == ref_scan(blocks)
-    syms = count_symbols(blocks)
+    syms = 64 * len(blocks)
     span = acc["last"] - acc["first"]
     assert span <= 2 * (syms - 1), (
         f"sustained rate {span} cycles for {syms} symbols "
