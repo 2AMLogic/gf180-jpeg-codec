@@ -1,0 +1,320 @@
+{
+  "schema_version": 2,
+  "kind": "frame-cycle-count",
+  "issue": 119,
+  "note": "Simulated cycle counts, never measured (spec/codec.md section 9, CLAUDE.md). Icarus + cocotb, RTL with sram_macro_model.v, no host stalls. schema_version 2 adds the issue #119 per-boundary stage counters.",
+  "testbench": "verification/rtl/test_top_frame_cycles.py",
+  "stage_boundaries": {
+    "pix": "host -> jc_downsample",
+    "s2": "jc_downsample -> jc_mb_ctrl",
+    "s3": "jc_mb_ctrl -> jc_dct",
+    "s4": "jc_dct -> jc_zigzag",
+    "s5": "jc_zigzag -> jc_quant",
+    "s6": "jc_quant -> jc_huff",
+    "s7": "jc_huff -> jc_bitpack",
+    "bp": "jc_bitpack -> jc_out_mux",
+    "out": "jc_out_mux -> host"
+  },
+  "signoff_clock_hz": 50000000,
+  "frames_per_s": 30,
+  "frame_period_cycles": 1666667,
+  "record_0005_bound_cycles": 1503668,
+  "cycle_floor": 921600,
+  "cycle_ceiling": 1666667,
+  "rows": [
+    {
+      "image": "scene_fbm",
+      "width": 640,
+      "height": 480,
+      "mode": "colour",
+      "quality": 50,
+      "output_bytes": 18616,
+      "cycles_to_out_last": 1383296,
+      "cycles_to_status_idle": 1383298,
+      "fraction_of_frame_period": 0.829977,
+      "fraction_of_record_0005_bound": 0.919948,
+      "within_floor_ceiling": true,
+      "golden_match": true,
+      "golden_bytes": 18616,
+      "decode": {
+        "size": [
+          640,
+          480
+        ],
+        "mode": "RGB"
+      },
+      "pix_valid_not_ready_cycles": 459934,
+      "out_valid_not_ready_cycles": 0,
+      "stage_counts": {
+        "pix": {
+          "stalled": 459934,
+          "starved": 0,
+          "transferred": 921600,
+          "idle": 1762
+        },
+        "s2": {
+          "stalled": 492318,
+          "starved": 0,
+          "transferred": 115200,
+          "idle": 775778
+        },
+        "s3": {
+          "stalled": 1186692,
+          "starved": 1004,
+          "transferred": 115200,
+          "idle": 80400
+        },
+        "s4": {
+          "stalled": 0,
+          "starved": 922496,
+          "transferred": 460800,
+          "idle": 0
+        },
+        "s5": {
+          "stalled": 56095,
+          "starved": 0,
+          "transferred": 460800,
+          "idle": 866401
+        },
+        "s6": {
+          "stalled": 6372,
+          "starved": 916124,
+          "transferred": 460800,
+          "idle": 0
+        },
+        "s7": {
+          "stalled": 0,
+          "starved": 1349145,
+          "transferred": 33643,
+          "idle": 508
+        },
+        "bp": {
+          "stalled": 0,
+          "starved": 1364406,
+          "transferred": 17991,
+          "idle": 899
+        },
+        "out": {
+          "stalled": 0,
+          "starved": 1364680,
+          "transferred": 18616,
+          "idle": 0
+        }
+      },
+      "sram_occupancy_cycles": {
+        "m0_en": 230400,
+        "m1_en": 141115,
+        "m2_en": 7864
+      },
+      "arb_stall_cycles": {
+        "hf_m1": 653,
+        "hf_m2": 0,
+        "qa": 25511
+      },
+      "stage_sample_cycles": 1383296,
+      "stage_sample_window_ns": [
+        32760.0,
+        13865710.0
+      ],
+      "stage_phantom_edges_skipped": 0,
+      "drive_cycles": 1383297,
+      "wall_time_s": 464.841
+    },
+    {
+      "image": "noise_max_entropy",
+      "width": 640,
+      "height": 480,
+      "mode": "colour",
+      "quality": 50,
+      "output_bytes": 126543,
+      "cycles_to_out_last": 1383299,
+      "cycles_to_status_idle": 1383301,
+      "fraction_of_frame_period": 0.829979,
+      "fraction_of_record_0005_bound": 0.91995,
+      "within_floor_ceiling": true,
+      "golden_match": true,
+      "golden_bytes": 126543,
+      "decode": {
+        "size": [
+          640,
+          480
+        ],
+        "mode": "RGB"
+      },
+      "pix_valid_not_ready_cycles": 459934,
+      "out_valid_not_ready_cycles": 0,
+      "stage_counts": {
+        "pix": {
+          "stalled": 459934,
+          "starved": 0,
+          "transferred": 921600,
+          "idle": 1765
+        },
+        "s2": {
+          "stalled": 492318,
+          "starved": 0,
+          "transferred": 115200,
+          "idle": 775781
+        },
+        "s3": {
+          "stalled": 1186692,
+          "starved": 1007,
+          "transferred": 115200,
+          "idle": 80400
+        },
+        "s4": {
+          "stalled": 0,
+          "starved": 922499,
+          "transferred": 460800,
+          "idle": 0
+        },
+        "s5": {
+          "stalled": 316620,
+          "starved": 0,
+          "transferred": 460800,
+          "idle": 605879
+        },
+        "s6": {
+          "stalled": 93846,
+          "starved": 815657,
+          "transferred": 460800,
+          "idle": 12996
+        },
+        "s7": {
+          "stalled": 49,
+          "starved": 1164643,
+          "transferred": 208710,
+          "idle": 9897
+        },
+        "bp": {
+          "stalled": 0,
+          "starved": 1256482,
+          "transferred": 125918,
+          "idle": 899
+        },
+        "out": {
+          "stalled": 0,
+          "starved": 1256756,
+          "transferred": 126543,
+          "idle": 0
+        }
+      },
+      "sram_occupancy_cycles": {
+        "m0_en": 230400,
+        "m1_en": 301070,
+        "m2_en": 22976
+      },
+      "arb_stall_cycles": {
+        "hf_m1": 6198,
+        "hf_m2": 0,
+        "qa": 278717
+      },
+      "stage_sample_cycles": 1383299,
+      "stage_sample_window_ns": [
+        13898500.001,
+        27731480.001
+      ],
+      "stage_phantom_edges_skipped": 0,
+      "drive_cycles": 1383300,
+      "wall_time_s": 557.904
+    },
+    {
+      "image": "noise_max_entropy",
+      "width": 640,
+      "height": 480,
+      "mode": "colour",
+      "quality": 95,
+      "output_bytes": 360997,
+      "cycles_to_out_last": 1383350,
+      "cycles_to_status_idle": 1383352,
+      "fraction_of_frame_period": 0.83001,
+      "fraction_of_record_0005_bound": 0.919984,
+      "within_floor_ceiling": true,
+      "golden_match": true,
+      "golden_bytes": 360997,
+      "decode": {
+        "size": [
+          640,
+          480
+        ],
+        "mode": "RGB"
+      },
+      "pix_valid_not_ready_cycles": 459934,
+      "out_valid_not_ready_cycles": 0,
+      "stage_counts": {
+        "pix": {
+          "stalled": 459934,
+          "starved": 0,
+          "transferred": 921600,
+          "idle": 1816
+        },
+        "s2": {
+          "stalled": 492318,
+          "starved": 0,
+          "transferred": 115200,
+          "idle": 775832
+        },
+        "s3": {
+          "stalled": 1186692,
+          "starved": 1058,
+          "transferred": 115200,
+          "idle": 80400
+        },
+        "s4": {
+          "stalled": 0,
+          "starved": 922550,
+          "transferred": 460800,
+          "idle": 0
+        },
+        "s5": {
+          "stalled": 626914,
+          "starved": 0,
+          "transferred": 460800,
+          "idle": 295636
+        },
+        "s6": {
+          "stalled": 332237,
+          "starved": 560562,
+          "transferred": 460800,
+          "idle": 29751
+        },
+        "s7": {
+          "stalled": 4302,
+          "starved": 874573,
+          "transferred": 425695,
+          "idle": 78780
+        },
+        "bp": {
+          "stalled": 0,
+          "starved": 1022079,
+          "transferred": 360372,
+          "idle": 899
+        },
+        "out": {
+          "stalled": 0,
+          "starved": 1022353,
+          "transferred": 360997,
+          "idle": 0
+        }
+      },
+      "sram_occupancy_cycles": {
+        "m0_en": 230400,
+        "m1_en": 411326,
+        "m2_en": 129705
+      },
+      "arb_stall_cycles": {
+        "hf_m1": 243,
+        "hf_m2": 0,
+        "qa": 501065
+      },
+      "stage_sample_cycles": 1383350,
+      "stage_sample_window_ns": [
+        27764270.002,
+        41597760.002
+      ],
+      "stage_phantom_edges_skipped": 0,
+      "drive_cycles": 1383351,
+      "wall_time_s": 535.497
+    }
+  ]
+}

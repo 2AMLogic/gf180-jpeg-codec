@@ -13,14 +13,18 @@ byte-exact suite passed at RTL on November 5 and at zero-delay gate level on
 November 6. [RTL results](verification/records/top-golden-20261105T050638Z.json)
 and [gate-level results](verification/records/20261106T1803Z-golden-gl-e32b0e8/).
 
-After the colour-path retime, the November 18 simulation recorded cycles per
-frame on both reference images. Pre-route STA on the retimed netlist
-(`3a19263`) found positive setup slack for `jc_downsample` and `jc_quant` at
+After the colour-path retime, the November 20 simulation on a clean checkout
+of the retime commit `3a19263` counted 1,383,296–1,383,350 cycles per frame
+on both reference images — byte-exact against the golden encoder on every
+row, 83.0% of the §9 frame period, a simulated 36.1 frames/s at the 50 MHz
+signoff clock. Pre-route STA on the retimed netlist (`3a19263`) found
+positive setup slack for `jc_downsample` and `jc_quant` at
 all five §10 views. At `ss_125C_3v00`, their setup slacks were +6.83 ns and
 +1.31 ns. Six modules missed setup at that view, with `jc_dct` worst at
 −15.00 ns. These per-module estimates cover cell delays only and exclude wire
-parasitics, SRAM paths and inter-module paths. [Frame-cycle results](verification/records/20261118T1800Z-frame-cycles-retime132-55a500a-wip/cycles.json)
-and [five-view timing results](flow/records/20261118T170201Z-55a500a/summary.md).
+parasitics, SRAM paths and inter-module paths. [Frame-cycle results](verification/records/20261120T0232Z-frame-cycles-retime132-3a19263/cycles.json)
+and [five-view timing results](flow/records/20261118T170201Z-55a500a/summary.md)
+— both at `3a19263`.
 
 Place-and-route stopped at floorplanning because the SRAM macro LEF was
 missing. Routed layout and post-route timing are still pending.
