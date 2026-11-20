@@ -192,7 +192,7 @@
         "role": "testbench",
         "path": "verification/rtl/test_entropy.py",
         "passed": true,
-        "content_hash": "sha256:5f3fe4cb323e2c61cdf428d9f09c0402540e91dc8ef519232577403fe68938d9"
+        "content_hash": "sha256:03f10564901159a1fe1614cda8995e5d9e96bc525b75c406aea9e80be8aa184b"
       },
       {
         "check": "present",
