@@ -36,13 +36,14 @@ CAP = 4_000_000
 
 def img_colour(w, h, seed):
     rng = random.Random(seed)
-    px = []
+    out = bytearray()
     for y in range(h):
         for x in range(w):
-            px.append(((x * 255) // max(w - 1, 1),
-                       (y * 255) // max(h - 1, 1),
-                       (rng.randrange(64) + 96 * ((x // 4 + y // 4) & 1)) & 255))
-    return px
+            out += bytes((
+                (x * 255) // max(w - 1, 1),
+                (y * 255) // max(h - 1, 1),
+                (rng.randrange(64) + 96 * ((x // 4 + y // 4) & 1)) & 255))
+    return out
 
 
 def img_grey(w, h, seed):
@@ -61,15 +62,22 @@ def padded(plane, w, h, m):
             for y in range(ph) for x in range(pw)], pw, ph
 
 
-def colour_stream(pixels, w, h):
-    """Block-ordered R, G, B bytes: 16 x 16 macroblocks, raster inside."""
-    pad, pw, ph = padded(pixels, w, h, 16)
-    out = []
+def colour_stream(rgb, w, h):
+    """Block-ordered R, G, B bytes: 16 x 16 macroblocks, raster inside.
+
+    `rgb` is packed RGB, 3 bytes per pixel. A partial macroblock repeats
+    the row's last pixel on the right and the last row at the bottom
+    (spec section 2), so no padded frame is ever materialised.
+    """
+    pw, ph = pad_ceil(w, 16), pad_ceil(h, 16)
+    out = bytearray()
     for my in range(0, ph, 16):
         for mx in range(0, pw, 16):
+            x1 = min(mx + 16, w)
             for y in range(16):
-                for x in range(16):
-                    out.extend(pad[(my + y) * pw + mx + x])
+                row = 3 * min(my + y, h - 1) * w
+                out += rgb[row + 3 * mx:row + 3 * x1]
+                out += rgb[row + 3 * (w - 1):row + 3 * w] * (mx + 16 - x1)
     return out
 
 
@@ -176,9 +184,9 @@ async def jpeg_case(dut, mode_name, w, h, seed, in_gap=0.0, out_gap=0.0):
     await host.reset()
     q_luma, q_chroma = jpeg_golden.quality_tables(50)     # Annex K, the reset default
     if mode_name == "colour":
-        pixels = img_colour(w, h, seed)
-        stream = colour_stream(pixels, w, h)
-        flat = [c for p in pixels for c in p]
+        rgb = img_colour(w, h, seed)
+        stream = colour_stream(rgb, w, h)
+        flat = list(rgb)
         got = await host.run_frame(0, w, h, stream)
     else:
         pixels = img_grey(w, h, seed)
@@ -221,8 +229,7 @@ async def test_qoi_decodes(dut):
     w, h = 12, 9
     host = Host(dut, seed=15)
     await host.reset()
-    pixels = img_colour(w, h, 15)
-    rgb = [c for p in pixels for c in p]
+    rgb = img_colour(w, h, 15)
     got = await host.run_frame(2, w, h, rgb)
     dut._log.info("qoi %dx%d: %d bytes, %d cycles (simulated)", w, h, len(got), host.cycles)
     with tempfile.TemporaryDirectory() as tmp:

@@ -406,8 +406,7 @@ async def frame_cycle_case(dut, name, quality):
     q_luma, q_chroma = jpeg_golden.quality_tables(quality)
     await load_quant(host, q_luma, q_chroma)
 
-    pix = [tuple(rgb[3 * i:3 * i + 3]) for i in range(W * H)]
-    stream = colour_stream(pix, W, H)
+    stream = colour_stream(rgb, W, H)
     assert len(stream) == CYCLE_FLOOR, "pixel stream is %d bytes, expected %d" % (
         len(stream), CYCLE_FLOOR)
     got = await host.run_frame(0, W, H, stream)

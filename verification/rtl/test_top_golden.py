@@ -93,8 +93,7 @@ async def jpeg_case(dut, mode_name, name, w, h, quality):
     q_luma, q_chroma = jpeg_golden.quality_tables(quality)
     await load_quant(host, q_luma, q_chroma)
     if mode_name == "colour":
-        pix = [tuple(rgb[3 * i:3 * i + 3]) for i in range(w * h)]
-        got = await host.run_frame(0, w, h, colour_stream(pix, w, h))
+        got = await host.run_frame(0, w, h, colour_stream(rgb, w, h))
         want = jpeg_golden.encode(list(rgb), w, h, "colour", q_luma, q_chroma)
     else:
         got = await host.run_frame(1, w, h, grey_stream(list(grey), w, h))
