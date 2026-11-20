@@ -136,7 +136,7 @@
         "role": "testbench",
         "path": "verification/rtl/run_stage.py",
         "passed": true,
-        "content_hash": "sha256:7417aec82766151dceb864bc577a4cfe4149fcd78472a446ffa55e7b4d22480d"
+        "content_hash": "sha256:bb47f6efa1de1214741b1bb4e022d2b3e73b78ee96296b11a00a664ef422ec7e"
       },
       {
         "check": "present",
