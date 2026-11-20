@@ -26,15 +26,13 @@ Judge-approved PRs under a hold (`loom:blocked` or `loom:operator`) — only a h
 
 Human-approved issues ready for implementation (`loom:issue`).
 
-_None._
+- **#253**: Build the RTL colour test stream directly from packed RGB
 
 ## In Progress
 
 Issues currently being built (`loom:building`).
 
 - **#169**: jc_dct1d depth: successor decision needed — §2 timing target unreachable in the record 0007 §4 band (PR #164 measured evidence)
-- **#253**: Build the RTL colour test stream directly from packed RGB
-- **#255**: gitignore gap: .loom/account-ranking.codex daemon artifact makes check-main-clean.sh exit 3
 
 ## PRs Awaiting Review
 
@@ -47,7 +45,6 @@ _None._
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
 - **#218**: record 0014 (proposed): jc_dct1d 13-cycle CSD carry-save datapath, >= 0 ns at every view; candidate RTL stays on the filing branch pending ratification
-- **#257**: fix: ignore Loom's Codex account ranking file
 
 ## Proposed
 
@@ -56,7 +53,6 @@ Issues carrying `loom:curated`.
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
 - **#165**: re-verify healthy synthesize byte-identity on a wedge-free window (blocked during #156 by the yosys/ABC wedge) *(curated)*
 - **#169**: jc_dct1d depth: successor decision needed — §2 timing target unreachable in the record 0007 §4 band (PR #164 measured evidence) *(curated)*
-- **#255**: gitignore gap: .loom/account-ranking.codex daemon artifact makes check-main-clean.sh exit 3 *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -73,11 +69,11 @@ _None._
 | Operator merge-risk holds | 1 |
 | Very important | 1 |
 | Important | 2 |
-| Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 3 |
+| Ready (`loom:issue`) | 1 |
+| In Progress (`loom:building`) | 1 |
 | PRs awaiting review | 0 |
-| Approved PRs awaiting merge | 2 |
-| Curated | 4 |
+| Approved PRs awaiting merge | 1 |
+| Curated | 3 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
