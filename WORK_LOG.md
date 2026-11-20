@@ -5,6 +5,14 @@ Maintained by the Guide triage role.
 
 ### 2026-11-20
 
+- **PR #250**: fix: bind the six missing RTL stage benches in the item-9 inventory
+- **Issue #249** (closed): Bind the six missing RTL cocotb test modules in the item-9 inventory
+- **PR #247**: test: compile the QOI reference decoder once per test
+- **Issue #245** (closed): Compile the QOI reference decoder once per RTL test
+- **PR #246**: verification: pin frame-cycle evidence to committed retime 3a19263
+- **Issue #238** (closed): Pin the README frame-cycle evidence to a committed RTL revision
+- **PR #244**: ci: run both QOI reference checks in lint
+- **Issue #242** (closed): Run the QOI golden cross-check in lint and document both modes
 - **PR #240**: verification: generate the QOI cross-check's 20 fixtures directly
 - **Issue #239** (closed): Generate only the 20 RGB fixtures used by the QOI cross-check
 
