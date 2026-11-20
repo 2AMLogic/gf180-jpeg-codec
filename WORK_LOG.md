@@ -3,6 +3,11 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-11-20
+
+- **PR #240**: verification: generate the QOI cross-check's 20 fixtures directly
+- **Issue #239** (closed): Generate only the 20 RGB fixtures used by the QOI cross-check
+
 ### 2026-11-19
 
 - **Issue #233** (closed): Deferred from #230: move colour_convert.v out of the design source lists (needs item-1 re-attestation)
