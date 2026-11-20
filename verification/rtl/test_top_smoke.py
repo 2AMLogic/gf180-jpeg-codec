@@ -16,9 +16,7 @@ whole MCU are padded by edge replication on the host (spec section 2).
 """
 
 import io
-import os
 import random
-import subprocess
 import tempfile
 import warnings
 
@@ -29,9 +27,7 @@ from cocotb.triggers import RisingEdge
 import cfg_host
 import jpeg_golden
 import qoi_golden
-
-HERE = os.path.dirname(os.path.abspath(__file__))
-REF = os.path.join(HERE, "..", "golden", "ref")
+import qoi_ref_dec
 
 CAP = 4_000_000
 
@@ -175,19 +171,6 @@ def decode_jpeg(data):
     return im
 
 
-def qoi_decode_check(qoi_bytes, rgb, w, h):
-    with tempfile.TemporaryDirectory() as tmp:
-        exe = os.path.join(tmp, "qoi_dec_ref")
-        subprocess.run([os.environ.get("CC", "cc"), "-O2", "-Wall", "-I", REF,
-                        "-o", exe, os.path.join(HERE, "qoi_dec_ref.c")], check=True)
-        qp, rp = os.path.join(tmp, "o.qoi"), os.path.join(tmp, "o.rgb")
-        with open(qp, "wb") as f:
-            f.write(qoi_bytes)
-        with open(rp, "wb") as f:
-            f.write(bytes(rgb))
-        return subprocess.run([exe, qp, rp, str(w), str(h)]).returncode
-
-
 async def jpeg_case(dut, mode_name, w, h, seed, in_gap=0.0, out_gap=0.0):
     host = Host(dut, in_gap, out_gap, seed)
     await host.reset()
@@ -242,5 +225,7 @@ async def test_qoi_decodes(dut):
     rgb = [c for p in pixels for c in p]
     got = await host.run_frame(2, w, h, rgb)
     dut._log.info("qoi %dx%d: %d bytes, %d cycles (simulated)", w, h, len(got), host.cycles)
-    assert qoi_decode_check(got, rgb, w, h) == 0, "qoi.h reference rejected the output"
+    with tempfile.TemporaryDirectory() as tmp:
+        dec = qoi_ref_dec.QoiRefDec(tmp)      # one compile for the whole test
+        assert dec.decode(got, bytes(rgb), w, h) == 0, "qoi.h reference rejected the output"
     assert got == qoi_golden.qoi_encode(bytes(rgb), w, h), "bytes differ from the golden QOI encoder"

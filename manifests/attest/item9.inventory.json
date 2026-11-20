@@ -15,6 +15,7 @@
     "verification/rtl/test_top_golden.py",
     "verification/rtl/test_top_smoke.py",
     "verification/rtl/cfg_host.py",
+    "verification/rtl/qoi_ref_dec.py",
     "verification/rtl/colour_pipe_tb_top.v",
     "verification/rtl/test_colour_pipe.py",
     "verification/rtl/tb_downsample_top.v",
