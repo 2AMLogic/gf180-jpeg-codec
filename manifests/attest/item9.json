@@ -220,21 +220,21 @@
         "role": "testbench",
         "path": "verification/rtl/test_top_frame_cycles.py",
         "passed": true,
-        "content_hash": "sha256:8d55518ece42bc5475ccf658727aabf0f1fcbde4758c329a75cec11163298e6f"
+        "content_hash": "sha256:a774395a286f051b88d013250e2d46d9a768019e179b1f403f76e19e61718d48"
       },
       {
         "check": "present",
         "role": "testbench",
         "path": "verification/rtl/test_top_golden.py",
         "passed": true,
-        "content_hash": "sha256:295fd483f05f2891d2e42f95baad21145362e6086b7e98e4e77e59db99363746"
+        "content_hash": "sha256:afe5addc59b2b835d286407af3e1e45081903cd25a1dcf215739ef77afc795cc"
       },
       {
         "check": "present",
         "role": "testbench",
         "path": "verification/rtl/test_top_smoke.py",
         "passed": true,
-        "content_hash": "sha256:0173cca60784104d6cb3dbd6f5c36ba626a9d50e342ad78a8129eb9664d14152"
+        "content_hash": "sha256:6af318c14c89300cedc66a3f0308e2b9229c146e8e9f393c7b90eeb40de69a01"
       },
       {
         "check": "command",
