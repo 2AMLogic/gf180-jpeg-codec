@@ -5,6 +5,10 @@ Maintained by the Guide triage role.
 
 ### 2026-11-20
 
+- **PR #256**: test: assert the dense-fixture contract instead of counting JPEG symbols
+- **Issue #254** (closed): Simplify symbol counting in the dense entropy throughput test
+- **PR #251**: refactor: define the shared colour arithmetic source list once in run_stage.py
+- **Issue #248** (closed): Define the shared colour-stage source list once in the RTL bench runner
 - **PR #250**: fix: bind the six missing RTL stage benches in the item-9 inventory
 - **Issue #249** (closed): Bind the six missing RTL cocotb test modules in the item-9 inventory
 - **PR #247**: test: compile the QOI reference decoder once per test
