@@ -5,6 +5,8 @@ Maintained by the Guide triage role.
 
 ### 2026-11-20
 
+- **PR #264**: refactor: share the spec section 4 ref_ycc reference across the colour benches
+- **Issue #261** (closed): Share the spec-derived ref_ycc formula across the three RTL benches
 - **PR #257**: fix: ignore Loom's Codex account ranking file
 - **Issue #255** (closed): gitignore gap: .loom/account-ranking.codex daemon artifact makes check-main-clean.sh exit 3
 - **PR #256**: test: assert the dense-fixture contract instead of counting JPEG symbols
