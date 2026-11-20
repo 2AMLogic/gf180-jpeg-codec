@@ -32,19 +32,14 @@ import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge
 
+from colour_ref import ref_ycc  # the spec section 4 integer reference
+
 # jc_downsample's inserted latency: a pixel accepted during cycle T has its
 # writes in the pending slots ten cycles later (load edge at the end of
 # T+10), visible from T+11. The bench anchors the first-word check to the
 # cycle the DUT itself reports for the first lane-3 pixel's completing beat,
 # so the assertion pins the latency, not the feeder's write timing.
 FIRST_WORD_LATENCY = 11  # completing beat of a lane-3 pixel -> its word visible
-
-
-def ref_ycc(r, g, b):
-    y = (19595 * r + 38470 * g + 7471 * b + 32768) >> 16
-    cb = (-11059 * r - 21709 * g + 32768 * b + (128 << 16) + 32768 - 1) >> 16
-    cr = (32768 * r - 27439 * g - 5329 * b + (128 << 16) + 32768 - 1) >> 16
-    return y, cb, cr
 
 
 def make_pixels(grey, mcus):
