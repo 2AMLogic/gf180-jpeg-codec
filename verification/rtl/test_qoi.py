@@ -10,10 +10,8 @@ as an item-5 claim is issue #34.
 Cycle counts are simulated cycles on the named image, not measurements.
 """
 
-import os
 import random
 import struct
-import subprocess
 import tempfile
 
 import cocotb
@@ -21,9 +19,7 @@ from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge
 
 import qoi_golden
-
-HERE = os.path.dirname(os.path.abspath(__file__))
-REF = os.path.join(HERE, "..", "golden", "ref")
+import qoi_ref_dec
 
 SPEC_CYCLES_PER_PIXEL = 5.43     # spec section 8
 RECORD_CYCLES_PER_PIXEL = 4.0    # decision record 0005 section 7
@@ -312,19 +308,10 @@ async def test_cycles_per_pixel_noise(dut):
     assert steady <= RECORD_CYCLES_PER_PIXEL
 
 
-def _decode_with_qoi_h(stream, pixels, w, h):
+def _wrap_stream(stream, w, h):
+    """A complete QOI file: header, the DUT's chunk stream, end marker."""
     header = b"qoif" + struct.pack(">II", w, h) + bytes([3, 0])
-    qoi = header + stream + qoi_golden.QOI_PADDING
-    with tempfile.TemporaryDirectory(prefix="qoi_dec_") as tmp:
-        exe = os.path.join(tmp, "qoi_dec_ref")
-        subprocess.run([os.environ.get("CC", "cc"), "-O2", "-Wall", "-I", REF,
-                        "-o", exe, os.path.join(HERE, "qoi_dec_ref.c")], check=True)
-        qp, rp = os.path.join(tmp, "a.qoi"), os.path.join(tmp, "a.rgb")
-        with open(qp, "wb") as f:
-            f.write(qoi)
-        with open(rp, "wb") as f:
-            f.write(px_bytes(pixels))
-        return subprocess.run([exe, qp, rp, str(w), str(h)]).returncode
+    return header + stream + qoi_golden.QOI_PADDING
 
 
 @cocotb.test()
@@ -332,12 +319,16 @@ async def test_decodes_with_qoi_h(dut):
     """RTL stream plus header and end marker decodes to the original pixels."""
     b = Bench(dut)
     await b.start()
-    for name, px, w, h in IMAGES:
+    with tempfile.TemporaryDirectory(prefix="qoi_dec_") as tmp:
+        dec = qoi_ref_dec.QoiRefDec(tmp)      # one compile for the whole test
+        for name, px, w, h in IMAGES:
+            got, _ = await check(b, name, px, w, h)
+            assert dec.decode(_wrap_stream(got, w, h), px_bytes(px),
+                              w, h) == 0, f"{name}: qoi.h decode"
+        # negative control: one corrupted byte must be caught by the decoder check
+        name, px, w, h = IMAGES[1]
         got, _ = await check(b, name, px, w, h)
-        assert _decode_with_qoi_h(got, px, w, h) == 0, f"{name}: qoi.h decode"
-    # negative control: one corrupted byte must be caught by the decoder check
-    name, px, w, h = IMAGES[1]
-    got, _ = await check(b, name, px, w, h)
-    bad = bytearray(got)
-    bad[len(bad) // 2] ^= 0x10
-    assert _decode_with_qoi_h(bytes(bad), px, w, h) != 0
+        bad = bytearray(got)
+        bad[len(bad) // 2] ^= 0x10
+        assert dec.decode(_wrap_stream(bytes(bad), w, h), px_bytes(px),
+                          w, h) != 0
