@@ -3,8 +3,9 @@
 #
 #   bash .github/scripts/lint.sh
 #
-# Needs python3 and, for the RTL leg, verilator (skipped with a message when
-# absent). Needs no PDK and no klt: step 9 drives the flow wrappers with a
+# Needs python3 and a host C compiler ($CC, default cc) for the QOI check.
+# The RTL leg uses verilator (skipped with a message when absent).
+# Needs no PDK and no klt: step 9 drives the flow wrappers with a
 # stub KLT (plus jq; skipped with a message when absent) and fabricates the
 # one SOURCES file flow/pdk.env insists on, in a scratch PDK_ROOT.
 #
@@ -347,6 +348,13 @@ STUB
     bad "watchdog tests left flow/ dirty (diff above)"
   fi
 fi
+
+step "10. QOI golden encoder matches the vendored qoi.h"
+python3 verification/golden/qoi_crosscheck.py || bad "QOI cross-check exited $?"
+echo "QOI negative control (expected exit 1)"
+python3 verification/golden/qoi_crosscheck.py --inject-fault
+qoi_rc=$?
+[ "$qoi_rc" -eq 1 ] || bad "QOI negative control exited $qoi_rc (expected 1)"
 
 echo
 if [ "$fail" -ne 0 ]; then echo "lint FAILED"; exit 1; fi

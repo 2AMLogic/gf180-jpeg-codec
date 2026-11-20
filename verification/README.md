@@ -74,6 +74,21 @@ case failed, `2` it did not run (Pillow missing or not 10.2.0). Each normal run
 appends one timestamped record under `verification/records/`; never edit or
 delete an earlier one. The negative control writes none.
 
+## Golden QOI model and qoi.h cross-check
+
+Run both commands from the repository root with a host C compiler (`$CC`,
+default `cc`).
+
+```sh
+python3 verification/golden/qoi_crosscheck.py                 # expected exit 0
+python3 verification/golden/qoi_crosscheck.py --inject-fault  # expected exit 1
+```
+
+For each RGB fixture, the normal run compares the Python encoder's output
+byte for byte with the vendored `qoi.h` encoder's output and checks that the
+C decoder recovers the original pixels. The negative control changes the
+Python encoder's index hash so the comparison detects a byte mismatch.
+
 ## Entropy stage bench (`verification/rtl/`)
 
 `verification/rtl/test_entropy.py` drives `jc_zigzag -> jc_huff -> jc_bitpack`
