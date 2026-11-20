@@ -319,7 +319,7 @@ viol = [(top, c['corner'], c.get('worst_slack_ns'), c.get('setup_violation_count
         for name, top, c in rows if (c.get('worst_slack_ns') or 0) < 0]
 print('\n## Setup findings: negative slack, worst first\n')
 if not viol:
-    print('None: every module that linked meets setup at every view.')
+    print('No negative setup slack reported.')
 else:
     print('| module | view | worst setup slack (ns) | setup violations | startpoint | endpoint |')
     print('|' + '---|' * 6)
@@ -330,7 +330,7 @@ hviol = [(top, c['corner'], c.get('worst_hold_slack_ns'), c.get('hold_violation_
          for name, top, c in rows if (c.get('worst_hold_slack_ns') or 0) < 0]
 print('\n## Hold findings: negative slack, worst first\n')
 if not hviol:
-    print('None: every module that linked meets hold at every view.')
+    print('No negative hold slack reported.')
 else:
     print('| module | view | worst hold slack (ns) | hold violations |')
     print('|' + '---|' * 4)
