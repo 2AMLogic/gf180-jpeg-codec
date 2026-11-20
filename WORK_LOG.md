@@ -5,6 +5,8 @@ Maintained by the Guide triage role.
 
 ### 2026-11-20
 
+- **PR #257**: fix: ignore Loom's Codex account ranking file
+- **Issue #255** (closed): gitignore gap: .loom/account-ranking.codex daemon artifact makes check-main-clean.sh exit 3
 - **PR #256**: test: assert the dense-fixture contract instead of counting JPEG symbols
 - **Issue #254** (closed): Simplify symbol counting in the dense entropy throughput test
 - **PR #251**: refactor: define the shared colour arithmetic source list once in run_stage.py
