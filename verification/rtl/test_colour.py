@@ -1,5 +1,6 @@
-"""Section 4 unit tests: colour_convert against an
-integer reference written here from the spec formulas (not the golden model)."""
+"""Section 4 unit tests: colour_convert against the shared integer
+reference (colour_ref.py), written from the spec formulas (not the golden
+model)."""
 
 import itertools
 import random
@@ -7,12 +8,7 @@ import random
 import cocotb
 from cocotb.triggers import Timer
 
-
-def ref_ycc(r, g, b):
-    y = (19595 * r + 38470 * g + 7471 * b + 32768) >> 16
-    cb = (-11059 * r - 21709 * g + 32768 * b + (128 << 16) + 32768 - 1) >> 16
-    cr = (32768 * r - 27439 * g - 5329 * b + (128 << 16) + 32768 - 1) >> 16
-    return y, cb, cr
+from colour_ref import ref_ycc  # the spec section 4 integer reference
 
 
 async def convert(dut, r, g, b, grey=0):
