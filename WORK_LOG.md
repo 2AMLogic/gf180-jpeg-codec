@@ -5,6 +5,8 @@ Maintained by the Guide triage role.
 
 ### 2026-11-20
 
+- **PR #270**: fix: report absent negative slack without claiming a pass in pre-route STA summary
+- **Issue #265** (closed): Remove unsupported pass claims from empty pre-route STA findings
 - **PR #268**: test(rtl): build the top-bench colour stream from packed RGB
 - **Issue #253** (closed): Build the RTL colour test stream directly from packed RGB
 - **PR #264**: refactor: share the spec section 4 ref_ycc reference across the colour benches
