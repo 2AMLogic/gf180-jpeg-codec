@@ -39,7 +39,7 @@ _None._
 
 PRs waiting on Judge (`loom:review-requested`).
 
-- **#272**: docs: Guide document maintenance update
+_None._
 
 ## Approved (Awaiting Merge)
 
@@ -72,7 +72,7 @@ _None._
 | Important | 2 |
 | Ready (`loom:issue`, net of holds/building/merge-pending) | 1 |
 | In Progress (`loom:building`) | 0 |
-| PRs awaiting review | 1 |
+| PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 1 |
 | Curated | 3 |
 | Architect / Hermit proposals | 0 |
