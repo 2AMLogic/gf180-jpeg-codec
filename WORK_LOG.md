@@ -3,6 +3,10 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-11-25
+
+- **PR #218**: record 0014 (proposed): jc_dct1d 13-cycle CSD carry-save datapath, >= 0 ns at every view; candidate RTL stays on the filing branch pending ratification
+
 ### 2026-11-20
 
 - **PR #270**: fix: report absent negative slack without claiming a pass in pre-route STA summary
