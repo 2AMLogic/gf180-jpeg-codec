@@ -352,15 +352,11 @@ STUB
   wd_no_survivors "sta-preroute timeout"
 
   # sta-preroute.sh negative control, issue #274: only the recorded ORD-2013
-  # missing-master failure may satisfy the control. The stub returns success
-  # for every module child; for the chip top it writes one of the two
-  # committed error envelopes to stderr and exits 1, replaying the responses
-  # saved in flow/records/20261118T170201Z-55a500a. The ORD-2013 envelope
-  # passes the control (wrapper rc=0); the unrelated STA-1390 envelope must
-  # fail the sweep (wrapper rc=1) instead of masquerading as the expected
-  # outcome.
+  # missing-master failure may satisfy the control. Each module child succeeds
+  # and the chip top exits 1 with the selected envelope on stderr.
   export STUB_NEGCTL_ENVELOPE
-  STUB_NEGCTL_ENVELOPE="$(pwd)/flow/records/20261118T170201Z-55a500a/negative-control-jpeg_codec_top.stderr"
+  records="$(pwd)/flow/records/20261118T170201Z-55a500a"
+  STUB_NEGCTL_ENVELOPE="$records/negative-control-jpeg_codec_top.stderr"
   wd_run negctl-fail "$wd/nc-ord" bash flow/sta-preroute.sh --out "$wd/rec-ord"
   grep -qx 'caller-survived rc=0' "$wd/nc-ord.out" \
     || bad "sta-preroute ORD-2013 replay: expected wrapper rc=0 (tail: $(tail -n 1 "$wd/nc-ord.out"))"
@@ -368,16 +364,31 @@ STUB
     || bad "sta-preroute ORD-2013 replay: no expected-failure line from the wrapper"
   grep -q 'ORD-2013' "$wd/rec-ord/negative-control-jpeg_codec_top.stderr" \
     || bad "sta-preroute ORD-2013 replay: envelope not saved to the --out record"
-  STUB_NEGCTL_ENVELOPE="$(pwd)/flow/records/20261118T170201Z-55a500a/paramod_jc_sram_arb_N_s32_00000000000000000000000000000010.stderr"
-  wd_run negctl-fail "$wd/nc-sta" bash flow/sta-preroute.sh --out "$wd/rec-sta"
-  grep -qx 'caller-survived rc=1' "$wd/nc-sta.out" \
-    || bad "sta-preroute STA-1390 replay: expected wrapper rc=1 (tail: $(tail -n 1 "$wd/nc-sta.out"))"
-  grep -q '(expected: ORD-2013' "$wd/nc-sta.out" \
-    && bad "sta-preroute STA-1390 replay: negative control reported the expected ORD-2013 outcome for an unrelated engine error"
-  grep -q 'unexpected engine error' "$wd/nc-sta.err" \
-    || bad "sta-preroute STA-1390 replay: no unexpected-engine-error message on stderr"
-  grep -q 'STA-1390' "$wd/rec-sta/negative-control-jpeg_codec_top.stderr" \
-    || bad "sta-preroute STA-1390 replay: envelope not saved to the --out record"
+
+  # Change just the master in the OpenROAD error. The original name still
+  # appears in klt's advice later in the same message.
+  jq '.error.message |= sub("LEF master gf180_sram_256x32 "; "LEF master gf180_sram_256x32_alt ")' \
+    "$STUB_NEGCTL_ENVELOPE" > "$wd/near-match.stderr" || bad "could not build near-match envelope"
+  jq '.error.message = ["ORD-2013", "gf180_sram_256x32"]' \
+    "$STUB_NEGCTL_ENVELOPE" > "$wd/array.stderr" || bad "could not build array envelope"
+  check_rejected_envelope() {
+    local replay="$1"
+    STUB_NEGCTL_ENVELOPE="$2"
+    wd_run negctl-fail "$wd/nc-$replay" bash flow/sta-preroute.sh --out "$wd/rec-$replay"
+    grep -qx 'caller-survived rc=1' "$wd/nc-$replay.out" \
+      || bad "sta-preroute $replay replay: expected wrapper rc=1"
+    grep -q '(expected: ORD-2013' "$wd/nc-$replay.out" \
+      && bad "sta-preroute $replay replay: reported the expected ORD-2013 outcome"
+    grep -q 'unexpected engine error' "$wd/nc-$replay.err" \
+      || bad "sta-preroute $replay replay: missing unexpected-engine-error diagnostic"
+    cmp -s "$STUB_NEGCTL_ENVELOPE" "$wd/rec-$replay/negative-control-jpeg_codec_top.stderr" \
+      || bad "sta-preroute $replay replay: envelope not saved to the --out record"
+  }
+  check_rejected_envelope STA-1390 "$records/paramod_jc_sram_arb_N_s32_00000000000000000000000000000010.stderr"
+  check_rejected_envelope near-match "$wd/near-match.stderr"
+  check_rejected_envelope array "$wd/array.stderr"
+  grep -q 'negative-control-jpeg_codec_top.json' "$wd/rec-array/summary.md" \
+    || bad "sta-preroute array replay: failure missing from summary"
   unset STUB_NEGCTL_ENVELOPE
 
   # Nothing the stub runs did may survive into the worktree.

@@ -223,17 +223,17 @@ if [ ${#ONLY[@]} -eq 0 ]; then
     # masquerading as the expected non-linkage (issue #274).
     ncd="$REC/negative-control-$TOP.stderr"
     if python3 -I - "$ncd" <<'PY'
-import json, sys
+import json, re, sys
 try:
     envelope = json.load(open(sys.argv[1]))
 except (ValueError, OSError) as exc:
     sys.stderr.write('failure envelope unreadable: %s\n' % exc)
     sys.exit(1)
 error = envelope.get('error') if isinstance(envelope, dict) else None
-message = error.get('message', '') if isinstance(error, dict) else ''
-if 'ORD-2013' not in message or 'gf180_sram_256x32' not in message:
-    sys.stderr.write('failure envelope identifies neither ORD-2013 nor the'
-                     ' missing gf180_sram_256x32 LEF master\n')
+message = error.get('message') if isinstance(error, dict) else None
+# klt appends advice and invocation details after the OpenROAD diagnostic.
+missing_master = r'\[ERROR ORD-2013\] instance \S+ LEF master gf180_sram_256x32 not found\.'
+if not isinstance(message, str) or not re.search(missing_master, message.partition(' -- ')[0]):
     sys.exit(1)
 PY
     then
@@ -374,8 +374,11 @@ else:
     print('| response | requested hdl_toplevel | engine error | message |')
     print('|' + '---|' * 4)
     for name, d, req in failed:
-        msg = ((d.get('error') or {}).get('message')
-               or d.get('status') or 'no response')
+        error = d.get('error')
+        msg = error.get('message') if isinstance(error, dict) else None
+        msg = msg or d.get('status') or 'no response'
+        if not isinstance(msg, str):
+            msg = 'invalid diagnostic (expected a string)'
         msg = msg.split(' -- openroad invocation:')[0].strip()
         tag = '—'
         for t in ('ORD-2013', 'STA-1390', 'STA-0198', 'no such variable'):
