@@ -5,6 +5,8 @@ Maintained by the Guide triage role.
 
 ### 2026-11-26
 
+- **Issue #282** (closed): Generate only the reference pixels used by the JPEG golden cross-check
+- **PR #283**: verification: generate the JPEG cross-check's 27 fixtures directly
 - **Issue #277** (closed): Gate-level codec status becomes unknown before the first pixel on current main
 - **PR #281**: fix: reset every jc_table_load register so gate status stays known
 - **Issue #274** (closed): Require the recorded SRAM error for the pre-route timing negative control
