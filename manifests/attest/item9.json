@@ -3,14 +3,14 @@
   "kind": "generic",
   "status": "pass",
   "t1_item": 9,
-  "summary": "T1 item 9 (Testbenches shipped): 35/35 attestation checks passed (klt signoff --attest)",
+  "summary": "T1 item 9 (Testbenches shipped): 36/36 attestation checks passed (klt signoff --attest)",
   "source": "manifests/attest/item9.inventory.json",
   "attestation": {
     "producer": "klt signoff --attest",
     "inventory_schema_version": 1,
     "hash_algorithm": "sha256-raw-bytes",
-    "check_count": 35,
-    "passed_count": 35,
+    "check_count": 36,
+    "passed_count": 36,
     "checks": [
       {
         "check": "present",
@@ -106,6 +106,13 @@
       {
         "check": "present",
         "role": "testbench",
+        "path": "verification/records/20261126T0054Z-frame-cycles-depth13-c04ef09/cycles.json",
+        "passed": true,
+        "content_hash": "sha256:c7034d7431b971fbc7328ef9a65c0f7f303ce5f6585c6c56aeec67127190c2e6"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
         "path": "verification/rtl/cfg_host.py",
         "passed": true,
         "content_hash": "sha256:0c99c8b4c92ab370d169609fb4041dfb045f066694baaa6ebdd3f845b36c41c0"
@@ -185,7 +192,7 @@
         "role": "testbench",
         "path": "verification/rtl/test_dct.py",
         "passed": true,
-        "content_hash": "sha256:404edb77a11c751aec0ac4bacdb7b7e4d9da765b157b67f15735c8f87f123f43"
+        "content_hash": "sha256:275b1ac82b4297a3dc12b69a58b90f613029f3fb7c2c79e32027bef33fe531d2"
       },
       {
         "check": "present",
@@ -220,7 +227,7 @@
         "role": "testbench",
         "path": "verification/rtl/test_top_frame_cycles.py",
         "passed": true,
-        "content_hash": "sha256:a774395a286f051b88d013250e2d46d9a768019e179b1f403f76e19e61718d48"
+        "content_hash": "sha256:92388796a7e7dc5530108094a9a0d88473b87bb181124a61cf5229932afdc6d7"
       },
       {
         "check": "present",
@@ -285,7 +292,7 @@
         "path": "manifests/attest/item9.inventory.json",
         "scope": "repo"
       },
-      "content_hash": "sha256:6eb2c3957b220e6ff80b5fff9cffd3f499fd07b6973572f79f6df6e3805a4194"
+      "content_hash": "sha256:fedd4c71588c931dfad327d16a86be9a2bbb5cf4b0850ed93aa6a56223418be2"
     }
   }
 }
