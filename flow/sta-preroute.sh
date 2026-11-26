@@ -216,7 +216,34 @@ if [ ${#ONLY[@]} -eq 0 ]; then
     echo "    ORD-2013 evidence either" >&2
     rc=1
   else
-    echo "    (expected: ORD-2013, no LEF master for gf180_sram_256x32)"
+    # An engine failure is the expected outcome, but only this one: the
+    # failure envelope the run saved must identify both ORD-2013 and the
+    # missing gf180_sram_256x32 LEF master. A different engine error, or an
+    # envelope that cannot be read, fails the control instead of
+    # masquerading as the expected non-linkage (issue #274).
+    ncd="$REC/negative-control-$TOP.stderr"
+    if python3 -I - "$ncd" <<'PY'
+import json, re, sys
+try:
+    envelope = json.load(open(sys.argv[1]))
+except (ValueError, OSError) as exc:
+    sys.stderr.write('failure envelope unreadable: %s\n' % exc)
+    sys.exit(1)
+error = envelope.get('error') if isinstance(envelope, dict) else None
+message = error.get('message') if isinstance(error, dict) else None
+# klt appends advice and invocation details after the OpenROAD diagnostic.
+missing_master = r'\[ERROR ORD-2013\] instance \S+ LEF master gf180_sram_256x32 not found\.'
+if not isinstance(message, str) or not re.search(missing_master, message.partition(' -- ')[0]):
+    sys.exit(1)
+PY
+    then
+      echo "    (expected: ORD-2013, no LEF master for gf180_sram_256x32)"
+    else
+      echo "!!! negative-control failed with an unexpected engine error" >&2
+      echo "    (rc=$ncr): expected ORD-2013 and the missing gf180_sram_256x32" >&2
+      echo "    LEF master in the envelope; see $ncd" >&2
+      rc=1
+    fi
   fi
 fi
 
@@ -347,8 +374,11 @@ else:
     print('| response | requested hdl_toplevel | engine error | message |')
     print('|' + '---|' * 4)
     for name, d, req in failed:
-        msg = ((d.get('error') or {}).get('message')
-               or d.get('status') or 'no response')
+        error = d.get('error')
+        msg = error.get('message') if isinstance(error, dict) else None
+        msg = msg or d.get('status') or 'no response'
+        if not isinstance(msg, str):
+            msg = 'invalid diagnostic (expected a string)'
         msg = msg.split(' -- openroad invocation:')[0].strip()
         tag = '—'
         for t in ('ORD-2013', 'STA-1390', 'STA-0198', 'no such variable'):
