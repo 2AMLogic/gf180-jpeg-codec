@@ -149,6 +149,10 @@ else
 #   synthesize hang only when $1 is synthesize (smoke's later stages run on)
 #   negctl     hang only when the request's hdl_toplevel is jpeg_codec_top
 #              (sta-preroute's negative control)
+#   negctl-fail
+#              write $STUB_NEGCTL_ENVELOPE to stderr and exit 1, only when
+#              the request's hdl_toplevel is jpeg_codec_top; every other
+#              child exits 0 (issue #274's engine-failure envelope replays)
 #   pass       exit 0 immediately, creating the request's outputs.dir with a
 #              report.json and a .ys so synthesize.sh's post-processing runs
 #   fail       exit 7 immediately (the watchdog must not mask a real status)
@@ -172,6 +176,14 @@ if [ "$mode" = fail ]; then
   exit 7
 fi
 if [ "$mode" = synthesize ] && [ "${1:-}" != synthesize ]; then exit 0; fi
+if [ "$mode" = negctl-fail ]; then
+  f="${2:-}"
+  if [ -f "$f" ] && grep -q '"hdl_toplevel": "jpeg_codec_top"' "$f"; then
+    cat "${STUB_NEGCTL_ENVELOPE:?}" >&2
+    exit 1
+  fi
+  exit 0
+fi
 if [ "$mode" = negctl ]; then
   f="${2:-}"
   if [ ! -f "$f" ] || ! grep -q '"hdl_toplevel": "jpeg_codec_top"' "$f"; then
@@ -338,6 +350,35 @@ STUB
   [ -f "$wd/rec/negative-control-jpeg_codec_top.watchdog.diag.txt" ] \
     || bad "sta-preroute timeout: no watchdog diagnostic in the --out record"
   wd_no_survivors "sta-preroute timeout"
+
+  # sta-preroute.sh negative control, issue #274: only the recorded ORD-2013
+  # missing-master failure may satisfy the control. The stub returns success
+  # for every module child; for the chip top it writes one of the two
+  # committed error envelopes to stderr and exits 1, replaying the responses
+  # saved in flow/records/20261118T170201Z-55a500a. The ORD-2013 envelope
+  # passes the control (wrapper rc=0); the unrelated STA-1390 envelope must
+  # fail the sweep (wrapper rc=1) instead of masquerading as the expected
+  # outcome.
+  export STUB_NEGCTL_ENVELOPE
+  STUB_NEGCTL_ENVELOPE="$(pwd)/flow/records/20261118T170201Z-55a500a/negative-control-jpeg_codec_top.stderr"
+  wd_run negctl-fail "$wd/nc-ord" bash flow/sta-preroute.sh --out "$wd/rec-ord"
+  grep -qx 'caller-survived rc=0' "$wd/nc-ord.out" \
+    || bad "sta-preroute ORD-2013 replay: expected wrapper rc=0 (tail: $(tail -n 1 "$wd/nc-ord.out"))"
+  grep -q '(expected: ORD-2013' "$wd/nc-ord.out" \
+    || bad "sta-preroute ORD-2013 replay: no expected-failure line from the wrapper"
+  grep -q 'ORD-2013' "$wd/rec-ord/negative-control-jpeg_codec_top.stderr" \
+    || bad "sta-preroute ORD-2013 replay: envelope not saved to the --out record"
+  STUB_NEGCTL_ENVELOPE="$(pwd)/flow/records/20261118T170201Z-55a500a/paramod_jc_sram_arb_N_s32_00000000000000000000000000000010.stderr"
+  wd_run negctl-fail "$wd/nc-sta" bash flow/sta-preroute.sh --out "$wd/rec-sta"
+  grep -qx 'caller-survived rc=1' "$wd/nc-sta.out" \
+    || bad "sta-preroute STA-1390 replay: expected wrapper rc=1 (tail: $(tail -n 1 "$wd/nc-sta.out"))"
+  grep -q '(expected: ORD-2013' "$wd/nc-sta.out" \
+    && bad "sta-preroute STA-1390 replay: negative control reported the expected ORD-2013 outcome for an unrelated engine error"
+  grep -q 'unexpected engine error' "$wd/nc-sta.err" \
+    || bad "sta-preroute STA-1390 replay: no unexpected-engine-error message on stderr"
+  grep -q 'STA-1390' "$wd/rec-sta/negative-control-jpeg_codec_top.stderr" \
+    || bad "sta-preroute STA-1390 replay: envelope not saved to the --out record"
+  unset STUB_NEGCTL_ENVELOPE
 
   # Nothing the stub runs did may survive into the worktree.
   if ! diff \

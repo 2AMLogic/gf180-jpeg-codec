@@ -216,7 +216,34 @@ if [ ${#ONLY[@]} -eq 0 ]; then
     echo "    ORD-2013 evidence either" >&2
     rc=1
   else
-    echo "    (expected: ORD-2013, no LEF master for gf180_sram_256x32)"
+    # An engine failure is the expected outcome, but only this one: the
+    # failure envelope the run saved must identify both ORD-2013 and the
+    # missing gf180_sram_256x32 LEF master. A different engine error, or an
+    # envelope that cannot be read, fails the control instead of
+    # masquerading as the expected non-linkage (issue #274).
+    ncd="$REC/negative-control-$TOP.stderr"
+    if python3 -I - "$ncd" <<'PY'
+import json, sys
+try:
+    envelope = json.load(open(sys.argv[1]))
+except (ValueError, OSError) as exc:
+    sys.stderr.write('failure envelope unreadable: %s\n' % exc)
+    sys.exit(1)
+error = envelope.get('error') if isinstance(envelope, dict) else None
+message = error.get('message', '') if isinstance(error, dict) else ''
+if 'ORD-2013' not in message or 'gf180_sram_256x32' not in message:
+    sys.stderr.write('failure envelope identifies neither ORD-2013 nor the'
+                     ' missing gf180_sram_256x32 LEF master\n')
+    sys.exit(1)
+PY
+    then
+      echo "    (expected: ORD-2013, no LEF master for gf180_sram_256x32)"
+    else
+      echo "!!! negative-control failed with an unexpected engine error" >&2
+      echo "    (rc=$ncr): expected ORD-2013 and the missing gf180_sram_256x32" >&2
+      echo "    LEF master in the envelope; see $ncd" >&2
+      rc=1
+    fi
   fi
 fi
 
