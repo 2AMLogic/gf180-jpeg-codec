@@ -9,34 +9,39 @@ and the before/after gate-level evidence, all on Icarus 13.0 with cocotb
 
 ## Diagnosis: first unknown, cycle, path
 
-Instrument: a scratch reset-only bench (not committed) with the issue's
-stimulus — 10 ns clock, `rst_n` low for three rising edges, released at
-30 ns, all input valid pins and data at zero, `out_ready=1` — sampling
-`u_tl` internals on both clock edges, run against the netlist sources
-`run_top_smoke_gl.py` resolves (netlist + `gf180mcu_fd_sc_mcu9t5v0`
-models + PDK primitives + `sram_macro_model.v`).
+The trace below uses the historical netlist `5afc1588…` at `3a15c4c`
+and the RTL at the same commit. A scratch Icarus bench held reset low for
+three rising edges of a 10 ns clock and released it at 30 ns. Both input
+valids and their data stayed zero, with `out_ready=1`. The gate run used
+the cell, primitive and SRAM models selected by `run_top_smoke_gl.py`.
+Times are falling-edge samples from simulation start.
 
-- First failing event, netlist `5afc1588…` (PR base `3a15c4c`): at the
-  fourth Annex K BITS read of DHT table DC0, the `S_B_W`/`ctr==3`/`rvalid`
-  edge at t=3700 ns assigns `st`, `len`, `code` but leaves `k` at
-  `0000000X` (gate, rise t=3705 ns). The RTL edge assigns `k` to
-  `00000000`. This is the first state divergence.
-- Root cause: `k` was outside the synchronous reset, so it powered up X.
-  The synthesised next-state cone of `k[0]` (netlist wires `_0118_ =
-  aoi21(~k[0], nand(_1483_,_0991_), and(k[0],_0991_))` with
-  `_0991_ = and4(rst_n, …)` the "assign k" enable) implements the clear
-  as `~(~k[0] | k[0])`: correct two-valuedly for both values of `k[0]`,
-  but X under four-value semantics, because the minimised form reads
-  `k[0]` where the RTL assignment `k <= 8'd0` does not. The RTL's
-  procedural assignment clears an X; the gate cone cannot.
-- Path to the pins: `k[0]` X selects the HUFFVAL byte mux
-  (`sym = rdata[8*k[1:0] +: 8]` -> `0000000X` at 3745 ns) ->
-  `widx <= sym` X in bit 0 (3755 ns) -> lookup write address
-  `m1_addr = 0xA2` with bit 0 X and X in the write data -> `st` bits X
-  (3765 ns) -> `tl_busy` X -> `status_busy`/`status_idle` X from 3785 ns
-  (cycle 375 of the regression test). That is the 3.780 us of the issue.
-  The X also lands in the DC0 lookup SRAM word, so even a recovered FSM
-  would not be byte-exact.
+| Time | Gate | RTL |
+| --- | --- | --- |
+| 3710 ns | After the fourth DC0 BITS read (`S_B_W`, `ctr==3`, `rvalid=1` at the 3705 ns rising edge), the loader enters `S_LEN` with `k=0000000X`. | Same state, `k=00000000`. |
+| 3760 ns | `S_SYM_WR` has grant. The unknown HUFFVAL byte select made bit 0 of `sym` and then `widx` unknown. The lookup write has `m1_addr=1010001X` and `m1_wdata=0x00020000`. | Granted write to `0xA2` with the same data. |
+| 3770 ns | The granted write incremented `k` to `000000XX`. The loader is in a known `S_LEN` with `len=3`, `cnt=5`, `code=2`. | Same state and inputs except `k=1`. |
+| 3780 ns | The one-hot bits for `S_FAIL` and `S_SYM_RD` are both X. `tl_busy`, `status_busy` and `status_idle` are X. `status_error=0`. | `S_SYM_RD`, busy=1, idle=0, error=0. |
+
+The first divergence that affects progress is the clear of `k`. The
+counter powered up X outside the synchronous reset. The RTL assignment
+`k <= 8'd0` clears it. On that edge the gate expression driving `k[0]`
+(`_0118_`) reduces to `~(~k[0] | k[0])`, which evaluates to X.
+
+The status failure follows the capacity check in `S_LEN`. For DC0,
+`too_many` tests whether the nine-bit sum of `k` and `cnt` exceeds 12.
+The independent Kraft check passes (`code + cnt = 7`, limit `2**3 = 8`).
+At 3770 ns the mapped failure condition (`_0564_`) is X, as are the D
+inputs for `S_FAIL` (`_0002_`) and `S_SYM_RD` (`_0005_`). The next
+rising edge clocks those Xs into the state. With `frame_active=0`,
+`status_busy = frame_active | tl_busy` propagates the unknown loader busy
+signal, and `status_idle` is its inverse.
+
+Two gate runs isolated the write and the state transition. Forcing the
+M1 macro address to `0xA2` and data to `0x00020000` across the write
+stored that word at `0xA2`. Busy and idle still went X at 3780 ns.
+Forcing only `u_tl.k=1` from 3771 to 3781 ns cleared the failure
+condition and selected `S_SYM_RD`. At 3780 ns busy was 1 and idle was 0.
 
 ## Fix
 
@@ -59,8 +64,8 @@ timing closure is out of scope here (#276, #36).
 
 | Build | first unknown | idle reached |
 |---|---|---|
-| RTL, before and after | none | cycle 2681 (26.835 us) |
-| gate `5afc1588…` (before) | `k=0000000X` at 3705 ns; `status_idle` X from 3785 ns (cycle 375) | never (window exhausted, busy X) |
+| RTL, before and after | none | cycle 2681 (26.84 us at the falling edge) |
+| gate `5afc1588…` (before) | `k=0000000X` at 3710 ns, busy and idle X at 3780 ns (regression cycle 375) | never (window exhausted, busy X) |
 | gate `c99a0cd2…` (after) | none | cycle 2681 (26.84 us) |
 
 The committed regression bench `test_top_smoke.py::
@@ -85,11 +90,24 @@ netlist (idle at 26840 ns) and in RTL.
 
 ## Reproducing
 
-The reset comparison used a scratch cocotb module driving the same
-stimulus as `Host.reset` and polling `u_tl` signals; the durable
-equivalent is `test_reset_reaches_known_idle` via
-`python3 verification/rtl/run_top_smoke_gl.py --testcase
-test_reset_reaches_known_idle` (gate) and
-`python3 verification/rtl/run_stage.py top_smoke` (RTL). For the before
-build, check out `3a15c4c` (netlist digest `5afc1588…`, recorded in the
-issue) and run the same command.
+Run the reset regression from the repository root with Icarus 13.0,
+cocotb 2.1.0 and the PDK pinned in `flow/pdk.env`.
+
+```sh
+python3 verification/rtl/run_top_smoke_gl.py --testcase test_reset_reaches_known_idle
+python3 verification/rtl/run_stage.py top_smoke --testcase test_reset_reaches_known_idle
+```
+
+To reproduce the historical failure, export the `3a15c4c` tree to a
+scratch directory and copy in the regression from `14e1907`. This keeps
+the historical netlist, runner and models together.
+
+```sh
+before=$(mktemp -d)
+git archive 3a15c4c | tar -x -C "$before"
+git show 14e1907:verification/rtl/test_top_smoke.py > "$before/verification/rtl/test_top_smoke.py"
+(cd "$before" && python3 verification/rtl/run_top_smoke_gl.py --testcase test_reset_reaches_known_idle)
+```
+
+The historical run reports netlist digest `5afc1588…`, executes one
+test and exits 1 with `status_idle unknown (x) at cycle 375 after reset`.
