@@ -185,7 +185,7 @@
         "role": "testbench",
         "path": "verification/rtl/test_dct.py",
         "passed": true,
-        "content_hash": "sha256:404edb77a11c751aec0ac4bacdb7b7e4d9da765b157b67f15735c8f87f123f43"
+        "content_hash": "sha256:275b1ac82b4297a3dc12b69a58b90f613029f3fb7c2c79e32027bef33fe531d2"
       },
       {
         "check": "present",
