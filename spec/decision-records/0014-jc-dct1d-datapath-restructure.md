@@ -1,10 +1,13 @@
 # Decision record 0014: the `jc_dct1d` datapath restructure, measured — a CSD carry-save constant-multiply and sliced combine at 13 cycles/vector, closing §2's ≥ 0 ns half at every view
 
-**Status**: Proposed, 2026-11-18 (issue #169). Ratification (two reviews, then the operator) is out of the filing issue's scope; per the operator ruling this record authorizes a bit-exact restructure, and the restructured RTL (`rtl/jc_dct1d.v` on the filing branch, sha256 `edde7aa71e7966e9481cb6fb0ed0483203a775cd587868497165a2718c65f950` — an earlier prose citation of this record named `532857f1…`; the file was edited after the measured run, and the regeneration in `flow/records/20261118T002302Z-cb51d92/netlist-binding-check.txt` proves that edit synthesis-invisible: `flow/synthesize.sh` from the committed sha yields a byte-identical netlist and `flow/synthesize.sh --check` reports `status: match`), its regenerated netlist (`flow/netlist/jpeg_codec_top_synth.v` sha256 `61cdd7a3db699a3e8331c47eea825ba6b57f8adc1f5eb7746f52a5e03b01e2dd`) and the re-priced budget line in `verification/rtl/test_dct.py` land only together with this record's ratification — until then they stay on the filing branch, and this filing lands the record and its append-only evidence only, not the implementation.
+**Status**: Decided, 2026-11-25. The operator ratified the proposal filed on 2026-11-18 after the EE approval and market escalation on `282373a`. The ruling releases the 13-cycle implementation and carries the conditional +6.7 ns slow/hot target forward to #34 for wire-aware evaluation. [operator ruling](https://github.com/2AMLogic/gf180-jpeg-codec/pull/218#issuecomment-7177044156).
 **Resolves**: #169 — record 0007 §2's timing target for `jc_dct1d` is unreachable by pipelining inside §4's authorized band (PR #164's measured evidence); the operator ruled option `a` on 2026-11-17 (attended `/fleet:decide` round 20261116-r15, q117): authorize a bit-exact restructure of the constant-multiply and combine datapath, depth bounded by measurement under §9's 13 cycles/vector ceiling.
 **Spec**: `spec/codec.md` §9, §10 unchanged; amends `spec/decision-records/0007-pre-route-setup-shortfall.md` §1 (the pipelining-only clause, for `jc_dct1d` only) and §4 (the ≤ 12 cycles/vector band, superseded by this record's measured 13); §2's target carries through unchanged, both halves.
 
-Filed as 0014 — the next free number at write time (0012 and 0013 are committed on `main` as of `cb51d92`, 2026-11-18; re-checked immediately before writing).
+The filing measurements in §§1–4 belong to candidate `7e6f480`. Its
+`rtl/jc_dct1d.v` has SHA-256 `edde7aa71e7966e9481cb6fb0ed0483203a775cd587868497165a2718c65f950`.
+Its whole-top netlist has SHA-256 `61cdd7a3db699a3e8331c47eea825ba6b57f8adc1f5eb7746f52a5e03b01e2dd`.
+The filing regeneration check binds those artifacts. [Filing evidence](../../flow/records/20261118T002302Z-cb51d92/netlist-binding-check.txt).
 
 ## Question
 
@@ -24,12 +27,12 @@ For `jc_dct1d` only, record 0007 §1's "pipelining only, no arithmetic change" i
 **Bit-exactness proof** (record 0003's argument re-made, as the ruling requires): every computed value is bit-identical to record 0003's arithmetic and to `verification/golden/jpeg_golden.py`. Proven by:
 
 - `verification/rtl/test_dct.py`, 7/7 (`run_stage.py dct`): the record 0003 worked examples (transcription tables and the T.81 block); directed extreme-value blocks (all-0, all-255, checkerboards, single-pixel extremes); **2400 seeded random blocks** (plain, word-length stress, spaced, small-delta) coefficient-for-coefficient against the 0003 transcription; **300 seeded random blocks against the golden model's `fdct_block`** (the golden-model comparison this record names); random-stall backpressure at four valid/ready mixes; the cycle-budget row of §3 below; and the Yosys no-latch/no-macro check. Transcript: `flow/records/20261118T002302Z-cb51d92/dct-suite-transcript.log` (7/7, 208.0 cycles/block streamed = 16 × 13).
-- `run_stage.py top_golden`: **180/180 byte-identical** entropy-coded JPEG streams against the golden model, on the restructured netlist-bearing tree. Transcript: `flow/records/20261118T002302Z-cb51d92/top-golden-transcript.log`.
+- `run_stage.py top_golden`: **180/180 byte-identical streams** in RTL simulation against the golden encoders (80 greyscale JPEG, 80 colour JPEG and 20 QOI). Transcript: `flow/records/20261118T002302Z-cb51d92/top-golden-transcript.log`.
 - A standalone bit-accurate Python model of the restructure (register transfers with the same slice arithmetic) matched the record 0003 reference on 40 000+ pass-1 and pass-2 vectors before RTL was written; the identity argument above covers every registered value for **every input value**, not only the ratified domain (the truncations — product `[29:0]`, DESCALE windows — discard exactly the bits the previous schedules discarded).
 
 ### 2. The measured depth is 13 cycles/vector — and both §2 halves, reported
 
-Schedule (cycle 0 = `start` while idle; `done` at cycle 12): 0 inputs; 1 butterfly rank 1; 2 butterfly rank 2; 3 butterfly rank 3 (`z1e`, `z5i`); 4 carry-save trees → `(S, C)`; 5 CPA stage 1 (low 16 + carry, high partial); 6 CPA stage 2 → products; 7 combine rank A stage 1 (ten one-operation partials); 8 combine rank A stage 2 (fold) → A bank registers; 9 combine rank B stage 1 (four adds over the bank; `x0`/`x2`/`x4`/`x6` latch directly); 10 combine rank B stage 2 → `x1r`/`x3r`/`x5r`/`x7r`; 11 DESCALE carries; 12 DESCALE window adds → `o_flat`. Convention, stated once: these numbers — and the RTL header comment's, and `assign done = busy && (step == 4'd12) && go` — are **stage numbers**: stage k computes during step k, on registers written at the end of step k−1. Some inline section comments inside `rtl/jc_dct1d.v` instead label registers by the step whose end captures them ("latched at cycle N"), one behind the consuming stage's number above (e.g. CPA stage 1 appears as "cycle 4"); aligning those labels is queued for the RTL's ratification landing and touches no schedule row.
+Schedule (cycle 0 = `start` while idle; `done` at cycle 12): 0 inputs; 1 butterfly rank 1; 2 butterfly rank 2; 3 butterfly rank 3 (`z1e`, `z5i`); 4 carry-save trees → `(S, C)`; 5 CPA stage 1 (low 16 + carry, high partial); 6 CPA stage 2 → products; 7 combine rank A stage 1 (ten one-operation partials); 8 combine rank A stage 2 (fold) → A bank registers; 9 combine rank B stage 1 (four adds over the bank; `x0`/`x2`/`x4`/`x6` latch directly); 10 combine rank B stage 2 → `x1r`/`x3r`/`x5r`/`x7r`; 11 DESCALE carries; 12 DESCALE window adds → `o_flat`. Stage numbers match the RTL step counter. Each register captures its result at the end of the numbered step.
 
 No depth was published before measurement. The measured iteration, all `flow/sta-preroute.sh --only jc_dct` on the netlist regenerated from the iteration's own RTL (cell delays only, 20 ns clock, five §10 views; each dir carries the full per-view JSON):
 
@@ -41,7 +44,7 @@ No depth was published before measurement. The measured iteration, all `flow/sta
 | `20261118T001402Z-cb51d92` | 13 cycles, rank 3 left chained from R1a | −2.4087 (same chain, 22.4 ns) | no |
 | `20261118T002302Z-cb51d92` (**this record's shape**) | 13 cycles, rank 3 registered | **+0.30963** | **yes** |
 
-The decided shape's five views — worst setup slack ns, hold violations, `fmax_mhz`:
+The filing candidate's five views — worst setup slack ns, hold violations, `fmax_mhz`:
 
 | view | setup slack (ns) | hold viol | fmax (MHz) |
 |---|---|---|---|
@@ -63,18 +66,52 @@ Record 0007 §4's authorized band for `jc_dct1d` (8 → 10, ≤ 12, "beyond 12 r
 |---|---|---|---|
 | 2 M0 read, DCT (both passes) | 16 × 12 + 12 = 204 per block → 1224 | 16 × 13 + 12 = **220 per block → 1320** | **95.0** |
 
-Stage 2 stays below the counted `jc_huff` floor of 1448.2 cycles/MCU (record 0008) — it does not become the frame binder against that floor. Under the ratified max-stage model (record 0005 §7, restated for the post-0009 rows by record 0013), the target-mode frame bound at depth 13 is **1,589,066 cycles = 95.3%** of the 1,666,667-cycle period (the issue's own derivation, reproduced: stage 2 binds at 96 × 13 + 72 = 1320 cycles/MCU on the merged §7 rows). The depth the §9 budget permits was exactly one cycle beyond the band, and the measurement consumed exactly that one. `verification/rtl/test_dct.py`'s `test_cycle_budget` asserts the 220-cycle row and cites this record (counted 218); under this filing's sequencing that test stays on the filing branch and lands together with the RTL.
+At 13 cycles/vector the DCT is the slowest stage at 1320 cycles/MCU.
+Record 0013 prices the pipelined Huffman stage at 745.2 cycles/MCU.
+Using its 438-cycle quantizer row gives a first-MCU latency of 4520 cycles
+and a frame bound of 1200 × 1320 + 4520 + 627 = **1,589,147 cycles**.
+Record 0012's measured quantizer depth raises that latency by 24 cycles,
+giving **1,589,171 cycles** on the integrated tree. Both bounds use **95.3%**
+of the 1,666,667-cycle VGA30 period. The RTL bench enforces the 220-cycle
+single-block budget from the first accepted S3 beat through the last S4 beat.
 
 ### 4. Area cost, stated
 
-The restructure buys depth with area, as the ruling anticipated: whole-top synthesis of the candidate vs the landed netlist at the PR's own merge base (`cb51d92`) — instances 36,956 → **44,591** (+20.7%), area 1,276,873.52 → **1,519,139.87 µm²** (+19.0%) (`flow/netlist/report.json`, both at the 20 ns `ss_125C_3v00` synthesis constraint; an earlier draft of this section priced against the 2026-11-05 netlist, 31,341 / 1,118,900.97, which several netlist regenerations predate — corrected here). The two figures also come from different tool revisions: the landed baseline was synthesized with `klt 0.9.3.dev663+g22ab2a8756c7`, the candidate with `0.9.3.dev1041+g7d8659f592b6`, so the delta mixes two tool revisions — stated rather than left implicit. The dominant additions are the twelve carry-save trees, the twelve staged CPA/combine banks and the A-value register bank. This record publishes the cost; whether it is worth paying is part of ratification.
+The restructure buys depth with area, as the ruling anticipated: whole-top synthesis of the candidate vs the landed netlist at the PR's own merge base (`cb51d92`) — instances 36,956 → **44,591** (+20.7%), area 1,276,873.52 → **1,519,139.87 µm²** (+19.0%) (`flow/netlist/report.json`, both at the 20 ns `ss_125C_3v00` synthesis constraint; an earlier draft of this section priced against the 2026-11-05 netlist, 31,341 / 1,118,900.97, which several netlist regenerations predate — corrected here). The two figures also come from different tool revisions: the landed baseline was synthesized with `klt 0.9.3.dev663+g22ab2a8756c7`, the candidate with `0.9.3.dev1041+g7d8659f592b6`, so the delta mixes two tool revisions — stated rather than left implicit. The dominant additions are the twelve carry-save trees, the twelve staged CPA/combine banks and the A-value register bank. The operator accepted this area trade at ratification.
+
+### 5. Integration on the November 25 main tree
+
+The unmodified candidate from `7e6f480`, synthesized with the other sources at
+`3a15c4c`, produced whole-top netlist SHA-256
+`e0cb3384c89fec03b2878d82921651aabf7c7945dd71db81057ef9c1254b8129`.
+Its slow/hot slack was −0.61733 ns, with two failing endpoints. The longest
+path ran from the shared low butterfly bit `r_z2[0]` to `r_z1e[15]`.
+The archived candidate netlist reproduced its original +0.30963 ns on the
+same timing tools. [Unmodified port timing](../../flow/records/20261126T000252Z-49ecc4e/unmodified-port/jc_dct.json).
+
+The integrated RTL expresses the 17-bit additions for `z1..z4`, `z1e` and
+`t10 ± t11` with parallel carries into bits 6 and 12. Each carry uses the
+lower operands and the incoming carry. The register widths, capture steps
+and DESCALE windows match the filing candidate. Yosys proved all 7,124
+equivalence checks against that candidate. [Equivalence check](../../flow/records/20261126T000252Z-49ecc4e/equivalence.txt).
+
+At `49ecc4e` the regenerated whole-top netlist has SHA-256
+`d05791c33c5a9a55bab8d9fe09a5d31d8e318510cc91cb12f5c7fbfa28787e9b`.
+Module-scoped pre-route STA meets setup and hold in all five views. Slow/hot
+setup slack is **+0.62521 ns**, leaving **6.07479 ns** to the conditional
++6.7 ns target carried into #34. The complete top synthesized to 72,761
+instances and 2,334,234.87 µm² of Liberty cell area. [Five-view STA](../../flow/records/20261126T000252Z-49ecc4e/summary.md).
+
+The integrated RTL passed all seven DCT tests, including the four stall
+mixes. The bench counted 218 cycles for one block and 208 additional cycles
+for a second block (16 vectors × 13). All 160 JPEG and 20 QOI streams matched
+their golden encoders byte for byte. [DCT transcript](../../flow/records/20261126T000252Z-49ecc4e/dct-transcript.log) · [Stream transcript](../../flow/records/20261126T000252Z-49ecc4e/top_golden-transcript.log).
 
 ## What this record does not settle
 
 - **The +6.7 ns half** (§2 above): open until #34's wire-aware numbers re-derive W; the assumption-free half is met without it.
-- **Ratification**: this record is Proposed. The restructured RTL, netlist, and the 220-cycle budget assertion land only with ratification; until then `main` keeps the 0007 §4 12-cycle `jc_dct1d` and its 204-cycle row. This filing lands the record and its evidence directories only — the implementation stays on the filing branch, and no RTL change merges before ratification.
 - **`colour_convert`** (#132's module, allowance now 0010 §1's): untouched; this record's slicing pattern is recorded for whoever carries that issue, as 0012 recorded its mapper findings for this one.
-- **The q95 cycle gap** (record 0008, remedy #137) and stage 5 bit pack: untouched; the depth-13 stage-2 row (95.0% of §9) does not move the frame binder.
+- Record 0008 documents the pre-0009 Huffman schedule. Stage 5 bit pack is outside this decision.
 - **Post-route or SPEF-annotated timing (#34) and top-level STA (#31)**: out of scope, as in 0007 and 0012.
 
 ## Rejected alternatives
@@ -87,7 +124,7 @@ The restructure buys depth with area, as the ruling anticipated: whole-top synth
 
 ## Consequences
 
-- **On ratification**, `rtl/jc_dct1d.v` (13-cycle CSD carry-save datapath), the regenerated `flow/netlist/`, and `verification/rtl/test_dct.py`'s 220-cycle assertion land on `main` together (a follow-up filing re-lands them from this branch's history, with the RTL comment-label and test tidy-ups noted at review); `spec/README.md`'s status row for this record moves to Decided by its own decision record. The five record directories above stay append-only evidence.
+- The implementation couples the 13-cycle RTL, the regenerated whole-top netlist and the 220-cycle budget assertion. The filing data remain available under their original netlist digests.
 - **Schedule consumers re-price to the depth-13 rows**: stage 2 = 1320 cycles/MCU (95.0% of §9), frame bound 95.3% at worst-case content under the merged §7 model (#136/#137's consumers; record 0013's per-depth rows extend to depth 13 by the same model).
 - **`jc_dct1d`'s port list and stream contract are unchanged** (`start`/`pass2`/`d_flat`/`go`/`busy`/`done`/`o_flat`, one vector per 13 cycles held while `go` is low) — `jc_dct.v` is untouched, as are the transpose file and the S3/S4 streaming interface.
 - **Frame-rate figures remain claims from counted cycles** (spec §9): nothing here is measured beyond STA and simulation on the pinned netlist, never silicon.
