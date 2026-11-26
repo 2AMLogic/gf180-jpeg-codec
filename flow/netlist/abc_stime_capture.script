@@ -1,0 +1,1 @@
+strash; &get -n; &fraig -x; &put; scorr; dc2; dretime; retime -o -D 20000; strash; &get -n; &dch -f; &nf -D 20000; &put; buffer; upsize -D 20000; dnsize -D 20000; stime -pd

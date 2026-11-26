@@ -189,12 +189,19 @@ Four of the five tests pass at gate level on the netlist this run recorded
 `871dc5df…` — a netlist no longer in the tree); `test_qoi_decodes` diverges
 there (it never finishes) and, with no `--testcase`, the run only ends at the
 bench's 4 000 000 cycle cap, about an hour. Keep it out of any required job.
-That gate-level X was filed as #93 and fixed by PR #95; no record re-runs this
-smoke bench on the current netlist. The current netlist (`e32b0e8b…`, the
-committed `flow/netlist/jpeg_codec_top_synth.v`) is covered at gate level by
-the 180-case golden record
-`verification/records/20261106T1803Z-golden-gl-e32b0e8/`: all 180 cases pass,
-QOI included.
+That gate-level X was filed as #93 and fixed by PR #95. A second gate-level
+startup X (#277: the status pins go unknown at 3.78 us, before any host
+write) was traced to registers of `jc_table_load` outside the synchronous
+reset; the fix resets them, and the smoke bench's
+`test_reset_reaches_known_idle` now fails in seconds at gate level if a
+netlist regresses that way. The current netlist (`c99a0cd2…`, the committed
+`flow/netlist/jpeg_codec_top_synth.v`) is covered at gate level by the
+reset-diagnosis record
+`verification/records/20261126T0215Z-reset-gl-c99a0cd/` (reset-only
+comparison plus the byte-exact `test_colour_golden/case=47`); its
+predecessor `e32b0e8b…` by the 180-case golden record
+`verification/records/20261106T1803Z-golden-gl-e32b0e8/`: all 180 cases
+pass, QOI included.
 
 ## Top-level golden comparison (issue #88, functional half of T1 item 5)
 

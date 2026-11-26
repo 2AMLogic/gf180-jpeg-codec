@@ -236,3 +236,37 @@ async def test_qoi_decodes(dut):
         dec = qoi_ref_dec.QoiRefDec(tmp)      # one compile for the whole test
         assert dec.decode(got, bytes(rgb), w, h) == 0, "qoi.h reference rejected the output"
     assert got == qoi_golden.qoi_encode(bytes(rgb), w, h), "bytes differ from the golden QOI encoder"
+
+
+@cocotb.test()
+async def test_reset_reaches_known_idle(dut):
+    """Reset-only: the Annex K default load completes and status stays known.
+
+    The same stimulus as Host.reset but bounded to the 80 us diagnostic
+    window of issue #277 (8000 cycles) instead of CAP, and with every status
+    pin required to be known on every cycle, so a gate-level run that goes
+    unknown before the first configuration write fails here fast and named
+    instead of as a 4M-cycle wait_idle timeout.
+    """
+    d = dut
+    cocotb.start_soon(Clock(d.clk, 10, unit="ns").start())
+    d.rst_n.value = 0
+    d.pix_valid.value = 0
+    d.pix_data.value = 0
+    d.cfg_valid.value = 0
+    d.cfg_addr.value = 0
+    d.cfg_wdata.value = 0
+    d.out_ready.value = 1
+    for _ in range(3):
+        await RisingEdge(d.clk)
+    d.rst_n.value = 1
+    for cyc in range(8000):
+        await RisingEdge(d.clk)
+        for name in ("status_idle", "status_busy", "status_error", "err_cause"):
+            v = str(getattr(d, name).value).lower()
+            assert "x" not in v and "z" not in v, "%s unknown (%s) at cycle %d after reset" % (name, v, cyc)
+        if d.status_idle.value == 1:
+            assert d.status_busy.value == 0, "idle and busy both high at cycle %d" % cyc
+            assert d.status_error.value == 0, "error set at cycle %d" % cyc
+            return
+    raise AssertionError("no idle within 8000 cycles (80 us) of reset release")

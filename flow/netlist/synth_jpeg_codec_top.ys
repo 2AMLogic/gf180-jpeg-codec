@@ -42,7 +42,7 @@ read_verilog flow/sram_blackbox.v
 hierarchy -check -top jpeg_codec_top
 synth -top jpeg_codec_top
 dfflibmap -liberty $PDK_ROOT/ciel/gf180mcu/versions/f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu9t5v0/lib/gf180mcu_fd_sc_mcu9t5v0__ss_125C_3v00.lib
-tee -q -o flow/netlist/jpeg_codec_top_abc.log abc -liberty $PDK_ROOT/ciel/gf180mcu/versions/f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu9t5v0/lib/gf180mcu_fd_sc_mcu9t5v0__ss_125C_3v00.lib -constr flow/netlist/jpeg_codec_top_abc.constr -D 20000
+tee -q -o flow/netlist/jpeg_codec_top_abc.log abc -liberty $PDK_ROOT/ciel/gf180mcu/versions/f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu9t5v0/lib/gf180mcu_fd_sc_mcu9t5v0__ss_125C_3v00.lib -script flow/netlist/abc_stime_capture.script -constr flow/netlist/jpeg_codec_top_abc.constr -D 20000
 clean
 setundef -zero
 hilomap -hicell gf180mcu_fd_sc_mcu9t5v0__tieh Z -locell gf180mcu_fd_sc_mcu9t5v0__tiel ZN

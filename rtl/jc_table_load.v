@@ -23,7 +23,10 @@
 // failed attempt wrote them (record 0005 Consequences: no restore).
 // Reset runs the same path: ROM bytes into the raw regions, then a commit of
 // all six tables; `busy` is high until done. `nsym` reports the HUFFVAL
-// count of each built DHT table for the header length field.
+// count of each built DHT table for the header length field. Every register
+// of this block is in the synchronous reset, so the post-reset state is
+// fully defined in four-value simulation (gate-level next-state cones may
+// read a register the RTL assignment does not, and then cannot clear an X).
 //
 // Memory client port (per jc_huff convention): req held until gnt; a read's
 // data is valid in the cycle rvalid is high; a write completes at gnt.
@@ -194,6 +197,16 @@ module jc_table_load (
       valid     <= 6'd0;
       nsym_q    <= 32'd0;
       err_cause <= 4'd0;
+      bits_reg  <= 128'd0;
+      len       <= 5'd0;
+      code      <= 17'd0;
+      k         <= 8'd0;
+      cnt_left  <= 8'd0;
+      sym       <= 8'd0;
+      widx      <= 8'd0;
+      bdata     <= 8'd0;
+      wword     <= 32'd0;
+      fcause    <= 4'd0;
     end else begin
       case (st)
         S_RST0: begin
