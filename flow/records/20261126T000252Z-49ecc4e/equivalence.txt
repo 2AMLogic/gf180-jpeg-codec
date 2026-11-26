@@ -1,0 +1,25 @@
+Compare the filing candidate with rtl/jc_dct1d.v at 49ecc4e.
+Run from the repository root with Yosys 0.67+post (b8e7da6f40).
+
+candidate=$(mktemp)
+git show 7e6f480:rtl/jc_dct1d.v > "$candidate"
+yosys -p "
+    read_verilog $candidate
+    proc
+    opt
+    rename jc_dct1d candidate
+    read_verilog rtl/jc_dct1d.v
+    proc
+    opt
+    equiv_make candidate jc_dct1d equiv
+    hierarchy -top equiv
+    opt -full
+    equiv_simple -seq 3
+    equiv_induct -seq 2
+    equiv_status -assert
+"
+
+12. Executing EQUIV_STATUS pass.
+Found 7124 $equiv cells in equiv:
+  Of those cells 7124 are proven and 0 are unproven.
+  Equivalence successfully proven!

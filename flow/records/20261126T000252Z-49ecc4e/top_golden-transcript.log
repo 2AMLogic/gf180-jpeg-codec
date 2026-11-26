@@ -1,0 +1,738 @@
+# python3 verification/rtl/run_stage.py top_golden
+# git 49ecc4e0249e51bcf51dba24906d822b6e04f13b, rtl/jc_dct1d.v sha256:f9ce69f15bad3ad6968f5aceb68fe2cacdf0b6c3721a7c3dfaec218e7f8ca69b
+# Local worktree and tool-install paths are shown as $WORKTREE and $TOOLS.
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:242  in gpi_load_users                  Loaded entry library: '/usr/lib/x86_64-linux-gnu/libpython3.12.so.1.0'
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:233  in gpi_load_users                  Running entry func 'initialize' from loaded library '$TOOLS/venv/lib/python3.12/site-packages/cocotb/simulator.cpython-312-x86_64-linux-gnu.so'
+     -.--ns INFO     pygpi                              ..ib/pygpi/embed.cpp:114  in initialize                      Using Python 3.12.12 interpreter at $TOOLS/venv/bin/python3
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:74   in gpi_print_registered_impl       GPI: VPI support registered
+     0.00ns INFO     cocotb.initialize                  Seeding Python random module with 1
+     0.00ns INFO     cocotb.initialize                  Initialized cocotb v2.1.0 from $TOOLS/venv/lib/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb.initialize                  Running on Icarus Verilog version 14.0 (devel)
+     0.00ns INFO     cocotb.regression                  Running tests
+     0.00ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=0 (1/180)
+191480.00ns INFO     cocotb.jpeg_codec_top              colour flat_gray_128 64x48 q10: 673 bytes, 15873 cycles (simulated)
+191480.00ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=0 passed
+191480.00ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=1 (2/180)
+382970.00ns INFO     cocotb.jpeg_codec_top              colour flat_gray_128 64x48 q50: 673 bytes, 15873 cycles (simulated)
+382970.00ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=1 passed
+382970.00ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=2 (3/180)
+574460.00ns INFO     cocotb.jpeg_codec_top              colour flat_gray_128 64x48 q75: 673 bytes, 15873 cycles (simulated)
+574460.00ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=2 passed
+574460.00ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=3 (4/180)
+765950.00ns INFO     cocotb.jpeg_codec_top              colour flat_gray_128 64x48 q95: 673 bytes, 15873 cycles (simulated)
+765950.00ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=3 passed
+765950.00ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=4 (5/180)
+820160.00ns INFO     cocotb.jpeg_codec_top              colour flat_gray_128 16x16 q10: 629 bytes, 2145 cycles (simulated)
+820160.00ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=4 passed
+820160.00ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=5 (6/180)
+874370.01ns INFO     cocotb.jpeg_codec_top              colour flat_gray_128 16x16 q50: 629 bytes, 2145 cycles (simulated)
+874370.01ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=5 passed
+874370.01ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=6 (7/180)
+928580.01ns INFO     cocotb.jpeg_codec_top              colour flat_gray_128 16x16 q75: 629 bytes, 2145 cycles (simulated)
+928580.01ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=6 passed
+928580.01ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=7 (8/180)
+982790.01ns INFO     cocotb.jpeg_codec_top              colour flat_gray_128 16x16 q95: 629 bytes, 2145 cycles (simulated)
+982790.01ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=7 passed
+982790.01ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=8 (9/180)
+1174280.01ns INFO     cocotb.jpeg_codec_top              colour flat_white 64x48 q10: 674 bytes, 15873 cycles (simulated)
+1174280.01ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=8 passed
+1174280.01ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=9 (10/180)
+1365770.01ns INFO     cocotb.jpeg_codec_top              colour flat_white 64x48 q50: 675 bytes, 15873 cycles (simulated)
+1365770.01ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=9 passed
+1365770.01ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=10 (11/180)
+1557260.01ns INFO     cocotb.jpeg_codec_top              colour flat_white 64x48 q75: 675 bytes, 15873 cycles (simulated)
+1557260.01ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=10 passed
+1557260.01ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=11 (12/180)
+1748750.01ns INFO     cocotb.jpeg_codec_top              colour flat_white 64x48 q95: 675 bytes, 15873 cycles (simulated)
+1748750.01ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=11 passed
+1748750.01ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=12 (13/180)
+1802960.01ns INFO     cocotb.jpeg_codec_top              colour flat_white 16x16 q10: 630 bytes, 2145 cycles (simulated)
+1802960.01ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=12 passed
+1802960.01ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=13 (14/180)
+1857170.01ns INFO     cocotb.jpeg_codec_top              colour flat_white 16x16 q50: 631 bytes, 2145 cycles (simulated)
+1857170.01ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=13 passed
+1857170.01ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=14 (15/180)
+1911380.01ns INFO     cocotb.jpeg_codec_top              colour flat_white 16x16 q75: 631 bytes, 2145 cycles (simulated)
+1911380.01ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=14 passed
+1911380.01ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=15 (16/180)
+1965590.01ns INFO     cocotb.jpeg_codec_top              colour flat_white 16x16 q95: 631 bytes, 2145 cycles (simulated)
+1965590.01ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=15 passed
+1965590.01ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=16 (17/180)
+2157080.02ns INFO     cocotb.jpeg_codec_top              colour flat_black 64x48 q10: 674 bytes, 15873 cycles (simulated)
+2157080.02ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=16 passed
+2157080.02ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=17 (18/180)
+2348570.02ns INFO     cocotb.jpeg_codec_top              colour flat_black 64x48 q50: 675 bytes, 15873 cycles (simulated)
+2348570.02ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=17 passed
+2348570.02ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=18 (19/180)
+2540060.02ns INFO     cocotb.jpeg_codec_top              colour flat_black 64x48 q75: 675 bytes, 15873 cycles (simulated)
+2540060.02ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=18 passed
+2540060.02ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=19 (20/180)
+2731550.02ns INFO     cocotb.jpeg_codec_top              colour flat_black 64x48 q95: 675 bytes, 15873 cycles (simulated)
+2731550.02ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=19 passed
+2731550.02ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=20 (21/180)
+2785760.02ns INFO     cocotb.jpeg_codec_top              colour flat_black 16x16 q10: 630 bytes, 2145 cycles (simulated)
+2785760.02ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=20 passed
+2785760.02ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=21 (22/180)
+2839970.02ns INFO     cocotb.jpeg_codec_top              colour flat_black 16x16 q50: 631 bytes, 2145 cycles (simulated)
+2839970.02ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=21 passed
+2839970.02ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=22 (23/180)
+2894180.02ns INFO     cocotb.jpeg_codec_top              colour flat_black 16x16 q75: 631 bytes, 2145 cycles (simulated)
+2894180.02ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=22 passed
+2894180.02ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=23 (24/180)
+2948390.02ns INFO     cocotb.jpeg_codec_top              colour flat_black 16x16 q95: 631 bytes, 2145 cycles (simulated)
+2948390.02ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=23 passed
+2948390.02ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=24 (25/180)
+3139880.02ns INFO     cocotb.jpeg_codec_top              colour ramp_h 64x48 q10: 706 bytes, 15873 cycles (simulated)
+3139880.02ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=24 passed
+3139880.02ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=25 (26/180)
+3331370.02ns INFO     cocotb.jpeg_codec_top              colour ramp_h 64x48 q50: 760 bytes, 15873 cycles (simulated)
+3331370.02ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=25 passed
+3331370.02ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=26 (27/180)
+3522860.03ns INFO     cocotb.jpeg_codec_top              colour ramp_h 64x48 q75: 790 bytes, 15873 cycles (simulated)
+3522860.03ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=26 passed
+3522860.03ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=27 (28/180)
+3714350.03ns INFO     cocotb.jpeg_codec_top              colour ramp_h 64x48 q95: 959 bytes, 15873 cycles (simulated)
+3714350.03ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=27 passed
+3714350.03ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=28 (29/180)
+3768560.03ns INFO     cocotb.jpeg_codec_top              colour ramp_h 16x16 q10: 634 bytes, 2145 cycles (simulated)
+3768560.03ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=28 passed
+3768560.03ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=29 (30/180)
+3822770.03ns INFO     cocotb.jpeg_codec_top              colour ramp_h 16x16 q50: 639 bytes, 2145 cycles (simulated)
+3822770.03ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=29 passed
+3822770.03ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=30 (31/180)
+3876980.03ns INFO     cocotb.jpeg_codec_top              colour ramp_h 16x16 q75: 645 bytes, 2145 cycles (simulated)
+3876980.03ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=30 passed
+3876980.03ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=31 (32/180)
+3931190.03ns INFO     cocotb.jpeg_codec_top              colour ramp_h 16x16 q95: 675 bytes, 2145 cycles (simulated)
+3931190.03ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=31 passed
+3931190.03ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=32 (33/180)
+4122680.03ns INFO     cocotb.jpeg_codec_top              colour ramp_v 64x48 q10: 697 bytes, 15873 cycles (simulated)
+4122680.03ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=32 passed
+4122680.03ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=33 (34/180)
+4314170.03ns INFO     cocotb.jpeg_codec_top              colour ramp_v 64x48 q50: 755 bytes, 15873 cycles (simulated)
+4314170.03ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=33 passed
+4314170.03ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=34 (35/180)
+4505660.03ns INFO     cocotb.jpeg_codec_top              colour ramp_v 64x48 q75: 791 bytes, 15873 cycles (simulated)
+4505660.03ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=34 passed
+4505660.03ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=35 (36/180)
+4697150.04ns INFO     cocotb.jpeg_codec_top              colour ramp_v 64x48 q95: 991 bytes, 15873 cycles (simulated)
+4697150.04ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=35 passed
+4697150.04ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=36 (37/180)
+4751360.04ns INFO     cocotb.jpeg_codec_top              colour ramp_v 16x16 q10: 636 bytes, 2145 cycles (simulated)
+4751360.04ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=36 passed
+4751360.04ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=37 (38/180)
+4805570.04ns INFO     cocotb.jpeg_codec_top              colour ramp_v 16x16 q50: 643 bytes, 2145 cycles (simulated)
+4805570.04ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=37 passed
+4805570.04ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=38 (39/180)
+4859780.04ns INFO     cocotb.jpeg_codec_top              colour ramp_v 16x16 q75: 649 bytes, 2145 cycles (simulated)
+4859780.04ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=38 passed
+4859780.04ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=39 (40/180)
+4913990.04ns INFO     cocotb.jpeg_codec_top              colour ramp_v 16x16 q95: 685 bytes, 2145 cycles (simulated)
+4913990.04ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=39 passed
+4913990.04ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=40 (41/180)
+5105480.04ns INFO     cocotb.jpeg_codec_top              colour checker_1px 64x48 q10: 1177 bytes, 15873 cycles (simulated)
+5105480.04ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=40 passed
+5105480.04ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=41 (42/180)
+5296970.04ns INFO     cocotb.jpeg_codec_top              colour checker_1px 64x48 q50: 1741 bytes, 15873 cycles (simulated)
+5296970.04ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=41 passed
+5296970.04ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=42 (43/180)
+5488460.04ns INFO     cocotb.jpeg_codec_top              colour checker_1px 64x48 q75: 1958 bytes, 15873 cycles (simulated)
+5488460.04ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=42 passed
+5488460.04ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=43 (44/180)
+5679950.04ns INFO     cocotb.jpeg_codec_top              colour checker_1px 64x48 q95: 2558 bytes, 15873 cycles (simulated)
+5679950.04ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=43 passed
+5679950.04ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=44 (45/180)
+5734160.04ns INFO     cocotb.jpeg_codec_top              colour checker_1px 16x16 q10: 671 bytes, 2145 cycles (simulated)
+5734160.04ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=44 passed
+5734160.04ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=45 (46/180)
+5788370.04ns INFO     cocotb.jpeg_codec_top              colour checker_1px 16x16 q50: 721 bytes, 2145 cycles (simulated)
+5788370.04ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=45 passed
+5788370.04ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=46 (47/180)
+5842580.05ns INFO     cocotb.jpeg_codec_top              colour checker_1px 16x16 q75: 737 bytes, 2145 cycles (simulated)
+5842580.05ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=46 passed
+5842580.05ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=47 (48/180)
+5896790.05ns INFO     cocotb.jpeg_codec_top              colour checker_1px 16x16 q95: 787 bytes, 2145 cycles (simulated)
+5896790.05ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=47 passed
+5896790.05ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=48 (49/180)
+6088280.05ns INFO     cocotb.jpeg_codec_top              colour checker_8px 64x48 q10: 692 bytes, 15873 cycles (simulated)
+6088280.05ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=48 passed
+6088280.05ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=49 (50/180)
+6279770.05ns INFO     cocotb.jpeg_codec_top              colour checker_8px 64x48 q50: 711 bytes, 15873 cycles (simulated)
+6279770.05ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=49 passed
+6279770.05ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=50 (51/180)
+6471260.05ns INFO     cocotb.jpeg_codec_top              colour checker_8px 64x48 q75: 711 bytes, 15873 cycles (simulated)
+6471260.05ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=50 passed
+6471260.05ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=51 (52/180)
+6662750.05ns INFO     cocotb.jpeg_codec_top              colour checker_8px 64x48 q95: 735 bytes, 15873 cycles (simulated)
+6662750.05ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=51 passed
+6662750.05ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=52 (53/180)
+6716970.05ns INFO     cocotb.jpeg_codec_top              colour checker_8px 16x16 q10: 632 bytes, 2146 cycles (simulated)
+6716970.05ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=52 passed
+6716970.05ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=53 (54/180)
+6771180.05ns INFO     cocotb.jpeg_codec_top              colour checker_8px 16x16 q50: 634 bytes, 2145 cycles (simulated)
+6771180.05ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=53 passed
+6771180.05ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=54 (55/180)
+6825390.05ns INFO     cocotb.jpeg_codec_top              colour checker_8px 16x16 q75: 634 bytes, 2145 cycles (simulated)
+6825390.05ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=54 passed
+6825390.05ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=55 (56/180)
+6879600.05ns INFO     cocotb.jpeg_codec_top              colour checker_8px 16x16 q95: 636 bytes, 2145 cycles (simulated)
+6879600.05ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=55 passed
+6879600.05ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=56 (57/180)
+7071090.06ns INFO     cocotb.jpeg_codec_top              colour colour_bars 64x48 q10: 734 bytes, 15873 cycles (simulated)
+7071090.06ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=56 passed
+7071090.06ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=57 (58/180)
+7262580.06ns INFO     cocotb.jpeg_codec_top              colour colour_bars 64x48 q50: 815 bytes, 15873 cycles (simulated)
+7262580.06ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=57 passed
+7262580.06ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=58 (59/180)
+7454070.06ns INFO     cocotb.jpeg_codec_top              colour colour_bars 64x48 q75: 891 bytes, 15873 cycles (simulated)
+7454070.06ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=58 passed
+7454070.06ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=59 (60/180)
+7645560.06ns INFO     cocotb.jpeg_codec_top              colour colour_bars 64x48 q95: 1038 bytes, 15873 cycles (simulated)
+7645560.06ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=59 passed
+7645560.06ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=60 (61/180)
+7699770.06ns INFO     cocotb.jpeg_codec_top              colour colour_bars 16x16 q10: 643 bytes, 2145 cycles (simulated)
+7699770.06ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=60 passed
+7699770.06ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=61 (62/180)
+7753980.06ns INFO     cocotb.jpeg_codec_top              colour colour_bars 16x16 q50: 666 bytes, 2145 cycles (simulated)
+7753980.06ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=61 passed
+7753980.06ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=62 (63/180)
+7808190.06ns INFO     cocotb.jpeg_codec_top              colour colour_bars 16x16 q75: 677 bytes, 2145 cycles (simulated)
+7808190.06ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=62 passed
+7808190.06ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=63 (64/180)
+7862400.06ns INFO     cocotb.jpeg_codec_top              colour colour_bars 16x16 q95: 707 bytes, 2145 cycles (simulated)
+7862400.06ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=63 passed
+7862400.06ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=64 (65/180)
+8053890.06ns INFO     cocotb.jpeg_codec_top              colour noise_max_entropy 64x48 q10: 958 bytes, 15873 cycles (simulated)
+8053890.06ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=64 passed
+8053890.06ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=65 (66/180)
+8245430.07ns INFO     cocotb.jpeg_codec_top              colour noise_max_entropy 64x48 q50: 1876 bytes, 15878 cycles (simulated)
+8245430.07ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=65 passed
+8245430.07ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=66 (67/180)
+8437000.07ns INFO     cocotb.jpeg_codec_top              colour noise_max_entropy 64x48 q75: 2471 bytes, 15881 cycles (simulated)
+8437000.07ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=66 passed
+8437000.07ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=67 (68/180)
+8628920.07ns INFO     cocotb.jpeg_codec_top              colour noise_max_entropy 64x48 q95: 4222 bytes, 15916 cycles (simulated)
+8628920.07ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=67 passed
+8628920.07ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=68 (69/180)
+8683130.07ns INFO     cocotb.jpeg_codec_top              colour noise_max_entropy 16x16 q10: 654 bytes, 2145 cycles (simulated)
+8683130.07ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=68 passed
+8683130.07ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=69 (70/180)
+8737380.07ns INFO     cocotb.jpeg_codec_top              colour noise_max_entropy 16x16 q50: 727 bytes, 2149 cycles (simulated)
+8737380.07ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=69 passed
+8737380.07ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=70 (71/180)
+8791660.07ns INFO     cocotb.jpeg_codec_top              colour noise_max_entropy 16x16 q75: 776 bytes, 2152 cycles (simulated)
+8791660.07ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=70 passed
+8791660.07ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=71 (72/180)
+8846380.07ns INFO     cocotb.jpeg_codec_top              colour noise_max_entropy 16x16 q95: 920 bytes, 2196 cycles (simulated)
+8846380.07ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=71 passed
+8846380.07ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=72 (73/180)
+9037870.07ns INFO     cocotb.jpeg_codec_top              colour scene_fbm 64x48 q10: 690 bytes, 15873 cycles (simulated)
+9037870.07ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=72 passed
+9037870.07ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=73 (74/180)
+9229360.07ns INFO     cocotb.jpeg_codec_top              colour scene_fbm 64x48 q50: 806 bytes, 15873 cycles (simulated)
+9229360.07ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=73 passed
+9229360.07ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=74 (75/180)
+9420890.07ns INFO     cocotb.jpeg_codec_top              colour scene_fbm 64x48 q75: 902 bytes, 15877 cycles (simulated)
+9420890.07ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=74 passed
+9420890.07ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=75 (76/180)
+9612460.07ns INFO     cocotb.jpeg_codec_top              colour scene_fbm 64x48 q95: 1283 bytes, 15881 cycles (simulated)
+9612460.07ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=75 passed
+9612460.07ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=76 (77/180)
+9666670.08ns INFO     cocotb.jpeg_codec_top              colour scene_fbm 16x16 q10: 631 bytes, 2145 cycles (simulated)
+9666670.08ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=76 passed
+9666670.08ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=77 (78/180)
+9720890.08ns INFO     cocotb.jpeg_codec_top              colour scene_fbm 16x16 q50: 642 bytes, 2146 cycles (simulated)
+9720890.08ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=77 passed
+9720890.08ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=78 (79/180)
+9775120.08ns INFO     cocotb.jpeg_codec_top              colour scene_fbm 16x16 q75: 651 bytes, 2147 cycles (simulated)
+9775120.08ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=78 passed
+9775120.08ns INFO     cocotb.regression                  running test_top_golden.test_colour_golden/case=79 (80/180)
+9829390.08ns INFO     cocotb.jpeg_codec_top              colour scene_fbm 16x16 q95: 684 bytes, 2151 cycles (simulated)
+9829390.08ns INFO     cocotb.regression                  test_top_golden.test_colour_golden/case=79 passed
+9829390.08ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=0 (81/180)
+9964150.08ns INFO     cocotb.jpeg_codec_top              grey flat_gray_128 64x48 q10: 366 bytes, 10200 cycles (simulated)
+9964150.08ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=0 passed
+9964150.08ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=1 (82/180)
+10098910.08ns INFO     cocotb.jpeg_codec_top              grey flat_gray_128 64x48 q50: 366 bytes, 10200 cycles (simulated)
+10098910.08ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=1 passed
+10098910.08ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=2 (83/180)
+10233670.08ns INFO     cocotb.jpeg_codec_top              grey flat_gray_128 64x48 q75: 366 bytes, 10200 cycles (simulated)
+10233670.08ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=2 passed
+10233670.08ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=3 (84/180)
+10368430.08ns INFO     cocotb.jpeg_codec_top              grey flat_gray_128 64x48 q95: 366 bytes, 10200 cycles (simulated)
+10368430.08ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=3 passed
+10368430.08ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=4 (85/180)
+10411670.08ns INFO     cocotb.jpeg_codec_top              grey flat_gray_128 16x16 q10: 333 bytes, 1048 cycles (simulated)
+10411670.08ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=4 passed
+10411670.08ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=5 (86/180)
+10454910.09ns INFO     cocotb.jpeg_codec_top              grey flat_gray_128 16x16 q50: 333 bytes, 1048 cycles (simulated)
+10454910.09ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=5 passed
+10454910.09ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=6 (87/180)
+10498150.09ns INFO     cocotb.jpeg_codec_top              grey flat_gray_128 16x16 q75: 333 bytes, 1048 cycles (simulated)
+10498150.09ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=6 passed
+10498150.09ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=7 (88/180)
+10541390.09ns INFO     cocotb.jpeg_codec_top              grey flat_gray_128 16x16 q95: 333 bytes, 1048 cycles (simulated)
+10541390.09ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=7 passed
+10541390.09ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=8 (89/180)
+10676150.09ns INFO     cocotb.jpeg_codec_top              grey flat_white 64x48 q10: 367 bytes, 10200 cycles (simulated)
+10676150.09ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=8 passed
+10676150.09ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=9 (90/180)
+10810920.09ns INFO     cocotb.jpeg_codec_top              grey flat_white 64x48 q50: 368 bytes, 10201 cycles (simulated)
+10810920.09ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=9 passed
+10810920.09ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=10 (91/180)
+10945690.09ns INFO     cocotb.jpeg_codec_top              grey flat_white 64x48 q75: 368 bytes, 10201 cycles (simulated)
+10945690.09ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=10 passed
+10945690.09ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=11 (92/180)
+11080450.09ns INFO     cocotb.jpeg_codec_top              grey flat_white 64x48 q95: 368 bytes, 10200 cycles (simulated)
+11080450.09ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=11 passed
+11080450.09ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=12 (93/180)
+11123690.09ns INFO     cocotb.jpeg_codec_top              grey flat_white 16x16 q10: 334 bytes, 1048 cycles (simulated)
+11123690.09ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=12 passed
+11123690.09ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=13 (94/180)
+11166940.09ns INFO     cocotb.jpeg_codec_top              grey flat_white 16x16 q50: 335 bytes, 1049 cycles (simulated)
+11166940.09ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=13 passed
+11166940.09ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=14 (95/180)
+11210190.09ns INFO     cocotb.jpeg_codec_top              grey flat_white 16x16 q75: 335 bytes, 1049 cycles (simulated)
+11210190.09ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=14 passed
+11210190.09ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=15 (96/180)
+11253430.10ns INFO     cocotb.jpeg_codec_top              grey flat_white 16x16 q95: 335 bytes, 1048 cycles (simulated)
+11253430.10ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=15 passed
+11253430.10ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=16 (97/180)
+11388190.10ns INFO     cocotb.jpeg_codec_top              grey flat_black 64x48 q10: 367 bytes, 10200 cycles (simulated)
+11388190.10ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=16 passed
+11388190.10ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=17 (98/180)
+11522960.10ns INFO     cocotb.jpeg_codec_top              grey flat_black 64x48 q50: 368 bytes, 10201 cycles (simulated)
+11522960.10ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=17 passed
+11522960.10ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=18 (99/180)
+11657720.10ns INFO     cocotb.jpeg_codec_top              grey flat_black 64x48 q75: 368 bytes, 10200 cycles (simulated)
+11657720.10ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=18 passed
+11657720.10ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=19 (100/180)
+11792480.10ns INFO     cocotb.jpeg_codec_top              grey flat_black 64x48 q95: 368 bytes, 10200 cycles (simulated)
+11792480.10ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=19 passed
+11792480.10ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=20 (101/180)
+11835720.10ns INFO     cocotb.jpeg_codec_top              grey flat_black 16x16 q10: 334 bytes, 1048 cycles (simulated)
+11835720.10ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=20 passed
+11835720.10ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=21 (102/180)
+11878970.10ns INFO     cocotb.jpeg_codec_top              grey flat_black 16x16 q50: 335 bytes, 1049 cycles (simulated)
+11878970.10ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=21 passed
+11878970.10ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=22 (103/180)
+11922210.10ns INFO     cocotb.jpeg_codec_top              grey flat_black 16x16 q75: 335 bytes, 1048 cycles (simulated)
+11922210.10ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=22 passed
+11922210.10ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=23 (104/180)
+11965450.10ns INFO     cocotb.jpeg_codec_top              grey flat_black 16x16 q95: 335 bytes, 1048 cycles (simulated)
+11965450.10ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=23 passed
+11965450.10ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=24 (105/180)
+12100210.10ns INFO     cocotb.jpeg_codec_top              grey ramp_h 64x48 q10: 378 bytes, 10200 cycles (simulated)
+12100210.10ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=24 passed
+12100210.10ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=25 (106/180)
+12235000.11ns INFO     cocotb.jpeg_codec_top              grey ramp_h 64x48 q50: 413 bytes, 10203 cycles (simulated)
+12235000.11ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=25 passed
+12235000.11ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=26 (107/180)
+12369780.11ns INFO     cocotb.jpeg_codec_top              grey ramp_h 64x48 q75: 420 bytes, 10202 cycles (simulated)
+12369780.11ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=26 passed
+12369780.11ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=27 (108/180)
+12504560.11ns INFO     cocotb.jpeg_codec_top              grey ramp_h 64x48 q95: 546 bytes, 10202 cycles (simulated)
+12504560.11ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=27 passed
+12504560.11ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=28 (109/180)
+12547830.11ns INFO     cocotb.jpeg_codec_top              grey ramp_h 16x16 q10: 337 bytes, 1051 cycles (simulated)
+12547830.11ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=28 passed
+12547830.11ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=29 (110/180)
+12591090.11ns INFO     cocotb.jpeg_codec_top              grey ramp_h 16x16 q50: 339 bytes, 1050 cycles (simulated)
+12591090.11ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=29 passed
+12591090.11ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=30 (111/180)
+12634360.11ns INFO     cocotb.jpeg_codec_top              grey ramp_h 16x16 q75: 344 bytes, 1051 cycles (simulated)
+12634360.11ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=30 passed
+12634360.11ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=31 (112/180)
+12677620.11ns INFO     cocotb.jpeg_codec_top              grey ramp_h 16x16 q95: 362 bytes, 1050 cycles (simulated)
+12677620.11ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=31 passed
+12677620.11ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=32 (113/180)
+12812380.11ns INFO     cocotb.jpeg_codec_top              grey ramp_v 64x48 q10: 367 bytes, 10200 cycles (simulated)
+12812380.11ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=32 passed
+12812380.11ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=33 (114/180)
+12947160.11ns INFO     cocotb.jpeg_codec_top              grey ramp_v 64x48 q50: 399 bytes, 10202 cycles (simulated)
+12947160.11ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=33 passed
+12947160.11ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=34 (115/180)
+13081940.11ns INFO     cocotb.jpeg_codec_top              grey ramp_v 64x48 q75: 412 bytes, 10202 cycles (simulated)
+13081940.11ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=34 passed
+13081940.11ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=35 (116/180)
+13216780.12ns INFO     cocotb.jpeg_codec_top              grey ramp_v 64x48 q95: 537 bytes, 10208 cycles (simulated)
+13216780.12ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=35 passed
+13216780.12ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=36 (117/180)
+13260050.12ns INFO     cocotb.jpeg_codec_top              grey ramp_v 16x16 q10: 337 bytes, 1051 cycles (simulated)
+13260050.12ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=36 passed
+13260050.12ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=37 (118/180)
+13303310.12ns INFO     cocotb.jpeg_codec_top              grey ramp_v 16x16 q50: 338 bytes, 1050 cycles (simulated)
+13303310.12ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=37 passed
+13303310.12ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=38 (119/180)
+13346570.12ns INFO     cocotb.jpeg_codec_top              grey ramp_v 16x16 q75: 344 bytes, 1050 cycles (simulated)
+13346570.12ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=38 passed
+13346570.12ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=39 (120/180)
+13389880.12ns INFO     cocotb.jpeg_codec_top              grey ramp_v 16x16 q95: 368 bytes, 1055 cycles (simulated)
+13389880.12ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=39 passed
+13389880.12ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=40 (121/180)
+13524680.12ns INFO     cocotb.jpeg_codec_top              grey checker_1px 64x48 q10: 870 bytes, 10204 cycles (simulated)
+13524680.12ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=40 passed
+13524680.12ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=41 (122/180)
+13659610.12ns INFO     cocotb.jpeg_codec_top              grey checker_1px 64x48 q50: 1434 bytes, 10217 cycles (simulated)
+13659610.12ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=41 passed
+13659610.12ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=42 (123/180)
+13794550.12ns INFO     cocotb.jpeg_codec_top              grey checker_1px 64x48 q75: 1651 bytes, 10218 cycles (simulated)
+13794550.12ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=42 passed
+13794550.12ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=43 (124/180)
+13929490.12ns INFO     cocotb.jpeg_codec_top              grey checker_1px 64x48 q95: 2251 bytes, 10218 cycles (simulated)
+13929490.12ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=43 passed
+13929490.12ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=44 (125/180)
+13972770.12ns INFO     cocotb.jpeg_codec_top              grey checker_1px 16x16 q10: 375 bytes, 1052 cycles (simulated)
+13972770.12ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=44 passed
+13972770.12ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=45 (126/180)
+14016190.12ns INFO     cocotb.jpeg_codec_top              grey checker_1px 16x16 q50: 425 bytes, 1066 cycles (simulated)
+14016190.12ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=45 passed
+14016190.12ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=46 (127/180)
+14059610.13ns INFO     cocotb.jpeg_codec_top              grey checker_1px 16x16 q75: 441 bytes, 1066 cycles (simulated)
+14059610.13ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=46 passed
+14059610.13ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=47 (128/180)
+14103030.13ns INFO     cocotb.jpeg_codec_top              grey checker_1px 16x16 q95: 491 bytes, 1066 cycles (simulated)
+14103030.13ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=47 passed
+14103030.13ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=48 (129/180)
+14237800.13ns INFO     cocotb.jpeg_codec_top              grey checker_8px 64x48 q10: 399 bytes, 10201 cycles (simulated)
+14237800.13ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=48 passed
+14237800.13ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=49 (130/180)
+14372570.13ns INFO     cocotb.jpeg_codec_top              grey checker_8px 64x48 q50: 431 bytes, 10201 cycles (simulated)
+14372570.13ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=49 passed
+14372570.13ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=50 (131/180)
+14507340.13ns INFO     cocotb.jpeg_codec_top              grey checker_8px 64x48 q75: 437 bytes, 10201 cycles (simulated)
+14507340.13ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=50 passed
+14507340.13ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=51 (132/180)
+14642100.13ns INFO     cocotb.jpeg_codec_top              grey checker_8px 64x48 q95: 458 bytes, 10200 cycles (simulated)
+14642100.13ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=51 passed
+14642100.13ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=52 (133/180)
+14685350.13ns INFO     cocotb.jpeg_codec_top              grey checker_8px 16x16 q10: 336 bytes, 1049 cycles (simulated)
+14685350.13ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=52 passed
+14685350.13ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=53 (134/180)
+14728600.13ns INFO     cocotb.jpeg_codec_top              grey checker_8px 16x16 q50: 338 bytes, 1049 cycles (simulated)
+14728600.13ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=53 passed
+14728600.13ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=54 (135/180)
+14771850.13ns INFO     cocotb.jpeg_codec_top              grey checker_8px 16x16 q75: 338 bytes, 1049 cycles (simulated)
+14771850.13ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=54 passed
+14771850.13ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=55 (136/180)
+14815090.13ns INFO     cocotb.jpeg_codec_top              grey checker_8px 16x16 q95: 340 bytes, 1048 cycles (simulated)
+14815090.13ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=55 passed
+14815090.13ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=56 (137/180)
+14949860.14ns INFO     cocotb.jpeg_codec_top              grey colour_bars 64x48 q10: 389 bytes, 10201 cycles (simulated)
+14949860.14ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=56 passed
+14949860.14ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=57 (138/180)
+15084630.14ns INFO     cocotb.jpeg_codec_top              grey colour_bars 64x48 q50: 404 bytes, 10201 cycles (simulated)
+15084630.14ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=57 passed
+15084630.14ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=58 (139/180)
+15219390.14ns INFO     cocotb.jpeg_codec_top              grey colour_bars 64x48 q75: 414 bytes, 10200 cycles (simulated)
+15219390.14ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=58 passed
+15219390.14ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=59 (140/180)
+15354150.14ns INFO     cocotb.jpeg_codec_top              grey colour_bars 64x48 q95: 435 bytes, 10200 cycles (simulated)
+15354150.14ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=59 passed
+15354150.14ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=60 (141/180)
+15397420.14ns INFO     cocotb.jpeg_codec_top              grey colour_bars 16x16 q10: 339 bytes, 1051 cycles (simulated)
+15397420.14ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=60 passed
+15397420.14ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=61 (142/180)
+15440710.14ns INFO     cocotb.jpeg_codec_top              grey colour_bars 16x16 q50: 355 bytes, 1053 cycles (simulated)
+15440710.14ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=61 passed
+15440710.14ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=62 (143/180)
+15483990.14ns INFO     cocotb.jpeg_codec_top              grey colour_bars 16x16 q75: 363 bytes, 1052 cycles (simulated)
+15483990.14ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=62 passed
+15483990.14ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=63 (144/180)
+15527250.14ns INFO     cocotb.jpeg_codec_top              grey colour_bars 16x16 q95: 390 bytes, 1050 cycles (simulated)
+15527250.14ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=63 passed
+15527250.14ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=64 (145/180)
+15662180.14ns INFO     cocotb.jpeg_codec_top              grey noise_max_entropy 64x48 q10: 653 bytes, 10217 cycles (simulated)
+15662180.14ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=64 passed
+15662180.14ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=65 (146/180)
+15797560.14ns INFO     cocotb.jpeg_codec_top              grey noise_max_entropy 64x48 q50: 1415 bytes, 10262 cycles (simulated)
+15797560.14ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=65 passed
+15797560.14ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=66 (147/180)
+15933190.15ns INFO     cocotb.jpeg_codec_top              grey noise_max_entropy 64x48 q75: 1801 bytes, 10287 cycles (simulated)
+15933190.15ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=66 passed
+15933190.15ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=67 (148/180)
+16069020.15ns INFO     cocotb.jpeg_codec_top              grey noise_max_entropy 64x48 q95: 3029 bytes, 10307 cycles (simulated)
+16069020.15ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=67 passed
+16069020.15ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=68 (149/180)
+16112420.15ns INFO     cocotb.jpeg_codec_top              grey noise_max_entropy 16x16 q10: 358 bytes, 1064 cycles (simulated)
+16112420.15ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=68 passed
+16112420.15ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=69 (150/180)
+16156200.15ns INFO     cocotb.jpeg_codec_top              grey noise_max_entropy 16x16 q50: 420 bytes, 1102 cycles (simulated)
+16156200.15ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=69 passed
+16156200.15ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=70 (151/180)
+16200210.15ns INFO     cocotb.jpeg_codec_top              grey noise_max_entropy 16x16 q75: 448 bytes, 1125 cycles (simulated)
+16200210.15ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=70 passed
+16200210.15ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=71 (152/180)
+16244660.15ns INFO     cocotb.jpeg_codec_top              grey noise_max_entropy 16x16 q95: 551 bytes, 1169 cycles (simulated)
+16244660.15ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=71 passed
+16244660.15ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=72 (153/180)
+16379430.15ns INFO     cocotb.jpeg_codec_top              grey scene_fbm 64x48 q10: 376 bytes, 10201 cycles (simulated)
+16379430.15ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=72 passed
+16379430.15ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=73 (154/180)
+16514250.15ns INFO     cocotb.jpeg_codec_top              grey scene_fbm 64x48 q50: 456 bytes, 10206 cycles (simulated)
+16514250.15ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=73 passed
+16514250.15ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=74 (155/180)
+16649090.15ns INFO     cocotb.jpeg_codec_top              grey scene_fbm 64x48 q75: 520 bytes, 10208 cycles (simulated)
+16649090.15ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=74 passed
+16649090.15ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=75 (156/180)
+16784050.16ns INFO     cocotb.jpeg_codec_top              grey scene_fbm 64x48 q95: 789 bytes, 10220 cycles (simulated)
+16784050.16ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=75 passed
+16784050.16ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=76 (157/180)
+16827290.16ns INFO     cocotb.jpeg_codec_top              grey scene_fbm 16x16 q10: 334 bytes, 1048 cycles (simulated)
+16827290.16ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=76 passed
+16827290.16ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=77 (158/180)
+16870580.16ns INFO     cocotb.jpeg_codec_top              grey scene_fbm 16x16 q50: 342 bytes, 1053 cycles (simulated)
+16870580.16ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=77 passed
+16870580.16ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=78 (159/180)
+16913910.16ns INFO     cocotb.jpeg_codec_top              grey scene_fbm 16x16 q75: 348 bytes, 1057 cycles (simulated)
+16913910.16ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=78 passed
+16913910.16ns INFO     cocotb.regression                  running test_top_golden.test_grey_golden/case=79 (160/180)
+16957350.16ns INFO     cocotb.jpeg_codec_top              grey scene_fbm 16x16 q95: 370 bytes, 1068 cycles (simulated)
+16957350.16ns INFO     cocotb.regression                  test_top_golden.test_grey_golden/case=79 passed
+16957350.16ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=0 (161/180)
+17077830.16ns INFO     cocotb.jpeg_codec_top              qoi flat_gray_128 64x48: 76 bytes, 9357 cycles (simulated)
+17077830.16ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=0 passed
+17077830.16ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=1 (162/180)
+17113830.16ns INFO     cocotb.jpeg_codec_top              qoi flat_gray_128 16x16: 31 bytes, 909 cycles (simulated)
+17113830.16ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=1 passed
+17113830.16ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=2 (163/180)
+17234310.16ns INFO     cocotb.jpeg_codec_top              qoi flat_white 64x48: 73 bytes, 9357 cycles (simulated)
+17234310.16ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=2 passed
+17234310.16ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=3 (164/180)
+17270310.16ns INFO     cocotb.jpeg_codec_top              qoi flat_white 16x16: 28 bytes, 909 cycles (simulated)
+17270310.16ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=3 passed
+17270310.16ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=4 (165/180)
+17390780.16ns INFO     cocotb.jpeg_codec_top              qoi flat_black 64x48: 72 bytes, 9356 cycles (simulated)
+17390780.16ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=4 passed
+17390780.16ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=5 (166/180)
+17426770.16ns INFO     cocotb.jpeg_codec_top              qoi flat_black 16x16: 27 bytes, 908 cycles (simulated)
+17426770.16ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=5 passed
+17426770.16ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=6 (167/180)
+17559190.17ns INFO     cocotb.jpeg_codec_top              qoi ramp_h 64x48: 6670 bytes, 10551 cycles (simulated)
+17559190.17ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=6 passed
+17559190.17ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=7 (168/180)
+17595350.17ns INFO     cocotb.jpeg_codec_top              qoi ramp_h 16x16: 326 bytes, 925 cycles (simulated)
+17595350.17ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=7 passed
+17595350.17ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=8 (169/180)
+17717240.17ns INFO     cocotb.jpeg_codec_top              qoi ramp_v 64x48: 253 bytes, 9498 cycles (simulated)
+17717240.17ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=8 passed
+17717240.17ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=9 (170/180)
+17753690.17ns INFO     cocotb.jpeg_codec_top              qoi ramp_v 16x16: 99 bytes, 954 cycles (simulated)
+17753690.17ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=9 passed
+17753690.17ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=10 (171/180)
+17875130.17ns INFO     cocotb.jpeg_codec_top              qoi checker_1px 64x48: 3094 bytes, 9453 cycles (simulated)
+17875130.17ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=10 passed
+17875130.17ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=11 (172/180)
+17911450.17ns INFO     cocotb.jpeg_codec_top              qoi checker_1px 16x16: 278 bytes, 941 cycles (simulated)
+17911450.17ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=11 passed
+17911450.17ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=12 (173/180)
+18039500.17ns INFO     cocotb.jpeg_codec_top              qoi checker_8px 64x48: 780 bytes, 10114 cycles (simulated)
+18039500.17ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=12 passed
+18039500.17ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=13 (174/180)
+18076110.17ns INFO     cocotb.jpeg_codec_top              qoi checker_8px 16x16: 84 bytes, 970 cycles (simulated)
+18076110.17ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=13 passed
+18076110.17ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=14 (175/180)
+18204320.17ns INFO     cocotb.jpeg_codec_top              qoi colour_bars 64x48: 790 bytes, 10130 cycles (simulated)
+18204320.17ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=14 passed
+18204320.17ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=15 (176/180)
+18242930.18ns INFO     cocotb.jpeg_codec_top              qoi colour_bars 16x16: 278 bytes, 1170 cycles (simulated)
+18242930.18ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=15 passed
+18242930.18ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=16 (177/180)
+18394150.18ns INFO     cocotb.jpeg_codec_top              qoi noise_max_entropy 64x48: 12306 bytes, 12431 cycles (simulated)
+18394150.18ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=16 passed
+18394150.18ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=17 (178/180)
+18432730.18ns INFO     cocotb.jpeg_codec_top              qoi noise_max_entropy 16x16: 1046 bytes, 1167 cycles (simulated)
+18432730.18ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=17 passed
+18432730.18ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=18 (179/180)
+18583950.18ns INFO     cocotb.jpeg_codec_top              qoi scene_fbm 64x48: 5405 bytes, 12431 cycles (simulated)
+18583950.18ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=18 passed
+18583950.18ns INFO     cocotb.regression                  running test_top_golden.test_qoi_golden/case=19 (180/180)
+18622450.18ns INFO     cocotb.jpeg_codec_top              qoi scene_fbm 16x16: 530 bytes, 1159 cycles (simulated)
+18622450.18ns INFO     cocotb.regression                  test_top_golden.test_qoi_golden/case=19 passed
+18622450.18ns INFO     cocotb.regression                  ****************************************************************************************************
+                                                        ** TEST                                        STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ****************************************************************************************************
+                                                        ** test_top_golden.test_colour_golden/case=0    PASS      191480.00           1.61     118803.42  **
+                                                        ** test_top_golden.test_colour_golden/case=1    PASS      191490.00           1.65     116366.78  **
+                                                        ** test_top_golden.test_colour_golden/case=2    PASS      191490.00           1.64     116558.49  **
+                                                        ** test_top_golden.test_colour_golden/case=3    PASS      191490.00           1.68     114062.10  **
+                                                        ** test_top_golden.test_colour_golden/case=4    PASS       54210.00           0.36     148964.52  **
+                                                        ** test_top_golden.test_colour_golden/case=5    PASS       54210.00           0.38     141698.02  **
+                                                        ** test_top_golden.test_colour_golden/case=6    PASS       54210.00           0.37     145771.32  **
+                                                        ** test_top_golden.test_colour_golden/case=7    PASS       54210.00           0.36     149788.62  **
+                                                        ** test_top_golden.test_colour_golden/case=8    PASS      191490.00           1.60     119492.52  **
+                                                        ** test_top_golden.test_colour_golden/case=9    PASS      191490.00           1.56     122742.52  **
+                                                        ** test_top_golden.test_colour_golden/case=10   PASS      191490.00           1.54     124616.15  **
+                                                        ** test_top_golden.test_colour_golden/case=11   PASS      191490.00           1.57     122197.78  **
+                                                        ** test_top_golden.test_colour_golden/case=12   PASS       54210.00           0.38     141056.57  **
+                                                        ** test_top_golden.test_colour_golden/case=13   PASS       54210.00           0.39     137747.46  **
+                                                        ** test_top_golden.test_colour_golden/case=14   PASS       54210.00           0.36     150856.57  **
+                                                        ** test_top_golden.test_colour_golden/case=15   PASS       54210.00           0.41     133181.82  **
+                                                        ** test_top_golden.test_colour_golden/case=16   PASS      191490.00           1.60     119955.17  **
+                                                        ** test_top_golden.test_colour_golden/case=17   PASS      191490.00           1.57     122205.93  **
+                                                        ** test_top_golden.test_colour_golden/case=18   PASS      191490.00           1.49     128139.27  **
+                                                        ** test_top_golden.test_colour_golden/case=19   PASS      191490.00           1.49     128103.52  **
+                                                        ** test_top_golden.test_colour_golden/case=20   PASS       54210.00           0.36     148755.65  **
+                                                        ** test_top_golden.test_colour_golden/case=21   PASS       54210.00           0.36     148721.31  **
+                                                        ** test_top_golden.test_colour_golden/case=22   PASS       54210.00           0.36     151793.35  **
+                                                        ** test_top_golden.test_colour_golden/case=23   PASS       54210.00           0.37     148283.15  **
+                                                        ** test_top_golden.test_colour_golden/case=24   PASS      191490.00           2.08      92211.49  **
+                                                        ** test_top_golden.test_colour_golden/case=25   PASS      191490.00           2.27      84405.21  **
+                                                        ** test_top_golden.test_colour_golden/case=26   PASS      191490.00           2.28      83933.12  **
+                                                        ** test_top_golden.test_colour_golden/case=27   PASS      191490.00           2.10      91361.93  **
+                                                        ** test_top_golden.test_colour_golden/case=28   PASS       54210.00           0.41     130898.35  **
+                                                        ** test_top_golden.test_colour_golden/case=29   PASS       54210.00           0.41     131489.03  **
+                                                        ** test_top_golden.test_colour_golden/case=30   PASS       54210.00           0.42     128998.79  **
+                                                        ** test_top_golden.test_colour_golden/case=31   PASS       54210.00           0.42     127586.99  **
+                                                        ** test_top_golden.test_colour_golden/case=32   PASS      191490.00           1.55     123802.37  **
+                                                        ** test_top_golden.test_colour_golden/case=33   PASS      191490.00           1.58     121118.81  **
+                                                        ** test_top_golden.test_colour_golden/case=34   PASS      191490.00           1.59     120661.27  **
+                                                        ** test_top_golden.test_colour_golden/case=35   PASS      191490.00           1.55     123351.95  **
+                                                        ** test_top_golden.test_colour_golden/case=36   PASS       54210.00           0.37     148432.36  **
+                                                        ** test_top_golden.test_colour_golden/case=37   PASS       54210.00           0.37     146457.41  **
+                                                        ** test_top_golden.test_colour_golden/case=38   PASS       54210.00           0.37     146390.25  **
+                                                        ** test_top_golden.test_colour_golden/case=39   PASS       54210.00           0.37     147661.46  **
+                                                        ** test_top_golden.test_colour_golden/case=40   PASS      191490.00           2.18      87658.16  **
+                                                        ** test_top_golden.test_colour_golden/case=41   PASS      191490.00           2.19      87306.32  **
+                                                        ** test_top_golden.test_colour_golden/case=42   PASS      191490.00           2.22      86290.92  **
+                                                        ** test_top_golden.test_colour_golden/case=43   PASS      191490.00           2.25      85087.36  **
+                                                        ** test_top_golden.test_colour_golden/case=44   PASS       54210.00           0.45     121424.45  **
+                                                        ** test_top_golden.test_colour_golden/case=45   PASS       54210.00           0.46     117368.58  **
+                                                        ** test_top_golden.test_colour_golden/case=46   PASS       54210.00           0.45     121198.58  **
+                                                        ** test_top_golden.test_colour_golden/case=47   PASS       54210.00           0.42     130441.22  **
+                                                        ** test_top_golden.test_colour_golden/case=48   PASS      191490.00           1.53     125072.50  **
+                                                        ** test_top_golden.test_colour_golden/case=49   PASS      191490.00           1.60     119389.15  **
+                                                        ** test_top_golden.test_colour_golden/case=50   PASS      191490.00           1.60     119871.33  **
+                                                        ** test_top_golden.test_colour_golden/case=51   PASS      191490.00           1.51     126458.95  **
+                                                        ** test_top_golden.test_colour_golden/case=52   PASS       54220.00           0.36     148555.17  **
+                                                        ** test_top_golden.test_colour_golden/case=53   PASS       54210.00           0.38     144195.20  **
+                                                        ** test_top_golden.test_colour_golden/case=54   PASS       54210.00           0.42     129984.61  **
+                                                        ** test_top_golden.test_colour_golden/case=55   PASS       54210.00           0.40     134952.00  **
+                                                        ** test_top_golden.test_colour_golden/case=56   PASS      191490.00           1.59     120751.95  **
+                                                        ** test_top_golden.test_colour_golden/case=57   PASS      191490.00           1.62     118217.08  **
+                                                        ** test_top_golden.test_colour_golden/case=58   PASS      191490.00           1.78     107503.63  **
+                                                        ** test_top_golden.test_colour_golden/case=59   PASS      191490.00           1.57     121770.44  **
+                                                        ** test_top_golden.test_colour_golden/case=60   PASS       54210.00           0.47     115220.48  **
+                                                        ** test_top_golden.test_colour_golden/case=61   PASS       54210.00           0.42     130377.72  **
+                                                        ** test_top_golden.test_colour_golden/case=62   PASS       54210.00           0.42     129718.30  **
+                                                        ** test_top_golden.test_colour_golden/case=63   PASS       54210.00           0.39     138032.39  **
+                                                        ** test_top_golden.test_colour_golden/case=64   PASS      191490.00           2.51      76213.23  **
+                                                        ** test_top_golden.test_colour_golden/case=65   PASS      191540.00           2.70      70947.93  **
+                                                        ** test_top_golden.test_colour_golden/case=66   PASS      191570.00           2.93      65398.74  **
+                                                        ** test_top_golden.test_colour_golden/case=67   PASS      191920.00           2.85      67307.07  **
+                                                        ** test_top_golden.test_colour_golden/case=68   PASS       54210.00           0.50     109413.52  **
+                                                        ** test_top_golden.test_colour_golden/case=69   PASS       54250.00           0.52     104453.88  **
+                                                        ** test_top_golden.test_colour_golden/case=70   PASS       54280.00           0.50     108028.14  **
+                                                        ** test_top_golden.test_colour_golden/case=71   PASS       54720.00           0.52     105244.25  **
+                                                        ** test_top_golden.test_colour_golden/case=72   PASS      191490.00           2.60      73583.60  **
+                                                        ** test_top_golden.test_colour_golden/case=73   PASS      191490.00           2.58      74296.94  **
+                                                        ** test_top_golden.test_colour_golden/case=74   PASS      191530.00           2.54      75413.09  **
+                                                        ** test_top_golden.test_colour_golden/case=75   PASS      191570.00           2.39      80256.51  **
+                                                        ** test_top_golden.test_colour_golden/case=76   PASS       54210.00           0.51     105520.72  **
+                                                        ** test_top_golden.test_colour_golden/case=77   PASS       54220.00           0.50     108966.25  **
+                                                        ** test_top_golden.test_colour_golden/case=78   PASS       54230.00           0.53     101527.79  **
+                                                        ** test_top_golden.test_colour_golden/case=79   PASS       54270.00           0.46     117749.26  **
+                                                        ** test_top_golden.test_grey_golden/case=0      PASS      134760.00           1.15     117606.00  **
+                                                        ** test_top_golden.test_grey_golden/case=1      PASS      134760.00           1.13     119097.32  **
+                                                        ** test_top_golden.test_grey_golden/case=2      PASS      134760.00           1.16     116011.52  **
+                                                        ** test_top_golden.test_grey_golden/case=3      PASS      134760.00           1.07     125736.91  **
+                                                        ** test_top_golden.test_grey_golden/case=4      PASS       43240.00           0.32     135290.44  **
+                                                        ** test_top_golden.test_grey_golden/case=5      PASS       43240.00           0.29     147596.33  **
+                                                        ** test_top_golden.test_grey_golden/case=6      PASS       43240.00           0.30     143528.05  **
+                                                        ** test_top_golden.test_grey_golden/case=7      PASS       43240.00           0.32     135914.69  **
+                                                        ** test_top_golden.test_grey_golden/case=8      PASS      134760.00           1.09     123375.12  **
+                                                        ** test_top_golden.test_grey_golden/case=9      PASS      134770.00           1.24     108848.16  **
+                                                        ** test_top_golden.test_grey_golden/case=10     PASS      134770.00           1.18     114408.49  **
+                                                        ** test_top_golden.test_grey_golden/case=11     PASS      134760.00           1.17     114806.97  **
+                                                        ** test_top_golden.test_grey_golden/case=12     PASS       43240.00           0.34     127666.37  **
+                                                        ** test_top_golden.test_grey_golden/case=13     PASS       43250.00           0.35     123082.85  **
+                                                        ** test_top_golden.test_grey_golden/case=14     PASS       43250.00           0.35     124767.31  **
+                                                        ** test_top_golden.test_grey_golden/case=15     PASS       43240.00           0.31     141606.58  **
+                                                        ** test_top_golden.test_grey_golden/case=16     PASS      134760.00           1.16     116168.56  **
+                                                        ** test_top_golden.test_grey_golden/case=17     PASS      134770.00           1.15     117568.03  **
+                                                        ** test_top_golden.test_grey_golden/case=18     PASS      134760.00           1.16     115713.22  **
+                                                        ** test_top_golden.test_grey_golden/case=19     PASS      134760.00           1.11     121759.15  **
+                                                        ** test_top_golden.test_grey_golden/case=20     PASS       43240.00           0.33     129601.91  **
+                                                        ** test_top_golden.test_grey_golden/case=21     PASS       43250.00           0.31     138154.26  **
+                                                        ** test_top_golden.test_grey_golden/case=22     PASS       43240.00           0.32     135952.46  **
+                                                        ** test_top_golden.test_grey_golden/case=23     PASS       43240.00           0.32     135302.43  **
+                                                        ** test_top_golden.test_grey_golden/case=24     PASS      134760.00           1.51      89204.16  **
+                                                        ** test_top_golden.test_grey_golden/case=25     PASS      134790.00           1.56      86412.42  **
+                                                        ** test_top_golden.test_grey_golden/case=26     PASS      134780.00           1.60      84039.23  **
+                                                        ** test_top_golden.test_grey_golden/case=27     PASS      134780.00           1.48      90855.60  **
+                                                        ** test_top_golden.test_grey_golden/case=28     PASS       43270.00           0.32     134212.75  **
+                                                        ** test_top_golden.test_grey_golden/case=29     PASS       43260.00           0.36     119364.28  **
+                                                        ** test_top_golden.test_grey_golden/case=30     PASS       43270.00           0.37     117582.64  **
+                                                        ** test_top_golden.test_grey_golden/case=31     PASS       43260.00           0.33     131906.03  **
+                                                        ** test_top_golden.test_grey_golden/case=32     PASS      134760.00           1.12     120706.63  **
+                                                        ** test_top_golden.test_grey_golden/case=33     PASS      134780.00           1.19     113544.29  **
+                                                        ** test_top_golden.test_grey_golden/case=34     PASS      134780.00           1.21     111310.27  **
+                                                        ** test_top_golden.test_grey_golden/case=35     PASS      134840.00           1.11     121089.38  **
+                                                        ** test_top_golden.test_grey_golden/case=36     PASS       43270.00           0.34     129088.96  **
+                                                        ** test_top_golden.test_grey_golden/case=37     PASS       43260.00           0.30     143941.48  **
+                                                        ** test_top_golden.test_grey_golden/case=38     PASS       43260.00           0.32     137145.48  **
+                                                        ** test_top_golden.test_grey_golden/case=39     PASS       43310.00           0.36     121077.38  **
+                                                        ** test_top_golden.test_grey_golden/case=40     PASS      134800.00           1.71      78985.83  **
+                                                        ** test_top_golden.test_grey_golden/case=41     PASS      134930.00           1.61      83928.33  **
+                                                        ** test_top_golden.test_grey_golden/case=42     PASS      134940.00           1.62      83376.00  **
+                                                        ** test_top_golden.test_grey_golden/case=43     PASS      134940.00           1.79      75504.52  **
+                                                        ** test_top_golden.test_grey_golden/case=44     PASS       43280.00           0.34     128657.18  **
+                                                        ** test_top_golden.test_grey_golden/case=45     PASS       43420.00           0.34     128032.72  **
+                                                        ** test_top_golden.test_grey_golden/case=46     PASS       43420.00           0.35     125833.46  **
+                                                        ** test_top_golden.test_grey_golden/case=47     PASS       43420.00           0.37     118489.44  **
+                                                        ** test_top_golden.test_grey_golden/case=48     PASS      134770.00           1.15     117497.23  **
+                                                        ** test_top_golden.test_grey_golden/case=49     PASS      134770.00           1.12     120198.61  **
+                                                        ** test_top_golden.test_grey_golden/case=50     PASS      134770.00           1.16     115914.53  **
+                                                        ** test_top_golden.test_grey_golden/case=51     PASS      134760.00           1.15     116678.12  **
+                                                        ** test_top_golden.test_grey_golden/case=52     PASS       43250.00           0.38     114391.62  **
+                                                        ** test_top_golden.test_grey_golden/case=53     PASS       43250.00           0.34     127547.13  **
+                                                        ** test_top_golden.test_grey_golden/case=54     PASS       43250.00           0.37     118105.49  **
+                                                        ** test_top_golden.test_grey_golden/case=55     PASS       43240.00           0.37     116688.02  **
+                                                        ** test_top_golden.test_grey_golden/case=56     PASS      134770.00           1.35      99774.22  **
+                                                        ** test_top_golden.test_grey_golden/case=57     PASS      134770.00           1.35     100198.86  **
+                                                        ** test_top_golden.test_grey_golden/case=58     PASS      134760.00           1.15     117228.68  **
+                                                        ** test_top_golden.test_grey_golden/case=59     PASS      134760.00           1.13     119230.78  **
+                                                        ** test_top_golden.test_grey_golden/case=60     PASS       43270.00           0.35     123620.79  **
+                                                        ** test_top_golden.test_grey_golden/case=61     PASS       43290.00           0.37     118172.25  **
+                                                        ** test_top_golden.test_grey_golden/case=62     PASS       43280.00           0.33     133010.67  **
+                                                        ** test_top_golden.test_grey_golden/case=63     PASS       43260.00           0.33     131685.05  **
+                                                        ** test_top_golden.test_grey_golden/case=64     PASS      134930.00           1.79      75238.18  **
+                                                        ** test_top_golden.test_grey_golden/case=65     PASS      135380.00           1.87      72429.29  **
+                                                        ** test_top_golden.test_grey_golden/case=66     PASS      135630.00           1.94      69885.69  **
+                                                        ** test_top_golden.test_grey_golden/case=67     PASS      135830.00           1.81      74914.00  **
+                                                        ** test_top_golden.test_grey_golden/case=68     PASS       43400.00           0.36     120294.89  **
+                                                        ** test_top_golden.test_grey_golden/case=69     PASS       43780.00           0.36     121141.70  **
+                                                        ** test_top_golden.test_grey_golden/case=70     PASS       44010.00           0.40     109026.86  **
+                                                        ** test_top_golden.test_grey_golden/case=71     PASS       44450.00           0.40     112002.57  **
+                                                        ** test_top_golden.test_grey_golden/case=72     PASS      134770.00           1.50      89988.04  **
+                                                        ** test_top_golden.test_grey_golden/case=73     PASS      134820.00           1.60      84323.98  **
+                                                        ** test_top_golden.test_grey_golden/case=74     PASS      134840.00           1.48      91385.65  **
+                                                        ** test_top_golden.test_grey_golden/case=75     PASS      134960.00           1.47      91762.39  **
+                                                        ** test_top_golden.test_grey_golden/case=76     PASS       43240.00           0.37     116910.34  **
+                                                        ** test_top_golden.test_grey_golden/case=77     PASS       43290.00           0.34     126664.53  **
+                                                        ** test_top_golden.test_grey_golden/case=78     PASS       43330.00           0.34     127732.60  **
+                                                        ** test_top_golden.test_grey_golden/case=79     PASS       43440.00           0.33     132272.35  **
+                                                        ** test_top_golden.test_qoi_golden/case=0       PASS      120480.00           0.72     168214.69  **
+                                                        ** test_top_golden.test_qoi_golden/case=1       PASS       36000.00           0.22     161120.74  **
+                                                        ** test_top_golden.test_qoi_golden/case=2       PASS      120480.00           0.80     151116.74  **
+                                                        ** test_top_golden.test_qoi_golden/case=3       PASS       36000.00           0.25     142036.19  **
+                                                        ** test_top_golden.test_qoi_golden/case=4       PASS      120470.00           0.74     162411.48  **
+                                                        ** test_top_golden.test_qoi_golden/case=5       PASS       35990.00           0.25     144822.43  **
+                                                        ** test_top_golden.test_qoi_golden/case=6       PASS      132420.00           1.01     131330.72  **
+                                                        ** test_top_golden.test_qoi_golden/case=7       PASS       36160.00           0.24     150989.08  **
+                                                        ** test_top_golden.test_qoi_golden/case=8       PASS      121890.00           0.71     172861.58  **
+                                                        ** test_top_golden.test_qoi_golden/case=9       PASS       36450.00           0.32     113231.49  **
+                                                        ** test_top_golden.test_qoi_golden/case=10      PASS      121440.00           0.96     126033.53  **
+                                                        ** test_top_golden.test_qoi_golden/case=11      PASS       36320.00           0.24     151961.89  **
+                                                        ** test_top_golden.test_qoi_golden/case=12      PASS      128050.00           0.82     156091.95  **
+                                                        ** test_top_golden.test_qoi_golden/case=13      PASS       36610.00           0.23     156858.94  **
+                                                        ** test_top_golden.test_qoi_golden/case=14      PASS      128210.00           0.85     150447.97  **
+                                                        ** test_top_golden.test_qoi_golden/case=15      PASS       38610.00           0.27     143893.26  **
+                                                        ** test_top_golden.test_qoi_golden/case=16      PASS      151220.00           1.24     122356.73  **
+                                                        ** test_top_golden.test_qoi_golden/case=17      PASS       38580.00           0.25     152480.03  **
+                                                        ** test_top_golden.test_qoi_golden/case=18      PASS      151220.00           1.29     117147.52  **
+                                                        ** test_top_golden.test_qoi_golden/case=19      PASS       38500.00           0.28     139203.03  **
+                                                        ****************************************************************************************************
+                                                        ** TESTS=180 PASS=180 FAIL=0 SKIP=0                     18622450.18         173.14     107557.92  **
+                                                        ****************************************************************************************************
+icarus: 180/180 passed

@@ -6,7 +6,8 @@ Run (toplevel jc_dct):
 
 The reference below is transcribed from decision record 0003 and is
 independent of verification/golden/. Every node asserts that it fits the
-0003 word length. Comparison against the golden model is item 5 (#34).
+0003 word length. A separate run checks the same S4 interface against the
+committed golden model for record 0014.
 """
 
 import random
@@ -18,6 +19,8 @@ from pathlib import Path
 import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import FallingEdge
+
+from jpeg_golden import fdct_block
 
 RTL = Path(__file__).resolve().parent.parent.parent / "rtl"
 
@@ -201,9 +204,9 @@ async def run_blocks(dut, blocks, rng, p_in=1.0, p_out=1.0, timeout=None):
     return out, first, lastc
 
 
-def check_outputs(blocks, out):
+def check_outputs(blocks, out, *, golden=False):
     for bi, (samples, comp, last) in enumerate(blocks):
-        exp, _ = ref_block(samples)
+        exp = fdct_block(samples) if golden else ref_block(samples)[0]
         got = out[64 * bi: 64 * bi + 64]
         order = [8 * r + c for c in range(8) for r in range(8)]
         for k, (idx, coef, ocomp, olast) in enumerate(got):
@@ -262,13 +265,9 @@ async def test_directed_blocks(dut):
     dut._log.info("%d directed blocks match", len(blocks))
 
 
-@cocotb.test()
-async def test_random_blocks(dut):
-    """2400 seeded random blocks, back to back, stall-free."""
-    await setup(dut)
-    rng = random.Random(0x43)
+def random_blocks(rng, count):
     blocks = []
-    for i in range(2400):
+    for i in range(count):
         kind = i % 4
         if kind == 0:
             s = [rng.randrange(256) for _ in range(64)]
@@ -279,11 +278,31 @@ async def test_random_blocks(dut):
         else:
             base = rng.randrange(256)
             s = [min(255, max(0, base + rng.randrange(-12, 13))) for _ in range(64)]
-        blocks.append((s, rng.randrange(3), i == 2399))
+        blocks.append((s, rng.randrange(3), i == count - 1))
+    return blocks
+
+
+@cocotb.test()
+async def test_random_blocks(dut):
+    """2400 seeded random blocks, back to back, stall-free."""
+    await setup(dut)
+    rng = random.Random(0x43)
+    blocks = random_blocks(rng, 2400)
     out, first, lastc = await run_blocks(dut, blocks, rng)
     check_outputs(blocks, out)
     per_block = (lastc - first + 1) / len(blocks)
     dut._log.info("2400 random blocks match; %.1f cycles/block streamed", per_block)
+
+
+@cocotb.test()
+async def test_golden_crosscheck(dut):
+    """Record 0014: compare every S4 coefficient to the golden model."""
+    await setup(dut)
+    rng = random.Random(0x169)
+    blocks = random_blocks(rng, 300)
+    out, _, _ = await run_blocks(dut, blocks, rng)
+    check_outputs(blocks, out, golden=True)
+    dut._log.info("%d random blocks match the golden model fdct_block", len(blocks))
 
 
 @cocotb.test()
@@ -301,11 +320,12 @@ async def test_backpressure(dut):
 
 @cocotb.test()
 async def test_cycle_budget(dut):
-    """Record 0007 section 4 stage 2 (supersedes the 0005 section 7 row for
-    this stage): at most 204 cycles per block = 16 vectors x 12 cycles/vector
-    + 12 fill/drain, first S3 beat accepted to last S4 beat, stall-free
-    (s3_valid high whenever data is ready to send, s4_ready always high), one
-    block after reset."""
+    """Record 0014 section 3, stage 2 row: at most 220 cycles per
+    block = 16 vectors x 13 cycles/vector + 12 fill/drain, first S3 beat
+    accepted to last S4 beat, stall-free (s3_valid high whenever data is
+    ready to send, s4_ready always high), one block after reset. Supersedes
+    the record 0007 section 4 line (204 = 16 x 12 + 12) for the restructured
+    jc_dct1d datapath."""
     await setup(dut)
     rng = random.Random(3)
     blk = [(T81[:], 0, True)]
@@ -314,7 +334,15 @@ async def test_cycle_budget(dut):
     n = lastc - first + 1
     dut._log.info("cycles per block (first S3 accept to last S4 beat, inclusive) = %d; "
                   "conditions: s3_valid held high, s4_ready held high, single block", n)
-    assert n <= 204, f"{n} cycles per block exceeds the 204 budget (record 0007 section 4)"
+    assert n <= 220, f"{n} cycles per block exceeds the 220 budget (record 0014)"
+
+    # A second block adds sixteen vector intervals with the same fill/drain.
+    pair = [(T81[:], 0, False), ([255] * 64, 1, True)]
+    out, first, lastc = await run_blocks(dut, pair, rng)
+    check_outputs(pair, out)
+    streamed = (lastc - first + 1) - n
+    dut._log.info("additional cycles for a second stall-free block = %d", streamed)
+    assert streamed == 16 * 13, f"expected 16 vector intervals of 13 cycles, got {streamed}"
 
 
 @cocotb.test()

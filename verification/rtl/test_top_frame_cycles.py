@@ -103,19 +103,15 @@ RECORD_0005_BOUND = 1_503_668                           # record 0005 section 7
 CYCLE_FLOOR = (W // 16) * (H // 16) * 768               # 921,600
 CYCLE_CEILING = FRAME_PERIOD
 
-# Committed `pix.stalled` baseline per row, from the newest committed
-# frame re-count on main
-# (verification/records/20261117T2156Z-frame-cycles-depth12-39c70b2/cycles.json,
-# the depth-12 jc_dct1d tree of #197; the older 61644ee figures predate the
-# dct retime and no longer describe main). The depth-12 downstream drains
-# slower, so all three rows now share one figure. The #132 retime must not
-# add input backpressure, so each row asserts this ceiling from above; only
-# "do not worsen" is claimed.
-PIX_STALLED_CEILING = {
-    ("scene_fbm", 50): 459_994,
-    ("noise_max_entropy", 50): 459_994,
-    ("noise_max_entropy", 95): 459_994,
-}
+# Each image and quality has a pixel-stall ceiling from the depth-13 RTL run.
+# Read the committed record before the simulator writes any new observations.
+BASELINE_JSON = os.path.join(
+    HERE, "..", "records", "20261126T0054Z-frame-cycles-depth13-c04ef09", "cycles.json")
+with open(BASELINE_JSON) as baseline:
+    PIX_STALLED_CEILING = {
+        (row["image"], row["quality"]): row["stage_counts"]["pix"]["stalled"]
+        for row in json.load(baseline)["rows"]
+    }
 
 OUT_JSON = os.environ.get("FRAME_CYCLES_JSON") or os.path.join(
     HERE, "sim_build", "frame_cycles.json")
@@ -455,8 +451,8 @@ async def frame_cycle_case(dut, name, quality):
 
     # The no-stall hold is structural (out_ready driven 1 on every cycle), so
     # the DUT-side observation below cannot be nonzero unless the bench broke
-    # its own guarantee. `pix_valid && !pix_ready` is a real DUT observation
-    # (input backpressure) and is recorded, never asserted.
+    # its own guarantee. The input backpressure check below uses the recorded
+    # ceiling for this image and quality.
     assert host.stage_counts["out"]["stalled"] == 0, (
         "out_valid was not accepted for %d cycles" % host.stage_counts["out"]["stalled"])
     # The sampler must have covered exactly the frame window: the true
@@ -477,10 +473,11 @@ async def frame_cycle_case(dut, name, quality):
     assert host.stage_counts["pix"]["transferred"] == len(stream), (
         "pix transferred %d != stream %d"
         % (host.stage_counts["pix"]["transferred"], len(stream)))
-    assert host.stage_counts["pix"]["stalled"] <= PIX_STALLED_CEILING[(name, quality)], (
-        "pix stalled %d exceeds the committed baseline %d: the #132 retime "
-        "added input backpressure"
-        % (host.stage_counts["pix"]["stalled"], PIX_STALLED_CEILING[(name, quality)]))
+    pix_stalled = row["pix_valid_not_ready_cycles"]
+    ceiling = PIX_STALLED_CEILING[(name, quality)]
+    assert pix_stalled <= ceiling, (
+        f"{name} q{quality} stalled the pixel input for {pix_stalled} cycles, "
+        f"exceeding the depth-13 ceiling of {ceiling}")
     assert host.stage_counts["out"]["transferred"] == len(got), (
         "out transferred %d != output bytes %d"
         % (host.stage_counts["out"]["transferred"], len(got)))

@@ -25,6 +25,7 @@
     "verification/rtl/run_quantizer_equiv.sh",
     "verification/rtl/tb_quantizer_equiv.v",
     "verification/rtl/test_top_frame_cycles.py",
+    "verification/records/20261126T0054Z-frame-cycles-depth13-c04ef09/cycles.json",
     "verification/rtl/test_colour.py",
     "verification/rtl/test_config_header.py",
     "verification/rtl/test_dct.py",
