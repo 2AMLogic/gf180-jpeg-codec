@@ -69,11 +69,18 @@ Record 0007 §4's authorized band for `jc_dct1d` (8 → 10, ≤ 12, "beyond 12 r
 At 13 cycles/vector the DCT is the slowest stage at 1320 cycles/MCU.
 Record 0013 prices the pipelined Huffman stage at 745.2 cycles/MCU.
 Using its 438-cycle quantizer row gives a first-MCU latency of 4520 cycles
-and a frame bound of 1200 × 1320 + 4520 + 627 = **1,589,147 cycles**.
-Record 0012's measured quantizer depth raises that latency by 24 cycles,
-giving **1,589,171 cycles** on the integrated tree. Both bounds use **95.3%**
-of the 1,666,667-cycle VGA30 period. The RTL bench enforces the 220-cycle
-single-block budget from the first accepted S3 beat through the last S4 beat.
+and a frame bound of 1200 × 1320 + 4520 + 627 = **1,589,147 cycles**
+(95.3% of the VGA30 period).
+
+On the integrated tree, record 0012's quantizer adds 24 cycles per MCU
+(4 per block × 6 blocks). The colour path adds 10 cycles from the
+completing pixel beat to the pending load in `jc_downsample`. This delay
+counts once in the first MCU. [Stage-1 latency pricing, decision 1](0011-stage1-retime-latency-pricing.md#decision).
+
+The first-MCU latency is 4,520 + 24 + 10 = **4,554 cycles**. The integrated frame bound is
+1,200 × 1,320 + 4,554 + 627 = **1,589,181 cycles**, or **95.4%** of the
+1,666,667-cycle VGA30 period. The RTL bench enforces the 220-cycle single-block
+budget from the first accepted S3 beat through the last S4 beat.
 
 ### 4. Area cost, stated
 
@@ -107,6 +114,11 @@ mixes. The bench counted 218 cycles for one block and 208 additional cycles
 for a second block (16 vectors × 13). All 160 JPEG and 20 QOI streams matched
 their golden encoders byte for byte. [DCT transcript](../../flow/records/20261126T000252Z-49ecc4e/dct-transcript.log) · [Stream transcript](../../flow/records/20261126T000252Z-49ecc4e/top_golden-transcript.log).
 
+In the three 640 × 480 colour cases, the VGA simulation counted 574,932 pixel
+stalls per frame. The longest frame, `noise_max_entropy` at quality 95,
+reached `out_last` at 1,498,550 cycles. All three JPEGs matched the golden encoder.
+[Depth-13 frame counts](../../verification/records/20261126T0054Z-frame-cycles-depth13-c04ef09/).
+
 ## What this record does not settle
 
 - **The +6.7 ns half** (§2 above): open until #34's wire-aware numbers re-derive W; the assumption-free half is met without it.
@@ -125,6 +137,6 @@ their golden encoders byte for byte. [DCT transcript](../../flow/records/2026112
 ## Consequences
 
 - The implementation couples the 13-cycle RTL, the regenerated whole-top netlist and the 220-cycle budget assertion. The filing data remain available under their original netlist digests.
-- **Schedule consumers re-price to the depth-13 rows**: stage 2 = 1320 cycles/MCU (95.0% of §9), frame bound 95.3% at worst-case content under the merged §7 model (#136/#137's consumers; record 0013's per-depth rows extend to depth 13 by the same model).
+- **Schedule consumers re-price to the depth-13 rows**: stage 2 = 1320 cycles/MCU (95.0% of §9), integrated frame bound 95.4% at worst-case content under the merged §7 model (#136/#137's consumers; record 0013's per-depth rows extend to depth 13 by the same model).
 - **`jc_dct1d`'s port list and stream contract are unchanged** (`start`/`pass2`/`d_flat`/`go`/`busy`/`done`/`o_flat`, one vector per 13 cycles held while `go` is low) — `jc_dct.v` is untouched, as are the transpose file and the S3/S4 streaming interface.
 - **Frame-rate figures remain claims from counted cycles** (spec §9): nothing here is measured beyond STA and simulation on the pinned netlist, never silicon.
