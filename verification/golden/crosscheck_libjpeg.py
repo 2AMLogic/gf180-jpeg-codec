@@ -15,8 +15,10 @@ The golden model still encodes the true-size image and pads it itself.
 Exit status: 0 every case passed, 1 a case failed (also what --negative-control
 must produce), 2 the check did not run (Pillow missing or not 10.2.0).
 
-Images are the small colour and grey files of the spec section 12 reference
-set, taken from verification/images/gen_images.py.  One new timestamped JSON
+Images are the small colour and grey fixtures of the spec section 12
+reference set, generated directly with the image functions of
+verification/images/gen_images.py (no PNM file is parsed; the serialized
+corpus stays covered by gen_images.py --check).  One new timestamped JSON
 record is written per normal run under verification/records/ (append-only);
 the negative control writes none.
 """
@@ -26,7 +28,6 @@ import hashlib
 import io
 import json
 import os
-import re
 import sys
 import warnings
 
@@ -38,7 +39,7 @@ import jpeg_golden as g  # noqa: E402
 
 PILLOW_REQUIRED = "10.2.0"
 QUALITIES = (10, 50, 75, 95)
-SIZES = ((64, 48), (16, 16))
+SIZES = ((16, 16), (64, 48))
 # Not multiples of 16 (decision record 0006): cropped from scene_fbm 640x480.
 ODD_SIZES = ((100, 60), (104, 48), (100, 48), (64, 50), (64, 56), (64, 60),
              (80, 56))
@@ -47,30 +48,19 @@ ODD_SIZES = ((100, 60), (104, 48), (100, 48), (64, 50), (64, 56), (64, 60),
 def reference_images():
     """Yield (name, w, h, rgb, grey) for the small spec section 12 reference set.
 
-    Colour comes from the PPM and grey from the matching PGM that gen_images.py
-    writes, so the cross-check runs on exactly the files SHA256SUMS locks.
-    640x480 is left out on purpose: the pure-Python golden encoder is too slow
-    for a per-quality sweep there.
+    RGB comes straight from the gen_images.py image functions and grey from
+    the luma of the same pixels.  640x480 is left out on purpose: the
+    pure-Python golden encoder is too slow for a per-quality sweep there.
     """
-    files = dict(gen_images.generate())
-    for fname in sorted(files):
-        m = re.fullmatch(r"(.+)_(\d+)x(\d+)\.ppm", fname)
-        if not m or (int(m[2]), int(m[3])) not in SIZES:
-            continue
-        name, w, h = m[1], int(m[2]), int(m[3])
-        grey = files[fname[:-len(".ppm")] + "_grey.pgm"]
-        yield (name, w, h, _pnm_body(files[fname], w, h, 3),
-               _pnm_body(grey, w, h, 1))
+    for name, fn in sorted(gen_images.IMAGES):
+        for w, h in SIZES:
+            rgb = fn(w, h)
+            assert len(rgb) == 3 * w * h
+            yield (name, w, h, rgb, gen_images.luma(rgb))
     big = gen_images.scene_fbm(640, 480)
     for w, h in ODD_SIZES:
         rgb = gen_images.crop(big, 640, w, h)
         yield ("scene_fbm_crop", w, h, rgb, gen_images.luma(rgb))
-
-
-def _pnm_body(data, w, h, channels):
-    body = data.split(b"\n", 3)[3]
-    assert len(body) == channels * w * h
-    return body
 
 
 def host_pad(pixels, w, h, channels, mcu):
@@ -162,7 +152,8 @@ def main(argv=None):
             "libjpeg_turbo": turbo,
             "python": sys.version.split()[0],
             "golden_model_sha256": model_sha,
-            "image_source": "verification/images/gen_images.py generate() "
+            "image_source": "verification/images/gen_images.py image "
+                            "functions, generated directly "
                             "(spec section 12 reference set)",
             "qualities": list(QUALITIES),
             "sizes": sorted({c["size"] for c in cases}),
