@@ -3,6 +3,15 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Guide triage role.
 
+### 2026-11-26
+
+- **Issue #277** (closed): Gate-level codec status becomes unknown before the first pixel on current main
+- **PR #281**: fix: reset every jc_table_load register so gate status stays known
+- **Issue #274** (closed): Require the recorded SRAM error for the pre-route timing negative control
+- **PR #280**: fix: accept only the recorded ORD-2013 SRAM error in the pre-route negative control
+- **Issue #169** (closed): Land the ratified 13-cycle jc_dct1d datapath and verify it on current main
+- **PR #276**: feat(dct): integrate the ratified 13-cycle carry-save datapath
+
 ### 2026-11-25
 
 - **PR #218**: record 0014 (proposed): jc_dct1d 13-cycle CSD carry-save datapath, >= 0 ns at every view; candidate RTL stays on the filing branch pending ratification
