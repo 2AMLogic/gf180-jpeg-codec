@@ -1,0 +1,7 @@
+report: netlist/report.json
+status: match
+  [OK] provenance.input.content_hash
+  [OK] provenance.deck.content_hash
+  [OK] parameters
+  [OK] defines
+  [OK] netlist_sha256

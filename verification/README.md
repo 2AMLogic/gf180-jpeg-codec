@@ -194,14 +194,13 @@ startup X (#277: the status pins go unknown at 3.78 us, before any host
 write) was traced to registers of `jc_table_load` outside the synchronous
 reset; the fix resets them, and the smoke bench's
 `test_reset_reaches_known_idle` now fails in seconds at gate level if a
-netlist regresses that way. The current netlist (`c99a0cd2…`, the committed
-`flow/netlist/jpeg_codec_top_synth.v`) is covered at gate level by the
-reset-diagnosis record
-`verification/records/20261126T0215Z-reset-gl-c99a0cd/` (reset-only
-comparison plus the byte-exact `test_colour_golden/case=47`); its
-predecessor `e32b0e8b…` by the 180-case golden record
-`verification/records/20261106T1803Z-golden-gl-e32b0e8/`: all 180 cases
-pass, QOI included.
+netlist regresses that way. The current netlist (`6aa390d0…`) includes
+the depth-13 DCT. It reached known idle at 26.84 µs and matched all 787
+golden JPEG bytes in colour case 47. [Gate and RTL results](records/20261126T0320Z-reset-gl-6aa390d/README.md).
+The [reset diagnosis](records/20261126T0215Z-reset-gl-c99a0cd/README.md)
+compares the failing netlist with the first reset fix (`c99a0cd2…`).
+The earlier [180-case gate run](records/20261106T1803Z-golden-gl-e32b0e8/)
+covers netlist `e32b0e8b…`, including QOI.
 
 ## Top-level golden comparison (issue #88, functional half of T1 item 5)
 
