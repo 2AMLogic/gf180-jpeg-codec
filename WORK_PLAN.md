@@ -33,13 +33,13 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-- **#282**: Generate only the reference pixels used by the JPEG golden cross-check
+_None._
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
-- **#283**: verification: generate the JPEG cross-check's 27 fixtures directly
+_None._
 
 ## Approved (Awaiting Merge)
 
@@ -57,6 +57,7 @@ Issues carrying `loom:curated`.
 ## Proposed (Architect / Hermit)
 
 - **#278**: Remove per-edge rollback history from the frame-cycle sampler *(hermit)* *(held)*
+- **#286**: Reuse each QOI stage encoding for the golden and decoder checks *(hermit)* *(held)*
 - **#279**: Remove the second reset from test_config_errors *(hermit)* *(held)*
 
 ## Epics
@@ -71,10 +72,10 @@ _None._
 | Very important | 0 |
 | Important | 2 |
 | Ready (`loom:issue`, net of holds/building/merge-pending) | 0 |
-| In Progress (`loom:building`) | 1 |
-| PRs awaiting review | 1 |
+| In Progress (`loom:building`) | 0 |
+| PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
 | Curated | 2 |
-| Architect / Hermit proposals | 2 |
+| Architect / Hermit proposals | 3 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
